@@ -1,9 +1,19 @@
+"use client";
+
 import Link from "next/link";
 
-import { ArrowTopRightIcon } from "@sanity/icons";
+import { ArrowTopRightIcon, MenuIcon } from "@sanity/icons";
 
 import { IconPhone } from "@/assets/icons";
 import { Logo, WordMark } from "@/assets/logo";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 import { NAV_LINKS } from "@/constants";
 
 import { Button } from "../ui/button";
@@ -21,17 +31,22 @@ export const Navbar = () => {
           <WordMark />
         </Link>
 
-        <ul className="flex items-center gap-2">
+        {/* Desktop Navigation */}
+        <ul className="hidden items-center gap-2 lg:flex">
           {NAV_LINKS.map((link) => (
             <li key={link.href} className="font-jaguar text-lg tracking-wide">
-              <Link href={link.href} className="px-3 py-2">
+              <Link
+                href={link.href}
+                className="hover:text-primary px-3 py-2 transition-colors"
+              >
                 {link.title}
               </Link>
             </li>
           ))}
         </ul>
 
-        <div className="flex items-center gap-2">
+        {/* Desktop Buttons */}
+        <div className="hidden items-center gap-2 lg:flex">
           <Button variant="outline" size="icon">
             <IconPhone />
           </Button>
@@ -39,6 +54,55 @@ export const Navbar = () => {
             Explore More <ArrowTopRightIcon />
           </Button>
         </div>
+
+        {/* Mobile Navigation Drawer */}
+        <Drawer>
+          <DrawerTrigger asChild>
+            <Button variant="outline" size="icon" className="size-9 lg:hidden">
+              <MenuIcon />
+            </Button>
+          </DrawerTrigger>
+          <DrawerContent>
+            <DrawerHeader>
+              <DrawerTitle>Menu</DrawerTitle>
+            </DrawerHeader>
+            <div className="px-4 pb-8">
+              <ul className="flex flex-col gap-4">
+                {NAV_LINKS.map((link) => (
+                  <li
+                    key={link.href}
+                    className="font-jaguar text-xl tracking-wide"
+                  >
+                    <DrawerClose asChild>
+                      <Link
+                        href={link.href}
+                        className="hover:text-primary block px-3 py-2 transition-colors"
+                      >
+                        {link.title}
+                      </Link>
+                    </DrawerClose>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-8 grid grid-cols-2 gap-2">
+                <DrawerClose asChild>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="w-full justify-center"
+                  >
+                    <IconPhone /> Call Us
+                  </Button>
+                </DrawerClose>
+                <DrawerClose asChild>
+                  <Button className="border-background/20 inset-shadow-foreground/20 w-full justify-center border-4 inset-shadow-sm">
+                    Explore More <ArrowTopRightIcon />
+                  </Button>
+                </DrawerClose>
+              </div>
+            </div>
+          </DrawerContent>
+        </Drawer>
       </nav>
       <div className="gradient-blur">
         <div></div>

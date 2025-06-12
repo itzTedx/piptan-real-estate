@@ -14,12 +14,12 @@ interface Props {
 export const AnimatedTabs = ({ className }: Props) => {
   return (
     <Tabs defaultValue={FEATURES[0].title} className={cn(className)}>
-      <TabsList className="grid grid-cols-4 gap-1.5">
+      <TabsList className="grid h-fit grid-cols-2 gap-1.5 md:grid-cols-3 lg:grid-cols-4">
         {FEATURES.map(({ title }) => (
           <TabsTrigger
             key={title}
             value={title}
-            className="leading-[1.02] font-medium uppercase backdrop-blur-xs"
+            className="p-2 text-sm leading-[1.02] font-medium uppercase backdrop-blur-xs sm:p-3 sm:text-base"
           >
             {title}
           </TabsTrigger>
@@ -28,22 +28,28 @@ export const AnimatedTabs = ({ className }: Props) => {
 
       <AnimatePresence mode="wait">
         {FEATURES.map(({ title, description }, i) => (
-          <TabsContent value={title} key={title} className="p-14">
+          <TabsContent
+            value={title}
+            key={title}
+            className="p-4 sm:p-8 md:p-10 lg:p-14"
+          >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
             >
-              <div className="grid grid-cols-3">
-                <h3 className="col-span-2 mb-9 text-5xl leading-[1.1] font-medium">
+              <div className="flex gap-4 max-sm:items-center max-sm:justify-between sm:grid sm:grid-cols-3">
+                <h3 className="text-3xl leading-[1.1] font-medium sm:col-span-2 sm:mb-9 sm:text-4xl lg:text-5xl">
                   <TextEffect text={title} duration={0.3} />
                 </h3>
-                <p className="text-muted/40 justify-self-end-safe text-2xl">
+                <p className="text-muted/40 text-xl sm:justify-self-end-safe sm:text-2xl">
                   0{i + 1}
                 </p>
               </div>
-              <p className="text-2xl text-balance">{description}</p>
+              <p className="sm:mt-9text-lg mt-4 text-balance sm:text-xl lg:text-2xl">
+                {description}
+              </p>
             </motion.div>
           </TabsContent>
         ))}
