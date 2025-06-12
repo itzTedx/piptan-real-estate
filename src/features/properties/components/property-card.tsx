@@ -1,0 +1,25 @@
+import Image from "next/image";
+
+import { cn } from "@/lib/utils";
+
+interface Props {
+  className?: string;
+}
+
+export const PropertyCard = ({ className }: Props) => {
+  return (
+    <li className={cn("group", className)}>
+      <div className="outline-foreground relative aspect-square overflow-hidden rounded-md group-first:aspect-auto group-first:h-[447px] group-hover:outline">
+        <Image
+          src="/images/luxury.jpg"
+          alt=""
+          fill
+          className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+        />
+      </div>
+      <h3 className="font-jaguar my-2 text-3xl">Celestia Residences</h3>
+      <p className="">Downtown Dubai</p>
+      <p>From AED 3.2M</p>
+    </li>
+  );
+};

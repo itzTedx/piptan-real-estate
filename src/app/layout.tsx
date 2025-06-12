@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { geistSans, jaguar } from "@/assets/fonts";
+import { jaguar, neueMontreal } from "@/assets/fonts";
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
@@ -17,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(`antialiased`, geistSans.className, jaguar.variable)}>
+      <body
+        className={cn(`antialiased`, neueMontreal.className, jaguar.variable)}
+      >
         {children}
       </body>
     </html>

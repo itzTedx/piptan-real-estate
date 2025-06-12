@@ -1,10 +1,11 @@
 import Image from "next/image";
-
-import { ArrowTopRightIcon } from "@sanity/icons";
+import Link from "next/link";
 
 import MomentumLines from "@/components/animation/momentum-lines";
-import { Button } from "@/components/ui/button";
+import SimpleMarquee from "@/components/animation/simple-marquee";
 import { Separator } from "@/components/ui/separator";
+import { ExpertiseSection } from "@/features/home/section/expertise";
+import { PropertyCard } from "@/features/properties/components/property-card";
 import { cn } from "@/lib/utils";
 
 export default function Home() {
@@ -12,6 +13,27 @@ export default function Home() {
     <main className="-mt-20">
       <section className="relative h-dvh">
         <div className="relative z-10 flex h-full flex-col justify-end py-12">
+          <SimpleMarquee
+            className="font-jaguar z-10 mb-6 w-full items-center gap-6 overflow-hidden text-9xl"
+            baseVelocity={4}
+            repeat={4}
+            draggable={true}
+            scrollSpringConfig={{ damping: 50, stiffness: 400 }}
+            slowDownFactor={0.1}
+            slowdownOnHover
+            slowDownSpringConfig={{ damping: 60, stiffness: 300 }}
+            scrollAwareDirection={true}
+            useScrollVelocity={true}
+            direction="left"
+          >
+            <span>Luxury Homes</span>
+            <div className="bg-foreground size-4 rounded-full" />
+            <span>Commercial Spaces</span>
+            <div className="bg-foreground size-4 rounded-full" />
+            <span>Investment Opportunities</span>
+            <div className="bg-foreground size-4 rounded-full" />
+          </SimpleMarquee>
+
           <div className="relative z-10 container space-y-6">
             <Separator className="bg-white/80" />
             <div className="flex items-center justify-between gap-3">
@@ -34,9 +56,30 @@ export default function Home() {
               Partner in Every Step
             </span>
           </h2>
-          <Button variant="outline" className="pointer-events-auto w-fit">
-            About us <ArrowTopRightIcon />
-          </Button>
+          <Link
+            href="/about"
+            className={cn(
+              // Base styles
+              "font-inter group bg-foreground/10 pointer-events-auto relative flex h-11 w-fit cursor-pointer items-center justify-center overflow-hidden rounded-sm border border-current px-6 text-lg font-medium tracking-wide text-white",
+              // Effect styles
+              "transition-transform duration-700 ease-out will-change-transform hover:scale-x-[1.02] hover:ease-[cubic-bezier(.34,5.56,.64,1)]"
+            )}
+          >
+            <span
+              data-text={"About us"}
+              className={cn(
+                "relative block overflow-hidden",
+                // After child
+                "after:text-primary after:absolute after:left-0 after:z-1 after:translate-y-full after:transform after:duration-700 after:ease-[cubic-bezier(.4,0,0,1)] after:will-change-transform after:content-[attr(data-text)] group-hover:after:translate-y-0"
+              )}
+            >
+              <span className="inline-block duration-700 ease-[cubic-bezier(.4,0,0,1)] group-hover:-translate-y-full">
+                About us
+              </span>
+            </span>
+
+            <span className="absolute inset-0 translate-y-full rounded-[50%_50%_0_0] bg-white transition-all duration-500 ease-[cubic-bezier(.4,0,0,1)] group-hover:translate-y-0 group-hover:rounded-none"></span>
+          </Link>
         </div>
         <p className="pointer-events-none z-10 col-span-7 text-4xl leading-normal font-light text-balance">
           Whether you&apos;re a seasoned investor or new to real estate, Piptan
@@ -50,44 +93,65 @@ export default function Home() {
           <MomentumLines />
         </div>
       </section>
-      <section className="container py-24">
-        <p className="mb-3">Our Expertise</p>
-        <div className="grid grid-cols-3 gap-6">
-          <h2 className="col-span-2 text-5xl font-bold">
-            Real Estate Wisdom. <br />
-            Built Over Time.
-          </h2>
-          <p className="text-xl font-light text-balance">
-            With deep market knowledge and strategic insights, we help you make
-            the right move — every time.
-          </p>
+      <section className="relative container py-24">
+        <div className="sticky top-[10vh] mb-96">
+          <p className="mb-3">Our Expertise</p>
+          <div className="z-10 grid grid-cols-3 gap-6">
+            <h2 className="col-span-2 text-5xl font-bold">
+              Real Estate Wisdom. <br />
+              Built Over Time.
+            </h2>
+            <p className="text-xl font-light text-balance">
+              With deep market knowledge and strategic insights, we help you
+              make the right move — every time.
+            </p>
+          </div>
         </div>
-
-        <Button>Button</Button>
-
-        <button
-          className={cn(
-            // Base styles
-            "font-inter group relative w-fit cursor-pointer overflow-hidden rounded-full border border-current px-6 py-2 text-lg font-medium tracking-wide text-white",
-            // Effect styles
-            "transition-transform duration-700 ease-out will-change-transform hover:scale-x-[1.02] hover:ease-[cubic-bezier(.34,5.56,.64,1)]"
-          )}
-        >
-          <span
-            data-text={"Invert Button"}
+        <ExpertiseSection />
+      </section>
+      <section className="container py-24">
+        <div className="mb-12">
+          <p className="mb-3">Projects</p>
+          <div className="z-10 mb-4 grid grid-cols-3 gap-6">
+            <h2 className="col-span-2 text-5xl font-bold">
+              More Than Properties, <br />
+              We Build Possibilities.
+            </h2>
+            <p className="text-primary-foreground text-xl font-light text-balance">
+              Discover signature developments in Dubai’s most sought-after
+              communities.
+            </p>
+          </div>
+          <Link
+            href="/about"
             className={cn(
-              "relative block overflow-hidden",
-              // After child
-              "after:absolute after:left-0 after:z-1 after:translate-y-full after:transform after:text-black after:duration-700 after:ease-[cubic-bezier(.4,0,0,1)] after:will-change-transform after:content-[attr(data-text)] group-hover:after:translate-y-0"
+              // Base styles
+              "font-inter group bg-foreground/10 pointer-events-auto relative flex h-11 w-fit cursor-pointer items-center justify-center overflow-hidden rounded-sm border border-current px-6 text-lg font-medium tracking-wide text-white",
+              // Effect styles
+              "transition-transform duration-700 ease-out will-change-transform hover:scale-x-[1.02] hover:ease-[cubic-bezier(.34,5.56,.64,1)]"
             )}
           >
-            <span className="inline-block duration-700 ease-[cubic-bezier(.4,0,0,1)] group-hover:-translate-y-full">
-              Button
+            <span
+              data-text={"View all projects"}
+              className={cn(
+                "relative block overflow-hidden",
+                // After child
+                "after:text-primary after:absolute after:left-0 after:z-1 after:translate-y-full after:transform after:duration-700 after:ease-[cubic-bezier(.4,0,0,1)] after:will-change-transform after:content-[attr(data-text)] group-hover:after:translate-y-0"
+              )}
+            >
+              <span className="inline-block duration-700 ease-[cubic-bezier(.4,0,0,1)] group-hover:-translate-y-full">
+                View all projects
+              </span>
             </span>
-          </span>
 
-          <span className="absolute inset-0 translate-y-full rounded-[50%_50%_0_0] bg-white transition-all duration-500 ease-[cubic-bezier(.4,0,0,1)] group-hover:translate-y-0 group-hover:rounded-none"></span>
-        </button>
+            <span className="absolute inset-0 translate-y-full rounded-[50%_50%_0_0] bg-white transition-all duration-500 ease-[cubic-bezier(.4,0,0,1)] group-hover:translate-y-0 group-hover:rounded-none"></span>
+          </Link>
+        </div>
+        <ul className="grid grid-cols-3 gap-6">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <PropertyCard key={i} className="first:col-span-2" />
+          ))}
+        </ul>
       </section>
     </main>
   );

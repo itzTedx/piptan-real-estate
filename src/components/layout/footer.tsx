@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Logo, Piptan, WordMark } from "@/assets/logo";
 import { FOOTER_LINKS } from "@/constants/footer";
 
+import { TextEffect } from "../test";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 
@@ -11,7 +12,7 @@ export const Footer = () => {
     <footer className="bg-black" role="contentinfo" aria-label="Website footer">
       <div className="container">
         <h2 className="font-jaguar text-primary py-3 text-center text-[8rem]">
-          Invest. Grow. Thrive.
+          <TextEffect text="Invest. Grow. Thrive." />
         </h2>
         <Separator />
         <section
