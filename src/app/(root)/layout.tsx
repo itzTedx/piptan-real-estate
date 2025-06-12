@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 
-import { geistSans, jaguar } from "@/assets/fonts";
-import { cn } from "@/lib/utils";
-
-import "./globals.css";
+import { Footer } from "@/components/layout/footer";
+import { Navbar } from "@/components/layout/navbar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,10 +14,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={cn(`antialiased`, geistSans.className, jaguar.variable)}>
-        {children}
-      </body>
-    </html>
+    <>
+      <Navbar />
+      {children}
+      <Footer />
+    </>
   );
 }

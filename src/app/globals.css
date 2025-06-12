@@ -55,11 +55,11 @@
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.5502 0.22 27.03);
-  --primary-foreground: oklch(0.9683 0.0151 27.03);
+  --primary-foreground: oklch(0.9177 0.0425 14.36);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
+  --muted-foreground: oklch(0.6133 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
@@ -104,7 +104,7 @@
     max-width: 82rem;
   }
   @media (width >= 96rem /* 1536px */) {
-    padding-inline: 6rem;
+    padding-inline: 4rem;
     max-width: 98rem;
   }
 }
