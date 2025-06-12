@@ -1,9 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { BuildingOutline } from "@/assets/building-outline";
+import { IconDiamond } from "@/assets/icons";
 import MomentumLines from "@/components/animation/momentum-lines";
 import SimpleMarquee from "@/components/animation/simple-marquee";
+import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { AnimatedTabs } from "@/features/home/components/animated-tabs";
 import { ExpertiseSection } from "@/features/home/section/expertise";
 import { PropertyCard } from "@/features/properties/components/property-card";
 import { cn } from "@/lib/utils";
@@ -50,8 +54,8 @@ export default function Home() {
       <section className="relative container grid grid-cols-12 gap-12 py-24">
         <div className="pointer-events-none z-10 col-span-5 space-y-3">
           <p className="pointer-events-none">Who we are?</p>
-          <h2 className="pointer-events-none text-5xl font-bold">
-            Your Real Estate{" "}
+          <h2 className="pointer-events-none text-5xl font-medium">
+            Your Real Estate <br />
             <span className="text-primary-foreground">
               Partner in Every Step
             </span>
@@ -85,9 +89,9 @@ export default function Home() {
           Whether you&apos;re a seasoned investor or new to real estate, Piptan
           Investment delivers seamless capital{" "}
           <span className="font-medium">
-            solutions, market-driven insights, and expert guidance;
+            solutions, market-driven insights, and expert guidance
           </span>{" "}
-          Empowering you to invest with confidence.
+          - Empowering you to invest with confidence.
         </p>
         <div className="absolute inset-x-0 inset-y-0">
           <MomentumLines />
@@ -97,7 +101,7 @@ export default function Home() {
         <div className="sticky top-[10vh] mb-96">
           <p className="mb-3">Our Expertise</p>
           <div className="z-10 grid grid-cols-3 gap-6">
-            <h2 className="col-span-2 text-5xl font-bold">
+            <h2 className="col-span-2 text-5xl font-medium">
               Real Estate Wisdom. <br />
               Built Over Time.
             </h2>
@@ -111,14 +115,17 @@ export default function Home() {
       </section>
       <section className="container py-24">
         <div className="mb-12">
-          <p className="mb-3">Projects</p>
+          <p className="mb-3 inline-flex items-center gap-1.5">
+            <IconDiamond />
+            Projects
+          </p>
           <div className="z-10 mb-4 grid grid-cols-3 gap-6">
-            <h2 className="col-span-2 text-5xl font-bold">
+            <h2 className="col-span-2 text-5xl font-medium">
               More Than Properties, <br />
               We Build Possibilities.
             </h2>
             <p className="text-primary-foreground text-xl font-light text-balance">
-              Discover signature developments in Dubai’s most sought-after
+              Discover signature developments in Dubai&apos;s most sought-after
               communities.
             </p>
           </div>
@@ -152,6 +159,73 @@ export default function Home() {
             <PropertyCard key={i} className="first:col-span-2" />
           ))}
         </ul>
+      </section>
+      <section className="bg-primary relative overflow-hidden">
+        <div className="container py-24">
+          <p className="mb-3 inline-flex items-center gap-1.5">
+            <IconDiamond />
+            Why choose us?
+          </p>
+          <div className="z-10 mb-4 grid grid-cols-2 gap-6">
+            <h2 className="text-5xl font-medium">
+              Where Real Estate <br />
+              <span className="text-primary-foreground">
+                Meets Real Potential
+              </span>
+            </h2>
+            <p className="text-primary-foreground text-xl font-light">
+              At Piptan Investment, we offer more than properties - we offer
+              peace of mind. With expert guidance and premium listings, we help
+              you make confident, future-ready real estate decisions.
+            </p>
+          </div>
+        </div>
+        <div className="relative z-10 container grid grid-cols-2 gap-6 pb-24">
+          <div className="absolute top-0 -left-[10vw] aspect-5/3 w-2/3">
+            <Image
+              src="/images/isolated-home.webp"
+              fill
+              alt=""
+              className="object-cover"
+            />
+          </div>
+          <AnimatedTabs className="col-start-2" />
+        </div>
+        <BuildingOutline className="absolute top-0 -right-12" />
+      </section>
+      <section className="container py-20">
+        <h3 className="text-7xl">Where ambition meets opportunity.</h3>
+        <div className="mt-10 grid grid-cols-2 gap-6">
+          <p className="text-primary-foreground text-5xl leading-snug">
+            Choose from our premium real estate options — crafted to match your
+            lifestyle, goals, and investment vision. With Piptan, finding the
+            perfect property is effortless.
+          </p>
+          <div className="self-end">
+            <p className="text-muted-foreground mb-4">
+              Each Piptan residence is crafted <br /> with consistent care and
+              quality.
+            </p>
+            <ul className="flex flex-wrap gap-3">
+              {[
+                "Sustainable",
+                "Smart",
+                "Luxury",
+                "Premium",
+                "High ROI",
+                "Growing Market",
+                "Prime Location",
+                "Private & Secure",
+              ].map((badge) => (
+                <li key={badge}>
+                  <Badge variant="outline" className="text-2xl">
+                    {badge}
+                  </Badge>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </section>
     </main>
   );

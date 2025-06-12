@@ -4,7 +4,7 @@ import { ArrowTopRightIcon } from "@sanity/icons";
 
 import { IconPhone } from "@/assets/icons";
 import { Logo, WordMark } from "@/assets/logo";
-import { NAV_LINKS } from "@/constants/nav";
+import { NAV_LINKS } from "@/constants";
 
 import { Button } from "../ui/button";
 

@@ -1,83 +1,116 @@
 "use client";
 
-import React, { useRef } from "react";
+import { ReactNode, useMemo, useState } from "react";
 
-import { useGSAP } from "@gsap/react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { AnimatePresence, MotionConfig, motion } from "motion/react";
+import useMeasure from "react-use-measure";
 
-gsap.registerPlugin(ScrollTrigger);
+import { cn } from "@/lib/utils";
 
-interface TextEffectProps {
-  text: string;
+type Tab = {
+  id: number;
+  label: string;
+  content: ReactNode;
+};
+
+interface OgImageSectionProps {
+  tabs: Tab[];
+  className?: string;
+  rounded?: string;
 }
 
-export const TextEffect: React.FC<TextEffectProps> = ({ text }) => {
-  const scope = useRef<HTMLDivElement>(null);
-  const timelineRef = useRef<gsap.core.Timeline | null>(null);
-  const wrapElements = (
-    elems: NodeListOf<Element> | Element[],
-    wrapType: string,
-    wrapClass: string
-  ) => {
-    if (typeof window === "undefined") return;
-    Array.from(elems).forEach((elem) => {
-      const wrapEl = document.createElement(wrapType);
-      wrapEl.className = wrapClass;
-      elem.parentNode?.insertBefore(wrapEl, elem);
-      wrapEl.appendChild(elem);
-    });
+function DirectionAwareTabs({ tabs, className, rounded }: OgImageSectionProps) {
+  const [activeTab, setActiveTab] = useState(0);
+  const [direction, setDirection] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [ref, bounds] = useMeasure();
+
+  const content = useMemo(() => {
+    const activeTabContent = tabs.find((tab) => tab.id === activeTab)?.content;
+    return activeTabContent || null;
+  }, [activeTab, tabs]);
+
+  const handleTabClick = (newTabId: number) => {
+    if (newTabId !== activeTab && !isAnimating) {
+      const newDirection = newTabId > activeTab ? 1 : -1;
+      setDirection(newDirection);
+      setActiveTab(newTabId);
+    }
   };
 
-  useGSAP(
-    () => {
-      if (!scope.current || typeof window === "undefined") return;
-      const chars = scope.current?.querySelectorAll(".char");
-      if (!chars?.length) return;
-      timelineRef.current = gsap.timeline({
-        scrollTrigger: {
-          trigger: scope.current,
-          start: "top bottom-=100",
-          end: "bottom top+=100",
-          toggleActions: "play none none reset",
-        },
-      });
-
-      wrapElements(chars, "span", "char-wrap");
-      timelineRef.current.fromTo(
-        chars,
-        {
-          willChange: "transform",
-          xPercent: -250,
-          rotationZ: 45,
-          scaleX: 6,
-          transformOrigin: "100% 50%",
-          opacity: 0,
-        },
-        {
-          duration: 1,
-          ease: "power2",
-          xPercent: 0,
-          rotationZ: 0,
-          scaleX: 1,
-          opacity: 1,
-          stagger: 0.06,
-        }
-      );
+  const variants = {
+    initial: (direction: number) => ({
+      x: 300 * direction,
+      opacity: 0,
+      filter: "blur(4px)",
+    }),
+    active: {
+      x: 0,
+      opacity: 1,
+      filter: "blur(0px)",
     },
-    { scope }
-  );
+    exit: (direction: number) => ({
+      x: -300 * direction,
+      opacity: 0,
+      filter: "blur(4px)",
+    }),
+  };
 
   return (
-    <span
-      ref={scope}
-      className="[&_.char]:inline-block [&_.char-wrap]:inline-grid [&_.char-wrap]:overflow-hidden"
-    >
-      {[...text].map((char, index) => (
-        <span key={index} className="char">
-          {char}
-        </span>
-      ))}
-    </span>
+    <div className="flex w-full flex-col items-center">
+      <div
+        className={cn(
+          "shadow-inner-shadow flex cursor-pointer space-x-1 rounded-full border border-none px-[3px] py-[3.2px]",
+          className,
+          rounded
+        )}
+      >
+        {tabs.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => handleTabClick(tab.id)}
+            className={cn(
+              "relative flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-medium text-neutral-200 transition focus-visible:ring-1 focus-visible:outline-1 focus-visible:outline-none sm:text-sm",
+              activeTab === tab.id
+                ? "text-white"
+                : "text-neutral-200/80 hover:text-neutral-300/60",
+              rounded
+            )}
+            style={{ WebkitTapHighlightColor: "transparent" }}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+      <MotionConfig transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}>
+        <motion.div
+          className="relative mx-auto h-full w-full overflow-hidden"
+          initial={false}
+          animate={{ height: bounds.height }}
+        >
+          <div className="text-background bg-white p-1" ref={ref}>
+            <AnimatePresence
+              custom={direction}
+              mode="popLayout"
+              onExitComplete={() => setIsAnimating(false)}
+            >
+              <motion.div
+                key={activeTab}
+                variants={variants}
+                initial="initial"
+                animate="active"
+                exit="exit"
+                custom={direction}
+                onAnimationStart={() => setIsAnimating(true)}
+                onAnimationComplete={() => setIsAnimating(false)}
+              >
+                {content}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </motion.div>
+      </MotionConfig>
+    </div>
   );
-};
+}
+export { DirectionAwareTabs };

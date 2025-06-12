@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 import { Logo, Piptan, WordMark } from "@/assets/logo";
-import { FOOTER_LINKS } from "@/constants/footer";
+import { FOOTER_LINKS } from "@/constants";
 
-import { TextEffect } from "../test";
+import { TextEffect } from "../animation/text-animation";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 
