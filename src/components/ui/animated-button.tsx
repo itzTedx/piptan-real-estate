@@ -12,11 +12,11 @@ interface AnimatedButtonProps extends ComponentProps<typeof Link> {
 }
 
 const baseStyles =
-  "font-medium relative group pointer-events-auto relative flex w-fit cursor-pointer items-center justify-center overflow-hidden rounded-sm border border-current transition-transform duration-700 ease-out will-change-transform hover:scale-x-[1.02] hover:ease-[cubic-bezier(.34,5.56,.64,1)] focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none  ring-offset-2";
+  "font-medium relative group pointer-events-auto relative flex w-fit cursor-pointer items-center justify-center overflow-hidden rounded-sm  transition-transform duration-700 ease-out will-change-transform hover:scale-x-[1.02] hover:ease-[cubic-bezier(.34,5.56,.64,1)] focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none  ring-offset-2";
 
 const variants = {
-  default: "bg-primary text-primary-foreground",
-  outline: "bg-foreground/10 text-white",
+  default: "bg-primary text-primary-foreground border",
+  outline: "bg-foreground/10 text-white border border-foreground/80",
   secondary:
     "bg-secondary text-primary border-background/20 inset-shadow-foreground/20 inset-shadow-sm",
   primary:

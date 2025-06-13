@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { AboutSection } from "@/features/home/section/about";
 import { ExpertiseSection } from "@/features/home/section/expertise";
+import { FaqSection } from "@/features/home/section/faq";
 import { FeaturesSection } from "@/features/home/section/features";
 import { Hero } from "@/features/home/section/hero";
 import { InsightsSection } from "@/features/home/section/insights";
@@ -43,6 +44,7 @@ export default function Home() {
       <FeaturesSection />
       <Testimonials />
       <InsightsSection />
+      <FaqSection />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
