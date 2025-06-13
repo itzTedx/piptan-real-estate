@@ -15,8 +15,8 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { NAV_LINKS } from "@/constants";
-import { cn } from "@/lib/utils";
 
+import { AnimatedButton } from "../ui/animated-button";
 import { Button } from "../ui/button";
 
 export const Navbar = () => {
@@ -51,27 +51,11 @@ export const Navbar = () => {
           <Button variant="outline" size="icon">
             <IconPhone />
           </Button>
-          <Link
+          <AnimatedButton
             href="/contact"
-            className={cn(
-              "font-inter group bg-primary text-primary-foreground border-background/20 inset-shadow-foreground/20 pointer-events-auto relative flex h-9 w-fit cursor-pointer items-center justify-center overflow-hidden rounded-sm border-2 text-sm font-medium tracking-wide inset-shadow-sm sm:h-10 sm:px-3 sm:text-base md:h-11 md:px-4 md:text-lg",
-              "transition-transform duration-700 ease-out will-change-transform hover:scale-x-[1.02] hover:ease-[cubic-bezier(.34,5.56,.64,1)]"
-            )}
-          >
-            <span
-              data-text={"Explore More"}
-              className={cn(
-                "relative block overflow-hidden",
-                "after:text-secondary after:absolute after:left-0 after:z-1 after:translate-y-full after:transform after:duration-700 after:ease-[cubic-bezier(.4,0,0,1)] after:will-change-transform after:content-[attr(data-text)] group-hover:after:translate-y-0"
-              )}
-            >
-              <span className="inline-block duration-700 ease-[cubic-bezier(.4,0,0,1)] group-hover:-translate-y-full">
-                Explore More
-              </span>
-            </span>
-
-            <span className="bg-secondary-foreground absolute inset-0 translate-y-full rounded-[50%_50%_0_0] transition-all duration-500 ease-[cubic-bezier(.4,0,0,1)] group-hover:translate-y-0 group-hover:rounded-none"></span>
-          </Link>
+            text="Explore More"
+            variant="primary"
+          />
         </div>
 
         {/* Mobile Navigation Drawer */}

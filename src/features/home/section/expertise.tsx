@@ -1,8 +1,10 @@
 import Image from "next/image";
 
+import { IconCollection } from "@/assets/icons";
 import StackingCards, {
   StackingCardItem,
 } from "@/components/animation/stacking-cards";
+import { SectionHeader } from "@/components/ui/section-header";
 import { cn } from "@/lib/utils";
 
 const cards = [
@@ -39,17 +41,15 @@ export const ExpertiseSection = () => {
       aria-label="Expertise section"
     >
       <div className="sticky top-[10vh] mb-32 px-2 sm:mb-48 md:mb-64 lg:mb-96">
-        <p className="mb-2 sm:mb-3">Our Expertise</p>
-        <div className="z-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 md:grid-cols-3">
-          <h2 className="text-2xl font-medium sm:col-span-2 sm:text-3xl md:text-4xl lg:text-5xl">
-            Real Estate Wisdom. <br />
-            <span className="text-primary-foreground">Built Over Time.</span>
-          </h2>
-          <p className="text-primary-foreground text-base font-light text-balance sm:text-lg md:text-xl">
-            With deep market knowledge and strategic insights, we help you make
-            the right move — every time.
-          </p>
-        </div>
+        <SectionHeader
+          badge="Our Expertise"
+          title={`Real Estate Wisdom,\nBuilt Over Time.`}
+          subtitle=" With deep market knowledge and strategic insights, we help you make
+            the right move — every time."
+          icon={<IconCollection className="size-3 sm:size-4" />}
+          hasHighlight
+          highlightText="Built Over Time."
+        />
       </div>
       <div className="relative mt-[-15vh] min-h-screen md:mt-[-70vh] lg:mt-[-80vh] xl:mt-[-45vh]">
         <StackingCards totalCards={cards.length}>

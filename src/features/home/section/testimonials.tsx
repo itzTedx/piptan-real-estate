@@ -7,6 +7,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 
 import { IconChatBubble } from "@/assets/icons";
 import { Logo, WordMark } from "@/assets/logo";
+import { SectionHeader } from "@/components/ui/section-header";
 import { FEEDBACKS } from "@/constants/mock-data";
 import { cn } from "@/lib/utils";
 
@@ -19,22 +20,17 @@ export const Testimonials = () => {
 
   return (
     <section ref={containerRef} className="container py-20">
-      <p className="mb-2 inline-flex items-center gap-1 sm:mb-3 sm:gap-1.5">
-        <IconChatBubble className="size-3 sm:size-4" />
-        Testimonials
-      </p>
-      <div className="z-10 mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
-        <h2 className="text-2xl font-medium sm:text-3xl md:text-4xl lg:text-5xl">
-          Built on Trust.
-          <br />
-          <span className="text-primary-foreground">Proven by Results.</span>
-        </h2>
-        <p className="text-primary-foreground text-base font-light sm:text-lg md:text-xl">
-          With expert insight and a client-first mindset, we provide clear
+      <SectionHeader
+        badge="Testimonials"
+        icon={<IconChatBubble className="size-3 sm:size-4" />}
+        title={` Built on Trust,\nProven by Results.`}
+        hasHighlight
+        highlightText="Proven by Results."
+        subtitle="With expert insight and a client-first mindset, we provide clear
           guidance, fast execution, and a smooth journey — helping you secure
-          the right property with confidence.
-        </p>
-      </div>
+          the right property with confidence."
+      />
+
       <ul className="mt-12 grid grid-cols-1 grid-rows-8 gap-3 md:grid-cols-3 md:grid-rows-3 md:gap-6">
         <li className="sticky top-[calc(50%-12rem)] col-start-1 row-start-1 flex flex-col items-center justify-center gap-4 rounded-sm p-10 max-md:h-fit md:col-start-2">
           <Logo className="h-14 w-auto md:h-20" />
