@@ -1,30 +1,26 @@
 import Link from "next/link";
 
-import { IconDiamond } from "@/assets/icons";
-import { PropertyCard } from "@/features/properties/components/property-card";
+import { IconCollection } from "@/assets/icons";
 import { cn } from "@/lib/utils";
 
-export const ProjectsSection = () => {
+export const InsightsSection = () => {
   return (
-    <section
-      className="container py-8 sm:py-12 md:py-16 lg:py-24"
-      aria-label="Projects section"
-    >
+    <section className="container py-20">
       <div className="mb-6 sm:mb-8 md:mb-12">
         <p className="mb-2 inline-flex items-center gap-1 sm:mb-3 sm:gap-1.5">
-          <IconDiamond className="size-3 sm:size-4" />
-          Projects
+          <IconCollection className="size-3 sm:size-4" />
+          Insights
         </p>
         <div className="z-10 mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 md:grid-cols-3">
           <h2 className="text-2xl font-medium sm:col-span-2 sm:text-3xl md:text-4xl lg:text-5xl">
-            More Than Properties, <br />
+            All the Essentials to Begin Your <br />
             <span className="text-primary-foreground">
-              We Build Possibilities.
+              Property Journey with Piptan
             </span>
           </h2>
           <p className="text-primary-foreground text-base font-light text-balance sm:text-lg md:text-xl">
-            Discover signature developments in Dubai&apos;s most sought-after
-            communities.
+            Explore market trends, property tips, and investment updates to help
+            you stay ahead in the real estate world with confidence.
           </p>
         </div>
         <Link
@@ -35,25 +31,20 @@ export const ProjectsSection = () => {
           )}
         >
           <span
-            data-text={"View all projects"}
+            data-text={"View all Insights"}
             className={cn(
               "relative block overflow-hidden",
               "after:text-primary after:absolute after:left-0 after:z-1 after:translate-y-full after:transform after:duration-700 after:ease-[cubic-bezier(.4,0,0,1)] after:will-change-transform after:content-[attr(data-text)] group-hover:after:translate-y-0"
             )}
           >
             <span className="inline-block duration-700 ease-[cubic-bezier(.4,0,0,1)] group-hover:-translate-y-full">
-              View all projects
+              View all Insights
             </span>
           </span>
 
           <span className="absolute inset-0 translate-y-full rounded-[50%_50%_0_0] bg-white transition-all duration-500 ease-[cubic-bezier(.4,0,0,1)] group-hover:translate-y-0 group-hover:rounded-none"></span>
         </Link>
       </div>
-      <ul className="grid grid-cols-1 max-sm:divide-y sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <PropertyCard key={i} className="max-sm:py-6 first:sm:col-span-2" />
-        ))}
-      </ul>
     </section>
   );
 };

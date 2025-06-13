@@ -43,9 +43,9 @@ export const ExpertiseSection = () => {
         <div className="z-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 md:grid-cols-3">
           <h2 className="text-2xl font-medium sm:col-span-2 sm:text-3xl md:text-4xl lg:text-5xl">
             Real Estate Wisdom. <br />
-            Built Over Time.
+            <span className="text-primary-foreground">Built Over Time.</span>
           </h2>
-          <p className="text-base font-light text-balance sm:text-lg md:text-xl">
+          <p className="text-primary-foreground text-base font-light text-balance sm:text-lg md:text-xl">
             With deep market knowledge and strategic insights, we help you make
             the right move — every time.
           </p>
@@ -77,7 +77,7 @@ export const ExpertiseSection = () => {
                     </div>
                   </div>
 
-                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md md:aspect-[16/10]">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md md:aspect-[16/9] 2xl:aspect-[16/9]">
                     <Image
                       src={image}
                       alt={title}

@@ -37,7 +37,7 @@ export const AboutSection = () => {
           <span className="absolute inset-0 translate-y-full rounded-[50%_50%_0_0] bg-white transition-all duration-500 ease-[cubic-bezier(.4,0,0,1)] group-hover:translate-y-0 group-hover:rounded-none"></span>
         </Link>
       </div>
-      <p className="pointer-events-none z-10 text-lg leading-normal font-light text-balance sm:col-span-3 sm:text-xl md:col-span-7 md:text-2xl lg:text-4xl">
+      <p className="text-primary-foreground pointer-events-none z-10 text-lg leading-normal font-light text-balance sm:col-span-3 sm:text-xl md:col-span-7 md:text-2xl lg:text-4xl">
         Whether you&apos;re a seasoned investor or new to real estate, Piptan
         Investment delivers seamless capital{" "}
         <span className="font-medium">

@@ -4,6 +4,7 @@ import { AboutSection } from "@/features/home/section/about";
 import { ExpertiseSection } from "@/features/home/section/expertise";
 import { FeaturesSection } from "@/features/home/section/features";
 import { Hero } from "@/features/home/section/hero";
+import { InsightsSection } from "@/features/home/section/insights";
 import { ProjectsSection } from "@/features/home/section/projects";
 import { Testimonials } from "@/features/home/section/testimonials";
 import { WhyUsSection } from "@/features/home/section/why-us";
@@ -27,6 +28,7 @@ export const metadata: Metadata = {
       },
     ],
   },
+  metadataBase: new URL("https://www.piptan.com"),
 };
 
 export default function Home() {
@@ -40,6 +42,7 @@ export default function Home() {
       <WhyUsSection />
       <FeaturesSection />
       <Testimonials />
+      <InsightsSection />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

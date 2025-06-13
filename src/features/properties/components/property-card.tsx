@@ -35,7 +35,7 @@ export const PropertyCard = ({ className }: Props) => {
       </div>
       <h3 className="font-jaguar my-2 text-3xl">Celestia Residences</h3>
       <p className="text-muted-foreground">Downtown Dubai</p>
-      <p>From AED 3.2M</p>
+      <p className="text-primary-foreground">From AED 3.2M</p>
     </li>
   );
 };

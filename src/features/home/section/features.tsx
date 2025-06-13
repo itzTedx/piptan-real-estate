@@ -15,7 +15,7 @@ export const FeaturesSection = () => {
           lifestyle, goals, and investment vision. With Piptan, finding the
           perfect property is effortless.
         </p>
-        <div className="self-end">
+        <div className="self-end md:pl-14">
           <p className="text-muted-foreground mb-3 sm:mb-4">
             Each Piptan residence is crafted <br /> with consistent care and
             quality.
