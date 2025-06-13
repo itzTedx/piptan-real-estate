@@ -40,7 +40,7 @@ export const AnimatedTabs = ({ className }: Props) => {
               transition={{ duration: 0.5, ease: "easeInOut" }}
             >
               <div className="flex gap-4 max-sm:items-center max-sm:justify-between sm:grid sm:grid-cols-3">
-                <h3 className="text-3xl leading-[1.1] font-medium sm:col-span-2 sm:mb-9 sm:text-4xl lg:text-5xl">
+                <h3 className="text-primary text-3xl leading-[1.1] font-medium sm:col-span-2 sm:mb-6 sm:text-4xl lg:text-5xl">
                   <TextEffect text={title} duration={0.3} />
                 </h3>
                 <p className="text-muted/40 text-xl sm:justify-self-end-safe sm:text-2xl">

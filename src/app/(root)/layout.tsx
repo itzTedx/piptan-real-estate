@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { Cta } from "@/components/layout/cta";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 
@@ -17,6 +18,7 @@ export default function RootLayout({
     <>
       <Navbar />
       {children}
+      <Cta />
       <Footer />
     </>
   );
