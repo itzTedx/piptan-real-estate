@@ -36,8 +36,9 @@ export const Testimonials = () => {
           <Logo className="h-14 w-auto md:h-20" />
           <WordMark className="h-8 w-auto md:h-11" />
         </li>
+
         <li className="to-foreground group relative col-start-1 row-span-2 row-start-7 flex flex-col justify-end overflow-hidden rounded-sm bg-gradient-to-b from-[#60A2D7] md:row-span-2 md:row-start-2">
-          <h3 className="text-background absolute top-0 p-6 text-4xl md:p-10 md:text-6xl">
+          <h3 className="text-background absolute top-0 p-6 text-4xl md:p-10 md:text-[3.25rem]">
             Find the best properties in the{" "}
             <span className="font-medium">Middle East</span>
           </h3>
@@ -55,6 +56,7 @@ export const Testimonials = () => {
             />
           </motion.div>
         </li>
+
         {FEEDBACKS.map((f) => (
           <li
             key={f.name}
