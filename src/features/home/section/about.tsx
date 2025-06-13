@@ -1,3 +1,4 @@
+import { IconInfo } from "@/assets/icons";
 import MomentumLines from "@/components/animation/momentum-lines";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -11,6 +12,7 @@ export const AboutSection = () => {
       <div className="pointer-events-none z-10 space-y-2 sm:col-span-3 sm:space-y-3 md:col-span-5">
         <SectionHeader
           badge="Who we are?"
+          icon={<IconInfo className="size-3 sm:size-4" />}
           title={`Your Real Estate\nPartner in Every Step`}
           hasHighlight
           highlightText="Partner in Every Step"

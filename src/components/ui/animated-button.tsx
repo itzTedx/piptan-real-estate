@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { type ComponentProps } from "react";
 
-import { ArrowTopRightIcon } from "@sanity/icons";
-
 import { cn } from "@/lib/utils";
 
 interface AnimatedButtonProps extends ComponentProps<typeof Link> {
@@ -20,12 +18,12 @@ const variants = {
   secondary:
     "bg-secondary text-primary border-background/20 inset-shadow-foreground/20 inset-shadow-sm",
   primary:
-    "bg-primary text-primary-foreground border-background/20 inset-shadow-foreground/20 border-2 inset-shadow-sm",
+    "bg-primary text-primary-foreground border-background/20 inset-shadow-foreground/20 border-2 inset-shadow-xl",
 } as const;
 
 const sizes = {
   default:
-    "h-9 px-4 text-sm sm:h-10 sm:px-5 sm:text-base md:h-11 md:pl-4 md:pr-9 md:text-lg",
+    "h-9 px-4 text-sm sm:h-10 sm:px-5 sm:text-base md:h-11 md:px-4 md:text-lg",
   sm: "h-8 px-3 text-sm sm:h-9 sm:px-4 sm:text-base",
   lg: "h-10 px-5 text-base sm:h-11 sm:px-6 sm:text-lg md:h-12 md:px-7 md:text-xl",
 } as const;
@@ -74,9 +72,9 @@ export const AnimatedButton = ({
           {text}
         </span>
       </span>
-      <span className="absolute right-3 z-10 shrink-0">
+      {/* <span className="absolute right-3 z-10 shrink-0">
         <ArrowTopRightIcon className="shrink-0" />
-      </span>
+      </span> */}
       <span
         className={cn(backgroundAnimationStyles, hoverBackgrounds[variant])}
       />

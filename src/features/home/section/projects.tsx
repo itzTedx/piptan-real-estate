@@ -1,4 +1,4 @@
-import { IconDiamond } from "@/assets/icons";
+import { IconHouse } from "@/assets/icons";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { SectionHeader } from "@/components/ui/section-header";
 import { PropertyCard } from "@/features/properties/components/property-card";
@@ -12,7 +12,7 @@ export const ProjectsSection = () => {
       <div className="mb-6 sm:mb-8 md:mb-12">
         <SectionHeader
           badge="Projects"
-          icon={<IconDiamond className="size-3 sm:size-4" />}
+          icon={<IconHouse className="size-3 sm:size-4" />}
           title={` More Than Properties,\nWe Build Possibilities.`}
           hasHighlight
           highlightText="We Build Possibilities."

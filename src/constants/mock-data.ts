@@ -105,3 +105,54 @@ export const INSIGHTS = [
     date: "January 30, 2024",
   },
 ];
+
+export const FAQS = [
+  {
+    id: 1,
+    question: "Can foreigners buy property in Dubai?",
+    answer:
+      "Yes, foreigners can buy property in Dubai. The city offers freehold ownership in designated areas, allowing non-UAE nationals to own property outright. This has made Dubai one of the most attractive real estate markets for international investors.",
+  },
+  {
+    id: 2,
+    question: "Is investing in Dubai real estate a good idea?",
+    answer:
+      "Dubai's real estate market offers strong potential for investment due to its tax-free environment, high rental yields, and growing property values. The city's strategic location, world-class infrastructure, and stable economy make it an attractive destination for property investment.",
+  },
+  {
+    id: 3,
+    question: "What are the payment plans available?",
+    answer:
+      "We offer various flexible payment plans including cash payments, bank financing, and developer payment plans. These can range from immediate payment to extended plans over several years, depending on the property and developer terms.",
+  },
+  {
+    id: 4,
+    question: "What documents are required to buy property?",
+    answer:
+      "Required documents typically include a valid passport, visa copy, proof of income, bank statements, and a NOC (No Objection Certificate) if you're a resident. For specific requirements, our team will guide you through the complete documentation process.",
+  },
+  {
+    id: 5,
+    question: "What types of properties does Piptan offer?",
+    answer:
+      "Piptan offers a wide range of properties including luxury apartments, villas, townhouses, penthouses, and commercial properties. We cater to both residential and investment needs across Dubai's most prestigious locations.",
+  },
+  {
+    id: 6,
+    question: "Can I buy property remotely?",
+    answer:
+      "Yes, you can purchase property remotely through Piptan. We offer virtual tours, digital documentation, and remote transaction services, making it possible to complete the entire buying process from anywhere in the world.",
+  },
+  {
+    id: 7,
+    question: "How do I know which property is a good investment?",
+    answer:
+      "Our expert team analyzes various factors including location, market trends, potential rental yields, and future development plans to help you identify the best investment opportunities. We provide detailed market analysis and ROI projections for each property.",
+  },
+  {
+    id: 8,
+    question: "How long does it take to close a deal?",
+    answer:
+      "The typical timeline for closing a property deal in Dubai ranges from 2-4 weeks, depending on the payment method and property type. Our team ensures a smooth and efficient process while maintaining all legal requirements.",
+  },
+];
