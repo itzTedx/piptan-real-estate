@@ -156,3 +156,48 @@ export const FAQS = [
       "The typical timeline for closing a property deal in Dubai ranges from 2-4 weeks, depending on the payment method and property type. Our team ensures a smooth and efficient process while maintaining all legal requirements.",
   },
 ];
+
+export const SERVICES = [
+  {
+    id: 1,
+    title: "Property Investment",
+    description:
+      "Expert guidance on real estate investments, market analysis, and ROI optimization strategies.",
+    image: "/images/investment.jpg",
+  },
+  {
+    id: 2,
+    title: "Property Management",
+    description:
+      "Comprehensive property management services ensuring your investment is well-maintained and profitable.",
+    image: "/images/rental.jpg",
+  },
+  {
+    id: 3,
+    title: "Luxury Real Estate",
+    description:
+      "Exclusive access to premium properties, villas, and penthouses in Dubai's most prestigious locations.",
+    image: "/images/luxury.jpg",
+  },
+  {
+    id: 4,
+    title: "Legal Support",
+    description:
+      "End-to-end legal assistance for property transactions, ensuring compliance with Dubai's real estate laws.",
+    image: "/images/commercial.jpg",
+  },
+  {
+    id: 5,
+    title: "Relocation Services",
+    description:
+      "Smooth transition support for individuals and families moving to Dubai, from property search to settling in.",
+    image: "/images/isolated-home.webp",
+  },
+  {
+    id: 6,
+    title: "Property Valuation",
+    description:
+      "Professional property valuation services using market data and advanced analytics for accurate pricing.",
+    image: "/images/residential-tower.webp",
+  },
+];

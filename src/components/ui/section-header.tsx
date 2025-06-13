@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
  * @property {boolean} [hasHighlight] - Whether to highlight part of the title with primary color
  * @property {string} [highlightText] - The text to highlight in the title
  * @property {ReactNode} [action] - Optional action component (e.g., button) to display
+ * @property {string} [as] - The level of the heading to use (h1 or h2)
  */
 interface SectionHeaderProps {
   title: string;
@@ -28,6 +29,7 @@ interface SectionHeaderProps {
   hasHighlight?: boolean;
   highlightText?: string;
   action?: ReactNode;
+  as?: "h1" | "h2";
 }
 
 /**
@@ -43,6 +45,7 @@ interface SectionHeaderProps {
  *   hasHighlight
  *   highlightText="Property Journey"
  *   action={<AnimatedButton href="/about" text="Learn More" />}
+ *   as="h1"
  * />
  * ```
  */
@@ -58,6 +61,7 @@ export const SectionHeader = ({
   hasHighlight,
   highlightText,
   action,
+  as = "h2",
 }: SectionHeaderProps) => {
   const renderTitle = () => {
     if (!hasHighlight || !highlightText) {
@@ -104,14 +108,25 @@ export const SectionHeader = ({
           containerClassName
         )}
       >
-        <h2
-          className={cn(
-            "text-2xl leading-[1.2] font-medium sm:col-span-2 sm:text-3xl md:text-4xl lg:text-5xl",
-            titleClassName
-          )}
-        >
-          {renderTitle()}
-        </h2>
+        {as === "h1" ? (
+          <h1
+            className={cn(
+              "text-2xl leading-[1.2] font-medium sm:col-span-2 sm:text-3xl md:text-4xl lg:text-5xl",
+              titleClassName
+            )}
+          >
+            {renderTitle()}
+          </h1>
+        ) : (
+          <h2
+            className={cn(
+              "text-2xl leading-[1.2] font-medium sm:col-span-2 sm:text-3xl md:text-4xl lg:text-5xl",
+              titleClassName
+            )}
+          >
+            {renderTitle()}
+          </h2>
+        )}
         {subtitle && (
           <p
             className={cn(
