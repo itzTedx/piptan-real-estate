@@ -24,6 +24,7 @@ interface SectionHeaderProps {
   className?: string;
   titleClassName?: string;
   subtitleClassName?: string;
+  containerClassName?: string;
   hasHighlight?: boolean;
   highlightText?: string;
   action?: ReactNode;
@@ -53,6 +54,7 @@ export const SectionHeader = ({
   className,
   titleClassName,
   subtitleClassName,
+  containerClassName,
   hasHighlight,
   highlightText,
   action,
@@ -98,12 +100,13 @@ export const SectionHeader = ({
       <div
         className={cn(
           "z-10 mb-4 grid gap-4 sm:gap-6",
-          subtitle ? "sm:grid-cols-2 md:grid-cols-3" : "grid-cols-1"
+          "grid-cols-1 sm:grid-cols-2 md:grid-cols-3",
+          containerClassName
         )}
       >
         <h2
           className={cn(
-            "text-2xl font-medium sm:col-span-2 sm:text-3xl md:text-4xl lg:text-5xl",
+            "text-2xl leading-[1.2] font-medium sm:col-span-2 sm:text-3xl md:text-4xl lg:text-5xl",
             titleClassName
           )}
         >

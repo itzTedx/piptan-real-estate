@@ -34,7 +34,7 @@ export const Cta = () => {
           href="/contact"
           text="Contact us"
           variant="secondary"
-          className="mx-auto"
+          className="max-md:mx-auto"
           aria-label="Contact us for real estate investment opportunities"
         />
       </div>
