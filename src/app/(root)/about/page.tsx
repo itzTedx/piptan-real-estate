@@ -10,6 +10,7 @@ export default function AboutPage() {
       <section className="relative pb-20">
         <SectionHeader
           title={`More Than Properties. We Build Possibilities.`}
+          titleClassName="font-jaguar"
           subtitle="Piptan is redefining real estate in the UAE with a full-service, client-first approach. From exclusive listings to seamless relocation services, we guide buyers, investors, and families through every step of their journey with expertise, integrity, and vision."
           hasHighlight
           highlightText="We Build Possibilities."
