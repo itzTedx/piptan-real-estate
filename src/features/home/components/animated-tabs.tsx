@@ -19,7 +19,7 @@ export const AnimatedTabs = ({ className }: Props) => {
           <TabsTrigger
             key={title}
             value={title}
-            className="p-2 text-sm leading-[1.02] font-medium uppercase backdrop-blur-xs sm:p-3 sm:text-base"
+            className="p-2 text-sm leading-[1.02] font-medium uppercase backdrop-blur-xs sm:p-3"
           >
             {title}
           </TabsTrigger>

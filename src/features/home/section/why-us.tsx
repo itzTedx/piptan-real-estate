@@ -1,4 +1,9 @@
+"use client";
+
 import Image from "next/image";
+import { useRef } from "react";
+
+import { motion, useScroll, useTransform } from "motion/react";
 
 import { BuildingOutline } from "@/assets/building-outline";
 import { IconDiamond } from "@/assets/icons";
@@ -6,10 +11,17 @@ import { IconDiamond } from "@/assets/icons";
 import { AnimatedTabs } from "../components/animated-tabs";
 
 export const WhyUsSection = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
   return (
     <section
       className="bg-primary relative overflow-hidden"
       aria-label="Why choose us section"
+      ref={containerRef}
     >
       <div className="container py-8 sm:py-12 md:py-16 lg:py-24">
         <p className="mb-2 inline-flex items-center gap-1 sm:mb-3 sm:gap-1.5">
@@ -31,14 +43,19 @@ export const WhyUsSection = () => {
         </div>
       </div>
       <div className="relative z-10 container grid grid-cols-1 gap-4 pb-8 sm:grid-cols-2 sm:gap-6 sm:pb-12 md:pb-16 lg:pb-24">
-        <div className="absolute top-0 -left-[10vw] hidden aspect-5/3 w-2/3 sm:block">
+        <motion.div
+          className="absolute top-0 -left-[15vw] hidden aspect-5/3 w-2/3 sm:block 2xl:-left-[11vw]"
+          style={{
+            y: useTransform(scrollYProgress, [0, 1], [150, -20]),
+          }}
+        >
           <Image
             src="/images/isolated-home.webp"
             fill
             alt="Modern luxury home showcasing premium architecture and design"
             className="object-cover"
           />
-        </div>
+        </motion.div>
         <AnimatedTabs className="sm:col-start-2" />
       </div>
       <BuildingOutline className="absolute top-0 -right-12 hidden sm:block" />

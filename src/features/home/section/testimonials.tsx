@@ -36,7 +36,7 @@ export const Testimonials = () => {
         </p>
       </div>
       <ul className="mt-12 grid grid-cols-1 grid-rows-8 gap-3 md:grid-cols-3 md:grid-rows-3 md:gap-6">
-        <li className="sticky top-[calc(50%-11rem)] col-start-1 row-start-1 flex h-fit flex-col items-center justify-center gap-4 rounded-sm p-10 md:col-start-2">
+        <li className="sticky top-[calc(50%-12rem)] col-start-1 row-start-1 flex flex-col items-center justify-center gap-4 rounded-sm p-10 max-md:h-fit md:col-start-2">
           <Logo className="h-14 w-auto md:h-20" />
           <WordMark className="h-8 w-auto md:h-11" />
         </li>
