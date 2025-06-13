@@ -87,7 +87,7 @@ export const Footer = () => {
             </div>
           </div>
           <nav
-            className="col-span-1 gap-8 max-sm:grid max-sm:grid-cols-2 md:col-span-2 md:flex-row md:gap-14 lg:col-span-2 lg:place-content-end"
+            className="col-span-1 gap-8 max-sm:grid max-sm:grid-cols-2 md:col-span-2 md:flex md:flex-row md:gap-14 lg:col-span-2 lg:place-content-end"
             aria-label="Footer navigation"
           >
             {FOOTER_LINKS.map((nav) => (
