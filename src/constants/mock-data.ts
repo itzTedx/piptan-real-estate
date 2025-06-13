@@ -19,7 +19,7 @@ export const FEEDBACKS = [
   },
   {
     content:
-      "Piptan’s attention to detail and legal support gave me the confidence to invest in Dubai real estate from overseas. Highly recommended.",
+      "Piptan's attention to detail and legal support gave me the confidence to invest in Dubai real estate from overseas. Highly recommended.",
     name: "Julian R",
     designation: "UK-Based Investor",
   },
@@ -28,5 +28,80 @@ export const FEEDBACKS = [
       "From first viewing to handing over the keys, the experience was seamless. Their professionalism truly sets them apart.",
     name: "Omar L",
     designation: "Tech Founder",
+  },
+];
+
+export const INSIGHTS = [
+  {
+    image: "/images/blogs/5.jpg",
+    tag: "Market Insights",
+    title: "Dubai Real Estate Market Trends 2024",
+    description:
+      "Discover the latest trends shaping Dubai's real estate market, from luxury to emerging investment opportunities.",
+    date: "March 15, 2024",
+  },
+  {
+    image: "/images/blogs/7.jpg",
+    tag: "Smart Investments",
+    title: "Top 5 Upcoming Neighborhoods in Dubai",
+    description:
+      "Explore the most promising areas for real estate investment in Dubai, featuring infrastructure and development projects.",
+    date: "March 10, 2024",
+  },
+  {
+    image: "/images/blogs/8.jpg",
+    tag: "Property Guide",
+    title: "Luxury Living: Dubai's Premium Property Market",
+    description:
+      "An in-depth look at Dubai's luxury property market, featuring exclusive villas, penthouses, and waterfront properties.",
+    date: "March 5, 2024",
+  },
+  {
+    image: "/images/blogs/5.jpg",
+    tag: "Investment Strategy",
+    title: "Off-Plan vs Ready Properties: Making the Right Choice",
+    description:
+      "A comprehensive guide to help investors decide between off-plan and ready properties in Dubai's dynamic market.",
+    date: "February 28, 2024",
+  },
+  {
+    image: "/images/blogs/7.jpg",
+    tag: "Market Analysis",
+    title: "Dubai's Real Estate ROI: A Detailed Analysis",
+    description:
+      "Understanding return on investment across different property types and locations in Dubai's real estate market.",
+    date: "February 20, 2024",
+  },
+  {
+    image: "/images/blogs/8.jpg",
+    tag: "Lifestyle",
+    title: "Family-Friendly Communities in Dubai",
+    description:
+      "Discover the best neighborhoods in Dubai for families, featuring schools, parks, and community amenities.",
+    date: "February 15, 2024",
+  },
+  {
+    image: "/images/blogs/5.jpg",
+    tag: "Legal Guide",
+    title: "Understanding Dubai's Property Laws",
+    description:
+      "Essential information about property ownership laws, regulations, and legal requirements for investors in Dubai.",
+    date: "February 10, 2024",
+  },
+  {
+    image: "/images/blogs/7.jpg",
+    tag: "Market Trends",
+    title: "The Rise of Smart Homes in Dubai",
+    description:
+      "Exploring the growing trend of smart home technology integration in Dubai's residential properties.",
+    date: "February 5, 2024",
+  },
+  {
+    image: "/images/blogs/8.jpg",
+    tag: "Investment Tips",
+    title: "Dubai Real Estate Tax Benefits Explained",
+    description:
+      "A detailed guide to understanding tax advantages and financial benefits of investing in Dubai real estate.",
+    date: "January 30, 2024",
   },
 ];
