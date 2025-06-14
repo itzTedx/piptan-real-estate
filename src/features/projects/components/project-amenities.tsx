@@ -11,11 +11,15 @@ interface Amenity {
 
 interface ProjectAmenitiesProps {
   amenities: Amenity[];
+  projectName: string;
 }
 
-export const ProjectAmenities = ({ amenities }: ProjectAmenitiesProps) => {
+export const ProjectAmenities = ({
+  amenities,
+  projectName,
+}: ProjectAmenitiesProps) => {
   return (
-    <section className="relative pt-20">
+    <section className="relative pt-20" aria-label="Project Amenities">
       <h2 className="sticky top-[25vh] py-20 text-center text-6xl leading-snug">
         The amenities{" "}
         <span className="text-muted-foreground">
@@ -23,7 +27,7 @@ export const ProjectAmenities = ({ amenities }: ProjectAmenitiesProps) => {
           for themselves
         </span>
       </h2>
-      <ul className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-4">
+      <ul className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-4" role="list">
         {amenities.map((amenity) => (
           <li
             key={amenity.title}
@@ -36,9 +40,11 @@ export const ProjectAmenities = ({ amenities }: ProjectAmenitiesProps) => {
               <>
                 <Image
                   src={amenity.image}
-                  alt={amenity.title}
+                  alt={`${projectName} - ${amenity.title}`}
                   fill
                   className="object-cover transition duration-300 group-hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 z-10 flex items-end bg-gradient-to-t from-black/70 to-transparent to-50% p-5">
                   <AmenityTitle title={amenity.title} />

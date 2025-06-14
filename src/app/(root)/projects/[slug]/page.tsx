@@ -1,28 +1,17 @@
-import Image from "next/image";
+import { Metadata } from "next";
 
-import { IconHouse } from "@/assets/icons";
-import { AnimatedButton } from "@/components/ui/animated-button";
-import { Badge } from "@/components/ui/badge";
-import {
-  Carousel,
-  CarouselActiveIndex,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
 import { PROPERTIES } from "@/constants/mock-data";
 import { LeadSection } from "@/features/forms/lead-form/section";
-import { ProgressIndicator } from "@/features/home/components/progress-indicator";
 import { ProjectAmenities } from "@/features/projects/components/project-amenities";
 import { ProjectDescription } from "@/features/projects/components/project-description";
+import { ProjectDetails } from "@/features/projects/components/project-details";
 import { ProjectFeatures } from "@/features/projects/components/project-features";
 import { ProjectGallery } from "@/features/projects/components/project-gallery";
 import { ProjectHero } from "@/features/projects/components/project-hero";
+import { ProjectOverview } from "@/features/projects/components/project-overview";
 import { ProjectStats } from "@/features/projects/components/project-stats";
-import { PropertyCard } from "@/features/properties/components/property-card";
+import { RelatedProjects } from "@/features/projects/components/related-projects";
 
 const TAGS = ["Waterfront", "Private Beach", "Pool", "Garden", "Smart Home"];
 
@@ -114,11 +103,27 @@ const DESCRIPTION_SECTIONS = [
   },
 ];
 
+const PROJECT_NAME = "Nova Pearl Residences";
+
+export const metadata: Metadata = {
+  title: `${PROJECT_NAME} | Luxury Beachfront Living in Dubai`,
+  description:
+    "Discover Nova Pearl Residences, a premium beachfront development in Jumeirah Beach Residence, Dubai. Featuring luxury apartments with panoramic sea views, smart home technology, and exclusive amenities.",
+  keywords:
+    "Nova Pearl Residences, Dubai real estate, luxury apartments, beachfront property, Jumeirah Beach Residence, Emaar properties",
+  openGraph: {
+    title: `${PROJECT_NAME} | Luxury Beachfront Living in Dubai`,
+    description:
+      "Discover Nova Pearl Residences, a premium beachfront development in Jumeirah Beach Residence, Dubai. Featuring luxury apartments with panoramic sea views, smart home technology, and exclusive amenities.",
+    images: ["/images/luxury.jpg"],
+  },
+};
+
 export default function ProjectPage() {
   return (
     <main className="container pt-9">
       <ProjectHero
-        title="Nova Pearl Residences"
+        title={PROJECT_NAME}
         tags={TAGS}
         image="/images/luxury.jpg"
         location="Jumeirah Beach Residence"
@@ -130,122 +135,19 @@ export default function ProjectPage() {
       />
       <Separator />
       <article className="py-20">
-        <div className="pb-20">
-          <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl">
-            Unlock Your Dream Lifestyle.
-          </h3>
-          <div className="mt-4 grid grid-cols-1 gap-4 sm:mt-6 sm:grid-cols-2 sm:gap-6 md:mt-8 lg:mt-10">
-            <p className="text-primary-foreground text-xl leading-snug sm:text-2xl md:text-4xl">
-              Located in Jumeirah Beach Residence, this residence is surrounded
-              by the best Dubai has to offer — luxury dining, upscale retail,
-              and vibrant entertainment are just minutes away. The neighborhood
-              is secure, family-friendly, and perfect for both permanent
-              residents and holiday homeowners.
-            </p>
-            <aside className="self-end md:pl-14">
-              <p className="text-muted-foreground mb-3 sm:mb-4">
-                Nova Pearl Residences embodies the essence <br /> of refined
-                living, offering a luxurious lifestyle.
-              </p>
-              <ul className="flex flex-wrap gap-1.5 sm:gap-2 md:gap-3">
-                {TAGS.map((badge) => (
-                  <li key={badge}>
-                    <Badge
-                      variant="outline"
-                      className="text-sm sm:text-base md:text-lg lg:text-2xl"
-                    >
-                      {badge}
-                    </Badge>
-                  </li>
-                ))}
-              </ul>
-            </aside>
-          </div>
-        </div>
+        <ProjectOverview tags={TAGS} />
         <Separator />
-        <div className="grid grid-cols-12 gap-12 pt-20">
-          <div className="col-span-5">
-            <h2 className="mb-6 text-4xl">
-              More Details about Nova Pearl Residences
-            </h2>
-            <div className="space-y-3 text-xl leading-relaxed">
-              <p>
-                Discover your next chapter in one of Dubai&apos;s most iconic
-                addresses. This 3-bedroom luxury apartment at Nova Pearl
-                Residences offers a harmonious blend of coastal tranquility and
-                urban sophistication. Wake up to breathtaking views of the
-                Arabian Gulf and unwind in spacious interiors adorned with
-                modern finishes, smart home technology, and bespoke
-                detailing.{" "}
-              </p>
-              <p>
-                Crafted for discerning homeowners and savvy investors alike,
-                this residence stands as a symbol of refined living, with
-                private access to the beach and five-star amenities that cater
-                to your every need.
-              </p>
-            </div>
-          </div>
-          <div className="bg-muted relative col-span-7 h-full w-full overflow-hidden rounded-sm border">
-            <Image
-              src="/images/gallery/1.jpg"
-              fill
-              alt=""
-              className="object-cover"
-            />
-          </div>
-        </div>
-
+        <ProjectDetails image="/images/gallery/1.jpg" />
         <ProjectFeatures features={FEATURES} />
-        <ProjectAmenities amenities={AMENITIES} />
-        <ProjectGallery images={GALLERY_IMAGES} />
+        <ProjectAmenities amenities={AMENITIES} projectName={PROJECT_NAME} />
+        <ProjectGallery images={GALLERY_IMAGES} projectName={PROJECT_NAME} />
         <ProjectDescription sections={DESCRIPTION_SECTIONS} />
         <LeadSection
           title={`Want to know\nmore details?`}
           subtitle="Feel free to contact with us"
           variant="default"
         />
-        <section className="pt-20">
-          <SectionHeader
-            badge="Other projects you might like"
-            icon={<IconHouse className="size-3 md:size-4" />}
-            title="Residences Chosen with You in Mind"
-            hasHighlight
-            highlightText="Chosen with You"
-            action={
-              <AnimatedButton
-                text="View all projects"
-                href="/projects"
-                variant="outline"
-              />
-            }
-          />
-        </section>
-        <Carousel className="mt-4 w-full md:mt-6 lg:mt-9">
-          <CarouselContent className="-ml-1">
-            {PROPERTIES.map((data, index) => (
-              <CarouselItem
-                key={index}
-                className="pl-1 md:basis-1/2 lg:basis-1/3"
-              >
-                <div className="h-full p-1">
-                  <PropertyCard data={data} />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <div className="mt-6 flex items-center gap-12">
-            <p className="text-foreground/80 shrink-0 tracking-widest">
-              <CarouselActiveIndex /> /{" "}
-              {PROPERTIES.length.toString().padStart(2, "0")}
-            </p>
-            <ProgressIndicator totalItems={PROPERTIES.length} />
-            <div className="relative flex gap-2">
-              <CarouselPrevious className="static translate-y-0" />
-              <CarouselNext className="static translate-y-0" />
-            </div>
-          </div>
-        </Carousel>
+        <RelatedProjects properties={PROPERTIES} />
       </article>
     </main>
   );
