@@ -37,7 +37,7 @@ export default function AboutPage() {
                 <h3 className="mb-2 text-4xl font-medium transition-transform duration-300 group-hover:scale-110">
                   {milestone.stat}
                 </h3>
-                <p className="text-primary-foreground">{milestone.label}</p>
+                <p className="text-muted-foreground">{milestone.label}</p>
               </li>
             ))}
           </ul>
