@@ -1,6 +1,7 @@
 import { IconHouse } from "@/assets/icons";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { SectionHeader } from "@/components/ui/section-header";
+import { PROPERTIES } from "@/constants/mock-data";
 import { PropertyCard } from "@/features/properties/components/property-card";
 
 export const ProjectsSection = () => {
@@ -28,8 +29,12 @@ export const ProjectsSection = () => {
         />
       </div>
       <ul className="grid grid-cols-1 max-sm:divide-y sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <PropertyCard key={i} className="max-sm:py-6 first:sm:col-span-2" />
+        {PROPERTIES.map((property) => (
+          <PropertyCard
+            key={property.id}
+            data={property}
+            className="max-sm:py-6 first:sm:col-span-2"
+          />
         ))}
       </ul>
     </section>
