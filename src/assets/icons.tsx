@@ -83,6 +83,7 @@ export const IconCollection = (
     </svg>
   );
 };
+
 export const IconFaq = (
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
 ) => {
@@ -109,6 +110,7 @@ export const IconFaq = (
     </svg>
   );
 };
+
 export const IconHouse = (
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
 ) => {
@@ -201,6 +203,96 @@ export const IconBrandTelegram = (
       <path
         d="M19.0094 1.43164L6.25 10.6473V16.7496C6.25025 16.8983 6.2947 17.0436 6.37772 17.167C6.46073 17.2904 6.57856 17.3863 6.71622 17.4426C6.85388 17.4989 7.00517 17.5129 7.15085 17.483C7.29653 17.4531 7.43002 17.3806 7.53437 17.2746L10.4594 14.3496M6.24863 10.6464L14.6768 18.062C14.7742 18.1483 14.8923 18.2077 15.0196 18.2344C15.1469 18.2612 15.279 18.2544 15.4029 18.2147C15.5268 18.175 15.6382 18.1037 15.7262 18.0079C15.8142 17.9121 15.8758 17.7951 15.9049 17.6683L19.4299 2.27454C19.4594 2.14197 19.4524 2.00386 19.4096 1.87495C19.3668 1.74605 19.2898 1.63119 19.1868 1.54264C19.0838 1.45408 18.9587 1.39516 18.8249 1.37216C18.691 1.34916 18.5534 1.36294 18.4268 1.41204L1.12051 8.2089C0.426759 8.4808 0.520509 9.4933 1.25176 9.6433L6.24863 10.6464Z"
         stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const IconGrid = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+) => {
+  return (
+    <svg
+      {...props}
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4 5C4 4.73478 4.10536 4.48043 4.29289 4.29289C4.48043 4.10536 4.73478 4 5 4H9C9.26522 4 9.51957 4.10536 9.70711 4.29289C9.89464 4.48043 10 4.73478 10 5V9C10 9.26522 9.89464 9.51957 9.70711 9.70711C9.51957 9.89464 9.26522 10 9 10H5C4.73478 10 4.48043 9.89464 4.29289 9.70711C4.10536 9.51957 4 9.26522 4 9V5Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M14 5C14 4.73478 14.1054 4.48043 14.2929 4.29289C14.4804 4.10536 14.7348 4 15 4H19C19.2652 4 19.5196 4.10536 19.7071 4.29289C19.8946 4.48043 20 4.73478 20 5V9C20 9.26522 19.8946 9.51957 19.7071 9.70711C19.5196 9.89464 19.2652 10 19 10H15C14.7348 10 14.4804 9.89464 14.2929 9.70711C14.1054 9.51957 14 9.26522 14 9V5Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M4 15C4 14.7348 4.10536 14.4804 4.29289 14.2929C4.48043 14.1054 4.73478 14 5 14H9C9.26522 14 9.51957 14.1054 9.70711 14.2929C9.89464 14.4804 10 14.7348 10 15V19C10 19.2652 9.89464 19.5196 9.70711 19.7071C9.51957 19.8946 9.26522 20 9 20H5C4.73478 20 4.48043 19.8946 4.29289 19.7071C4.10536 19.5196 4 19.2652 4 19V15Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M14 15C14 14.7348 14.1054 14.4804 14.2929 14.2929C14.4804 14.1054 14.7348 14 15 14H19C19.2652 14 19.5196 14.1054 19.7071 14.2929C19.8946 14.4804 20 14.7348 20 15V19C20 19.2652 19.8946 19.5196 19.7071 19.7071C19.5196 19.8946 19.2652 20 19 20H15C14.7348 20 14.4804 19.8946 14.2929 19.7071C14.1054 19.5196 14 19.2652 14 19V15Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const IconList = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+) => {
+  return (
+    <svg
+      {...props}
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M13 5H21M13 9H18M13 15H21M13 19H18M3 5C3 4.73478 3.10536 4.48043 3.29289 4.29289C3.48043 4.10536 3.73478 4 4 4H8C8.26522 4 8.51957 4.10536 8.70711 4.29289C8.89464 4.48043 9 4.73478 9 5V9C9 9.26522 8.89464 9.51957 8.70711 9.70711C8.51957 9.89464 8.26522 10 8 10H4C3.73478 10 3.48043 9.89464 3.29289 9.70711C3.10536 9.51957 3 9.26522 3 9V5ZM3 15C3 14.7348 3.10536 14.4804 3.29289 14.2929C3.48043 14.1054 3.73478 14 4 14H8C8.26522 14 8.51957 14.1054 8.70711 14.2929C8.89464 14.4804 9 14.7348 9 15V19C9 19.2652 8.89464 19.5196 8.70711 19.7071C8.51957 19.8946 8.26522 20 8 20H4C3.73478 20 3.48043 19.8946 3.29289 19.7071C3.10536 19.5196 3 19.2652 3 19V15Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const IconSort = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+) => {
+  return (
+    <svg
+      {...props}
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4 6H11M4 12H11M4 18H13M15 9L18 6M18 6L21 9M18 6V18"
+        stroke="white"
+        strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

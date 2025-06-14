@@ -21,7 +21,7 @@ export function PropertiesList() {
   };
 
   const handleTagChange = (tag: string) => {
-    if (tag === "All") {
+    if (tag === "all") {
       setProperties(PROPERTIES);
     } else {
       const filtered = PROPERTIES.filter((property) => property.type === tag);
@@ -39,13 +39,13 @@ export function PropertiesList() {
   };
 
   return (
-    <>
+    <div className="relative">
       <PropertyFilters
         onSearch={handleSearch}
         onTagChange={handleTagChange}
         onSortChange={handleSortChange}
         onViewChange={setViewMode}
-        className="mb-8"
+        className="bg-muted/40 sticky top-[8%] z-50 my-8 backdrop-blur-2xl"
       />
 
       <ul
@@ -64,6 +64,6 @@ export function PropertiesList() {
           />
         ))}
       </ul>
-    </>
+    </div>
   );
 }
