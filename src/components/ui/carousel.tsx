@@ -18,6 +18,7 @@ type CarouselPlugin = UseCarouselParameters[1];
 
 type CarouselProps = {
   opts?: CarouselOptions;
+  autoplay?: boolean;
   plugins?: CarouselPlugin;
   orientation?: "horizontal" | "vertical";
   setApi?: (api: CarouselApi) => void;
@@ -49,7 +50,7 @@ function Carousel({
   orientation = "horizontal",
   opts,
   setApi,
-
+  autoplay = false,
   className,
   children,
   ...props
@@ -59,15 +60,17 @@ function Carousel({
       ...opts,
       axis: orientation === "horizontal" ? "x" : "y",
     },
-    [
-      WheelGesturesPlugin(),
-      Autoplay({
-        stopOnInteraction: false,
-        stopOnFocusIn: true,
-        stopOnMouseEnter: true,
-        delay: 5000,
-      }),
-    ]
+    autoplay
+      ? [
+          WheelGesturesPlugin(),
+          Autoplay({
+            stopOnInteraction: false,
+            stopOnFocusIn: true,
+            stopOnMouseEnter: true,
+            delay: 3000,
+          }),
+        ]
+      : [WheelGesturesPlugin()]
   );
   const [canScrollPrev, setCanScrollPrev] = React.useState(false);
   const [canScrollNext, setCanScrollNext] = React.useState(false);

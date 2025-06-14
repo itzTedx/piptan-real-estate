@@ -1,14 +1,28 @@
 import Image from "next/image";
 
+import { IconHouse } from "@/assets/icons";
+import { AnimatedButton } from "@/components/ui/animated-button";
 import { Badge } from "@/components/ui/badge";
+import {
+  Carousel,
+  CarouselActiveIndex,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
+import { PROPERTIES } from "@/constants/mock-data";
 import { LeadSection } from "@/features/forms/lead-form/section";
+import { ProgressIndicator } from "@/features/home/components/progress-indicator";
 import { ProjectAmenities } from "@/features/projects/components/project-amenities";
 import { ProjectDescription } from "@/features/projects/components/project-description";
 import { ProjectFeatures } from "@/features/projects/components/project-features";
 import { ProjectGallery } from "@/features/projects/components/project-gallery";
 import { ProjectHero } from "@/features/projects/components/project-hero";
 import { ProjectStats } from "@/features/projects/components/project-stats";
+import { PropertyCard } from "@/features/properties/components/property-card";
 
 const TAGS = ["Waterfront", "Private Beach", "Pool", "Garden", "Smart Home"];
 
@@ -39,39 +53,37 @@ const AMENITIES = [
     offset: "",
   },
   {
-    image: "/images/blogs/8.jpg",
     title: "Al Fresco Dining Area",
-    offset: "md:mt-[90%]",
+    offset: "md:mt-[20em]",
   },
   {
     image: "/images/blogs/7.jpg",
     title: "Private Spa & Sauna",
-    offset: "md:mt-[45%]",
+    offset: "md:mt-[10em]",
   },
   {
     image: "/images/dubai-night.jpg",
     title: "Outdoor Lounge & Fire Pit",
-    offset: "md:mt-[15%]",
+    offset: "md:mt-[14em]",
   },
   {
     image: "/images/investment.jpg",
     title: "Fully Equipped Home Gym",
-    offset: "md:-mt-[20%]",
+    offset: "md:-mt-[2em]",
   },
   {
-    image: "/images/home.png",
+    image: "/images/blogs/7.jpg",
     title: "Kids Play Area",
-    offset: "md:mt-[60%]",
+    offset: "md:mt-[20em]",
   },
   {
-    image: "/images/residential-tower.webp",
     title: "Private Cinema Room",
-    offset: "md:mt-[20%]",
+    offset: "md:mt-[10em]",
   },
   {
     image: "/images/luxury.jpg",
     title: "Smart Home System",
-    offset: "md:-mt-[2%]",
+    offset: "md:mt-[14em]",
   },
 ];
 
@@ -193,6 +205,47 @@ export default function ProjectPage() {
           subtitle="Feel free to contact with us"
           variant="default"
         />
+        <section className="pt-20">
+          <SectionHeader
+            badge="Other projects you might like"
+            icon={<IconHouse className="size-3 md:size-4" />}
+            title="Residences Chosen with You in Mind"
+            hasHighlight
+            highlightText="Chosen with You"
+            action={
+              <AnimatedButton
+                text="View all projects"
+                href="/projects"
+                variant="outline"
+              />
+            }
+          />
+        </section>
+        <Carousel className="mt-4 w-full md:mt-6 lg:mt-9">
+          <CarouselContent className="-ml-1">
+            {PROPERTIES.map((data, index) => (
+              <CarouselItem
+                key={index}
+                className="pl-1 md:basis-1/2 lg:basis-1/3"
+              >
+                <div className="h-full p-1">
+                  <PropertyCard data={data} />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <div className="mt-6 flex items-center gap-12">
+            <p className="text-foreground/80 shrink-0 tracking-widest">
+              <CarouselActiveIndex /> /{" "}
+              {PROPERTIES.length.toString().padStart(2, "0")}
+            </p>
+            <ProgressIndicator totalItems={PROPERTIES.length} />
+            <div className="relative flex gap-2">
+              <CarouselPrevious className="static translate-y-0" />
+              <CarouselNext className="static translate-y-0" />
+            </div>
+          </div>
+        </Carousel>
       </article>
     </main>
   );
