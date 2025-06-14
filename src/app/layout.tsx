@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+
 import { jaguar, neueMontreal } from "@/assets/fonts";
 import { cn } from "@/lib/utils";
 
@@ -20,7 +22,7 @@ export default function RootLayout({
       <body
         className={cn(`antialiased`, neueMontreal.className, jaguar.variable)}
       >
-        {children}
+        <NuqsAdapter>{children}</NuqsAdapter>
       </body>
     </html>
   );

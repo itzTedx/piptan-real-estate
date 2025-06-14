@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
-
 import { SearchIcon } from "@sanity/icons";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { XIcon } from "lucide-react";
+import { useQueryState } from "nuqs";
 
 import { IconGrid, IconList, IconSort } from "@/assets/icons";
 import { AnimatedButton } from "@/components/ui/animated-button";
@@ -17,6 +16,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
 import { PropertyType } from "../types";
@@ -24,7 +28,7 @@ import { PropertyType } from "../types";
 interface PropertyFiltersProps {
   onSearch: (query: string) => void;
   onTagChange: (tag: string) => void;
-  onSortChange: (sort: "asc" | "desc") => void;
+  onSortChange: (sort: { field: string; order: "asc" | "desc" }) => void;
   onViewChange: (view: "grid" | "list") => void;
   className?: string;
 }
@@ -36,25 +40,52 @@ export const PropertyFilters = ({
   onViewChange,
   className,
 }: PropertyFiltersProps) => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [searchQuery, setSearchQuery] = useQueryState("q", {
+    defaultValue: "",
+  });
+  const [sortField, setSortField] = useQueryState("sort", {
+    defaultValue: "date",
+  });
+  const [sortOrder, setSortOrder] = useQueryState<"asc" | "desc">("order", {
+    defaultValue: "desc",
+    parse: (value): "asc" | "desc" => (value === "asc" ? "asc" : "desc"),
+  });
+  const [viewMode, setViewMode] = useQueryState<"grid" | "list">("view", {
+    defaultValue: "grid",
+    parse: (value): "grid" | "list" => (value === "list" ? "list" : "grid"),
+  });
 
   const { scrollYProgress } = useScroll();
   const width = useTransform(scrollYProgress, [0.05, 0.1], ["100%", "80%"]);
   const margin = useTransform(scrollYProgress, [0.05, 0.1], ["0px", "auto"]);
 
+  const handleClearFilters = async () => {
+    await setSearchQuery("");
+    await setSortField("date");
+    await setSortOrder("desc");
+    await setViewMode("grid");
+    onSearch("");
+    onTagChange("all");
+    onSortChange({ field: "date", order: "desc" });
+    onViewChange("grid");
+  };
+
   const handleSearch = () => {
     onSearch(searchQuery);
   };
 
-  const handleSortChange = (order: "asc" | "desc") => {
-    setSortOrder(order);
-    onSortChange(order);
+  const handleSortChange = async (order: "asc" | "desc") => {
+    await setSortOrder(order);
+    onSortChange({ field: sortField, order });
   };
 
-  const handleViewChange = (view: "grid" | "list") => {
-    setViewMode(view);
+  const handleSortFieldChange = async (field: string) => {
+    await setSortField(field);
+    onSortChange({ field, order: sortOrder });
+  };
+
+  const handleViewChange = async (view: "grid" | "list") => {
+    await setViewMode(view);
     onViewChange(view);
   };
 
@@ -101,20 +132,34 @@ export const PropertyFilters = ({
           className="text-foreground h-full border-0 pl-10"
         />
         <SearchIcon className="text-muted-foreground absolute top-1/2 left-3 size-4 -translate-y-1/2" />
-        <XIcon className="absolute top-1/2 right-3 size-4 -translate-y-1/2" />
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              onClick={handleClearFilters}
+              size="icon"
+              variant="ghost"
+              className="absolute top-1/2 right-3 -translate-y-1/2"
+            >
+              <XIcon className="size-4" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Clear all filters</p>
+          </TooltipContent>
+        </Tooltip>
       </div>
 
       <div className="flex items-center gap-2.5 px-1">
-        <Select defaultValue="1">
+        <Select defaultValue={sortField} onValueChange={handleSortFieldChange}>
           <SelectTrigger id="sort" className="border-foreground/40 w-40">
             <SelectValue placeholder="Sort by" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="1">Date Added</SelectItem>
-            <SelectItem value="2">Price</SelectItem>
-            <SelectItem value="4">Location</SelectItem>
-            <SelectItem value="5">Bedrooms</SelectItem>
-            <SelectItem value="6">Square Footage</SelectItem>
+            <SelectItem value="date">Date Added</SelectItem>
+            <SelectItem value="price">Price</SelectItem>
+            <SelectItem value="location">Location</SelectItem>
+            <SelectItem value="bedrooms">Bedrooms</SelectItem>
+            <SelectItem value="squareFootage">Square Footage</SelectItem>
           </SelectContent>
         </Select>
         <Button
@@ -149,6 +194,7 @@ export const PropertyFilters = ({
         >
           <IconList />
         </Button>
+
         <AnimatedButton
           text="Search"
           onClick={handleSearch}

@@ -12,10 +12,16 @@ interface Props {
 }
 
 export const PropertyCard = ({ className, layout = "grid", data }: Props) => {
-  console.log(layout, data);
   return (
-    <li className={cn("group", className)}>
-      <div className="outline-foreground/50 relative aspect-square overflow-hidden rounded-md group-first:aspect-auto group-first:h-[447px] group-hover:outline">
+    <li className={cn("group", layout === "list" && "flex gap-12", className)}>
+      <div
+        className={cn(
+          "outline-foreground/50 relative overflow-hidden rounded-md group-hover:outline",
+          layout === "grid"
+            ? "aspect-square group-first:aspect-auto group-first:h-[447px]"
+            : "aspect-video flex-shrink-0"
+        )}
+      >
         <ul className="relative z-10 flex flex-wrap gap-1.5 p-6">
           {data.tags.map((tag) => (
             <li key={tag}>
@@ -30,9 +36,11 @@ export const PropertyCard = ({ className, layout = "grid", data }: Props) => {
           className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
         />
       </div>
-      <h3 className="font-jaguar my-2 text-3xl">{data.name}</h3>
-      <p className="text-muted-foreground">{data.location}</p>
-      <p className="text-primary-foreground">{formatPrice(data.price)}</p>
+      <div className={cn(layout === "list" && "flex flex-col justify-center")}>
+        <h3 className="font-jaguar my-2 text-3xl">{data.name}</h3>
+        <p className="text-muted-foreground">{data.location}</p>
+        <p className="text-primary-foreground">{formatPrice(data.price)}</p>
+      </div>
     </li>
   );
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useQueryState } from "nuqs";
 
 import { IconCollection } from "@/assets/icons";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -11,24 +11,27 @@ import { InsightCard } from "@/features/insights/components/insights-card";
 import { cn } from "@/lib/utils";
 
 export default function Insights() {
-  const [insights, setInsights] = useState(INSIGHTS);
+  const [searchQuery, setSearchQuery] = useQueryState("q");
+  const [activeTag, setActiveTag] = useQueryState("tag");
+
+  const filteredInsights = INSIGHTS.filter((insight) => {
+    const matchesSearch =
+      !searchQuery ||
+      insight.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      insight.description.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesTag =
+      !activeTag || activeTag === "all" || insight.tag === activeTag;
+
+    return matchesSearch && matchesTag;
+  });
 
   const handleSearch = (query: string) => {
-    const filtered = INSIGHTS.filter(
-      (insight) =>
-        insight.title.toLowerCase().includes(query.toLowerCase()) ||
-        insight.description.toLowerCase().includes(query.toLowerCase())
-    );
-    setInsights(filtered);
+    setSearchQuery(query || null);
   };
 
   const handleTagChange = (tag: string) => {
-    if (tag === "all") {
-      setInsights(INSIGHTS);
-    } else {
-      const filtered = INSIGHTS.filter((insight) => insight.tag === tag);
-      setInsights(filtered);
-    }
+    setActiveTag(tag === "all" ? null : tag);
   };
 
   return (
@@ -48,16 +51,17 @@ export default function Insights() {
         <InsightFilters
           onSearch={handleSearch}
           onTagChange={handleTagChange}
-          className="bg-muted/40 sticky top-[8%] z-50 mb-8 backdrop-blur-2xl"
+          className="bg-muted/40 mb-8 backdrop-blur-2xl"
+          initialSearch={searchQuery || ""}
+          initialTag={activeTag || "all"}
         />
         <div
           className={cn(
             "grid gap-6",
-
             "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
           )}
         >
-          {insights.map((data) => (
+          {filteredInsights.map((data) => (
             <div className="h-full p-1" key={data.title}>
               <InsightCard data={data} />
             </div>

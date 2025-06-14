@@ -1,11 +1,16 @@
+import { useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 
 interface Props {
   className?: string;
   onSearch: (query: string) => void;
   onTagChange: (tag: string) => void;
+  initialSearch?: string;
+  initialTag?: string;
 }
 
 const TAGS = [
@@ -21,26 +26,57 @@ const TAGS = [
   "Investment Tips",
 ];
 
-export function InsightFilters({ className, onSearch, onTagChange }: Props) {
+export function InsightFilters({
+  className,
+  onSearch,
+  onTagChange,
+  initialSearch = "",
+  initialTag = "all",
+}: Props) {
+  const [searchValue, setSearchValue] = useState(initialSearch);
+  const [activeTag, setActiveTag] = useState(initialTag);
+
+  const handleSearch = (value: string) => {
+    setSearchValue(value);
+    onSearch(value);
+  };
+
+  const handleTagClick = (tag: string) => {
+    const normalizedTag = tag === "All" ? "all" : tag;
+    setActiveTag(normalizedTag);
+    onTagChange(normalizedTag);
+  };
+
   return (
-    <div className={cn("flex gap-4 p-4", className)}>
-      <div className="flex gap-2 overflow-x-auto">
-        {TAGS.map((tag) => (
-          <Button
-            key={tag}
-            variant="outline"
-            size="sm"
-            onClick={() => onTagChange(tag === "All" ? "all" : tag)}
-          >
-            {tag}
-          </Button>
-        ))}
-      </div>
+    <div
+      className={cn(
+        "relative grid grid-cols-4 items-center gap-4 p-4",
+        className
+      )}
+    >
+      <ScrollArea className="col-span-3 rounded-md border">
+        <div className="flex gap-2 p-4">
+          {TAGS.map((tag) => (
+            <Button
+              key={tag}
+              variant={
+                activeTag === (tag === "All" ? "all" : tag)
+                  ? "default"
+                  : "outline"
+              }
+              size="sm"
+              onClick={() => handleTagClick(tag)}
+            >
+              {tag}
+            </Button>
+          ))}
+        </div>
+      </ScrollArea>
       <Input
         type="search"
         placeholder="Search insights..."
-        className="max-w-xs"
-        onChange={(e) => onSearch(e.target.value)}
+        value={searchValue}
+        onChange={(e) => handleSearch(e.target.value)}
       />
     </div>
   );

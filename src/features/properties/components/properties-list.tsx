@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useQueryState } from "nuqs";
 
 import { PROPERTIES } from "@/constants/mock-data";
+import { EmptyState } from "@/features/properties/components/empty-state";
 import { PropertyCard } from "@/features/properties/components/property-card";
 import { PropertyFilters } from "@/features/properties/components/property-filters";
 import { cn } from "@/lib/utils";
@@ -10,60 +11,95 @@ import { cn } from "@/lib/utils";
 // Mock data for demonstration
 
 export function PropertiesList() {
-  const [properties, setProperties] = useState(PROPERTIES);
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [searchQuery, setSearchQuery] = useQueryState("q");
+  const [tag, setTag] = useQueryState("tag", { defaultValue: "all" });
+  const [sortField, setSortField] = useQueryState("sortField", {
+    defaultValue: "date",
+  });
+  const [sortOrder, setSortOrder] = useQueryState<"asc" | "desc">("sortOrder", {
+    defaultValue: "desc",
+    parse: (value): "asc" | "desc" => (value === "asc" ? "asc" : "desc"),
+  });
+  const [viewMode, setViewMode] = useQueryState<"grid" | "list">("view", {
+    defaultValue: "grid",
+    parse: (value): "grid" | "list" => (value === "list" ? "list" : "grid"),
+  });
 
-  const handleSearch = (query: string) => {
-    const filtered = PROPERTIES.filter((property) =>
-      property.name.toLowerCase().includes(query.toLowerCase())
-    );
-    setProperties(filtered);
+  const handleSortChange = ({
+    field,
+    order,
+  }: {
+    field: string;
+    order: "asc" | "desc";
+  }) => {
+    setSortField(field);
+    setSortOrder(order);
   };
 
-  const handleTagChange = (tag: string) => {
-    if (tag === "all") {
-      setProperties(PROPERTIES);
-    } else {
-      const filtered = PROPERTIES.filter((property) => property.type === tag);
-      setProperties(filtered);
+  const handleClearFilters = async () => {
+    await setSearchQuery(null);
+    await setTag("all");
+    await setSortField("date");
+    await setSortOrder("desc");
+    await setViewMode("grid");
+  };
+
+  // Filter and sort properties based on URL parameters
+  const properties = PROPERTIES.filter((property) => {
+    const matchesSearch =
+      !searchQuery ||
+      property.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesTag = tag === "all" || property.type === tag;
+    return matchesSearch && matchesTag;
+  }).sort((a, b) => {
+    const multiplier = sortOrder === "asc" ? 1 : -1;
+    switch (sortField) {
+      case "date":
+        return multiplier * (a.date.getTime() - b.date.getTime());
+      case "price":
+        return multiplier * (a.price - b.price);
+      case "bedrooms":
+        return multiplier * ((a.bedrooms ?? 0) - (b.bedrooms ?? 0));
+      case "squareFootage":
+        return multiplier * (a.area - b.area);
+      case "location":
+        return multiplier * a.location.localeCompare(b.location);
+      default:
+        return 0;
     }
-  };
-
-  const handleSortChange = (sort: "asc" | "desc") => {
-    const sorted = [...properties].sort((a, b) => {
-      const dateA = a.date.getTime();
-      const dateB = b.date.getTime();
-      return sort === "asc" ? dateA - dateB : dateB - dateA;
-    });
-    setProperties(sorted);
-  };
+  });
 
   return (
     <div className="relative">
       <PropertyFilters
-        onSearch={handleSearch}
-        onTagChange={handleTagChange}
+        onSearch={setSearchQuery}
+        onTagChange={setTag}
         onSortChange={handleSortChange}
         onViewChange={setViewMode}
         className="bg-muted/40 sticky top-[8%] z-50 my-8 backdrop-blur-2xl"
       />
 
-      <ul
-        className={cn(
-          "grid gap-6",
-          viewMode === "grid"
-            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-            : "grid-cols-1"
-        )}
-      >
-        {properties.map((property) => (
-          <PropertyCard
-            key={property.id}
-            data={property}
-            className="max-sm:py-6"
-          />
-        ))}
-      </ul>
+      {properties.length === 0 ? (
+        <EmptyState className="my-8" onClearFilters={handleClearFilters} />
+      ) : (
+        <ul
+          className={cn(
+            "grid gap-6",
+            viewMode === "grid"
+              ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+              : "grid-cols-1"
+          )}
+        >
+          {properties.map((property) => (
+            <PropertyCard
+              key={property.id}
+              data={property}
+              layout={viewMode}
+              className="max-sm:py-6"
+            />
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
