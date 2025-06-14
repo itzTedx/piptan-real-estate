@@ -1,13 +1,29 @@
 import Link from "next/link";
-import { type ComponentProps } from "react";
+import { type ComponentProps, forwardRef } from "react";
 
 import { cn } from "@/lib/utils";
 
-interface AnimatedButtonProps extends ComponentProps<typeof Link> {
+type ButtonProps = ComponentProps<"button">;
+type LinkProps = ComponentProps<typeof Link>;
+
+interface BaseProps {
   variant?: "default" | "outline" | "secondary" | "primary";
   size?: "default" | "sm" | "lg";
   text: string;
+  className?: string;
 }
+
+interface ButtonButtonProps
+  extends BaseProps,
+    Omit<ButtonProps, keyof BaseProps> {
+  href?: never;
+}
+
+interface LinkButtonProps extends BaseProps, Omit<LinkProps, keyof BaseProps> {
+  href: string;
+}
+
+type AnimatedButtonProps = ButtonButtonProps | LinkButtonProps;
 
 const baseStyles =
   "font-medium relative group pointer-events-auto relative flex w-fit cursor-pointer items-center justify-center overflow-hidden rounded-sm  transition-transform duration-700 ease-out will-change-transform hover:scale-x-[1.02] hover:ease-[cubic-bezier(.34,5.56,.64,1)] focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none  ring-offset-2";
@@ -48,36 +64,74 @@ const textAnimationStyles =
 const backgroundAnimationStyles =
   "absolute inset-0 translate-y-full rounded-[50%_50%_0_0] transition-all duration-500 ease-[cubic-bezier(.4,0,0,1)] group-hover:translate-y-0 group-hover:rounded-none group-focus-visible:rounded-none group-focus-visible:translate-y-0";
 
-export const AnimatedButton = ({
-  variant = "default",
-  size = "default",
+const ButtonContent = ({
   text,
-  className,
-  ...props
-}: AnimatedButtonProps) => {
-  return (
-    <Link
-      className={cn(baseStyles, variants[variant], sizes[size], className)}
-      {...props}
+  variant,
+}: {
+  text: string;
+  variant: AnimatedButtonProps["variant"];
+}) => (
+  <>
+    <span
+      data-text={text}
+      className={cn(
+        "relative block overflow-hidden",
+        textAnimationStyles,
+        hoverTextColors[variant ?? "default"]
+      )}
     >
-      <span
-        data-text={text}
-        className={cn(
-          "relative block overflow-hidden",
-          textAnimationStyles,
-          hoverTextColors[variant]
-        )}
-      >
-        <span className="inline-block duration-700 ease-[cubic-bezier(.4,0,0,1)] group-hover:-translate-y-full">
-          {text}
-        </span>
+      <span className="inline-block duration-700 ease-[cubic-bezier(.4,0,0,1)] group-hover:-translate-y-full">
+        {text}
       </span>
-      {/* <span className="absolute right-3 z-10 shrink-0">
-        <ArrowTopRightIcon className="shrink-0" />
-      </span> */}
-      <span
-        className={cn(backgroundAnimationStyles, hoverBackgrounds[variant])}
-      />
-    </Link>
-  );
-};
+    </span>
+    <span
+      className={cn(
+        backgroundAnimationStyles,
+        hoverBackgrounds[variant ?? "default"]
+      )}
+    />
+  </>
+);
+
+export const AnimatedButton = forwardRef<
+  HTMLButtonElement | HTMLAnchorElement,
+  AnimatedButtonProps
+>(
+  (
+    { variant = "default", size = "default", text, className, href, ...props },
+    ref
+  ) => {
+    const baseClassName = cn(
+      baseStyles,
+      variants[variant],
+      sizes[size],
+      className
+    );
+
+    if (href) {
+      const linkProps = { ...props } as Omit<LinkProps, "href">;
+      return (
+        <Link
+          ref={ref as React.Ref<HTMLAnchorElement>}
+          href={href}
+          className={baseClassName}
+          {...linkProps}
+        >
+          <ButtonContent text={text} variant={variant} />
+        </Link>
+      );
+    }
+
+    return (
+      <button
+        ref={ref as React.Ref<HTMLButtonElement>}
+        className={baseClassName}
+        {...(props as ButtonProps)}
+      >
+        <ButtonContent text={text} variant={variant} />
+      </button>
+    );
+  }
+);
+
+AnimatedButton.displayName = "AnimatedButton";
