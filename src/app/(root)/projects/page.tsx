@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
 import { LeadSection } from "@/features/forms/lead-form/section";
@@ -12,7 +14,9 @@ export default function ProjectsPage() {
           subtitle="Discover signature developments in Dubai's most sought-after communities."
         />
         <Separator />
-        <PropertiesList />
+        <Suspense>
+          <PropertiesList />
+        </Suspense>
       </section>
       <LeadSection />
     </main>

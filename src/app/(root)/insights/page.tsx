@@ -1,5 +1,7 @@
 "use client";
 
+import { Suspense } from "react";
+
 import { useQueryState } from "nuqs";
 
 import { IconCollection } from "@/assets/icons";
@@ -10,7 +12,7 @@ import { InsightFilters } from "@/features/insights/components/insight-filters";
 import { InsightCard } from "@/features/insights/components/insights-card";
 import { cn } from "@/lib/utils";
 
-export default function Insights() {
+function InsightsContent() {
   const [searchQuery, setSearchQuery] = useQueryState("q");
   const [activeTag, setActiveTag] = useQueryState("tag");
 
@@ -69,5 +71,13 @@ export default function Insights() {
         </div>
       </section>
     </main>
+  );
+}
+
+export default function Insights() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <InsightsContent />
+    </Suspense>
   );
 }
