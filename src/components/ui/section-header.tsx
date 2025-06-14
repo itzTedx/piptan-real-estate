@@ -94,7 +94,7 @@ export const SectionHeader = ({
   };
 
   return (
-    <div className={cn("mb-6 sm:mb-8", className)}>
+    <div className={cn(className)}>
       {badge && (
         <p className="mb-2 inline-flex items-center gap-1 sm:mb-3 sm:gap-1.5">
           {icon}

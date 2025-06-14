@@ -21,7 +21,7 @@ export const ProjectsSection = () => {
             communities."
           action={
             <AnimatedButton
-              href="/about"
+              href="/projects"
               text="View all projects"
               variant="outline"
             />

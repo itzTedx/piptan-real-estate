@@ -28,14 +28,14 @@ export const InsightsSection = () => {
         highlightText="Property Journey with Piptan"
         action={
           <AnimatedButton
-            href="/about"
+            href="/insights"
             text="View all Insights"
             variant="outline"
           />
         }
       />
 
-      <Carousel className="w-full">
+      <Carousel className="mt-4 w-full md:mt-6 lg:mt-9">
         <CarouselContent className="-ml-1">
           {INSIGHTS.map((data, index) => (
             <CarouselItem
