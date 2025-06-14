@@ -13,10 +13,15 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 
 import { LeadFormData, leadSchema } from "./schema";
 
-export function LeadForm() {
+interface Props {
+  className?: string;
+}
+
+export function LeadForm({ className }: Props) {
   const form = useForm<LeadFormData>({
     resolver: zodResolver(leadSchema),
     defaultValues: {
@@ -32,7 +37,10 @@ export function LeadForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="bg-foreground flex w-full flex-col gap-4 rounded-md p-9 md:flex-row"
+        className={cn(
+          "bg-foreground flex w-full flex-col gap-4 rounded-md p-9 md:flex-row",
+          className
+        )}
       >
         <FormField
           control={form.control}

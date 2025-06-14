@@ -136,7 +136,10 @@ export const Footer = () => {
           </nav>
         </div>
       </div>
-      <Piptan className="w-full" aria-hidden="true" />
+      <Piptan
+        className="w-full translate-y-9 text-white/10"
+        aria-hidden="true"
+      />
     </footer>
   );
 };

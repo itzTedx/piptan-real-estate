@@ -13,8 +13,8 @@ import {
 } from "@/components/ui/carousel";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
+import { LeadSection } from "@/features/forms/lead-form/section";
 import { ProgressIndicator } from "@/features/home/components/progress-indicator";
-import { ProjectsSection } from "@/features/home/section/projects";
 
 const TAGS = ["Waterfront", "Private Beach", "Pool", "Garden", "Smart Home"];
 
@@ -259,7 +259,7 @@ export default function ProjectPage() {
             </div>
           </Carousel>
         </section>
-        <section className="pt-20">
+        <section className="py-20">
           <div className="grid grid-cols-12 gap-12 py-12">
             <h3 className="col-span-5 text-3xl">Project description</h3>
             <div className="col-span-7 text-xl leading-normal">
@@ -323,8 +323,13 @@ export default function ProjectPage() {
           </div>
           <Separator />
         </section>
+        <LeadSection
+          title={`Want to know\nmore details?`}
+          subtitle="Feel free to contact with us"
+          variant="default"
+        />
       </article>
-      <ProjectsSection />
+      {/* <ProjectsSection /> */}
     </main>
   );
 }
