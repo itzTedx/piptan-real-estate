@@ -1,7 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
-import { cn, formatPrice } from "@/lib/utils";
+import { cn, formatPrice, slugify } from "@/lib/utils";
 
 import { Property } from "../types";
 
@@ -13,7 +14,10 @@ interface Props {
 
 export const PropertyCard = ({ className, layout = "grid", data }: Props) => {
   return (
-    <li className={cn("group", layout === "list" && "flex gap-12", className)}>
+    <Link
+      href={`/projects/${slugify(data.name)}`}
+      className={cn("group", layout === "list" && "flex gap-12", className)}
+    >
       <div
         className={cn(
           "outline-foreground/50 relative overflow-hidden rounded-md group-hover:outline",
@@ -41,6 +45,6 @@ export const PropertyCard = ({ className, layout = "grid", data }: Props) => {
         <p className="text-muted-foreground">{data.location}</p>
         <p className="text-primary-foreground">{formatPrice(data.price)}</p>
       </div>
-    </li>
+    </Link>
   );
 };

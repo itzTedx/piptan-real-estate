@@ -22,3 +22,17 @@ export function formatPrice(price: number): string {
   }
   return `AED ${price}`;
 }
+
+export function slugify(text: string): string {
+  return text
+    .toString()
+    .toLowerCase()
+    .normalize("NFD") // Normalize to decomposed form for handling accents
+    .replace(/[\u0300-\u036f]/g, "") // Remove diacritics
+    .replace(/[^a-z0-9\s-]/g, "") // Remove all non-word chars
+    .replace(/\s+/g, "-") // Replace spaces with -
+    .replace(/-+/g, "-") // Replace multiple - with single -
+    .replace(/^-+/, "") // Trim - from start of text
+    .replace(/-+$/, "") // Trim - from end of text
+    .substring(0, 100); // Limit length to 100 chars
+}

@@ -82,7 +82,7 @@ export function PropertiesList() {
       {properties.length === 0 ? (
         <EmptyState className="my-8" onClearFilters={handleClearFilters} />
       ) : (
-        <ul
+        <div
           className={cn(
             "grid gap-6",
             viewMode === "grid"
@@ -98,7 +98,7 @@ export function PropertiesList() {
               className="max-sm:py-6"
             />
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
