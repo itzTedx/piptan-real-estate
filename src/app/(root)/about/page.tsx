@@ -7,7 +7,7 @@ export default function AboutPage() {
   return (
     <main className="container py-4 sm:py-9 md:py-12">
       {/* Hero Section */}
-      <section className="relative pb-20">
+      <section className="relative space-y-12 pb-20">
         <SectionHeader
           title={`More Than Properties. We Build Possibilities.`}
           titleClassName="font-jaguar"
@@ -24,7 +24,7 @@ export default function AboutPage() {
           }
         />
         <AboutHeroVideo />
-        <div className="mt-12 grid gap-12 md:grid-cols-12 md:gap-4">
+        <div className="grid gap-12 md:grid-cols-12 md:gap-4">
           <ul className="grid grid-cols-2 gap-6 md:col-span-6 md:grid-cols-3">
             {[
               { stat: "150+", label: "Properties Sold" },

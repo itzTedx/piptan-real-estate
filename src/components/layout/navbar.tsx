@@ -1,8 +1,6 @@
-"use client";
-
 import Link from "next/link";
 
-import { ArrowTopRightIcon, MenuIcon } from "@sanity/icons";
+import { MenuIcon } from "@sanity/icons";
 
 import { IconPhone } from "@/assets/icons";
 import { Logo, WordMark } from "@/assets/logo";
@@ -52,7 +50,7 @@ export const Navbar = () => {
             <IconPhone />
           </Button>
           <AnimatedButton
-            href="/contact"
+            href="/projects"
             text="Explore More"
             variant="primary"
           />
@@ -98,9 +96,11 @@ export const Navbar = () => {
                   </Button>
                 </DrawerClose>
                 <DrawerClose asChild>
-                  <Button className="border-background/20 inset-shadow-foreground/20 w-full justify-center border-4 inset-shadow-sm">
-                    Explore More <ArrowTopRightIcon />
-                  </Button>
+                  <AnimatedButton
+                    href="/projects"
+                    text="Explore More"
+                    variant="primary"
+                  />
                 </DrawerClose>
               </div>
             </div>
