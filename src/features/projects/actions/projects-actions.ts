@@ -9,7 +9,7 @@ import { PROJECT_CARD_QUERYResult } from "../../../../sanity.types";
 
 const cacheOptions = {
   revalidate: 3600, // 1 hour
-  tags: ["sanity-content", "categories"],
+  tags: ["sanity-content", "projects"],
 };
 
 export const getProjectsCardData =
@@ -19,15 +19,15 @@ export const getProjectsCardData =
         async () => {
           const data = await sanityFetch({
             query: PROJECT_CARD_QUERY,
-            tags: ["categories"],
+            tags: ["projects"],
           });
           return data;
         },
-        ["categories"],
+        ["projects"],
         cacheOptions
       )();
     } catch (error) {
-      console.error("Error fetching categories:", error);
-      throw new Error("Failed to fetch categories");
+      console.error("Error fetching projects:", error);
+      throw new Error("Failed to fetch projects");
     }
   };
