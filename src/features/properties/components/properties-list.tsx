@@ -78,7 +78,7 @@ function PropertiesListContent() {
         onTagChange={setTag}
         onSortChange={handleSortChange}
         onViewChange={setViewMode}
-        className="bg-muted/40 sticky top-[8%] z-50 my-8 backdrop-blur-2xl"
+        className="bg-muted/40 sticky top-[9%] z-50 my-8 backdrop-blur-2xl"
       />
 
       {properties.length === 0 ? (
