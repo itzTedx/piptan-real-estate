@@ -1,16 +1,18 @@
 "use client";
 
+import { Suspense } from "react";
+
 import { useQueryState } from "nuqs";
 
+import { AnimatedGroup } from "@/components/animation/animated-group";
 import { PROPERTIES } from "@/constants/mock-data";
 import { EmptyState } from "@/features/properties/components/empty-state";
+import { PropertiesListSkeleton } from "@/features/properties/components/properties-list-skeleton";
 import { PropertyCard } from "@/features/properties/components/property-card";
 import { PropertyFilters } from "@/features/properties/components/property-filters";
 import { cn } from "@/lib/utils";
 
-// Mock data for demonstration
-
-export function PropertiesList() {
+function PropertiesListContent() {
   const [searchQuery, setSearchQuery] = useQueryState("q");
   const [tag, setTag] = useQueryState("tag", { defaultValue: "all" });
   const [sortField, setSortField] = useQueryState("sortField", {
@@ -82,7 +84,8 @@ export function PropertiesList() {
       {properties.length === 0 ? (
         <EmptyState className="my-8" onClearFilters={handleClearFilters} />
       ) : (
-        <div
+        <AnimatedGroup
+          preset="blur-slide"
           className={cn(
             "grid gap-6",
             viewMode === "grid"
@@ -98,8 +101,16 @@ export function PropertiesList() {
               className="max-sm:py-6"
             />
           ))}
-        </div>
+        </AnimatedGroup>
       )}
     </div>
+  );
+}
+
+export function PropertiesList() {
+  return (
+    <Suspense fallback={<PropertiesListSkeleton />}>
+      <PropertiesListContent />
+    </Suspense>
   );
 }

@@ -71,7 +71,7 @@ export const ProjectHero = ({
               src="/images/side-cta.webp"
               alt="Book a private viewing"
               fill
-              className="object-cover transition-[scale_rotate_filter] duration-500 group-hover:scale-125 group-hover:brightness-110 md:group-hover:-rotate-8"
+              className="object-cover transition-[scale_rotate_filter] duration-700 ease-out group-hover:scale-125 group-hover:brightness-110 md:group-hover:-rotate-8"
               sizes="(max-width: 768px) 100vw, 25vw"
             />
           </picture>

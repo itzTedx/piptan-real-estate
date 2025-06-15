@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 
-import ToolbarExpandable from "@/components/test";
 import { Separator } from "@/components/ui/separator";
 import { PROPERTIES } from "@/constants/mock-data";
 import { LeadSection } from "@/features/forms/lead-form/section";
@@ -123,7 +122,6 @@ export const metadata: Metadata = {
 export default function ProjectPage() {
   return (
     <main className="relative container pt-4 sm:pt-9">
-      <ToolbarExpandable />
       <ProjectHero
         title={PROJECT_NAME}
         tags={TAGS}

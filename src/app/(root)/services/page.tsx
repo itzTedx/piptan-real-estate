@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { AnimatedGroup } from "@/components/animation/animated-group";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
@@ -21,7 +22,7 @@ export default function ServicesPage() {
           }
           as="h1"
         />
-        <div className="relative aspect-square overflow-hidden rounded-md md:aspect-16/6">
+        <div className="relative mt-9 aspect-square overflow-hidden rounded-md md:aspect-16/6">
           <Image
             src="/images/dubai-night.jpg"
             alt=""
@@ -74,9 +75,12 @@ export default function ServicesPage() {
           hasHighlight
           highlightText="Every Step"
         />
-        <ul className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+        <AnimatedGroup
+          className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
+          preset="blur-slide"
+        >
           {SERVICES.map(({ description, id, image, title }) => (
-            <li key={id} className="group">
+            <div key={id} className="group">
               <div className="outline-foreground/50 bg-muted relative aspect-5/3 overflow-hidden rounded-sm group-hover:outline">
                 <Image
                   src={image}
@@ -87,9 +91,9 @@ export default function ServicesPage() {
               </div>
               <h3 className="mt-3 mb-2 text-3xl font-medium">{title}</h3>
               <p className="text-xl">{description}</p>
-            </li>
+            </div>
           ))}
-        </ul>
+        </AnimatedGroup>
       </section>
     </main>
   );

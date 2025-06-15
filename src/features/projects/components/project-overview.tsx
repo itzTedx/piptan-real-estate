@@ -11,7 +11,7 @@ export const ProjectOverview = ({ tags }: ProjectOverviewProps) => {
       <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl">
         Unlock Your Dream Lifestyle.
       </h2>
-      <div className="relative z-10 mt-4 grid grid-cols-1 gap-4 sm:mt-6 sm:grid-cols-2 sm:gap-6 md:mt-8 lg:mt-10">
+      <div className="pointer-events-none relative z-10 mt-4 grid grid-cols-1 gap-4 sm:mt-6 sm:grid-cols-2 sm:gap-6 md:mt-8 lg:mt-10">
         <p className="text-primary-foreground text-xl leading-snug sm:text-2xl md:text-4xl">
           Located in Jumeirah Beach Residence, this residence is surrounded by
           the best Dubai has to offer — luxury dining, upscale retail, and

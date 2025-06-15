@@ -1,3 +1,5 @@
+import UnderlineToBackground from "@/components/animation/line-to-background";
+
 interface ProjectFeaturesProps {
   features: string[];
 }
@@ -15,10 +17,14 @@ export const ProjectFeatures = ({ features }: ProjectFeaturesProps) => {
         {features.map((feature, index) => (
           <li
             key={index}
-            className="hover:border-muted-foreground flex items-center gap-2 border-b py-2 text-lg transition duration-300 md:py-3 md:text-xl lg:text-2xl"
+            className="hover:border-muted-foreground flex w-full items-center gap-2 text-lg transition duration-300 md:py-3 md:text-xl lg:text-2xl"
           >
             <span className="sr-only">Feature {index + 1}:</span>
-            {feature}
+            <UnderlineToBackground
+              label={feature}
+              targetTextColor="#FFD9DB"
+              className="w-full cursor-pointer py-2"
+            />
           </li>
         ))}
       </ul>

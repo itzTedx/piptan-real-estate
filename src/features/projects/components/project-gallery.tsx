@@ -37,7 +37,7 @@ export const ProjectGallery = ({
               className="3xl:basis-1/3 pl-1 md:basis-1/2"
             >
               <div className="h-full p-1">
-                <div className="relative aspect-square overflow-hidden rounded-md">
+                <div className="relative aspect-square overflow-hidden rounded-md xl:aspect-5/4">
                   <Image
                     src={img}
                     alt={`${projectName} - Gallery Image ${index + 1}`}
