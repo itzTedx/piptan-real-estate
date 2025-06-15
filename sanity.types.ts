@@ -380,7 +380,7 @@ export type AllSanitySchemaTypes =
   | Slug
   | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
-// Source: ./src/sanity/queries/categories-queries.ts
+// Source: ./src/lib/sanity/queries/categories-queries.ts
 // Variable: CATEGORIES_QUERY
 // Query: *[_type == "category"] | order(orderRank) {    _id,    title,    image,    "slug": slug.current,    description,    _updatedAt}
 export type CATEGORIES_QUERYResult = Array<{

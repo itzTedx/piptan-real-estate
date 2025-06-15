@@ -6,9 +6,9 @@ import StackingCards, {
 } from "@/components/animation/stacking-cards";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { SectionHeader } from "@/components/ui/section-header";
+import { getCategories } from "@/lib/sanity/fetch";
+import { urlFor } from "@/lib/sanity/image";
 import { cn, plural } from "@/lib/utils";
-import { getCategories } from "@/sanity/lib/fetch";
-import { urlFor } from "@/sanity/lib/image";
 
 export const ExpertiseSection = async () => {
   const categories = await getCategories();

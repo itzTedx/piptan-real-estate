@@ -3,8 +3,8 @@
 import { unstable_cache as cache } from "next/cache";
 
 import { CATEGORIES_QUERYResult } from "../../../sanity.types";
-import { CATEGORIES_QUERY } from "../queries/categories-queries";
-import { sanityFetch } from "./live";
+import { sanityFetch } from "./lib/live";
+import { CATEGORIES_QUERY } from "./queries/categories-queries";
 
 const cacheOptions = {
   revalidate: 3600, // 1 hour

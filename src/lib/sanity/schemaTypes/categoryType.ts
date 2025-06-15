@@ -32,6 +32,15 @@ export const categoryType = defineType({
       type: "image",
       description: "Size must be 1280x720",
       validation: (Rule) => Rule.required(),
+      fields: [
+        {
+          name: "alt",
+          type: "string",
+          title: "Alternative Text",
+          description: "Important for SEO and accessibility.",
+          validation: (Rule) => Rule.required(),
+        },
+      ],
     }),
     orderRankField({ type: "category" }),
   ],

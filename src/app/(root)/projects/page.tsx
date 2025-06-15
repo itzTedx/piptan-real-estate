@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import { LeadSection } from "@/features/forms/lead-form/section";
 import { PropertiesList } from "@/features/properties/components/properties-list";
 import { PropertiesListSkeleton } from "@/features/properties/components/properties-list-skeleton";
-import { getCategories } from "@/sanity/lib/fetch";
+import { getCategories } from "@/lib/sanity/fetch";
 
 export default async function ProjectsPage() {
   const categories = await getCategories();
