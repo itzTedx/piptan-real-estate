@@ -58,16 +58,23 @@ export const ProjectHero = ({
           className="group relative grid aspect-[4/1] place-content-center-safe overflow-hidden rounded-sm border md:aspect-auto"
           aria-label="Book a private viewing"
         >
-          <p className="relative z-10 px-4 text-center text-2xl md:text-3xl lg:text-4xl">
-            Book a Private Viewing Today
+          <p className="relative z-10 px-4 text-center text-xl font-medium md:text-3xl lg:text-4xl">
+            Book a Private <br />
+            Viewing Today
           </p>
-          <Image
-            src="/images/side-cta.webp"
-            alt="Book a private viewing"
-            fill
-            className="object-cover transition-[scale_rotate_filter] duration-500 group-hover:scale-125 group-hover:-rotate-8 group-hover:brightness-110"
-            sizes="(max-width: 768px) 100vw, 25vw"
-          />
+          <picture>
+            <source
+              media="(max-width: 768px)"
+              srcSet="/images/side-cta-wide.webp"
+            />
+            <Image
+              src="/images/side-cta.webp"
+              alt="Book a private viewing"
+              fill
+              className="object-cover transition-[scale_rotate_filter] duration-500 group-hover:scale-125 group-hover:brightness-110 md:group-hover:-rotate-8"
+              sizes="(max-width: 768px) 100vw, 25vw"
+            />
+          </picture>
         </Link>
       </figure>
       <address className="flex flex-col gap-6 not-italic md:flex-row md:gap-16">
