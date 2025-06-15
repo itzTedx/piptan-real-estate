@@ -596,7 +596,7 @@
         },
         "optional": true
       },
-      "categories": {
+      "category": {
         "type": "objectAttribute",
         "value": {
           "type": "object",
@@ -1167,6 +1167,13 @@
               "value": {
                 "type": "inline",
                 "name": "sanity.imageCrop"
+              },
+              "optional": true
+            },
+            "alt": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
               },
               "optional": true
             },

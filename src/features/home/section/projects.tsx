@@ -1,10 +1,11 @@
 import { IconHouse } from "@/assets/icons";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { SectionHeader } from "@/components/ui/section-header";
-import { PROPERTIES } from "@/constants/mock-data";
+import { getProjectsCardData } from "@/features/projects/actions/projects-actions";
 import { PropertyCard } from "@/features/properties/components/property-card";
 
-export const ProjectsSection = () => {
+export const ProjectsSection = async () => {
+  const projects = await getProjectsCardData();
   return (
     <section
       className="container py-8 sm:py-12 md:py-16 lg:py-24"
@@ -29,10 +30,10 @@ export const ProjectsSection = () => {
         />
       </div>
       <ul className="grid grid-cols-1 max-sm:divide-y sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-        {PROPERTIES.map((property) => (
+        {projects.map((project) => (
           <PropertyCard
-            key={property.id}
-            data={property}
+            key={project._id}
+            data={project}
             className="max-sm:py-6 first:sm:col-span-2"
           />
         ))}

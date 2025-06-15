@@ -112,7 +112,7 @@ export type Project = {
   developer?: string;
   status?: "available" | "sold" | "coming-soon";
   isFeatured?: boolean;
-  categories?: {
+  category?: {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
@@ -202,6 +202,7 @@ export type Category = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt?: string;
     _type: "image";
   };
   orderRank?: string;
@@ -382,7 +383,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/lib/sanity/queries/categories-queries.ts
 // Variable: CATEGORIES_QUERY
-// Query: *[_type == "category"] | order(orderRank) {    _id,    title,    image,    "slug": slug.current,    description,    _updatedAt}
+// Query: *[_type == "category"] | order(orderRank) {    _id,    title,    image,    "slug": slug.current,    description}
 export type CATEGORIES_QUERYResult = Array<{
   _id: string;
   title: string | null;
@@ -396,15 +397,47 @@ export type CATEGORIES_QUERYResult = Array<{
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt?: string;
     _type: "image";
   } | null;
   slug: string | null;
   description: string | null;
-  _updatedAt: string;
+}>;
+
+// Source: ./src/lib/sanity/queries/projects-queries.ts
+// Variable: PROJECT_CARD_QUERY
+// Query: *[_type == "project"][0...6]  {    _id,    title,    mainImage{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    "slug": slug.current,    location,    isFeatured,    "category": category->{      title,      "slug": slug.current    },    "price": projectDetails.price,    tags}
+export type PROJECT_CARD_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  mainImage: {
+    asset: {
+      _id: string;
+      url: string | null;
+      metadata: {
+        lqip: string | null;
+        dimensions: {
+          width: number | null;
+          height: number | null;
+        } | null;
+      } | null;
+    } | null;
+    alt: string | null;
+  } | null;
+  slug: string | null;
+  location: string | null;
+  isFeatured: boolean | null;
+  category: {
+    title: string | null;
+    slug: string | null;
+  } | null;
+  price: string | null;
+  tags: Array<string> | null;
 }>;
 
 declare module "@sanity/client" {
   interface SanityQueries {
-    '*[_type == "category"] | order(orderRank) {\n    _id,\n    title,\n    image,\n    "slug": slug.current,\n    description,\n    _updatedAt\n}': CATEGORIES_QUERYResult;
+    '*[_type == "category"] | order(orderRank) {\n    _id,\n    title,\n    image,\n    "slug": slug.current,\n    description\n}': CATEGORIES_QUERYResult;
+    '*[_type == "project"][0...6]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    location,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": projectDetails.price,\n    tags\n}': PROJECT_CARD_QUERYResult;
   }
 }

@@ -6,6 +6,5 @@ export const CATEGORIES_QUERY =
     title,
     image,
     "slug": slug.current,
-    description,
-    _updatedAt,
+    description
 }`);

@@ -229,7 +229,7 @@ export const projectType = defineType({
       initialValue: false,
     }),
     defineField({
-      name: "categories",
+      name: "category",
       type: "reference",
       group: "overview",
       description:
