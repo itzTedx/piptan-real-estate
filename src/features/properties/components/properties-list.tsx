@@ -9,13 +9,17 @@ import { PropertyCard } from "@/features/properties/components/property-card";
 import { PropertyFilters } from "@/features/properties/components/property-filters";
 import { cn } from "@/lib/utils";
 
-import { CATEGORIES_QUERYResult } from "../../../../sanity.types";
+import {
+  CATEGORIES_QUERYResult,
+  PROJECT_CARD_QUERYResult,
+} from "../../../../sanity.types";
 
 interface Props {
   categories: CATEGORIES_QUERYResult;
+  projects: PROJECT_CARD_QUERYResult;
 }
 
-export function PropertiesList({ categories }: Props) {
+export function PropertiesList({ categories, projects }: Props) {
   const [searchQuery, setSearchQuery] = useQueryState("q");
   const [tag, setTag] = useQueryState("tag", { defaultValue: "all" });
   const [sortField, setSortField] = useQueryState("sortField", {
@@ -97,9 +101,9 @@ export function PropertiesList({ categories }: Props) {
               : "grid-cols-1"
           )}
         >
-          {properties.map((property) => (
+          {projects.map((property) => (
             <PropertyCard
-              key={property.id}
+              key={property._id}
               data={property}
               layout={viewMode}
               className="max-sm:py-6"

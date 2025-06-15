@@ -11,13 +11,14 @@ import {
 import { SectionHeader } from "@/components/ui/section-header";
 import { ProgressIndicator } from "@/features/home/components/progress-indicator";
 import { PropertyCard } from "@/features/properties/components/property-card";
-import { Property } from "@/features/properties/types";
+
+import { PROJECT_CARD_QUERYResult } from "../../../../sanity.types";
 
 interface RelatedProjectsProps {
-  properties: Property[];
+  projects: PROJECT_CARD_QUERYResult;
 }
 
-export const RelatedProjects = ({ properties }: RelatedProjectsProps) => {
+export const RelatedProjects = ({ projects }: RelatedProjectsProps) => {
   return (
     <section className="pt-20">
       <SectionHeader
@@ -36,7 +37,7 @@ export const RelatedProjects = ({ properties }: RelatedProjectsProps) => {
       />
       <Carousel className="mt-4 w-full md:mt-6 lg:mt-9">
         <CarouselContent className="-ml-1">
-          {properties.map((data, index) => (
+          {projects.map((data, index) => (
             <CarouselItem
               key={index}
               className="pl-1 md:basis-1/2 lg:basis-1/3"
@@ -50,9 +51,9 @@ export const RelatedProjects = ({ properties }: RelatedProjectsProps) => {
         <div className="mt-6 flex items-center gap-12">
           <p className="text-foreground/80 shrink-0 tracking-widest">
             <CarouselActiveIndex /> /{" "}
-            {properties.length.toString().padStart(2, "0")}
+            {projects.length.toString().padStart(2, "0")}
           </p>
-          <ProgressIndicator totalItems={properties.length} />
+          <ProgressIndicator totalItems={projects.length} />
           <div className="relative flex gap-2">
             <CarouselPrevious className="static translate-y-0" />
             <CarouselNext className="static translate-y-0" />

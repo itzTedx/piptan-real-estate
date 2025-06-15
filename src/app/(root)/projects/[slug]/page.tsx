@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 import { Separator } from "@/components/ui/separator";
-import { PROPERTIES } from "@/constants/mock-data";
 import { LeadSection } from "@/features/forms/lead-form/section";
+import { getProjectsCardData } from "@/features/projects/actions/projects-actions";
 import { ProjectAmenities } from "@/features/projects/components/project-amenities";
 import { ProjectDescription } from "@/features/projects/components/project-description";
 import { ProjectDetails } from "@/features/projects/components/project-details";
@@ -119,7 +119,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ProjectPage() {
+export default async function ProjectPage() {
+  const projects = await getProjectsCardData();
   return (
     <main className="relative container pt-4 sm:pt-9">
       <ProjectHero
@@ -147,7 +148,7 @@ export default function ProjectPage() {
           subtitle="Feel free to contact with us"
           variant="default"
         />
-        <RelatedProjects properties={PROPERTIES} />
+        <RelatedProjects projects={projects} />
       </article>
     </main>
   );
