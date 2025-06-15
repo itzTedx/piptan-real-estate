@@ -121,7 +121,7 @@ export const metadata: Metadata = {
 
 export default function ProjectPage() {
   return (
-    <main className="container pt-9">
+    <main className="container pt-4 sm:pt-9">
       <ProjectHero
         title={PROJECT_NAME}
         tags={TAGS}

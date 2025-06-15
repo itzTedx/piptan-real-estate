@@ -5,7 +5,7 @@ import { AboutHeroVideo } from "@/features/about/components/video";
 
 export default function AboutPage() {
   return (
-    <main className="container py-4 sm:py-9 md:py-12">
+    <main className="container py-4 sm:py-9">
       {/* Hero Section */}
       <section className="relative space-y-12 pb-20">
         <SectionHeader

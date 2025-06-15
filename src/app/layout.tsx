@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import { jaguar, neueMontreal } from "@/assets/fonts";
+import BreakpointIndicator from "@/components/breakpoint-indicator";
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
@@ -23,6 +24,7 @@ export default function RootLayout({
         className={cn(`antialiased`, neueMontreal.className, jaguar.variable)}
       >
         <NuqsAdapter>{children}</NuqsAdapter>
+        <BreakpointIndicator />
       </body>
     </html>
   );

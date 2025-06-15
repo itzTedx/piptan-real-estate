@@ -32,7 +32,10 @@ export const ProjectGallery = ({
       >
         <CarouselContent className="-ml-1">
           {images.map((img, index) => (
-            <CarouselItem key={index} className="pl-1 md:basis-1/2">
+            <CarouselItem
+              key={index}
+              className="3xl:basis-1/3 pl-1 md:basis-1/2"
+            >
               <div className="h-full p-1">
                 <div className="relative aspect-square overflow-hidden rounded-md">
                   <Image

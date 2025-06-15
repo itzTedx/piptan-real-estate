@@ -4,10 +4,12 @@ import { MouseEvent, useRef } from "react";
 
 import gsap from "gsap";
 
+import { cn } from "@/lib/utils";
+
 const THRESHOLD = 200;
 const ARRAY_LENGTH = 17;
 
-export default function MomentumLines() {
+export default function MomentumLines({ className }: { className?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const transformX = (el: HTMLDivElement, value: number) => {
@@ -79,7 +81,10 @@ export default function MomentumLines() {
         return (
           <div
             key={index}
-            className="line via-muted pointer-events-none h-full w-px bg-gradient-to-b from-transparent to-transparent"
+            className={cn(
+              "line via-muted pointer-events-none h-full w-px bg-gradient-to-b from-transparent to-transparent",
+              className
+            )}
           ></div>
         );
       })}

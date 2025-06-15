@@ -8,6 +8,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
+  --breakpoint-3xl: 120rem;
+
   --font-sans: var(--font-geist-sans);
   --font-jaguar: var(--font-jaguar);
 
@@ -107,7 +109,7 @@
   padding-inline: 1.5rem;
 
   @media (width >= 64rem /* 1024px */) {
-    padding-inline: 0.5rem;
+    padding-inline: 2rem;
     max-width: 68rem;
   }
 
@@ -118,6 +120,10 @@
   @media (width >= 96rem /* 1536px */) {
     padding-inline: 4rem;
     max-width: 98rem;
+  }
+  @media (width >= 120rem /* 1536px */) {
+    padding-inline: 4.5rem;
+    max-width: 120rem;
   }
 }
 

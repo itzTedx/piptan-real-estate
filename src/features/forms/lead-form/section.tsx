@@ -110,24 +110,26 @@ export const LeadSection = ({
       <div
         className={cn(
           variant === "default"
-            ? "bg-muted rounded-sm border p-20"
-            : "container py-20"
+            ? "bg-muted rounded-sm border p-6 sm:p-10 md:p-16 lg:p-20"
+            : "container py-10 sm:py-14 md:py-16 lg:py-20"
         )}
       >
         <div className="text-center">
-          <h3 className="text-3xl md:text-4xl lg:text-6xl">{renderTitle()}</h3>
-          <p className="text-foreground/70 mt-2 mb-6 text-lg md:mt-4 md:text-xl lg:text-2xl">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl">
+            {renderTitle()}
+          </h3>
+          <p className="text-foreground/70 mt-2 mb-4 text-base sm:mb-6 sm:text-lg md:text-xl lg:text-2xl">
             {subtitle}
           </p>
         </div>
 
         {variant === "compact" && (
-          <SocialLinks className="mb-6 max-md:mx-auto" />
+          <SocialLinks className="mb-4 max-md:mx-auto sm:mb-6" />
         )}
 
         <LeadForm className={cn(variant === "default" && "md:flex-col")} />
 
-        <p className="text-muted-foreground mt-4 text-center text-sm md:text-base">
+        <p className="text-muted-foreground mt-3 text-center text-xs sm:mt-4 sm:text-sm md:text-base">
           By submitting this form, you agree to our{" "}
           <Link
             href="/privacy"
@@ -137,11 +139,13 @@ export const LeadSection = ({
           </Link>
         </p>
 
-        {variant === "default" && <SocialLinks className="mx-auto mt-6" />}
+        {variant === "default" && (
+          <SocialLinks className="mx-auto mt-4 sm:mt-6" />
+        )}
       </div>
 
       {variant === "default" && (
-        <div className="to-foreground group relative flex flex-col justify-end overflow-hidden rounded-sm bg-gradient-to-b from-[#60A2D7] pb-24">
+        <div className="to-foreground group relative flex aspect-square flex-col justify-end overflow-hidden rounded-sm bg-gradient-to-b from-[#60A2D7] pb-12 sm:pb-16 md:aspect-auto md:pb-20 lg:pb-24">
           <Piptan className="w-full text-white" aria-hidden="true" />
 
           <motion.div

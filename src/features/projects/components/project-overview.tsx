@@ -1,3 +1,4 @@
+import MomentumLines from "@/components/animation/momentum-lines";
 import { Badge } from "@/components/ui/badge";
 
 interface ProjectOverviewProps {
@@ -6,11 +7,11 @@ interface ProjectOverviewProps {
 
 export const ProjectOverview = ({ tags }: ProjectOverviewProps) => {
   return (
-    <section className="pb-20" aria-label="Project Lifestyle Overview">
+    <section className="relative pb-20" aria-label="Project Lifestyle Overview">
       <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl">
         Unlock Your Dream Lifestyle.
       </h2>
-      <div className="mt-4 grid grid-cols-1 gap-4 sm:mt-6 sm:grid-cols-2 sm:gap-6 md:mt-8 lg:mt-10">
+      <div className="relative z-10 mt-4 grid grid-cols-1 gap-4 sm:mt-6 sm:grid-cols-2 sm:gap-6 md:mt-8 lg:mt-10">
         <p className="text-primary-foreground text-xl leading-snug sm:text-2xl md:text-4xl">
           Located in Jumeirah Beach Residence, this residence is surrounded by
           the best Dubai has to offer — luxury dining, upscale retail, and
@@ -38,6 +39,9 @@ export const ProjectOverview = ({ tags }: ProjectOverviewProps) => {
             </ul>
           </nav>
         </aside>
+      </div>
+      <div className="absolute inset-x-0 inset-y-0 hidden md:block">
+        <MomentumLines />
       </div>
     </section>
   );

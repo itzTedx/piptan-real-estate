@@ -9,7 +9,11 @@ import { Separator } from "../ui/separator";
 
 export const Footer = () => {
   return (
-    <footer className="bg-black" role="contentinfo" aria-label="Website footer">
+    <footer
+      className="overflow-hidden bg-black"
+      role="contentinfo"
+      aria-label="Website footer"
+    >
       <div className="container">
         <h2 className="font-jaguar text-primary py-3 text-center text-4xl md:text-6xl lg:text-[8rem]">
           <TextEffect text="Invest. Grow. Thrive." />
@@ -137,7 +141,7 @@ export const Footer = () => {
         </div>
       </div>
       <Piptan
-        className="w-full translate-y-9 text-white/10"
+        className="h-auto w-full translate-y-1/3 text-white/10 md:translate-y-9"
         aria-hidden="true"
       />
     </footer>
