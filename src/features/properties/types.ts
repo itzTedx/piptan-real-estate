@@ -8,7 +8,7 @@ export enum PropertyType {
 export interface Property {
   id: number;
   name: string;
-  type: PropertyType;
+  category: string;
   price: number;
   location: string;
   bedrooms?: number;

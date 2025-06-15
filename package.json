@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sanity:types": "sanity typegen generate",
+    "sanity:extract": "sanity schema extract"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

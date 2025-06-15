@@ -4,8 +4,11 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
 import { LeadSection } from "@/features/forms/lead-form/section";
 import { PropertiesList } from "@/features/properties/components/properties-list";
+import { PropertiesListSkeleton } from "@/features/properties/components/properties-list-skeleton";
+import { getCategories } from "@/sanity/lib/fetch";
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const categories = await getCategories();
   return (
     <main className="pt-4 sm:pt-9 md:pt-12">
       <section className="relative container mb-20">
@@ -14,8 +17,8 @@ export default function ProjectsPage() {
           subtitle="Discover signature developments in Dubai's most sought-after communities."
         />
         <Separator />
-        <Suspense>
-          <PropertiesList />
+        <Suspense fallback={<PropertiesListSkeleton />}>
+          <PropertiesList categories={categories} />
         </Suspense>
       </section>
       <LeadSection

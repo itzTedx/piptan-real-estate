@@ -1,5 +1,3 @@
-import { PropertyType } from "@/features/properties/types";
-
 export const FEEDBACKS = [
   {
     content:
@@ -208,7 +206,7 @@ export const PROPERTIES = [
   {
     id: 1,
     name: "Modern Downtown Apartment",
-    type: PropertyType.Residential,
+    category: "residential",
     price: 450000,
     location: "123 Main St, Downtown",
     bedrooms: 2,
@@ -223,7 +221,7 @@ export const PROPERTIES = [
   {
     id: 2,
     name: "Luxury Waterfront Villa",
-    type: PropertyType.Luxury,
+    category: "luxury",
     price: 2500000,
     location: "456 Ocean Drive",
     bedrooms: 5,
@@ -237,7 +235,7 @@ export const PROPERTIES = [
   {
     id: 3,
     name: "Commercial Office Space",
-    type: PropertyType.Commercial,
+    category: "commercial",
     price: 1200000,
     location: "789 Business Ave",
     area: 5000,
@@ -255,7 +253,7 @@ export const PROPERTIES = [
   {
     id: 4,
     name: "Suburban Family Home",
-    type: PropertyType.Residential,
+    category: "residential",
     price: 650000,
     location: "321 Oak Street",
     bedrooms: 4,
@@ -275,7 +273,7 @@ export const PROPERTIES = [
   {
     id: 5,
     name: "Investment Property Complex",
-    type: PropertyType.Investment,
+    category: "investment",
     price: 1800000,
     location: "555 Investment Blvd",
     units: 8,
@@ -294,7 +292,7 @@ export const PROPERTIES = [
   {
     id: 6,
     name: "Penthouse Suite",
-    type: PropertyType.Luxury,
+    category: "luxury",
     price: 3200000,
     location: "888 Sky Tower",
     bedrooms: 3,

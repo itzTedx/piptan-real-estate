@@ -1,18 +1,21 @@
 "use client";
 
-import { Suspense } from "react";
-
 import { useQueryState } from "nuqs";
 
 import { AnimatedGroup } from "@/components/animation/animated-group";
 import { PROPERTIES } from "@/constants/mock-data";
 import { EmptyState } from "@/features/properties/components/empty-state";
-import { PropertiesListSkeleton } from "@/features/properties/components/properties-list-skeleton";
 import { PropertyCard } from "@/features/properties/components/property-card";
 import { PropertyFilters } from "@/features/properties/components/property-filters";
 import { cn } from "@/lib/utils";
 
-function PropertiesListContent() {
+import { CATEGORIES_QUERYResult } from "../../../../sanity.types";
+
+interface Props {
+  categories: CATEGORIES_QUERYResult;
+}
+
+export function PropertiesList({ categories }: Props) {
   const [searchQuery, setSearchQuery] = useQueryState("q");
   const [tag, setTag] = useQueryState("tag", { defaultValue: "all" });
   const [sortField, setSortField] = useQueryState("sortField", {
@@ -51,7 +54,7 @@ function PropertiesListContent() {
     const matchesSearch =
       !searchQuery ||
       property.name.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesTag = tag === "all" || property.type === tag;
+    const matchesTag = tag === "all" || property.category === tag;
     return matchesSearch && matchesTag;
   }).sort((a, b) => {
     const multiplier = sortOrder === "asc" ? 1 : -1;
@@ -78,6 +81,7 @@ function PropertiesListContent() {
         onTagChange={setTag}
         onSortChange={handleSortChange}
         onViewChange={setViewMode}
+        categories={categories}
         className="bg-muted/40 sticky top-[9%] z-50 my-8 backdrop-blur-2xl"
       />
 
@@ -104,13 +108,5 @@ function PropertiesListContent() {
         </AnimatedGroup>
       )}
     </div>
-  );
-}
-
-export function PropertiesList() {
-  return (
-    <Suspense fallback={<PropertiesListSkeleton />}>
-      <PropertiesListContent />
-    </Suspense>
   );
 }

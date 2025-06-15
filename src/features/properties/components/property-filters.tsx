@@ -23,13 +23,14 @@ import {
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
-import { PropertyType } from "../types";
+import { CATEGORIES_QUERYResult } from "../../../../sanity.types";
 
 interface PropertyFiltersProps {
   onSearch: (query: string) => void;
   onTagChange: (tag: string) => void;
   onSortChange: (sort: { field: string; order: "asc" | "desc" }) => void;
   onViewChange: (view: "grid" | "list") => void;
+  categories: CATEGORIES_QUERYResult;
   className?: string;
 }
 
@@ -38,6 +39,7 @@ export const PropertyFilters = ({
   onTagChange,
   onSortChange,
   onViewChange,
+  categories,
   className,
 }: PropertyFiltersProps) => {
   const [searchQuery, setSearchQuery] = useQueryState("q", {
@@ -110,20 +112,20 @@ export const PropertyFilters = ({
             id="type"
             className="border-foreground/40 w-32 rounded-e-none border-0 border-r data-[size=default]:h-full"
           >
-            <SelectValue placeholder="Property Type" />
+            <SelectValue placeholder="Category" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">Show All</SelectItem>
-            <SelectItem value={PropertyType.Residential}>
-              Residential
-            </SelectItem>
-            <SelectItem value={PropertyType.Luxury}>Luxury</SelectItem>
-            <SelectItem value={PropertyType.Commercial}>Commercial</SelectItem>
-            <SelectItem value={PropertyType.Investment}>Investment</SelectItem>
+            {categories.map((category) => (
+              <SelectItem key={category._id} value={category.slug || ""}>
+                {category.title?.split(" ")[0] || ""}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>
-      <div className="relative h-full flex-1">
+
+      <div className="relative flex-1">
         <Input
           type="text"
           placeholder="Search properties..."
@@ -149,7 +151,7 @@ export const PropertyFilters = ({
         </Tooltip>
       </div>
 
-      <div className="flex items-center gap-2.5 px-1">
+      <div className="flex items-center gap-2 px-4">
         <Select defaultValue={sortField} onValueChange={handleSortFieldChange}>
           <SelectTrigger id="sort" className="border-foreground/40 w-40">
             <SelectValue placeholder="Sort by" />

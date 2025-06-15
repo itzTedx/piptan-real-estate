@@ -13,6 +13,7 @@ export const categoryType = defineType({
     defineField({
       name: "title",
       type: "string",
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "slug",
@@ -24,11 +25,13 @@ export const categoryType = defineType({
     defineField({
       name: "description",
       type: "text",
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "image",
       type: "image",
       description: "Size must be 1280x720",
+      validation: (Rule) => Rule.required(),
     }),
     orderRankField({ type: "category" }),
   ],
