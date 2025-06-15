@@ -43,7 +43,7 @@ export const Testimonials = () => {
             <span className="font-medium">Middle East</span>
           </h3>
           <motion.div
-            className="relative aspect-3/4 md:aspect-3/5"
+            className="relative aspect-[3/4.5] md:aspect-3/5"
             style={{
               y: useTransform(scrollYProgress, [0, 1], [350, 0]),
             }}

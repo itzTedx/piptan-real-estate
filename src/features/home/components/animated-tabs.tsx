@@ -26,7 +26,7 @@ export const AnimatedTabs = ({ className }: Props) => {
         ))}
       </TabsList>
 
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         {FEATURES.map(({ title, description }, i) => (
           <TabsContent
             value={title}
@@ -38,6 +38,7 @@ export const AnimatedTabs = ({ className }: Props) => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
+              layout
             >
               <div className="flex gap-4 max-sm:items-center max-sm:justify-between sm:grid sm:grid-cols-3">
                 <h3 className="text-primary text-3xl leading-[1.1] font-medium sm:col-span-2 sm:mb-6 sm:text-4xl lg:text-5xl">
