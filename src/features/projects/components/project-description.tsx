@@ -24,11 +24,11 @@ export const ProjectDescription = ({ sections }: ProjectDescriptionProps) => {
             >
               {section.title}
             </h3>
-            <div className="col-span-8 text-base leading-normal md:col-span-7 md:text-lg lg:text-xl">
+            <div className="col-span-8 text-base leading-loose md:col-span-7 md:text-lg lg:text-xl">
               <p aria-labelledby={`section-${index + 1}`}>{section.content}</p>
             </div>
           </div>
-          {index < sections.length - 1 && <Separator />}
+          <Separator />
         </div>
       ))}
     </section>

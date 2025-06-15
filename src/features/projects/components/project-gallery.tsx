@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import {
   Carousel,
   CarouselActiveIndex,
@@ -9,6 +7,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { ProgressIndicator } from "@/features/home/components/progress-indicator";
+
+import ImageViewer from "./zoom-image";
 
 interface ProjectGalleryProps {
   images: string[];
@@ -38,14 +38,22 @@ export const ProjectGallery = ({
             >
               <div className="h-full p-1">
                 <div className="relative aspect-square overflow-hidden rounded-md xl:aspect-5/4">
-                  <Image
+                  <ImageViewer
+                    thumbnailUrl={img}
+                    imageUrl={img}
+                    imageTitle={`${projectName} - Gallery Image ${index + 1}`}
+                    className="relative aspect-square overflow-hidden rounded-md xl:aspect-5/4"
+                    classNameThumbnailViewer="object-cover transition-transform duration-500 hover:scale-105"
+                    classNameImageViewer="object-cover"
+                  />
+                  {/* <Image
                     src={img}
                     alt={`${projectName} - Gallery Image ${index + 1}`}
                     fill
                     className="object-cover transition-transform duration-500 hover:scale-105"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     loading={index < 2 ? "eager" : "lazy"}
-                  />
+                  /> */}
                 </div>
               </div>
             </CarouselItem>
