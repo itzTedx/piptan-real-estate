@@ -18,15 +18,11 @@ type PageProps = {
 export default async function ProjectsPage({ searchParams }: PageProps) {
   const { q } = await loadSearchParams(searchParams);
 
-  console.log("Query: ", q);
-
   const categories = await getCategories();
   // const projects = await getProjectsCardData();
   const { projects } = await getFilteredProjects({
     searchQuery: q,
   });
-
-  console.log("Projects", projects);
 
   return (
     <main className="pt-4 sm:pt-9 md:pt-12">

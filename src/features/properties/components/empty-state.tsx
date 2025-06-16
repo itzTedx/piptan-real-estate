@@ -1,14 +1,40 @@
+"use client";
+
 import { SearchIcon } from "@sanity/icons";
+import { useQueryState } from "nuqs";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 interface EmptyStateProps {
   className?: string;
-  onClearFilters?: () => void;
 }
 
-export function EmptyState({ className, onClearFilters }: EmptyStateProps) {
+export function EmptyState({ className }: EmptyStateProps) {
+  const [, setSearchQuery] = useQueryState("q", {
+    defaultValue: "",
+  });
+  const [, setTag] = useQueryState("tag", { defaultValue: "all" });
+  const [, setSortField] = useQueryState("sort", {
+    defaultValue: "date",
+  });
+  const [, setSortOrder] = useQueryState<"asc" | "desc">("order", {
+    defaultValue: "desc",
+    parse: (value): "asc" | "desc" => (value === "asc" ? "asc" : "desc"),
+  });
+  const [, setViewMode] = useQueryState<"grid" | "list">("view", {
+    defaultValue: "grid",
+    parse: (value): "grid" | "list" => (value === "list" ? "list" : "grid"),
+  });
+
+  const handleClearFilters = async () => {
+    await setSearchQuery(null);
+    await setTag("all");
+    await setSortField("date");
+    await setSortOrder("desc");
+    await setViewMode("grid");
+  };
+
   return (
     <div
       className={cn(
@@ -24,11 +50,10 @@ export function EmptyState({ className, onClearFilters }: EmptyStateProps) {
         We couldn&apos;t find any properties matching your search criteria. Try
         adjusting your filters or search terms.
       </p>
-      {onClearFilters && (
-        <Button variant="outline" className="mt-6" onClick={onClearFilters}>
-          Clear all filters
-        </Button>
-      )}
+
+      <Button variant="outline" className="mt-6" onClick={handleClearFilters}>
+        Clear all filters
+      </Button>
     </div>
   );
 }

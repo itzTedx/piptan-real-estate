@@ -19,9 +19,6 @@ interface Props {
 }
 
 export function PropertiesList({ categories, projects }: Props) {
-  const [searchQuery, setSearchQuery] = useQueryState("q", {
-    defaultValue: "",
-  });
   const [tag, setTag] = useQueryState("tag", { defaultValue: "all" });
   const [sortField, setSortField] = useQueryState("sort", {
     defaultValue: "date",
@@ -35,21 +32,12 @@ export function PropertiesList({ categories, projects }: Props) {
     parse: (value): "grid" | "list" => (value === "list" ? "list" : "grid"),
   });
 
-  const handleClearFilters = async () => {
-    await setSearchQuery(null);
-    await setTag("all");
-    await setSortField("date");
-    await setSortOrder("desc");
-    await setViewMode("grid");
-  };
-
-  const initialValues = { searchQuery, tag, sortField, sortOrder };
+  const initialValues = { tag, sortField, sortOrder };
 
   return (
     <div className="relative">
       <PropertyFilters
         initialValues={initialValues}
-        onSearch={setSearchQuery}
         onTagChange={setTag}
         onSortChange={({ field, order }) => {
           setSortField(field);
@@ -61,7 +49,7 @@ export function PropertiesList({ categories, projects }: Props) {
       />
 
       {projects.length === 0 ? (
-        <EmptyState className="my-8" onClearFilters={handleClearFilters} />
+        <EmptyState className="my-8" />
       ) : (
         <AnimatedGroup
           preset="blur-slide"

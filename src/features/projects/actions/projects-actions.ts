@@ -45,14 +45,20 @@ export const getFilteredProjects = async ({
 }): Promise<{
   projects: FILTERED_PROJECTS_QUERYResult;
 }> => {
-  console.log(searchQuery);
   try {
-    const projects = await sanityFetch({
-      query: FILTERED_PROJECTS_QUERY,
-      params: { searchQuery },
-      tags: ["projects"],
-    });
-    return { projects };
+    return await cache(
+      async () => {
+        const projects = await sanityFetch({
+          query: FILTERED_PROJECTS_QUERY,
+          params: { searchQuery },
+          tags: ["projects"],
+        });
+
+        return { projects };
+      },
+      ["projects", searchQuery],
+      cacheOptions
+    )();
   } catch (error) {
     console.error("Error filtering projects:", error);
     throw new Error("Failed to filter projects");
