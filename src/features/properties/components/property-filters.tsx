@@ -125,7 +125,7 @@ export const PropertyFilters = ({
         </Select>
       </div>
 
-      <div className="relative flex-1">
+      <div className="relative h-full flex-1">
         <Input
           type="text"
           placeholder="Search properties..."
@@ -161,7 +161,7 @@ export const PropertyFilters = ({
             <SelectItem value="price">Price</SelectItem>
             <SelectItem value="location">Location</SelectItem>
             <SelectItem value="bedrooms">Bedrooms</SelectItem>
-            <SelectItem value="squareFootage">Square Footage</SelectItem>
+            <SelectItem value="area">Area</SelectItem>
           </SelectContent>
         </Select>
         <Button

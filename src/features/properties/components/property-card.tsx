@@ -58,7 +58,7 @@ export const PropertyCard = ({ className, layout = "grid", data }: Props) => {
           {data.category && (
             <Link
               href={`/projects?tag=${data.category.slug || ""}`}
-              className="text-muted-foreground group/category hover:text-primary-foreground flex items-center gap-2 transition-colors"
+              className="text-muted-foreground group/category hover:text-primary-foreground flex items-center gap-2 text-sm transition-colors"
             >
               <div className="bg-muted group-hover/category:bg-primary-foreground size-1.5 rounded-full transition-colors" />
               {data.category.title}

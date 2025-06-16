@@ -3,7 +3,6 @@
 import { useQueryState } from "nuqs";
 
 import { AnimatedGroup } from "@/components/animation/animated-group";
-import { PROPERTIES } from "@/constants/mock-data";
 import { EmptyState } from "@/features/properties/components/empty-state";
 import { PropertyCard } from "@/features/properties/components/property-card";
 import { PropertyFilters } from "@/features/properties/components/property-filters";
@@ -54,29 +53,37 @@ export function PropertiesList({ categories, projects }: Props) {
   };
 
   // Filter and sort properties based on URL parameters
-  const properties = PROPERTIES.filter((property) => {
-    const matchesSearch =
-      !searchQuery ||
-      property.name.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesTag = tag === "all" || property.category === tag;
-    return matchesSearch && matchesTag;
-  }).sort((a, b) => {
-    const multiplier = sortOrder === "asc" ? 1 : -1;
-    switch (sortField) {
-      case "date":
-        return multiplier * (a.date.getTime() - b.date.getTime());
-      case "price":
-        return multiplier * (a.price - b.price);
-      case "bedrooms":
-        return multiplier * ((a.bedrooms ?? 0) - (b.bedrooms ?? 0));
-      case "squareFootage":
-        return multiplier * (a.area - b.area);
-      case "location":
-        return multiplier * a.location.localeCompare(b.location);
-      default:
-        return 0;
-    }
-  });
+  const filteredProjects = projects
+    .filter((project) => {
+      const matchesSearch =
+        !searchQuery ||
+        (project.title?.toLowerCase().includes(searchQuery.toLowerCase()) ??
+          false);
+      const matchesTag = tag === "all" || project.category?.slug === tag;
+      return matchesSearch && matchesTag;
+    })
+    .sort((a, b) => {
+      const multiplier = sortOrder === "asc" ? 1 : -1;
+      switch (sortField) {
+        case "date":
+          // Since we don't have a direct date field in the card query, we'll sort by title as fallback
+          return multiplier * (a.title?.localeCompare(b.title ?? "") ?? 0);
+        case "price":
+          const priceA = a.price
+            ? parseFloat(a.price.replace(/[^0-9.]/g, ""))
+            : 0;
+          const priceB = b.price
+            ? parseFloat(b.price.replace(/[^0-9.]/g, ""))
+            : 0;
+          return multiplier * (priceA - priceB);
+        case "location":
+          return (
+            multiplier * (a.location?.localeCompare(b.location ?? "") ?? 0)
+          );
+        default:
+          return 0;
+      }
+    });
 
   return (
     <div className="relative">
@@ -89,7 +96,7 @@ export function PropertiesList({ categories, projects }: Props) {
         className="bg-muted/40 sticky top-[9%] z-50 my-8 backdrop-blur-2xl"
       />
 
-      {properties.length === 0 ? (
+      {filteredProjects.length === 0 ? (
         <EmptyState className="my-8" onClearFilters={handleClearFilters} />
       ) : (
         <AnimatedGroup
@@ -101,10 +108,10 @@ export function PropertiesList({ categories, projects }: Props) {
               : "grid-cols-1"
           )}
         >
-          {projects.map((property) => (
+          {filteredProjects.map((project) => (
             <PropertyCard
-              key={property._id}
-              data={property}
+              key={project._id}
+              data={project}
               layout={viewMode}
               className="max-sm:py-6"
             />
