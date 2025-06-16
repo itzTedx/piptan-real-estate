@@ -26,6 +26,12 @@ import { cn } from "@/lib/utils";
 import { CATEGORIES_QUERYResult } from "../../../../sanity.types";
 
 interface PropertyFiltersProps {
+  initialValues: {
+    searchQuery: string;
+    tag: string;
+    sortField: string;
+    sortOrder: "asc" | "desc";
+  };
   onSearch: (query: string) => void;
   onTagChange: (tag: string) => void;
   onSortChange: (sort: { field: string; order: "asc" | "desc" }) => void;
@@ -35,6 +41,7 @@ interface PropertyFiltersProps {
 }
 
 export const PropertyFilters = ({
+  initialValues,
   onSearch,
   onTagChange,
   onSortChange,
@@ -43,7 +50,7 @@ export const PropertyFilters = ({
   className,
 }: PropertyFiltersProps) => {
   const [searchQuery, setSearchQuery] = useQueryState("q", {
-    defaultValue: "",
+    defaultValue: initialValues.searchQuery,
   });
   const [sortField, setSortField] = useQueryState("sort", {
     defaultValue: "date",
@@ -72,8 +79,13 @@ export const PropertyFilters = ({
     onViewChange("grid");
   };
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
+    await setSearchQuery(searchQuery);
     onSearch(searchQuery);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
   };
 
   const handleSortChange = async (order: "asc" | "desc") => {
@@ -130,7 +142,12 @@ export const PropertyFilters = ({
           type="text"
           placeholder="Search properties..."
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={handleInputChange}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSearch();
+            }
+          }}
           className="text-foreground h-full border-0 pl-10"
         />
         <SearchIcon className="text-muted-foreground absolute top-1/2 left-3 size-4 -translate-y-1/2" />
@@ -151,7 +168,7 @@ export const PropertyFilters = ({
         </Tooltip>
       </div>
 
-      <div className="flex items-center gap-2 px-4">
+      <div className="flex h-full items-center gap-2">
         <Select defaultValue={sortField} onValueChange={handleSortFieldChange}>
           <SelectTrigger id="sort" className="border-foreground/40 w-40">
             <SelectValue placeholder="Sort by" />

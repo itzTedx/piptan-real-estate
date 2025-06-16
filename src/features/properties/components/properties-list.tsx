@@ -3,7 +3,6 @@
 import { useQueryState } from "nuqs";
 
 import { AnimatedGroup } from "@/components/animation/animated-group";
-import { EmptyState } from "@/features/properties/components/empty-state";
 import { PropertyCard } from "@/features/properties/components/property-card";
 import { PropertyFilters } from "@/features/properties/components/property-filters";
 import { cn } from "@/lib/utils";
@@ -12,6 +11,7 @@ import {
   CATEGORIES_QUERYResult,
   PROJECT_CARD_QUERYResult,
 } from "../../../../sanity.types";
+import { EmptyState } from "./empty-state";
 
 interface Props {
   categories: CATEGORIES_QUERYResult;
@@ -19,12 +19,14 @@ interface Props {
 }
 
 export function PropertiesList({ categories, projects }: Props) {
-  const [searchQuery, setSearchQuery] = useQueryState("q");
+  const [searchQuery, setSearchQuery] = useQueryState("q", {
+    defaultValue: "",
+  });
   const [tag, setTag] = useQueryState("tag", { defaultValue: "all" });
-  const [sortField, setSortField] = useQueryState("sortField", {
+  const [sortField, setSortField] = useQueryState("sort", {
     defaultValue: "date",
   });
-  const [sortOrder, setSortOrder] = useQueryState<"asc" | "desc">("sortOrder", {
+  const [sortOrder, setSortOrder] = useQueryState<"asc" | "desc">("order", {
     defaultValue: "desc",
     parse: (value): "asc" | "desc" => (value === "asc" ? "asc" : "desc"),
   });
@@ -32,17 +34,6 @@ export function PropertiesList({ categories, projects }: Props) {
     defaultValue: "grid",
     parse: (value): "grid" | "list" => (value === "list" ? "list" : "grid"),
   });
-
-  const handleSortChange = ({
-    field,
-    order,
-  }: {
-    field: string;
-    order: "asc" | "desc";
-  }) => {
-    setSortField(field);
-    setSortOrder(order);
-  };
 
   const handleClearFilters = async () => {
     await setSearchQuery(null);
@@ -52,51 +43,24 @@ export function PropertiesList({ categories, projects }: Props) {
     await setViewMode("grid");
   };
 
-  // Filter and sort properties based on URL parameters
-  const filteredProjects = projects
-    .filter((project) => {
-      const matchesSearch =
-        !searchQuery ||
-        (project.title?.toLowerCase().includes(searchQuery.toLowerCase()) ??
-          false);
-      const matchesTag = tag === "all" || project.category?.slug === tag;
-      return matchesSearch && matchesTag;
-    })
-    .sort((a, b) => {
-      const multiplier = sortOrder === "asc" ? 1 : -1;
-      switch (sortField) {
-        case "date":
-          // Since we don't have a direct date field in the card query, we'll sort by title as fallback
-          return multiplier * (a.title?.localeCompare(b.title ?? "") ?? 0);
-        case "price":
-          const priceA = a.price
-            ? parseFloat(a.price.replace(/[^0-9.]/g, ""))
-            : 0;
-          const priceB = b.price
-            ? parseFloat(b.price.replace(/[^0-9.]/g, ""))
-            : 0;
-          return multiplier * (priceA - priceB);
-        case "location":
-          return (
-            multiplier * (a.location?.localeCompare(b.location ?? "") ?? 0)
-          );
-        default:
-          return 0;
-      }
-    });
+  const initialValues = { searchQuery, tag, sortField, sortOrder };
 
   return (
     <div className="relative">
       <PropertyFilters
+        initialValues={initialValues}
         onSearch={setSearchQuery}
         onTagChange={setTag}
-        onSortChange={handleSortChange}
+        onSortChange={({ field, order }) => {
+          setSortField(field);
+          setSortOrder(order);
+        }}
         onViewChange={setViewMode}
         categories={categories}
         className="bg-muted/40 sticky top-[9%] z-50 my-8 backdrop-blur-2xl"
       />
 
-      {filteredProjects.length === 0 ? (
+      {projects.length === 0 ? (
         <EmptyState className="my-8" onClearFilters={handleClearFilters} />
       ) : (
         <AnimatedGroup
@@ -108,7 +72,7 @@ export function PropertiesList({ categories, projects }: Props) {
               : "grid-cols-1"
           )}
         >
-          {filteredProjects.map((project) => (
+          {projects.map((project) => (
             <PropertyCard
               key={project._id}
               data={project}

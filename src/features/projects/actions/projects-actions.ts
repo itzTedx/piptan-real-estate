@@ -3,9 +3,15 @@
 import { unstable_cache as cache } from "next/cache";
 
 import { sanityFetch } from "@/lib/sanity/lib/client";
-import { PROJECT_CARD_QUERY } from "@/lib/sanity/queries/projects-queries";
+import {
+  FILTERED_PROJECTS_QUERY,
+  PROJECT_CARD_QUERY,
+} from "@/lib/sanity/queries/projects-queries";
 
-import { PROJECT_CARD_QUERYResult } from "../../../../sanity.types";
+import {
+  FILTERED_PROJECTS_QUERYResult,
+  PROJECT_CARD_QUERYResult,
+} from "../../../../sanity.types";
 
 const cacheOptions = {
   revalidate: 3600, // 1 hour
@@ -31,3 +37,24 @@ export const getProjectsCardData =
       throw new Error("Failed to fetch projects");
     }
   };
+
+export const getFilteredProjects = async ({
+  searchQuery,
+}: {
+  searchQuery: string;
+}): Promise<{
+  projects: FILTERED_PROJECTS_QUERYResult;
+}> => {
+  console.log(searchQuery);
+  try {
+    const projects = await sanityFetch({
+      query: FILTERED_PROJECTS_QUERY,
+      params: { searchQuery },
+      tags: ["projects"],
+    });
+    return { projects };
+  } catch (error) {
+    console.error("Error filtering projects:", error);
+    throw new Error("Failed to filter projects");
+  }
+};

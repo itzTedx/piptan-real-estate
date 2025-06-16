@@ -1,16 +1,33 @@
 import { Suspense } from "react";
 
+import { SearchParams } from "nuqs";
+
 import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
 import { LeadSection } from "@/features/forms/lead-form/section";
-import { getProjectsCardData } from "@/features/projects/actions/projects-actions";
+import { getFilteredProjects } from "@/features/projects/actions/projects-actions";
+import { loadSearchParams } from "@/features/projects/search-params";
 import { PropertiesList } from "@/features/properties/components/properties-list";
 import { PropertiesListSkeleton } from "@/features/properties/components/properties-list-skeleton";
 import { getCategories } from "@/lib/sanity/fetch";
 
-export default async function ProjectsPage() {
+type PageProps = {
+  searchParams: Promise<SearchParams>;
+};
+
+export default async function ProjectsPage({ searchParams }: PageProps) {
+  const { q } = await loadSearchParams(searchParams);
+
+  console.log("Query: ", q);
+
   const categories = await getCategories();
-  const projects = await getProjectsCardData();
+  // const projects = await getProjectsCardData();
+  const { projects } = await getFilteredProjects({
+    searchQuery: q,
+  });
+
+  console.log("Projects", projects);
+
   return (
     <main className="pt-4 sm:pt-9 md:pt-12">
       <section className="relative container mb-20">
