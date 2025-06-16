@@ -10,16 +10,33 @@ import { ProjectsSection } from "@/features/home/section/projects";
 import { Testimonials } from "@/features/home/section/testimonials";
 import { WhyUsSection } from "@/features/home/section/why-us";
 
-export const metadata: Metadata = {
-  title: "Piptan Investment | Premium Real Estate in Dubai",
+const meta = {
+  title: "Luxury Real Estate Investments in the UAE - Piptan Investment",
   description:
     "Discover luxury homes, commercial spaces, and investment opportunities in Dubai's most sought-after communities. Expert guidance and premium listings for confident real estate decisions.",
   keywords:
-    "Dubai real estate, luxury homes, commercial property, real estate investment, property development, Dubai property market",
+    "Dubai real estate, luxury homes, commercial property, real estate investment, property development, Dubai property market, luxury apartments, villas Dubai, real estate agents Dubai, property investment UAE",
+};
+
+export const metadata: Metadata = {
+  title: meta.title,
+  description: meta.description,
+  keywords: meta.keywords,
+  authors: [{ name: "Piptan Investment" }],
+  creator: "Piptan Investment",
+  publisher: "Piptan Investment",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
-    title: "Piptan Investment | Premium Real Estate in Dubai",
-    description:
-      "Discover luxury homes, commercial spaces, and investment opportunities in Dubai's most sought-after communities.",
+    type: "website",
+    title: meta.title,
+    description: meta.description,
+    url: "https://www.piptan.ae",
+    siteName: "Piptan Investment",
+    locale: "en_US",
     images: [
       {
         url: "/images/hero.webp",
@@ -29,7 +46,29 @@ export const metadata: Metadata = {
       },
     ],
   },
-  metadataBase: new URL("https://www.piptan.com"),
+  twitter: {
+    card: "summary_large_image",
+    title: meta.title,
+    description: meta.description,
+    images: ["/images/hero.webp"],
+    creator: "@piptan",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
+  alternates: {
+    canonical: "https://www.piptan.ae",
+  },
+  metadataBase: new URL("https://www.piptan.ae"),
 };
 
 export default function Home() {
