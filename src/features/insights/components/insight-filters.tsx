@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { OverflowArea, OverflowItem } from "@/components/ui/scroll-overflow";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -54,7 +53,24 @@ export function InsightFilters({
         className
       )}
     >
-      <ScrollArea className="col-span-3 rounded-md border">
+      <OverflowArea containerClassName="col-span-3">
+        {TAGS.map((tag) => (
+          <OverflowItem
+            key={tag}
+            item={tag}
+            variant={
+              activeTag === (tag === "All" ? "all" : tag)
+                ? "default"
+                : "outline"
+            }
+            size="sm"
+            onClick={() => handleTagClick(tag)}
+          >
+            {tag}
+          </OverflowItem>
+        ))}
+      </OverflowArea>
+      {/* <ScrollArea className="col-span-3 rounded-md border">
         <div className="flex gap-2 p-4">
           {TAGS.map((tag) => (
             <Button
@@ -71,7 +87,7 @@ export function InsightFilters({
             </Button>
           ))}
         </div>
-      </ScrollArea>
+      </ScrollArea> */}
       <Input
         type="search"
         placeholder="Search insights..."

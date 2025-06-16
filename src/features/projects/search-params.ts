@@ -22,7 +22,7 @@ export const searchParams = {
   q: parseAsString.withDefault(""),
 
   // Category/tag filter
-  tag: parseAsString.withDefault("all"),
+  category: parseAsString.withDefault("all"),
 
   // Sorting
   sort: parseAsStringEnum(SORT_FIELDS).withDefault("date"),
@@ -30,10 +30,6 @@ export const searchParams = {
 
   // View mode
   view: parseAsStringEnum(VIEW_MODES).withDefault("grid"),
-
-  // Coordinates
-  latitude: parseAsFloat.withDefault(0),
-  longitude: parseAsFloat.withDefault(0),
 
   // Pagination
   page: parseAsFloat.withDefault(1),

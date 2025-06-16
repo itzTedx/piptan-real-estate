@@ -30,7 +30,8 @@ export const PROJECT_CARD_QUERY = defineQuery(`*[_type == "project"][0...6]  {
 
 export const FILTERED_PROJECTS_QUERY = defineQuery(`
   *[_type == "project" 
-    && (!defined($searchQuery) || title match $searchQuery + "*" || location match $searchQuery + "*" || developer match $searchQuery + "*" || description match $searchQuery + "*") ]  {
+    && (!defined($searchQuery) || title match $searchQuery + "*" || location match $searchQuery + "*" || developer match $searchQuery + "*" || description match $searchQuery + "*") 
+    && (!defined($category) || category->slug.current == $category)   ]  {
     _id,
     title,
     mainImage{

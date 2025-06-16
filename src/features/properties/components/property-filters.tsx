@@ -42,12 +42,12 @@ type PropertyFiltersFormData = z.infer<typeof propertyFiltersSchema>;
 
 interface PropertyFiltersProps {
   initialValues: {
-    tag: string;
-    sortField: string;
-    sortOrder: "asc" | "desc";
+    category: string;
+    searchQuery: string;
+    sortOrder: "desc" | "asc";
   };
 
-  onTagChange: (tag: string) => void;
+  onCategoryChange: (tag: string) => void;
   onSortChange: (sort: { field: string; order: "asc" | "desc" }) => void;
   onViewChange: (view: "grid" | "list") => void;
   categories: CATEGORIES_QUERYResult;
@@ -56,7 +56,7 @@ interface PropertyFiltersProps {
 
 export const PropertyFilters = ({
   initialValues,
-  onTagChange,
+  onCategoryChange,
   onSortChange,
   onViewChange,
   categories,
@@ -65,16 +65,10 @@ export const PropertyFilters = ({
   const [searchQuery, setSearchQuery] = useQueryState("q", {
     defaultValue: "",
   });
-  const [tag, setTag] = useQueryState("tag", {
-    defaultValue: initialValues.tag,
+  const [tag, setTag] = useQueryState("category", {
+    defaultValue: initialValues.category,
   });
-  const [sortField, setSortField] = useQueryState("sort", {
-    defaultValue: initialValues.sortField,
-  });
-  const [sortOrder, setSortOrder] = useQueryState<"asc" | "desc">("order", {
-    defaultValue: initialValues.sortOrder,
-    parse: (value): "asc" | "desc" => (value === "asc" ? "asc" : "desc"),
-  });
+
   const [viewMode, setViewMode] = useQueryState<"grid" | "list">("view", {
     defaultValue: "grid",
     parse: (value): "grid" | "list" => (value === "list" ? "list" : "grid"),
@@ -84,14 +78,8 @@ export const PropertyFilters = ({
     resolver: zodResolver(propertyFiltersSchema),
     defaultValues: {
       searchQuery: searchQuery || "",
-      tag: tag || initialValues.tag,
-      sortField: (sortField || initialValues.sortField) as
-        | "date"
-        | "price"
-        | "location"
-        | "bedrooms"
-        | "area",
-      sortOrder: sortOrder || initialValues.sortOrder,
+      tag: tag || initialValues.category,
+
       viewMode: viewMode || "grid",
     },
   });
@@ -100,31 +88,19 @@ export const PropertyFilters = ({
   useEffect(() => {
     form.reset({
       searchQuery: searchQuery || "",
-      tag: tag || initialValues.tag,
-      sortField: (sortField || initialValues.sortField) as
-        | "date"
-        | "price"
-        | "location"
-        | "bedrooms"
-        | "area",
-      sortOrder: sortOrder || initialValues.sortOrder,
+      tag: tag || initialValues.category,
+
       viewMode: viewMode || "grid",
     });
-  }, [searchQuery, tag, sortField, sortOrder, viewMode, form, initialValues]);
+  }, [searchQuery, tag, viewMode, form, initialValues]);
 
   const { scrollYProgress } = useScroll();
   const width = useTransform(scrollYProgress, [0.05, 0.1], ["100%", "80%"]);
   const margin = useTransform(scrollYProgress, [0.05, 0.1], ["0px", "auto"]);
 
   const handleClearFilters = async () => {
-    await Promise.all([
-      setSearchQuery(""),
-      setTag("all"),
-      setSortField("date"),
-      setSortOrder("desc"),
-      setViewMode("grid"),
-    ]);
-    onTagChange("all");
+    await Promise.all([setSearchQuery(""), setTag("all"), setViewMode("grid")]);
+    onCategoryChange("all");
     onSortChange({ field: "date", order: "desc" });
     onViewChange("grid");
   };
@@ -133,11 +109,10 @@ export const PropertyFilters = ({
     await Promise.all([
       setSearchQuery(data.searchQuery || ""),
       setTag(data.tag),
-      setSortField(data.sortField),
-      setSortOrder(data.sortOrder),
+
       setViewMode(data.viewMode),
     ]);
-    onTagChange(data.tag);
+    onCategoryChange(data.tag);
     onSortChange({ field: data.sortField, order: data.sortOrder });
     onViewChange(data.viewMode);
   };
@@ -164,7 +139,7 @@ export const PropertyFilters = ({
             onValueChange={(value) => {
               form.setValue("tag", value);
               setTag(value);
-              onTagChange(value);
+              onCategoryChange(value);
             }}
           >
             <SelectTrigger
@@ -218,7 +193,7 @@ export const PropertyFilters = ({
                 "sortField",
                 value as "date" | "price" | "location" | "bedrooms" | "area"
               );
-              setSortField(value);
+              // setSortField(value);
               onSortChange({
                 field: value,
                 order: form.getValues("sortOrder"),
@@ -244,7 +219,7 @@ export const PropertyFilters = ({
               const newOrder =
                 form.getValues("sortOrder") === "asc" ? "desc" : "asc";
               form.setValue("sortOrder", newOrder);
-              setSortOrder(newOrder);
+              // setSortOrder(newOrder);
               onSortChange({
                 field: form.getValues("sortField"),
                 order: newOrder,

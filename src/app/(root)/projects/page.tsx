@@ -16,12 +16,12 @@ type PageProps = {
 };
 
 export default async function ProjectsPage({ searchParams }: PageProps) {
-  const { q } = await loadSearchParams(searchParams);
+  const { q, category } = await loadSearchParams(searchParams);
 
   const categories = await getCategories();
-  // const projects = await getProjectsCardData();
   const { projects } = await getFilteredProjects({
     searchQuery: q,
+    category,
   });
 
   return (
@@ -33,7 +33,7 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
         />
         <Separator />
         <Suspense fallback={<PropertiesListSkeleton />}>
-          <PropertiesList categories={categories} projects={projects} />
+          <PropertiesList categories={categories} initialProjects={projects} />
         </Suspense>
       </section>
       <LeadSection

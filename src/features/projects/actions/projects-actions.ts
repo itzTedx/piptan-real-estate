@@ -2,7 +2,7 @@
 
 import { unstable_cache as cache } from "next/cache";
 
-import { sanityFetch } from "@/lib/sanity/lib/client";
+import { sanityFetch } from "@/lib/sanity/lib/live";
 import {
   FILTERED_PROJECTS_QUERY,
   PROJECT_CARD_QUERY,
@@ -20,47 +20,51 @@ const cacheOptions = {
 
 export const getProjectsCardData =
   async (): Promise<PROJECT_CARD_QUERYResult> => {
-    try {
-      return await cache(
-        async () => {
-          const data = await sanityFetch({
-            query: PROJECT_CARD_QUERY,
-            tags: ["projects"],
-          });
-          return data;
-        },
-        ["projects"],
-        cacheOptions
-      )();
-    } catch (error) {
-      console.error("Error fetching projects:", error);
-      throw new Error("Failed to fetch projects");
-    }
-  };
-
-export const getFilteredProjects = async ({
-  searchQuery,
-}: {
-  searchQuery: string;
-}): Promise<{
-  projects: FILTERED_PROJECTS_QUERYResult;
-}> => {
-  try {
-    return await cache(
+    return cache(
       async () => {
-        const projects = await sanityFetch({
-          query: FILTERED_PROJECTS_QUERY,
-          params: { searchQuery },
+        const { data } = await sanityFetch({
+          query: PROJECT_CARD_QUERY,
           tags: ["projects"],
         });
-
-        return { projects };
+        return data;
       },
-      ["projects", searchQuery],
+      ["projects"],
       cacheOptions
     )();
+  };
+
+interface GetFilteredProjectsParams {
+  searchQuery?: string;
+  category?: string;
+}
+
+export async function getFilteredProjects({
+  searchQuery,
+  category,
+}: GetFilteredProjectsParams): Promise<{
+  projects: FILTERED_PROJECTS_QUERYResult;
+}> {
+  console.log(category);
+  try {
+    const projects = await cache(
+      async () => {
+        const { data } = await sanityFetch({
+          query: FILTERED_PROJECTS_QUERY,
+          params: {
+            searchQuery: searchQuery || "",
+            category: category === "all" ? "" : category || "",
+          },
+          tags: ["projects"],
+        });
+        return data;
+      },
+      ["projects", searchQuery || "", category || ""],
+      cacheOptions
+    )();
+
+    return { projects };
   } catch (error) {
-    console.error("Error filtering projects:", error);
-    throw new Error("Failed to filter projects");
+    console.error("Error fetching filtered projects:", error);
+    throw new Error("Failed to fetch filtered projects");
   }
-};
+}
