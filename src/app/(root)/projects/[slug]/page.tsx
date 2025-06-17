@@ -115,7 +115,13 @@ export const metadata: Metadata = {
     title: `${PROJECT_NAME} | Luxury Beachfront Living in Dubai`,
     description:
       "Discover Nova Pearl Residences, a premium beachfront development in Jumeirah Beach Residence, Dubai. Featuring luxury apartments with panoramic sea views, smart home technology, and exclusive amenities.",
-    images: ["/images/luxury.jpg"],
+    images: [
+      {
+        url: `/api/og?title=${encodeURIComponent(
+          PROJECT_NAME
+        )}&description=${encodeURIComponent("Discover Nova Pearl Residences, a premium beachfront development in Jumeirah Beach Residence, Dubai. Featuring luxury apartments with panoramic sea views, smart home technology, and exclusive amenities.")}`,
+      },
+    ],
   },
 };
 
