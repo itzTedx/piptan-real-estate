@@ -4,6 +4,7 @@ import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import { jaguar, neueMontreal } from "@/assets/fonts";
 import BreakpointIndicator from "@/components/breakpoint-indicator";
+import { SanityLive } from "@/lib/sanity/lib/live";
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
@@ -25,6 +26,7 @@ export default function RootLayout({
       >
         <NuqsAdapter>{children}</NuqsAdapter>
         <BreakpointIndicator />
+        <SanityLive />
       </body>
     </html>
   );

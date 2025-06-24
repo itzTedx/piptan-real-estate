@@ -1,7 +1,5 @@
 "use server";
 
-import { unstable_cache as cache } from "next/cache";
-
 import { sanityFetch } from "@/lib/sanity/lib/live";
 import {
   FILTERED_PROJECTS_QUERY,
@@ -13,24 +11,13 @@ import {
   PROJECT_CARD_QUERYResult,
 } from "../../../../sanity.types";
 
-const cacheOptions = {
-  revalidate: 3600, // 1 hour
-  tags: ["sanity-content", "projects"],
-};
-
 export const getProjectsCardData =
   async (): Promise<PROJECT_CARD_QUERYResult> => {
-    return cache(
-      async () => {
-        const { data } = await sanityFetch({
-          query: PROJECT_CARD_QUERY,
-          tags: ["projects"],
-        });
-        return data;
-      },
-      ["projects"],
-      cacheOptions
-    )();
+    const { data } = await sanityFetch({
+      query: PROJECT_CARD_QUERY,
+      tags: ["sanity-content", "projects"],
+    });
+    return data;
   };
 
 interface GetFilteredProjectsParams {
@@ -44,23 +31,15 @@ export async function getFilteredProjects({
 }: GetFilteredProjectsParams): Promise<{
   projects: FILTERED_PROJECTS_QUERYResult;
 }> {
-  console.log(category);
   try {
-    const projects = await cache(
-      async () => {
-        const { data } = await sanityFetch({
-          query: FILTERED_PROJECTS_QUERY,
-          params: {
-            searchQuery: searchQuery || "",
-            category: category === "all" ? "" : category || "",
-          },
-          tags: ["projects"],
-        });
-        return data;
+    const { data: projects } = await sanityFetch({
+      query: FILTERED_PROJECTS_QUERY,
+      params: {
+        searchQuery: searchQuery || "",
+        category: category === "all" ? "" : category || "",
       },
-      ["projects", searchQuery || "", category || ""],
-      cacheOptions
-    )();
+      tags: ["sanity-content", "projects"],
+    });
 
     return { projects };
   } catch (error) {
