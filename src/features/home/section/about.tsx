@@ -13,21 +13,19 @@ export const AboutSection = () => {
         <SectionHeader
           badge="Who we are?"
           icon={<IconInfo className="size-3 sm:size-4" />}
-          title={`Your Real Estate\nPartner in Every Step`}
+          title={`A Strategic Ally on Your Path to Prosperity`}
           hasHighlight
-          highlightText="Partner in Every Step"
+          highlightText="Path to Prosperity"
           action={
             <AnimatedButton href="/about" text="About us" variant="outline" />
           }
         />
       </div>
-      <p className="text-primary-foreground pointer-events-none z-10 text-lg leading-normal font-light text-balance sm:col-span-3 sm:text-xl md:col-span-7 md:text-2xl lg:text-4xl">
-        Whether you&apos;re a seasoned investor or new to real estate, Piptan
-        Investment delivers seamless capital{" "}
-        <span className="font-medium">
-          solutions, market-driven insights, and expert guidance
-        </span>{" "}
-        - Empowering you to invest with confidence.
+      <p className="text-primary-foreground pointer-events-none z-10 text-lg leading-normal font-light text-balance sm:col-span-3 sm:text-xl md:col-span-7 md:text-2xl lg:text-4xl [&_span]:font-medium">
+        Experience a new <span>standard in investing.</span> We deliver
+        high-yield estate opportunities paired with reliable income, helping you
+        grow wealth confidently through expertly managed,{" "}
+        <span>income-generating real estate portfolios.</span>
       </p>
       <div className="absolute inset-x-0 inset-y-0">
         <MomentumLines />

@@ -23,21 +23,21 @@ export const Hero = () => {
           useScrollVelocity={true}
           direction="left"
         >
-          <span>Luxury Homes</span>
+          <span>Invest & Earn Programs</span>
           <div className="bg-foreground size-1.5 rounded-full sm:size-2 md:size-3 lg:size-4" />
-          <span>Commercial Spaces</span>
+          <span>High ROI Properties</span>
           <div className="bg-foreground size-1.5 rounded-full sm:size-2 md:size-3 lg:size-4" />
-          <span>Investment Opportunities</span>
+          <span>2x Return Investment Plans</span>
           <div className="bg-foreground size-1.5 rounded-full sm:size-2 md:size-3 lg:size-4" />
         </SimpleMarquee>
 
         <div className="relative z-10 container space-y-3 sm:space-y-4 md:space-y-6">
           <Separator className="bg-white/80" />
           <div className="flex items-center justify-between gap-3">
-            <h1 className="text-3xl lg:text-4xl">Opening More Doors</h1>
+            <h1 className="text-3xl lg:text-4xl">High Capital Growth</h1>
             <p className="text-sm font-light sm:text-xl md:text-2xl">
-              Invest Smarter. Live Better. <br className="md:hidden" />
-              Grow Faster.
+              Invest with Purpose.
+              <br className="md:hidden" /> Profit with Integrity
             </p>
           </div>
         </div>

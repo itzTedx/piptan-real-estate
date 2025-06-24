@@ -8,7 +8,7 @@ import { AnimatedButton } from "@/components/ui/animated-button";
 import { SectionHeader } from "@/components/ui/section-header";
 import { getCategories } from "@/lib/sanity/fetch";
 import { urlFor } from "@/lib/sanity/image";
-import { cn, plural } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 export const ExpertiseSection = async () => {
   const categories = await getCategories();
@@ -21,12 +21,11 @@ export const ExpertiseSection = async () => {
       <div className="sticky top-[10vh] mb-32 px-2 sm:mb-48 md:mb-64 lg:mb-96">
         <SectionHeader
           badge="Our Expertise"
-          title={`Real Estate Wisdom,\nBuilt Over Time.`}
-          subtitle=" With deep market knowledge and strategic insights, we help you make
-            the right move — every time."
+          title={`Estate Experience meets\nInvestment Eminence.`}
+          subtitle="We turn insight into opportunity - delivering consistent income and high-growth potential for smart investors."
           icon={<IconCollection className="size-3 sm:size-4" />}
           hasHighlight
-          highlightText="Built Over Time."
+          highlightText="Investment Eminence."
         />
       </div>
       <div className="relative mt-[-15vh] min-h-screen md:mt-[-70vh] lg:mt-[-80vh] xl:mt-[-45vh]">
@@ -55,7 +54,7 @@ export const ExpertiseSection = async () => {
                         </p>
                       </div>
                       <AnimatedButton
-                        text={`Explore ${plural(title?.split(" ")[0] || "", 2)}`}
+                        text={`Explore more`}
                         href={`/projects?tag=${slug}`}
                         variant="secondary"
                       />
