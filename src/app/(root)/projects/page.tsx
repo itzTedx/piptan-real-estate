@@ -27,7 +27,7 @@ export default async function ProjectsPage() {
 
   const projects = await getProjectsCardData();
 
-  console.log("projects", projects);
+  // console.log("projects", projects);
 
   return (
     <main className="pt-4 sm:pt-9 md:pt-12">

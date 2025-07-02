@@ -70,7 +70,7 @@ export function PropertiesList({ categories, initialProjects }: Props) {
 
   const initialValues = { category, searchQuery, sortOrder };
 
-  console.log("initial Projects: ", initialProjects);
+  // console.log("initial Projects: ", initialProjects);
 
   return (
     <div className="relative">
