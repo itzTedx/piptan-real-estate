@@ -44,6 +44,7 @@
     "react-use-measure": "^2.1.7",
     "react-zoom-pan-pinch": "^3.7.0",
     "sanity": "^3.92.0",
+    "sanity-plugin-media": "^3.0.3",
     "splitting": "^1.1.0",
     "styled-components": "^6.1.18",
     "tailwind-merge": "^3.3.1",

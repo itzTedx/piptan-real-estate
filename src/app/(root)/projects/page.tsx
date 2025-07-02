@@ -1,28 +1,33 @@
 import { Suspense } from "react";
 
-import { SearchParams } from "nuqs";
+// import { SearchParams } from "nuqs";
 
+import { AnimatedGroup } from "@/components/animation/animated-group";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
 import { LeadSection } from "@/features/forms/lead-form/section";
-import { getFilteredProjects } from "@/features/projects/actions/projects-actions";
-import { loadSearchParams } from "@/features/projects/search-params";
-import { PropertiesList } from "@/features/properties/components/properties-list";
+import { getProjectsCardData } from "@/features/projects/actions/projects-actions";
 import { PropertiesListSkeleton } from "@/features/properties/components/properties-list-skeleton";
-import { getCategories } from "@/lib/sanity/fetch";
+import { PropertyCard } from "@/features/properties/components/property-card";
+import { cn } from "@/lib/utils";
 
-type PageProps = {
-  searchParams: Promise<SearchParams>;
-};
+// type PageProps = {
+//   searchParams: Promise<SearchParams>;
+// };
 
-export default async function ProjectsPage({ searchParams }: PageProps) {
-  const { q, category } = await loadSearchParams(searchParams);
+export default async function ProjectsPage() {
+  // export default async function ProjectsPage({ searchParams }: PageProps) {
+  // const { q, category } = await loadSearchParams(searchParams);
 
-  const categories = await getCategories();
-  const { projects } = await getFilteredProjects({
-    searchQuery: q,
-    category,
-  });
+  // const categories = await getCategories();
+  // const { projects } = await getFilteredProjects({
+  //   searchQuery: q,
+  //   category,
+  // });
+
+  const projects = await getProjectsCardData();
+
+  console.log("projects", projects);
 
   return (
     <main className="pt-4 sm:pt-9 md:pt-12">
@@ -33,7 +38,26 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
         />
         <Separator />
         <Suspense fallback={<PropertiesListSkeleton />}>
-          <PropertiesList categories={categories} initialProjects={projects} />
+          <AnimatedGroup
+            preset="blur-slide"
+            className={cn(
+              "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+              // viewMode === "grid"
+              //   ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+              //   : "grid-cols-1",
+              // isLoading && "opacity-50"
+            )}
+          >
+            {projects.map((project) => (
+              <PropertyCard
+                key={project._id}
+                data={project}
+                // layout={viewMode}
+                className="max-sm:py-6"
+              />
+            ))}
+          </AnimatedGroup>
+          {/* <PropertiesList categories={categories} initialProjects={projects} /> */}
         </Suspense>
       </section>
       <LeadSection
