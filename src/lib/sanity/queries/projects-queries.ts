@@ -73,3 +73,42 @@ export const FILTERED_PROJECTS_QUERY = defineQuery(`
 //     && (!defined($isFeatured) || isFeatured == $isFeatured)
 //   ])
 // `);
+
+export const PROJECT_BY_SLUG_QUERY = defineQuery(`
+  *[_type == "project" && slug.current == $slug][0] {
+    _id,
+    title,
+    mainImage{
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions {
+            width,
+            height
+          }
+        }
+      },
+      alt
+    },
+    "slug": slug.current,
+    location,
+    developer,
+    isFeatured,
+    "category": category->{
+      title,
+      "slug": slug.current
+    },
+    "price": projectDetails.price,
+    tags,
+    _updatedAt,
+    _createdAt,
+    description,
+    overview,
+    amenities,
+    gallery,
+    descriptionSections,
+    seo
+  }
+`);

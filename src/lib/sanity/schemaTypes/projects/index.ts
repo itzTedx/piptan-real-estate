@@ -353,6 +353,7 @@ export const projectType = defineType({
       of: [{ type: "amenity" }],
       validation: (Rule) => Rule.required(),
     }),
+
     defineField({
       name: "gallery",
       type: "array",
@@ -376,6 +377,11 @@ export const projectType = defineType({
           ],
         },
       ],
+      options: {
+        sortable: true,
+        layout: "grid",
+        modal: { type: "popover" },
+      },
       validation: (Rule) => Rule.required(),
     }),
     defineField({

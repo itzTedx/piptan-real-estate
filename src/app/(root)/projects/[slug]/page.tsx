@@ -1,8 +1,12 @@
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 import { Separator } from "@/components/ui/separator";
 import { LeadSection } from "@/features/forms/lead-form/section";
-import { getProjectsCardData } from "@/features/projects/actions/projects-actions";
+import {
+  getProjectBySlug,
+  getProjectsCardData,
+} from "@/features/projects/actions/projects-actions";
 import { ProjectAmenities } from "@/features/projects/components/project-amenities";
 import { ProjectDescription } from "@/features/projects/components/project-description";
 import { ProjectDetails } from "@/features/projects/components/project-details";
@@ -125,12 +129,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function ProjectPage() {
+type Params = Promise<{ slug: string }>;
+
+export default async function ProjectPage({ params }: { params: Params }) {
+  const { slug } = await params;
   const projects = await getProjectsCardData();
+  const project = await getProjectBySlug(slug);
+
+  if (!project) notFound();
+
   return (
     <main className="relative container pt-4 sm:pt-9">
       <ProjectHero
-        title={PROJECT_NAME}
+        title={project.title ?? "fdsf"}
         tags={TAGS}
         image="/images/luxury.jpg"
         location="Jumeirah Beach Residence"
