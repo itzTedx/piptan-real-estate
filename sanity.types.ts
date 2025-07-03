@@ -38,13 +38,12 @@ export type Amenity = {
     alt?: string;
     _type: "image";
   };
-  offset?: string;
 };
 
 export type Stat = {
   _type: "stat";
-  stat?: string;
   label?: string;
+  stat?: string;
 };
 
 export type Author = {
@@ -118,45 +117,62 @@ export type Project = {
     _weak?: boolean;
     [internalGroqTypeReferenceTo]?: "category";
   };
-  tags?: Array<string>;
-  features?: Array<string>;
-  stats?: Array<
-    {
-      _key: string;
-    } & Stat
-  >;
-  projectDetails?: {
+  stats?: {
     price?: string;
     bedrooms?: string;
-    bathrooms?: string;
+    furnished?: boolean;
     area?: number;
     completionDate?: string;
-    propertyType?: "apartment" | "villa" | "townhouse" | "penthouse";
+    otherStats?: Array<
+      {
+        _key: string;
+      } & Stat
+    >;
   };
-  description?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
+  shortDescription?: string;
+  overview?: {
+    title?: string;
+    description?: string;
+    tags?: Array<string>;
+  };
+  propertyFeatures?: {
+    description?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: never;
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
       _key: string;
     }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-  overview?: string;
-  amenities?: Array<
-    {
-      _key: string;
-    } & Amenity
-  >;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    features?: Array<string>;
+    amenities?: Array<
+      {
+        _key: string;
+      } & Amenity
+    >;
+  };
   gallery?: Array<{
     asset?: {
       _ref: string;
@@ -441,8 +457,8 @@ export type PROJECT_CARD_QUERYResult = Array<{
     title: string | null;
     slug: string | null;
   } | null;
-  price: string | null;
-  tags: Array<string> | null;
+  price: null;
+  tags: null;
 }>;
 // Variable: FILTERED_PROJECTS_QUERY
 // Query: *[_type == "project"     && (!defined($searchQuery) || title match $searchQuery + "*" || location match $searchQuery + "*" || developer match $searchQuery + "*" || description match $searchQuery + "*")     && (!defined($category) || category->slug.current == $category)   ]  {    _id,    title,    mainImage{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    "slug": slug.current,    location,    developer,    isFeatured,    "category": category->{      title,      "slug": slug.current    },    "price": projectDetails.price,    tags,    _updatedAt,    _createdAt  }
@@ -471,16 +487,17 @@ export type FILTERED_PROJECTS_QUERYResult = Array<{
     title: string | null;
     slug: string | null;
   } | null;
-  price: string | null;
-  tags: Array<string> | null;
+  price: null;
+  tags: null;
   _updatedAt: string;
   _createdAt: string;
 }>;
 // Variable: PROJECT_BY_SLUG_QUERY
-// Query: *[_type == "project" && slug.current == $slug][0] {    _id,    title,    mainImage{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    "slug": slug.current,    location,    developer,    isFeatured,    "category": category->{      title,      "slug": slug.current    },    "price": projectDetails.price,    tags,    _updatedAt,    _createdAt,    description,    overview,    amenities,    gallery,    descriptionSections,    seo  }
+// Query: *[_type == "project" && slug.current == $slug][0] {    _id,    title,    "slug": slug.current,    mainImage{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    location,    developer,    status,    "category": category->{      title,      "slug": slug.current    },    stats,    shortDescription,    overview,    propertyFeatures,    gallery,    descriptionSections,    seo,    _updatedAt,    _createdAt,  }
 export type PROJECT_BY_SLUG_QUERYResult = {
   _id: string;
   title: string | null;
+  slug: string | null;
   mainImage: {
     asset: {
       _id: string;
@@ -495,42 +512,69 @@ export type PROJECT_BY_SLUG_QUERYResult = {
     } | null;
     alt: string | null;
   } | null;
-  slug: string | null;
   location: string | null;
   developer: string | null;
-  isFeatured: boolean | null;
+  status: "available" | "coming-soon" | "sold" | null;
   category: {
     title: string | null;
     slug: string | null;
   } | null;
-  price: string | null;
-  tags: Array<string> | null;
-  _updatedAt: string;
-  _createdAt: string;
-  description: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
+  stats: {
+    price?: string;
+    bedrooms?: string;
+    furnished?: boolean;
+    area?: number;
+    completionDate?: string;
+    otherStats?: Array<
+      {
+        _key: string;
+      } & Stat
+    >;
+  } | null;
+  shortDescription: string | null;
+  overview: {
+    title?: string;
+    description?: string;
+    tags?: Array<string>;
+  } | null;
+  propertyFeatures: {
+    description?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: never;
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
       _key: string;
     }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }> | null;
-  overview: string | null;
-  amenities: Array<
-    {
-      _key: string;
-    } & Amenity
-  > | null;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    features?: Array<string>;
+    amenities?: Array<
+      {
+        _key: string;
+      } & Amenity
+    >;
+  } | null;
   gallery: Array<{
     asset?: {
       _ref: string;
@@ -555,6 +599,8 @@ export type PROJECT_BY_SLUG_QUERYResult = {
     description?: string;
     keywords?: Array<string>;
   } | null;
+  _updatedAt: string;
+  _createdAt: string;
 } | null;
 
 declare module "@sanity/client" {
@@ -562,6 +608,6 @@ declare module "@sanity/client" {
     '*[_type == "category"] | order(orderRank) {\n    _id,\n    title,\n    image,\n    "slug": slug.current,\n    description\n}': CATEGORIES_QUERYResult;
     '*[_type == "project"][0...6]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    location,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": projectDetails.price,\n    tags\n}': PROJECT_CARD_QUERYResult;
     '\n  *[_type == "project" \n    && (!defined($searchQuery) || title match $searchQuery + "*" || location match $searchQuery + "*" || developer match $searchQuery + "*" || description match $searchQuery + "*") \n    && (!defined($category) || category->slug.current == $category)   ]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    location,\n    developer,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": projectDetails.price,\n    tags,\n    _updatedAt,\n    _createdAt\n  }\n': FILTERED_PROJECTS_QUERYResult;
-    '\n  *[_type == "project" && slug.current == $slug][0] {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    location,\n    developer,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": projectDetails.price,\n    tags,\n    _updatedAt,\n    _createdAt,\n    description,\n    overview,\n    amenities,\n    gallery,\n    descriptionSections,\n    seo\n  }\n': PROJECT_BY_SLUG_QUERYResult;
+    '\n  *[_type == "project" && slug.current == $slug][0] {\n    _id,\n    title,\n    "slug": slug.current,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    location,\n    developer,\n    status,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n\n    stats,\n    shortDescription,\n    overview,\n    propertyFeatures,\n    gallery,\n    descriptionSections,\n    seo,\n    _updatedAt,\n    _createdAt,\n  }\n': PROJECT_BY_SLUG_QUERYResult;
   }
 }

@@ -10,6 +10,7 @@ export const amenityType = defineType({
       type: "string",
       title: "Title",
       validation: (Rule) => Rule.required(),
+      initialValue: "",
     }),
     defineField({
       name: "image",
@@ -25,12 +26,6 @@ export const amenityType = defineType({
           title: "Alternative text",
         }),
       ],
-    }),
-    defineField({
-      name: "offset",
-      type: "string",
-      title: "CSS Offset",
-      description: "CSS class for positioning (e.g., md:mt-[20em])",
     }),
   ],
   preview: {

@@ -1,5 +1,11 @@
 import Link from "next/link";
 
+import {
+  IconBrandFacebook,
+  IconBrandInstagram,
+  IconBrandLinkedin,
+  IconBrandTelegram,
+} from "@/assets/icons";
 import { Logo, Piptan, WordMark } from "@/assets/logo";
 import { FOOTER_LINKS } from "@/constants";
 
@@ -51,40 +57,40 @@ export const Footer = () => {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="h-8 w-8 border-0 md:h-10 md:w-10"
+                    className="fill-foreground h-8 w-8 border-0 md:h-10 md:w-10"
                     aria-label="Follow us on Facebook"
                   >
-                    H
+                    <IconBrandFacebook className="size-5" />
                   </Button>
                 </li>
                 <li>
                   <Button
                     variant="outline"
                     size="icon"
-                    className="h-8 w-8 border-0 md:h-10 md:w-10"
-                    aria-label="Follow us on Twitter"
-                  >
-                    H
-                  </Button>
-                </li>
-                <li>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className="h-8 w-8 border-0 md:h-10 md:w-10"
+                    className="fill-foreground h-8 w-8 border-0 md:h-10 md:w-10"
                     aria-label="Follow us on Instagram"
                   >
-                    H
+                    <IconBrandInstagram className="size-5" />
                   </Button>
                 </li>
                 <li>
                   <Button
                     variant="outline"
                     size="icon"
-                    className="h-8 w-8 border-0 md:h-10 md:w-10"
+                    className="fill-foreground h-8 w-8 border-0 md:h-10 md:w-10"
                     aria-label="Follow us on LinkedIn"
                   >
-                    H
+                    <IconBrandLinkedin className="size-5" />
+                  </Button>
+                </li>
+                <li>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="fill-foreground h-8 w-8 border-0 md:h-10 md:w-10"
+                    aria-label="Follow us on LinkedIn"
+                  >
+                    <IconBrandTelegram className="size-5" />
                   </Button>
                 </li>
               </ul>

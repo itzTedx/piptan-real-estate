@@ -78,6 +78,7 @@ export const PROJECT_BY_SLUG_QUERY = defineQuery(`
   *[_type == "project" && slug.current == $slug][0] {
     _id,
     title,
+    "slug": slug.current,
     mainImage{
       asset->{
         _id,
@@ -92,23 +93,22 @@ export const PROJECT_BY_SLUG_QUERY = defineQuery(`
       },
       alt
     },
-    "slug": slug.current,
     location,
     developer,
-    isFeatured,
+    status,
     "category": category->{
       title,
       "slug": slug.current
     },
-    "price": projectDetails.price,
-    tags,
-    _updatedAt,
-    _createdAt,
-    description,
+
+    stats,
+    shortDescription,
     overview,
-    amenities,
+    propertyFeatures,
     gallery,
     descriptionSections,
-    seo
+    seo,
+    _updatedAt,
+    _createdAt,
   }
 `);

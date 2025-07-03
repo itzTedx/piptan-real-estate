@@ -1,16 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { Badge } from "@/components/ui/badge";
 import { SectionHeader } from "@/components/ui/section-header";
+import { urlFor } from "@/lib/sanity/image";
 
 interface ProjectHeroProps {
   title: string;
-  tags: string[];
-  image: string;
-  location: string;
-  developer: string;
+  tags?: string[] | null;
+  image: SanityImageSource | null;
+  location: string | null;
+  developer: string | null;
 }
 
 export const ProjectHero = ({
@@ -37,20 +40,27 @@ export const ProjectHero = ({
             className="relative z-10 flex flex-wrap gap-1.5 p-4 md:p-6"
             aria-label="Property features"
           >
-            {tags.map((tag) => (
-              <Badge key={tag} className="text-sm md:text-base">
-                {tag}
-              </Badge>
-            ))}
+            {tags &&
+              tags.map((tag) => (
+                <Badge key={tag} className="text-sm md:text-base">
+                  {tag}
+                </Badge>
+              ))}
           </nav>
-          <Image
-            src={image}
-            alt={`${title} - Luxury Property in ${location}`}
-            fill
-            className="object-cover"
-            priority
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 50vw"
-          />
+          {image && (
+            <Image
+              src={urlFor(image).url()}
+              alt={`${title} - Luxury Property in ${location}`}
+              title={title ?? ""}
+              fill
+              quality={100}
+              className="object-cover transition-transform duration-300 hover:scale-105"
+              priority
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 50vw"
+              placeholder={"blur"}
+              blurDataURL={urlFor(image).width(10).quality(20).blur(10).url()}
+            />
+          )}
         </div>
 
         <Link
@@ -78,18 +88,22 @@ export const ProjectHero = ({
         </Link>
       </figure>
       <address className="flex flex-col gap-6 not-italic md:flex-row md:gap-16">
-        <div>
-          <h2 className="text-muted-foreground mb-2 text-sm md:mb-3 md:text-base">
-            Location
-          </h2>
-          <p className="text-xl md:text-2xl">{location}</p>
-        </div>
-        <div>
-          <h2 className="text-muted-foreground mb-2 text-sm md:mb-3 md:text-base">
-            Developer
-          </h2>
-          <p className="text-xl md:text-2xl">{developer}</p>
-        </div>
+        {location && (
+          <div>
+            <h2 className="text-muted-foreground mb-2 text-sm md:mb-3 md:text-base">
+              Location
+            </h2>
+            <p className="text-xl md:text-2xl">{location}</p>
+          </div>
+        )}
+        {developer && (
+          <div>
+            <h2 className="text-muted-foreground mb-2 text-sm md:mb-3 md:text-base">
+              Developer
+            </h2>
+            <p className="text-xl md:text-2xl">{developer}</p>
+          </div>
+        )}
       </address>
     </header>
   );

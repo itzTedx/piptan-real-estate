@@ -6,15 +6,15 @@ export const statType = defineType({
   type: "object",
   fields: [
     defineField({
-      name: "stat",
-      type: "string",
-      title: "Stat Value",
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
       name: "label",
       type: "string",
       title: "Stat Label",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "stat",
+      type: "string",
+      title: "Stat Value",
       validation: (Rule) => Rule.required(),
     }),
   ],
@@ -25,7 +25,7 @@ export const statType = defineType({
     },
     prepare({ stat, label }) {
       return {
-        title: `${stat} - ${label}`,
+        title: `${label} - ${stat}`,
       };
     },
   },

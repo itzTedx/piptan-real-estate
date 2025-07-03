@@ -37,17 +37,13 @@ const ImageViewer = ({
     <Dialog>
       <DialogTrigger asChild>
         <div className={cn("cursor-pointer", className)}>
-          {/* You can swap this with your preferred image optization technique, like using  next/image */}
           <Image
             src={thumbnailUrl || imageUrl}
             alt={`${imageTitle} - Preview`}
             fill
             quality={50}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className={cn(
-              "rounded-lg object-cover transition-opacity hover:opacity-90",
-              classNameThumbnailViewer
-            )}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className={cn("rounded-lg object-cover", classNameThumbnailViewer)}
           />
         </div>
       </DialogTrigger>
