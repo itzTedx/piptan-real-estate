@@ -16,6 +16,152 @@ import "@sanity/client";
  */
 
 // Source: schema.json
+export type Services = {
+  _id: string;
+  _type: "services";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  description?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  orderRank?: string;
+};
+
+export type Insights = {
+  _id: string;
+  _type: "insights";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  excerpt?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  categories?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "insightCategory";
+  };
+  author?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "author";
+  };
+  body?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+      }
+  >;
+  seo?: {
+    meta_title?: string;
+    meta_description?: string;
+    meta_keywords?: string;
+    ogImage?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+  };
+};
+
+export type InsightCategory = {
+  _id: string;
+  _type: "insightCategory";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+};
+
+export type Expertise = {
+  _id: string;
+  _type: "expertise";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  description?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  orderRank?: string;
+};
+
 export type DescriptionSection = {
   _type: "descriptionSection";
   title?: string;
@@ -233,7 +379,7 @@ export type BlockContent = Array<
         _key: string;
       }>;
       style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-      listItem?: "bullet";
+      listItem?: "bullet" | "number";
       markDefs?: Array<{
         href?: string;
         _type: "link";
@@ -387,6 +533,10 @@ export type SanityAssetSourceData = {
 };
 
 export type AllSanitySchemaTypes =
+  | Services
+  | Insights
+  | InsightCategory
+  | Expertise
   | DescriptionSection
   | Amenity
   | Stat
@@ -603,11 +753,35 @@ export type PROJECT_BY_SLUG_QUERYResult = {
   _createdAt: string;
 } | null;
 
+// Source: ./src/lib/sanity/queries/site-queries.ts
+// Variable: EXPERTISE_QUERY
+// Query: *[_type == "expertise"] | order(orderRank) {    _id,    title,    image,    description,    "slug": slug.current,}
+export type EXPERTISE_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  description: string | null;
+  slug: string | null;
+}>;
+
 declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "category"] | order(orderRank) {\n    _id,\n    title,\n    image,\n    "slug": slug.current,\n    description\n}': CATEGORIES_QUERYResult;
     '*[_type == "project"][0...6]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    location,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    "tags": overview.tags\n}': PROJECT_CARD_QUERYResult;
     '\n  *[_type == "project" \n    && (!defined($searchQuery) || title match $searchQuery + "*" || location match $searchQuery + "*" || developer match $searchQuery + "*" || description match $searchQuery + "*") \n    && (!defined($category) || category->slug.current == $category)   ]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    location,\n    developer,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    tags,\n    _updatedAt,\n    _createdAt\n  }\n': FILTERED_PROJECTS_QUERYResult;
     '\n  *[_type == "project" && slug.current == $slug][0] {\n    _id,\n    title,\n    "slug": slug.current,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    location,\n    developer,\n    status,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n\n    stats,\n    shortDescription,\n    overview,\n    propertyFeatures,\n    gallery,\n    descriptionSections,\n    seo,\n    _updatedAt,\n    _createdAt,\n  }\n': PROJECT_BY_SLUG_QUERYResult;
+    '*[_type == "expertise"] | order(orderRank) {\n    _id,\n    title,\n    image,\n    description,\n    "slug": slug.current,\n}': EXPERTISE_QUERYResult;
   }
 }

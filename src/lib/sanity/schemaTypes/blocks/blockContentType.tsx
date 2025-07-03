@@ -1,4 +1,4 @@
-import { ImageIcon } from "@sanity/icons";
+import { ImageIcon, UnderlineIcon } from "@sanity/icons";
 import { defineArrayMember, defineType } from "sanity";
 
 /**
@@ -31,7 +31,10 @@ export const blockContentType = defineType({
         { title: "H4", value: "h4" },
         { title: "Quote", value: "blockquote" },
       ],
-      lists: [{ title: "Bullet", value: "bullet" }],
+      lists: [
+        { title: "Bullet", value: "bullet" },
+        { title: "Numbered", value: "number" },
+      ],
       // Marks let you mark up inline text in the Portable Text Editor
       marks: {
         // Decorators usually describe a single property – e.g. a typographic
@@ -39,6 +42,12 @@ export const blockContentType = defineType({
         decorators: [
           { title: "Strong", value: "strong" },
           { title: "Emphasis", value: "em" },
+          {
+            title: "Underline",
+            value: "u",
+            icon: UnderlineIcon,
+            component: ({ children }) => <u>{children}</u>,
+          },
         ],
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [

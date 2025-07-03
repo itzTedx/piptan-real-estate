@@ -19,6 +19,7 @@ export default defineConfig({
   basePath: "/studio",
   title: "Piptan Investment & Securities",
   icon: Logo,
+  // theme: theme,
   projectId,
   dataset,
   // Add and edit the content schema in the './sanity/schemaTypes' folder

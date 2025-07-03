@@ -6,12 +6,13 @@ import StackingCards, {
 } from "@/components/animation/stacking-cards";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { SectionHeader } from "@/components/ui/section-header";
-import { getCategories } from "@/lib/sanity/fetch";
 import { urlFor } from "@/lib/sanity/image";
 import { cn } from "@/lib/utils";
 
+import { getExpertise } from "../actions";
+
 export const ExpertiseSection = async () => {
-  const categories = await getCategories();
+  const categories = await getExpertise();
 
   return (
     <section

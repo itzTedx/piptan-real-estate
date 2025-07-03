@@ -154,7 +154,7 @@ export const projectType = defineType({
       type: "string",
       group: "hero",
       description:
-        "The main title of the project (e.g., 'Nova Pearl Residences')",
+        "Enter the main name of the project. Example: 'Nova Pearl Residences'. This will be shown as the headline.",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -162,7 +162,7 @@ export const projectType = defineType({
       type: "slug",
       group: "hero",
       description:
-        "Click the 'Generate' button to automatically create a URL-friendly version of the title.",
+        "Click 'Generate' to create a URL-friendly version of the title. This will be used in the page URL.",
       options: {
         source: "title",
         slugify: asyncSlugify,
@@ -175,7 +175,7 @@ export const projectType = defineType({
       group: "hero",
       title: "Hero Image",
       description:
-        "The main hero image that represents the project (recommended size: 1920x1080px)",
+        "Upload the main image representing the project. Recommended size: 1920x1080px. This image appears at the top of the project page.",
       options: {
         hotspot: true,
       },
@@ -184,7 +184,8 @@ export const projectType = defineType({
           name: "alt",
           type: "string",
           title: "Alternative text",
-          description: "Description of the image for accessibility and SEO",
+          description:
+            "Describe the image for accessibility and SEO. Example: 'Front view of Nova Pearl Residences'.",
         }),
       ],
       validation: (Rule) => Rule.required(),
@@ -196,7 +197,7 @@ export const projectType = defineType({
       type: "string",
       group: "overview",
       description:
-        "The project's location (e.g., 'Jumeirah Beach Residence, Dubai')",
+        "Specify the project's location. Example: 'Jumeirah Beach Residence, Dubai'.",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -204,7 +205,7 @@ export const projectType = defineType({
       type: "string",
       group: "overview",
       description:
-        "The name of the project developer (e.g., 'Emaar Properties')",
+        "Enter the name of the company or developer behind the project. Example: 'Emaar Properties'.",
       validation: (Rule) => Rule.required(),
     }),
 
@@ -212,7 +213,8 @@ export const projectType = defineType({
       name: "status",
       type: "string",
       group: "overview",
-      description: "Current availability status of the project",
+      description:
+        "Select the current sales status of the project (e.g., Available, Sold Out, Coming Soon).",
       options: {
         list: [
           { title: "Available", value: "available" },
@@ -227,7 +229,8 @@ export const projectType = defineType({
       type: "boolean",
       group: "overview",
       title: "Featured Project",
-      description: "Toggle to highlight this project as a featured property",
+      description:
+        "Enable this to highlight the project as a featured property on the website.",
       initialValue: false,
     }),
     defineField({
@@ -235,7 +238,7 @@ export const projectType = defineType({
       type: "reference",
       group: "overview",
       description:
-        "The main category this project belongs to (e.g., 'Luxury', 'Waterfront')",
+        "Select the main category for this project. Example: 'Luxury', 'Waterfront', etc.",
       to: { type: "category" },
       validation: (Rule) => Rule.required(),
     }),
@@ -246,47 +249,53 @@ export const projectType = defineType({
       title: "Property Details",
       type: "object",
       group: "details",
-      description: "Detailed specifications of the property",
+      description:
+        "Enter the main specifications and statistics for the property (e.g., price, bedrooms, area, etc.).",
       fields: [
         defineField({
           name: "price",
           title: "Price",
           type: "string",
-          description: "Starting price of the property",
+          description:
+            "Enter the starting price of the property. Example: '1,200,000'.",
           validation: (Rule) => Rule.required(),
         }),
         defineField({
           name: "bedrooms",
           title: "Number of Bedrooms",
           type: "string",
-          description: "Number of bedrooms (e.g., '2-5' or '8-9')",
+          description:
+            "Specify the number of bedrooms. Example: '2-5' or '8-9'.",
           validation: (Rule) => Rule.required(),
         }),
         defineField({
           name: "furnished",
           title: "Furnished",
           type: "boolean",
-          description: "Is the property is furnished?",
+          description: "Is the property furnished? Enable if yes.",
           initialValue: false,
         }),
         defineField({
           name: "area",
           title: "Area (sq ft)",
           type: "number",
-          description: "Total area of the property in square feet",
+          description:
+            "Total area of the property in square feet. Example: 2500.",
         }),
         defineField({
           name: "completionDate",
           title: "Expected Completion Date",
           type: "string",
-          description: "Expected completion date (e.g., 'Q1 2029')",
+          description:
+            "When is the property expected to be completed? Example: 'Q1 2029'.",
         }),
 
         defineField({
           name: "otherStats",
           type: "array",
           title: "Other Key Stats",
-          description: "Other statistics about the project",
+          description:
+            "Add any additional statistics about the project (e.g., 'Parking Spaces: 2').",
           of: [{ type: "stat" }],
         }),
       ],
@@ -295,32 +304,36 @@ export const projectType = defineType({
       name: "shortDescription",
       type: "text",
       group: "overview",
-      description: "Short description to show next to key stats",
+      description:
+        "A brief summary to display next to key stats. Example: 'Luxury beachfront apartments with stunning views.'",
     }),
     defineField({
       name: "overview",
       title: "Property Overview",
       type: "object",
       group: "details",
-      description: "Overview of the property",
+      description:
+        "Write a short overview of the property, including its main selling points.",
       validation: (Rule) => Rule.required(),
       fields: [
         defineField({
           name: "title",
           title: "Title",
           type: "string",
-          description: "Title for overview",
+          description:
+            "Section heading for the overview. Example: 'Unlock your dream lifestyle'.",
           initialValue: "Unlock your dream lifestyle",
         }),
         defineField({
           name: "description",
           type: "text",
-          description: "A brief overview or summary of the project",
+          description: "A concise summary or introduction to the project.",
         }),
         defineField({
           name: "tags",
           type: "array",
-          description: "Keywords that help categorize and filter the project",
+          description:
+            "Add keywords to help categorize and filter the project. Example: ['Luxury', 'Beachfront', 'Family'].",
           of: [{ type: "string", name: "tag" }],
         }),
       ],
@@ -330,15 +343,14 @@ export const projectType = defineType({
       title: "Property Features",
       type: "object",
       group: "content",
-      description: "Details of the property",
+      description: "Describe the main features and amenities of the property.",
 
       fields: [
         defineField({
           name: "description",
           type: "array",
-
           description:
-            "Rich text description of the project with formatting options",
+            "Write a detailed, formatted description of the project. You can use rich text formatting.",
           of: [
             defineArrayMember({
               type: "block",
@@ -351,22 +363,23 @@ export const projectType = defineType({
           name: "image",
           type: "image",
           title: "Image",
+          description:
+            "Upload an image that illustrates the property's features.",
         }),
         defineField({
           name: "features",
           type: "array",
           title: "Key Features",
           description:
-            "Key features of the project (e.g., 'Waterfront', 'Private Beach', 'Smart Home')",
+            "List the main features of the project. Example: 'Waterfront', 'Private Beach', 'Smart Home'.",
           of: [{ type: "string", initialValue: "" }],
         }),
         defineField({
           name: "amenities",
           type: "array",
-
           title: "Amenities",
           description:
-            "List of amenities and facilities available in the project",
+            "List all amenities and facilities available in the project. Example: 'Gym', 'Swimming Pool', 'Children's Play Area'.",
           of: [{ type: "amenity" }],
         }),
       ],
@@ -378,7 +391,7 @@ export const projectType = defineType({
       group: "content",
       title: "Project Gallery",
       description:
-        "Collection of images showcasing the project (recommended size: 1920x1080px)",
+        "Upload a collection of images that showcase the project. Recommended size: 1920x1080px. These images will appear in a gallery on the project page.",
       of: [
         {
           type: "image",
@@ -390,7 +403,8 @@ export const projectType = defineType({
               name: "alt",
               type: "string",
               title: "Alternative text",
-              description: "Description of the image for accessibility and SEO",
+              description:
+                "Describe the image for accessibility and SEO. Example: 'Aerial view of the project site'.",
             },
           ],
         },
@@ -408,7 +422,7 @@ export const projectType = defineType({
       group: "content",
       title: "Description Sections",
       description:
-        "Detailed sections about the project (e.g., Description, Benefits, Investment Potential)",
+        "Add detailed sections about the project, such as Description, Benefits, or Investment Potential. Each section can have a title and content.",
       of: [{ type: "descriptionSection" }],
       validation: (Rule) => Rule.required(),
     }),
@@ -418,27 +432,29 @@ export const projectType = defineType({
       name: "seo",
       type: "object",
       group: "seo",
-      description: "Search engine optimization settings for better visibility",
+      description:
+        "Set up SEO settings to improve the project's visibility in search engines.",
       fields: [
         defineField({
           name: "title",
           type: "string",
           title: "SEO Title",
           description:
-            "Title tag for search engines (if empty, project title will be used)",
+            "Custom title tag for search engines. If left empty, the project title will be used.",
         }),
         defineField({
           name: "description",
           type: "text",
           title: "SEO Description",
           description:
-            "Meta description for search engines (if empty, project overview will be used)",
+            "Meta description for search engines. If left empty, the project overview will be used.",
         }),
         defineField({
           name: "keywords",
           type: "array",
           title: "SEO Keywords",
-          description: "Keywords for search engine optimization",
+          description:
+            "Add keywords to help search engines find this project. Example: ['Dubai', 'Luxury', 'Apartments'].",
           of: [{ type: "string" }],
         }),
       ],
@@ -460,19 +476,3 @@ export const projectType = defineType({
     },
   },
 });
-
-// defineField({
-//   name: "propertyType",
-//   title: "Property Type",
-//   type: "string",
-//   description: "The type of property (e.g., Apartment, Villa, etc.)",
-//   options: {
-//     list: [
-//       { title: "Apartment", value: "apartment" },
-//       { title: "Villa", value: "villa" },
-//       { title: "Townhouse", value: "townhouse" },
-//       { title: "Penthouse", value: "penthouse" },
-//     ],
-//   },
-//   validation: (Rule) => Rule.required(),
-// }),
