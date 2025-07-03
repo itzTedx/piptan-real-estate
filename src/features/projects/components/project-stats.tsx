@@ -1,4 +1,7 @@
+import { Check } from "lucide-react";
+
 import { AnimatedButton } from "@/components/ui/animated-button";
+import { formatPrice } from "@/lib/utils";
 
 import { Stat } from "../../../../sanity.types";
 
@@ -21,6 +24,9 @@ interface ProjectStatsProps {
 }
 
 export const ProjectStats = ({ stats, description }: ProjectStatsProps) => {
+  const price = stats?.price
+    ? parseFloat(stats.price.replace(/[^0-9.]/g, ""))
+    : 0;
   return (
     <section
       className="mb-20 grid gap-12 md:grid-cols-2 md:gap-4"
@@ -36,12 +42,12 @@ export const ProjectStats = ({ stats, description }: ProjectStatsProps) => {
             <div>
               <dd
                 className="text-primary mb-2 text-4xl font-medium transition-transform duration-300 group-hover:scale-110"
-                title={stats.price}
+                title={`Starting Price: ${stats.price} AED`}
                 aria-label={`Starting Price: ${stats.price} AED`}
               >
-                {stats.price}
+                {formatPrice(price)}
               </dd>
-              <dt className="text-muted-foreground">Starting Price (AED)</dt>
+              <dt className="text-muted-foreground">Starting Price</dt>
             </div>
             <div>
               <dd
@@ -64,6 +70,18 @@ export const ProjectStats = ({ stats, description }: ProjectStatsProps) => {
                   {stats.area}
                 </dd>
                 <dt className="text-muted-foreground">Starting area (ft²)</dt>
+              </div>
+            )}
+            {stats.furnished && (
+              <div>
+                <dd
+                  className="mb-2 text-4xl font-medium transition-transform duration-300 group-hover:scale-110"
+                  title={stats.furnished ? "furnished" : "unfurnished"}
+                  aria-label={stats.furnished ? "furnished" : "unfurnished"}
+                >
+                  <Check className="size-10" />
+                </dd>
+                <dt className="text-muted-foreground">Furnished</dt>
               </div>
             )}
             {stats.completionDate && (

@@ -33,10 +33,19 @@ export const structure: StructureResolver = (S, context) =>
 
       S.documentTypeListItem("author").title("Authors"),
       S.divider(),
+      orderableDocumentListDeskItem({
+        type: "expertise",
+        title: "Expertise",
+        S,
+        context,
+      }),
+
       ...S.documentTypeListItems().filter(
         (item) =>
           item.getId() &&
-          !["project", "category", "author"].includes(item.getId()!)
+          !["project", "category", "author", "media.tag", "expertise"].includes(
+            item.getId()!
+          )
       ),
     ]);
 

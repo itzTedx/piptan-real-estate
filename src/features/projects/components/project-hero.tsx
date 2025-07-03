@@ -37,7 +37,7 @@ export const ProjectHero = ({
       <figure className="grid grid-cols-1 gap-4 md:grid-cols-4">
         <div className="relative aspect-video overflow-hidden rounded-sm border shadow-2xl md:col-span-3">
           <nav
-            className="relative z-10 flex flex-wrap gap-1.5 p-4 md:p-6"
+            className="relative z-10 hidden flex-wrap gap-1.5 p-4 sm:flex md:p-6"
             aria-label="Property features"
           >
             {tags &&

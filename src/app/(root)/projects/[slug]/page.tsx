@@ -71,9 +71,10 @@ export default async function ProjectPage({ params }: { params: Params }) {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Params;
 }): Promise<Metadata> {
-  const project = await getProjectBySlug(params.slug);
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
   if (!project) {
     return {
       title: "Project Not Found | Piptan Investments",

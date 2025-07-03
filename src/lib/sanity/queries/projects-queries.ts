@@ -24,8 +24,8 @@ export const PROJECT_CARD_QUERY = defineQuery(`*[_type == "project"][0...6]  {
       title,
       "slug": slug.current
     },
-    "price": projectDetails.price,
-    tags
+    "price": stats.price,
+    "tags": overview.tags
 }`);
 
 export const FILTERED_PROJECTS_QUERY = defineQuery(`
@@ -56,7 +56,7 @@ export const FILTERED_PROJECTS_QUERY = defineQuery(`
       title,
       "slug": slug.current
     },
-    "price": projectDetails.price,
+    "price": stats.price,
     tags,
     _updatedAt,
     _createdAt

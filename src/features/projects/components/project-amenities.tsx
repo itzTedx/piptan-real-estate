@@ -11,7 +11,6 @@ interface ProjectAmenitiesProps {
 }
 
 export const ProjectAmenities = ({ amenities }: ProjectAmenitiesProps) => {
-  console.log("amenity image", amenities);
   return (
     amenities && (
       <section

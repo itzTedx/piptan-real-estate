@@ -38,7 +38,6 @@ export const expertiseType = defineType({
           type: "string",
           title: "Alternative Text",
           description: "Important for SEO and accessibility.",
-          validation: (Rule) => Rule.required(),
         },
       ],
     }),
