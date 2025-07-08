@@ -9,11 +9,24 @@ import { cn } from "@/lib/utils";
 
 interface Props {
   className?: string;
+  selectedTab: number;
+  onTabChange: (index: number) => void;
 }
 
-export const AnimatedTabs = ({ className }: Props) => {
+export const AnimatedTabs = ({
+  className,
+  selectedTab,
+  onTabChange,
+}: Props) => {
   return (
-    <Tabs defaultValue={FEATURES[0].title} className={cn(className)}>
+    <Tabs
+      value={FEATURES[selectedTab].title}
+      onValueChange={(value) => {
+        const idx = FEATURES.findIndex((f) => f.title === value);
+        if (idx !== -1) onTabChange(idx);
+      }}
+      className={cn(className)}
+    >
       <TabsList className="grid h-fit grid-cols-2 gap-1.5 md:grid-cols-3 lg:grid-cols-4">
         {FEATURES.map(({ title }) => (
           <TabsTrigger

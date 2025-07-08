@@ -15,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date().toISOString(),
     },
     {
-      url: "https://www.piptan.ae/projects",
+      url: "https://www.piptan.ae/portfolio",
       lastModified: new Date().toISOString(),
     },
     {

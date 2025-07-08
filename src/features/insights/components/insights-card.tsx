@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { AnimatedButton } from "@/components/ui/animated-button";
+import { slugify } from "@/lib/utils";
 
 interface Props {
   data: {
@@ -40,7 +41,7 @@ export const InsightCard = ({ data }: Props) => {
 
         <AnimatedButton
           text="Read Article"
-          href="/"
+          href={`/insights/${slugify(data.title)}`}
           variant="secondary"
           className="mt-3 w-full"
         />

@@ -1,9 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { motion, useScroll, useTransform } from "motion/react";
+import {
+  AnimatePresence,
+  animate,
+  motion,
+  useMotionValue,
+  useScroll,
+  useTransform,
+} from "motion/react";
 
 import { BuildingOutline } from "@/assets/building-outline";
 import { IconDiamond } from "@/assets/icons";
@@ -11,11 +18,37 @@ import { IconDiamond } from "@/assets/icons";
 import { AnimatedTabs } from "../components/animated-tabs";
 
 export const WhyUsSection = () => {
+  const [selectedTab, setSelectedTab] = useState(0);
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
   });
+
+  // Images for each tab (replace with your actual image paths)
+  const images = [
+    "/images/isolated-home.webp",
+    "/images/residential-tower-wide.webp",
+    "/images/feature3.webp",
+    "/images/feature4.webp",
+  ];
+
+  // --- Combine scroll and tab animation for y ---
+  const tabY = useMotionValue(0);
+  const scrollY = useTransform(scrollYProgress, [0, 1], [150, -20]);
+  const combinedY = useTransform(
+    [scrollY, tabY],
+    ([s, t]) => (s as number) + (t as number)
+  );
+
+  useEffect(() => {
+    tabY.set(80); // Start below
+    const controls = animate(tabY, 0, {
+      duration: 0.5,
+      ease: [0.42, 0, 0.58, 1],
+    });
+    return () => controls.stop();
+  }, [selectedTab]);
 
   return (
     <section
@@ -43,20 +76,29 @@ export const WhyUsSection = () => {
         </div>
       </div>
       <div className="relative z-10 container grid grid-cols-1 gap-4 pb-8 sm:grid-cols-2 sm:gap-6 sm:pb-12 md:pb-16 lg:pb-24">
-        <motion.div
-          className="absolute top-0 -left-[15vw] hidden aspect-5/3 w-2/3 sm:block 2xl:-left-[11vw]"
-          style={{
-            y: useTransform(scrollYProgress, [0, 1], [150, -20]),
-          }}
-        >
-          <Image
-            src="/images/isolated-home.webp"
-            fill
-            alt="Modern luxury home showcasing premium architecture and design"
-            className="object-cover"
-          />
-        </motion.div>
-        <AnimatedTabs className="sm:col-start-2" />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={selectedTab}
+            className="absolute top-0 -left-[15vw] hidden aspect-5/3 w-2/3 sm:block 2xl:-left-[11vw]"
+            style={{ y: combinedY }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+          >
+            <Image
+              src={images[selectedTab]}
+              fill
+              alt="Modern luxury home showcasing premium architecture and design"
+              className="object-cover"
+            />
+          </motion.div>
+        </AnimatePresence>
+        <AnimatedTabs
+          className="sm:col-start-2"
+          selectedTab={selectedTab}
+          onTabChange={setSelectedTab}
+        />
       </div>
       <BuildingOutline className="absolute top-0 -right-12 hidden sm:block" />
     </section>

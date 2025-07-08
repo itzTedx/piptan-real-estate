@@ -9,7 +9,6 @@ import {
 import { Logo, Piptan, WordMark } from "@/assets/logo";
 import { FOOTER_LINKS } from "@/constants";
 
-import { TextEffect } from "../animation/text-animation";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 
@@ -21,10 +20,10 @@ export const Footer = () => {
       aria-label="Website footer"
     >
       <div className="container">
-        <h2 className="font-jaguar text-primary py-3 text-center text-4xl md:text-6xl lg:text-[8rem]">
+        {/* <h2 className="font-jaguar text-primary py-3 text-center text-4xl md:text-6xl lg:text-[8rem]">
           <TextEffect text="Invest. Grow. Thrive." />
         </h2>
-        <Separator />
+        <Separator /> */}
         <section
           className="grid grid-cols-1 gap-6 py-8 md:grid-cols-2 md:py-12 lg:grid-cols-3 lg:py-16"
           aria-label="Footer content"
