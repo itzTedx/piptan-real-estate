@@ -3,12 +3,34 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { HeroHeader } from "@/components/hero-header";
-import { getInsightBySlug } from "@/features/insights/actions/query";
+import {
+  getInsightBySlug,
+  getInsights,
+} from "@/features/insights/actions/query";
 import { InsightContent } from "@/features/insights/components/insight-content";
 import { urlFor } from "@/lib/sanity/image";
 
 interface Params {
   slug: string;
+}
+
+// Enable caching with revalidation every 5 minutes
+export const revalidate = 300;
+
+// Generate static params for all insights
+export async function generateStaticParams() {
+  try {
+    const insights = await getInsights();
+
+    return insights
+      .filter((insight: { slug: string | null }) => insight.slug) // Only include insights with slugs
+      .map((insight: { slug: string | null }) => ({
+        slug: insight.slug!,
+      }));
+  } catch (error) {
+    console.error("Error generating static params for insights:", error);
+    return [];
+  }
 }
 
 // Generate metadata for the page

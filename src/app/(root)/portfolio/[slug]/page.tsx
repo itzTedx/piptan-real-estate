@@ -5,6 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import { LeadSection } from "@/features/forms/lead-form/section";
 import {
   getProjectBySlug,
+  getProjects,
   getProjectsCardData,
 } from "@/features/projects/actions/projects-actions";
 import { ProjectAmenities } from "@/features/projects/components/project-amenities";
@@ -18,6 +19,25 @@ import { ProjectStats } from "@/features/projects/components/project-stats";
 import { RelatedProjects } from "@/features/projects/components/related-projects";
 
 type Params = Promise<{ slug: string }>;
+
+// Enable caching with revalidation every 5 minutes
+export const revalidate = 300;
+
+// Generate static params for all projects
+export async function generateStaticParams() {
+  try {
+    const projects = await getProjects();
+
+    return projects
+      .filter((project: { slug: string | null }) => project.slug) // Only include projects with slugs
+      .map((project: { slug: string | null }) => ({
+        slug: project.slug!,
+      }));
+  } catch (error) {
+    console.error("Error generating static params for projects:", error);
+    return [];
+  }
+}
 
 export default async function ProjectPage({ params }: { params: Params }) {
   const { slug } = await params;

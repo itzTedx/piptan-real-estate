@@ -8,4 +8,5 @@ export const client = createClient({
   apiVersion,
   useCdn: true, // Enable CDN for better caching
   perspective: "published", // Only fetch published content
+  stega: false, // Disable stega for better performance
 });

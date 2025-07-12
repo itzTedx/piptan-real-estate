@@ -1,4 +1,3 @@
-import { unstable_noStore as noStore } from "next/cache";
 import { Suspense } from "react";
 
 import { SearchParams } from "nuqs";
@@ -17,12 +16,10 @@ type PageProps = {
   searchParams: Promise<SearchParams>;
 };
 
-// Force dynamic rendering to prevent caching issues
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+// Enable caching with revalidation every 5 minutes
+export const revalidate = 300;
 
 export default async function ProjectsPage({ searchParams }: PageProps) {
-  noStore();
   const {
     page,
     pageSize,

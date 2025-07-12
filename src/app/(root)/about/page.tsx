@@ -3,6 +3,9 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
 import { AboutHeroVideo } from "@/features/about/components/video";
 
+// Enable caching with revalidation every 30 minutes (mostly static content)
+export const revalidate = 1800;
+
 export default function AboutPage() {
   return (
     <main className="container py-4 sm:py-9">

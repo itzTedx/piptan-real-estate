@@ -18,6 +18,9 @@ const meta = {
     "Dubai real estate, luxury homes, commercial property, real estate investment, property development, Dubai property market, luxury apartments, villas Dubai, real estate agents Dubai, property investment UAE",
 };
 
+// Enable caching with revalidation every 10 minutes
+export const revalidate = 600;
+
 export const metadata: Metadata = {
   title: meta.title,
   description: meta.description,
