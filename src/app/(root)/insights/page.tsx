@@ -1,12 +1,21 @@
+import { Suspense } from "react";
+
 import { IconCollection } from "@/assets/icons";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
-import { getInsights } from "@/features/insights/actions/query";
-import { InsightCard } from "@/features/insights/components/insights-card";
-import { cn } from "@/lib/utils";
+import {
+  getInsightCategories,
+  getInsights,
+} from "@/features/insights/actions/query";
+import { InsightsList } from "@/features/insights/components/insights-list";
+import { InsightsListSkeleton } from "@/features/insights/components/insights-list-skeleton";
 
 export default async function InsightsContent() {
-  const insights = await getInsights();
+  const [allInsights, categories] = await Promise.all([
+    getInsights(),
+    getInsightCategories(),
+  ]);
+
   return (
     <main className="container space-y-12 pt-4 sm:pt-9 md:pt-12">
       <section>
@@ -21,25 +30,9 @@ export default async function InsightsContent() {
       </section>
       <Separator />
       <section className="mb-20">
-        {/* <InsightFilters
-          onSearch={handleSearch}
-          onTagChange={handleTagChange}
-          className="bg-muted/40 mb-8 backdrop-blur-2xl"
-          initialSearch={searchQuery || ""}
-          initialTag={activeTag || "all"}
-        /> */}
-        <div
-          className={cn(
-            "grid gap-6",
-            "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-          )}
-        >
-          {insights.map((data) => (
-            <div className="h-full p-1" key={data.title}>
-              <InsightCard data={data} />
-            </div>
-          ))}
-        </div>
+        <Suspense fallback={<InsightsListSkeleton />}>
+          <InsightsList categories={categories} initialInsights={allInsights} />
+        </Suspense>
       </section>
     </main>
   );

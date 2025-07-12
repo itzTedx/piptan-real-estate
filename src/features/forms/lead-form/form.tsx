@@ -56,7 +56,12 @@ export function LeadForm({ className }: Props) {
                   >
                     <span className="bg-foreground inline-flex px-1">Name</span>
                   </FormLabel>
-                  <Input placeholder="" {...field} id="name" />
+                  <Input
+                    placeholder=""
+                    className="text-background"
+                    {...field}
+                    id="name"
+                  />
                 </div>
               </FormControl>
 
@@ -80,7 +85,13 @@ export function LeadForm({ className }: Props) {
                       Phone number
                     </span>
                   </FormLabel>
-                  <Input placeholder="" type="tel" {...field} id="phone" />
+                  <Input
+                    placeholder=""
+                    className="text-background"
+                    type="tel"
+                    {...field}
+                    id="phone"
+                  />
                 </div>
               </FormControl>
 

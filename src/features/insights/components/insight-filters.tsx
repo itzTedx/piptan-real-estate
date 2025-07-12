@@ -4,26 +4,16 @@ import { Input } from "@/components/ui/input";
 import { OverflowArea, OverflowItem } from "@/components/ui/scroll-overflow";
 import { cn } from "@/lib/utils";
 
+import { INSIGHT_CATEGORIES_QUERYResult } from "../../../../sanity.types";
+
 interface Props {
   className?: string;
   onSearch: (query: string) => void;
   onTagChange: (tag: string) => void;
   initialSearch?: string;
   initialTag?: string;
+  categories: INSIGHT_CATEGORIES_QUERYResult;
 }
-
-const TAGS = [
-  "All",
-  "Market Insights",
-  "Smart Investments",
-  "Property Guide",
-  "Investment Strategy",
-  "Market Analysis",
-  "Lifestyle",
-  "Legal Guide",
-  "Market Trends",
-  "Investment Tips",
-];
 
 export function InsightFilters({
   className,
@@ -31,6 +21,7 @@ export function InsightFilters({
   onTagChange,
   initialSearch = "",
   initialTag = "all",
+  categories,
 }: Props) {
   const [searchValue, setSearchValue] = useState(initialSearch);
   const [activeTag, setActiveTag] = useState(initialTag);
@@ -54,40 +45,28 @@ export function InsightFilters({
       )}
     >
       <OverflowArea containerClassName="col-span-3">
-        {TAGS.map((tag) => (
+        <OverflowItem
+          item="All"
+          variant={activeTag === "all" ? "default" : "outline"}
+          size="sm"
+          onClick={() => handleTagClick("All")}
+        >
+          All
+        </OverflowItem>
+        {categories.map((category) => (
           <OverflowItem
-            key={tag}
-            item={tag}
+            key={category._id}
+            item={category.title || ""}
             variant={
-              activeTag === (tag === "All" ? "all" : tag)
-                ? "default"
-                : "outline"
+              activeTag === (category.slug || "") ? "default" : "outline"
             }
             size="sm"
-            onClick={() => handleTagClick(tag)}
+            onClick={() => handleTagClick(category.slug || "")}
           >
-            {tag}
+            {category.title}
           </OverflowItem>
         ))}
       </OverflowArea>
-      {/* <ScrollArea className="col-span-3 rounded-md border">
-        <div className="flex gap-2 p-4">
-          {TAGS.map((tag) => (
-            <Button
-              key={tag}
-              variant={
-                activeTag === (tag === "All" ? "all" : tag)
-                  ? "default"
-                  : "outline"
-              }
-              size="sm"
-              onClick={() => handleTagClick(tag)}
-            >
-              {tag}
-            </Button>
-          ))}
-        </div>
-      </ScrollArea> */}
       <Input
         type="search"
         placeholder="Search insights..."

@@ -5,10 +5,13 @@ import { AnimatedButton } from "@/components/ui/animated-button";
 import { urlFor } from "@/lib/sanity/image";
 import { formatDate } from "@/lib/utils";
 
-import { INSIGHTS_QUERYResult } from "../../../../sanity.types";
+import {
+  FILTERED_INSIGHTS_QUERYResult,
+  INSIGHTS_QUERYResult,
+} from "../../../../sanity.types";
 
 interface Props {
-  data: INSIGHTS_QUERYResult[number];
+  data: INSIGHTS_QUERYResult[number] | FILTERED_INSIGHTS_QUERYResult[number];
 }
 
 export const InsightCard = ({ data }: Props) => {
