@@ -108,7 +108,7 @@ export const PortfolioFilters = ({
           >
             <SelectTrigger
               id="category"
-              className="border-foreground/40 w-32 rounded-e-none border-0 border-r data-[size=default]:h-full"
+              className="border-foreground/40 w-56 rounded-e-none border-0 border-r data-[size=default]:h-full"
             >
               <SelectValue placeholder="Category" />
             </SelectTrigger>
@@ -149,12 +149,8 @@ export const PortfolioFilters = ({
           </Tooltip>
         </div>
 
-        <div className="flex h-full items-center">
-          <Button
-            type="submit"
-            variant="outline"
-            className="border-foreground/40 rounded-l-none bg-transparent backdrop-blur-none"
-          >
+        <div className="mr-1 flex h-full items-center">
+          <Button type="submit" variant="outline">
             Search
           </Button>
         </div>
