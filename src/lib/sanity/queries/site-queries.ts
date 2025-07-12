@@ -1,10 +1,8 @@
 import { defineQuery } from "next-sanity";
 
-export const EXPERTISE_QUERY =
-  defineQuery(`*[_type == "expertise"] | order(orderRank) {
+export const FAQS_QUERY = defineQuery(`*[_type == "faq"] | order(orderRank) {
     _id,
-    title,
-    image,
-    description,
-    "slug": slug.current,
+    question,
+    answer,
+   
 }`);

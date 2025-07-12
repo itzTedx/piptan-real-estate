@@ -3,7 +3,7 @@ import { type SchemaTypeDefinition } from "sanity";
 import { blockContentType } from "./blocks/blockContentType";
 import { categoryType } from "./categoryType";
 import { developerType } from "./developerType";
-import { expertiseType } from "./expertiseType";
+import { faqType } from "./faqType";
 import { insightCategoryType, insightsType } from "./insightsType";
 import { projectType } from "./projects";
 import { amenityType } from "./projects/amenityType";
@@ -22,7 +22,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     statType,
     amenityType,
     descriptionSectionType,
-    expertiseType,
+    faqType,
     insightsType,
     insightCategoryType,
     serviceType,

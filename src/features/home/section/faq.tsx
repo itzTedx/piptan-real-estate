@@ -8,9 +8,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { AnimatedButton } from "@/components/ui/animated-button";
-import { FAQS } from "@/constants/mock-data";
 
-export const FaqSection = () => {
+import { getFaqs } from "../actions";
+
+export const FaqSection = async () => {
+  const faqs = await getFaqs();
+  console.log(faqs);
   return (
     <section className="bg-muted my-10 border-t md:my-20">
       <div className="grid grid-cols-1 gap-6 md:container lg:grid-cols-4 lg:gap-0">
@@ -34,13 +37,13 @@ export const FaqSection = () => {
             className="flex w-full flex-col divide-y"
             transition={{ duration: 0.2, ease: "easeInOut" }}
           >
-            {FAQS.map(({ id, answer, question }) => (
-              <AccordionItem key={id} value={id} className="py-4 sm:py-6">
+            {faqs.map(({ _id, answer, question }, id) => (
+              <AccordionItem key={_id} value={_id} className="py-4 sm:py-6">
                 <AccordionTrigger className="w-full text-left">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4 sm:gap-9">
                       <span className="text-muted text-sm sm:text-base">
-                        0{id}
+                        0{id + 1}
                       </span>
                       <h3 className="pl-0.5 text-lg sm:text-xl lg:text-2xl">
                         {question}

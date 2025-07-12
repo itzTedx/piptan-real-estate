@@ -18,7 +18,6 @@ interface Props {
 
 export const PropertyCard = ({ className, layout = "grid", data }: Props) => {
   const price = data.price ? parseFloat(data.price.replace(/[^0-9.]/g, "")) : 0;
-  console.log("data from card: ", data);
   return (
     <div className={cn("group", layout === "list" && "flex gap-12", className)}>
       <Link href={`/portfolio/${data.slug || ""}`}>

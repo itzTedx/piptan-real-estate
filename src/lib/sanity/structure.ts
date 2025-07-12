@@ -30,20 +30,26 @@ export const structure: StructureResolver = (S, context) =>
       S.documentTypeListItem("insights").title("Insights"),
       S.documentTypeListItem("author").title("Authors"),
       S.divider(),
-      S.listItem()
-        .title("Site Customize")
-        .child(
-          S.list()
-            .title("Customize")
-            .items([
-              orderableDocumentListDeskItem({
-                type: "expertise",
-                title: "Expertise",
-                S,
-                context,
-              }),
-            ])
-        ),
+      orderableDocumentListDeskItem({
+        type: "faq",
+        title: "Faqs",
+        S,
+        context,
+      }),
+      // S.listItem()
+      //   .title("Site Customize")
+      //   .child(
+      //     S.list()
+      //       .title("Customize")
+      //       .items([
+      //         orderableDocumentListDeskItem({
+      //           type: "faq",
+      //           title: "Faq",
+      //           S,
+      //           context,
+      //         }),
+      //       ])
+      //   ),
 
       // ...S.documentTypeListItems().filter(
       //   (item) =>
