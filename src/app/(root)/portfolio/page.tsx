@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 
-// import { SearchParams } from "nuqs";
+import { SearchParams } from "nuqs";
 
 import { AnimatedGroup } from "@/components/animation/animated-group";
 import {
@@ -15,26 +15,22 @@ import {
 import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
 import { LeadSection } from "@/features/forms/lead-form/section";
-import { getProjectsCardData } from "@/features/projects/actions/projects-actions";
+import { getPaginatedProjects } from "@/features/projects/actions/projects-actions";
+import { loadSearchParams } from "@/features/projects/search-params";
 import { PropertiesListSkeleton } from "@/features/properties/components/properties-list-skeleton";
 import { PropertyCard } from "@/features/properties/components/property-card";
-import { cn } from "@/lib/utils";
+import { cn, generatePagination } from "@/lib/utils";
 
-// type PageProps = {
-//   searchParams: Promise<SearchParams>;
-// };
+type PageProps = {
+  searchParams: Promise<SearchParams>;
+};
 
-export default async function ProjectsPage() {
-  // export default async function ProjectsPage({ searchParams }: PageProps) {
-  // const { q, category } = await loadSearchParams(searchParams);
+export default async function ProjectsPage({ searchParams }: PageProps) {
+  const { page, pageSize } = await loadSearchParams(searchParams);
 
-  // const categories = await getCategories();
-  // const { projects } = await getFilteredProjects({
-  //   searchQuery: q,
-  //   category,
-  // });
-
-  const projects = await getProjectsCardData();
+  const { projects, total } = await getPaginatedProjects(page, pageSize);
+  const totalPages = Math.ceil(total / pageSize);
+  const pagination = generatePagination(page, totalPages);
 
   return (
     <main className="pt-4 sm:pt-9 md:pt-12">
@@ -49,45 +45,54 @@ export default async function ProjectsPage() {
             preset="blur-slide"
             className={cn(
               "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-              // viewMode === "grid"
-              //   ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-              //   : "grid-cols-1",
-              // isLoading && "opacity-50"
             )}
           >
             {projects.map((project) => (
               <PropertyCard
                 key={project._id}
                 data={project}
-                // layout={viewMode}
                 className="max-sm:py-6"
               />
             ))}
           </AnimatedGroup>
-          {/* <PropertiesList categories={categories} initialProjects={projects} /> */}
         </Suspense>
-        <Pagination className="mt-12">
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious href="#" />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">1</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">2</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">3</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationNext href="#" />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
+
+        {totalPages > 1 && (
+          <Pagination className="mt-12">
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  href={page > 1 ? `?page=${page - 1}` : "#"}
+                  className={page <= 1 ? "pointer-events-none opacity-50" : ""}
+                />
+              </PaginationItem>
+
+              {pagination.map((pageNumber, index) => (
+                <PaginationItem key={index}>
+                  {pageNumber === "..." ? (
+                    <PaginationEllipsis />
+                  ) : (
+                    <PaginationLink
+                      href={`?page=${pageNumber}`}
+                      isActive={pageNumber === page}
+                    >
+                      {pageNumber}
+                    </PaginationLink>
+                  )}
+                </PaginationItem>
+              ))}
+
+              <PaginationItem>
+                <PaginationNext
+                  href={page < totalPages ? `?page=${page + 1}` : "#"}
+                  className={
+                    page >= totalPages ? "pointer-events-none opacity-50" : ""
+                  }
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        )}
       </section>
       <LeadSection
         title={`Let the experts help you\nmake the right investment`}

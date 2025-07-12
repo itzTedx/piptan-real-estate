@@ -6,35 +6,53 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatPrice(price: number): string {
-  const formatNumber = (num: number) => {
-    const formatted = num.toFixed(1);
-    return formatted.endsWith(".0") ? formatted.slice(0, -2) : formatted;
-  };
-
-  if (price >= 1_000_000_000) {
-    return `AED ${formatNumber(price / 1_000_000_000)}B`;
-  }
-  if (price >= 1_000_000) {
-    return `AED ${formatNumber(price / 1_000_000)}M`;
-  }
-  if (price >= 1_000) {
-    return `AED ${formatNumber(price / 1_000)}K`;
-  }
-  return `AED ${price}`;
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "AED",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(price);
 }
 
 export function slugify(text: string): string {
   return text
-    .toString()
     .toLowerCase()
-    .normalize("NFD") // Normalize to decomposed form for handling accents
-    .replace(/[\u0300-\u036f]/g, "") // Remove diacritics
-    .replace(/[^a-z0-9\s-]/g, "") // Remove all non-word chars
-    .replace(/\s+/g, "-") // Replace spaces with -
-    .replace(/-+/g, "-") // Replace multiple - with single -
-    .replace(/^-+/, "") // Trim - from start of text
-    .replace(/-+$/, "") // Trim - from end of text
-    .substring(0, 100); // Limit length to 100 chars
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export function generatePagination(currentPage: number, totalPages: number) {
+  // If the total number of pages is 7 or less,
+  // display all pages without any ellipsis.
+  if (totalPages <= 7) {
+    return Array.from({ length: totalPages }, (_, i) => i + 1);
+  }
+
+  // If the current page is among the first 3 pages,
+  // show the first 3, an ellipsis, and the last 2 pages.
+  if (currentPage <= 3) {
+    return [1, 2, 3, "...", totalPages - 1, totalPages];
+  }
+
+  // If the current page is among the last 3 pages,
+  // show the first 2, an ellipsis, and the last 3 pages.
+  if (currentPage >= totalPages - 2) {
+    return [1, 2, "...", totalPages - 2, totalPages - 1, totalPages];
+  }
+
+  // If the current page is somewhere in the middle,
+  // show the first page, an ellipsis, the current page and its neighbors,
+  // another ellipsis, and the last page.
+  return [
+    1,
+    "...",
+    currentPage - 1,
+    currentPage,
+    currentPage + 1,
+    "...",
+    totalPages,
+  ];
 }
 
 /**

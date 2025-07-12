@@ -101,16 +101,42 @@ export const FILTERED_PROJECTS_QUERY = defineQuery(`
   }
 `);
 
-// export const PROJECTS_COUNT_QUERY = defineQuery(`
-//   count(*[_type == "project"
-//     && (!defined($searchQuery) || title match $searchQuery + "*" || location match $searchQuery + "*" || description match $searchQuery + "*")
-//     && (!defined($category) || category->slug.current == $category)
-//     && (!defined($tags) || count((tags[])[@ in $tags]) > 0)
-//     && (!defined($minPrice) || float(projectDetails.price) >= $minPrice)
-//     && (!defined($maxPrice) || float(projectDetails.price) <= $maxPrice)
-//     && (!defined($isFeatured) || isFeatured == $isFeatured)
-//   ])
-// `);
+export const PROJECTS_COUNT_QUERY = defineQuery(`
+  count(*[_type == "project"])
+`);
+
+export const PAGINATED_PROJECTS_QUERY =
+  defineQuery(`*[_type == "project"] | order(_createdAt desc)[$start..$end]  {
+    _id,
+    title,
+    mainImage{
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions {
+            width,
+            height
+          }
+        }
+      },
+      alt
+    },
+    "slug": slug.current,
+    location,
+    isFeatured,
+    "category": category->{
+      title,
+      "slug": slug.current
+    },
+    "price": stats.price,
+    "tags": overview.tags,
+    "bedrooms": stats.bedrooms,
+    developer,
+    "payments": stats.paymentPlan
+
+}`);
 
 export const PROJECT_BY_SLUG_QUERY = defineQuery(`
   *[_type == "project" && slug.current == $slug][0] {
