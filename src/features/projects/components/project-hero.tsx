@@ -13,7 +13,10 @@ interface ProjectHeroProps {
   tags?: string[] | null;
   image: SanityImageSource | null;
   location: string | null;
-  developer: string | null;
+  developer: {
+    logo: SanityImageSource | null;
+    name: string | null;
+  } | null;
 }
 
 export const ProjectHero = ({
@@ -101,7 +104,7 @@ export const ProjectHero = ({
             <h2 className="text-muted-foreground mb-2 text-sm md:mb-3 md:text-base">
               Developer
             </h2>
-            <p className="text-xl md:text-2xl">{developer}</p>
+            <p className="text-xl md:text-2xl">{developer.name}</p>
           </div>
         )}
       </address>

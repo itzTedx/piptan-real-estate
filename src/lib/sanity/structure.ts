@@ -1,5 +1,4 @@
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
-import { Star } from "lucide-react";
 import type { StructureResolver } from "sanity/structure";
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
@@ -8,10 +7,10 @@ export const structure: StructureResolver = (S, context) =>
     .title("Manage")
     .items([
       S.listItem()
-        .title("Properties")
+        .title("Portfolios")
         .child(
           S.documentTypeList("project")
-            .title("Project")
+            .title("Portfolio")
             .defaultOrdering([{ field: "_createdAt", direction: "desc" }])
         ),
       orderableDocumentListDeskItem({
@@ -20,13 +19,13 @@ export const structure: StructureResolver = (S, context) =>
         S,
         context,
       }),
-      orderableDocumentListDeskItem({
-        type: "services",
-        title: "Services",
-        icon: Star,
-        S,
-        context,
-      }),
+      // orderableDocumentListDeskItem({
+      //   type: "services",
+      //   title: "Services",
+      //   icon: Star,
+      //   S,
+      //   context,
+      // }),
       S.divider(),
       S.documentTypeListItem("insights").title("Insights"),
       S.documentTypeListItem("author").title("Authors"),

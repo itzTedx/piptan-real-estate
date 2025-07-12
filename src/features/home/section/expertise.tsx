@@ -9,10 +9,10 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { urlFor } from "@/lib/sanity/image";
 import { cn } from "@/lib/utils";
 
-import { getExpertise } from "../actions";
+import { getCategories } from "../actions";
 
 export const ExpertiseSection = async () => {
-  const categories = await getExpertise();
+  const categories = await getCategories();
 
   return (
     <section

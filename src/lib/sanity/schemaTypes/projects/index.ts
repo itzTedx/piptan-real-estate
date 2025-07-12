@@ -202,10 +202,11 @@ export const projectType = defineType({
     }),
     defineField({
       name: "developer",
-      type: "string",
+      type: "reference",
       group: "overview",
       description:
-        "Enter the name of the company or developer behind the project. Example: 'Emaar Properties'.",
+        "Select the developer or development company behind this project.",
+      to: { type: "developer" },
       validation: (Rule) => Rule.required(),
     }),
 
@@ -470,7 +471,7 @@ export const projectType = defineType({
   preview: {
     select: {
       title: "title",
-      developer: "developer",
+      developer: "developer.name",
       status: "status",
       media: "mainImage",
     },

@@ -254,7 +254,12 @@ export type Project = {
     _type: "image";
   };
   location?: string;
-  developer?: string;
+  developer?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "developer";
+  };
   status?: "available" | "sold" | "coming-soon";
   isFeatured?: boolean;
   category?: {
@@ -343,6 +348,29 @@ export type Project = {
     title?: string;
     description?: string;
     keywords?: Array<string>;
+  };
+};
+
+export type Developer = {
+  _id: string;
+  _type: "developer";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  logo?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
   };
 };
 
@@ -543,6 +571,7 @@ export type AllSanitySchemaTypes =
   | Stat
   | Author
   | Project
+  | Developer
   | Category
   | BlockContent
   | MediaTag
@@ -583,7 +612,7 @@ export type CATEGORIES_QUERYResult = Array<{
 
 // Source: ./src/lib/sanity/queries/projects-queries.ts
 // Variable: PROJECT_CARD_QUERY
-// Query: *[_type == "project"] | order(_createdAt desc)[0..8]  {    _id,    title,    mainImage{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    "slug": slug.current,    location,    isFeatured,    "category": category->{      title,      "slug": slug.current    },    "price": stats.price,    "tags": overview.tags,    "bedrooms": stats.bedrooms,    developer,    "payments": stats.paymentPlan}
+// Query: *[_type == "project"] | order(_createdAt desc)[0..8]  {    _id,    title,    mainImage{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    "slug": slug.current,    location,    isFeatured,    "category": category->{      title,      "slug": slug.current    },    "price": stats.price,    "tags": overview.tags,    "bedrooms": stats.bedrooms,    "developer": developer->{      name,      logo,      "slug": slug.current    },    "payments": stats.paymentPlan}
 export type PROJECT_CARD_QUERYResult = Array<{
   _id: string;
   title: string | null;
@@ -611,11 +640,75 @@ export type PROJECT_CARD_QUERYResult = Array<{
   price: string | null;
   tags: Array<string> | null;
   bedrooms: string | null;
-  developer: string | null;
+  developer: {
+    name: string | null;
+    logo: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+    } | null;
+    slug: string | null;
+  } | null;
+  payments: string | null;
+}>;
+// Variable: PORTFOLIOS_QUERY
+// Query: *[_type == "project"] | order(_createdAt desc)  {    _id,    title,    mainImage{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    "slug": slug.current,    location,    isFeatured,    "category": category->{      title,      "slug": slug.current    },    "price": stats.price,    "tags": overview.tags,    "bedrooms": stats.bedrooms,    "developer": developer->{      name,      logo,      "slug": slug.current    },    "payments": stats.paymentPlan}
+export type PORTFOLIOS_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  mainImage: {
+    asset: {
+      _id: string;
+      url: string | null;
+      metadata: {
+        lqip: string | null;
+        dimensions: {
+          width: number | null;
+          height: number | null;
+        } | null;
+      } | null;
+    } | null;
+    alt: string | null;
+  } | null;
+  slug: string | null;
+  location: string | null;
+  isFeatured: boolean | null;
+  category: {
+    title: string | null;
+    slug: string | null;
+  } | null;
+  price: string | null;
+  tags: Array<string> | null;
+  bedrooms: string | null;
+  developer: {
+    name: string | null;
+    logo: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+    } | null;
+    slug: string | null;
+  } | null;
   payments: string | null;
 }>;
 // Variable: FILTERED_PROJECTS_QUERY
-// Query: *[_type == "project"     && (!defined($searchQuery) || title match $searchQuery + "*" || location match $searchQuery + "*" || developer match $searchQuery + "*" || description match $searchQuery + "*")     && (!defined($category) || category->slug.current == $category)   ]  {    _id,    title,    mainImage{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    "slug": slug.current,    location,    developer,    isFeatured,    "category": category->{      title,      "slug": slug.current    },    "price": stats.price,    tags,    _updatedAt,    _createdAt  }
+// Query: *[_type == "project"     && (!defined($searchQuery) || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || description match $searchQuery + "*")     && (!defined($category) || category->slug.current == $category)   ]  {    _id,    title,    mainImage{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    "slug": slug.current,    location,    "developer": developer->{      name,      logo,      "slug": slug.current    },    isFeatured,    "category": category->{      title,      "slug": slug.current    },    "price": stats.price,    tags,    _updatedAt,    _createdAt  }
 export type FILTERED_PROJECTS_QUERYResult = Array<{
   _id: string;
   title: string | null;
@@ -635,7 +728,23 @@ export type FILTERED_PROJECTS_QUERYResult = Array<{
   } | null;
   slug: string | null;
   location: string | null;
-  developer: string | null;
+  developer: {
+    name: string | null;
+    logo: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+    } | null;
+    slug: string | null;
+  } | null;
   isFeatured: boolean | null;
   category: {
     title: string | null;
@@ -646,8 +755,59 @@ export type FILTERED_PROJECTS_QUERYResult = Array<{
   _updatedAt: string;
   _createdAt: string;
 }>;
+// Variable: PROJECTS_COUNT_QUERY
+// Query: count(*[_type == "project"])
+export type PROJECTS_COUNT_QUERYResult = number;
+// Variable: PAGINATED_PROJECTS_QUERY
+// Query: *[_type == "project"] | order(_createdAt desc)[$start..$end]  {    _id,    title,    mainImage{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    "slug": slug.current,    location,    isFeatured,    "category": category->{      title,      "slug": slug.current    },    "price": stats.price,    "tags": overview.tags,    "bedrooms": stats.bedrooms,    "developer": developer->{      name,      logo,      "slug": slug.current    },    "payments": stats.paymentPlan}
+export type PAGINATED_PROJECTS_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  mainImage: {
+    asset: {
+      _id: string;
+      url: string | null;
+      metadata: {
+        lqip: string | null;
+        dimensions: {
+          width: number | null;
+          height: number | null;
+        } | null;
+      } | null;
+    } | null;
+    alt: string | null;
+  } | null;
+  slug: string | null;
+  location: string | null;
+  isFeatured: boolean | null;
+  category: {
+    title: string | null;
+    slug: string | null;
+  } | null;
+  price: string | null;
+  tags: Array<string> | null;
+  bedrooms: string | null;
+  developer: {
+    name: string | null;
+    logo: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+    } | null;
+    slug: string | null;
+  } | null;
+  payments: string | null;
+}>;
 // Variable: PROJECT_BY_SLUG_QUERY
-// Query: *[_type == "project" && slug.current == $slug][0] {    _id,    title,    "slug": slug.current,    mainImage{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    location,    developer,    status,    "category": category->{      title,      "slug": slug.current    },    stats,    shortDescription,    overview,    propertyFeatures,    gallery,    descriptionSections,    seo,    _updatedAt,    _createdAt,  }
+// Query: *[_type == "project" && slug.current == $slug][0] {    _id,    title,    "slug": slug.current,    mainImage{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    location,    "developer": developer->{      name,      logo,      "slug": slug.current,      description,      website,      contactInfo    },    status,    "category": category->{      title,      "slug": slug.current    },    stats,    shortDescription,    overview,    propertyFeatures,    gallery,    descriptionSections,    seo,    _updatedAt,    _createdAt,  }
 export type PROJECT_BY_SLUG_QUERYResult = {
   _id: string;
   title: string | null;
@@ -667,7 +827,26 @@ export type PROJECT_BY_SLUG_QUERYResult = {
     alt: string | null;
   } | null;
   location: string | null;
-  developer: string | null;
+  developer: {
+    name: string | null;
+    logo: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+    } | null;
+    slug: string | null;
+    description: null;
+    website: null;
+    contactInfo: null;
+  } | null;
   status: "available" | "coming-soon" | "sold" | null;
   category: {
     title: string | null;
@@ -784,9 +963,12 @@ export type EXPERTISE_QUERYResult = Array<{
 declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "category"] | order(orderRank) {\n    _id,\n    title,\n    image,\n    "slug": slug.current,\n    description\n}': CATEGORIES_QUERYResult;
-    '*[_type == "project"] | order(_createdAt desc)[0..8]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    location,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    "tags": overview.tags,\n    "bedrooms": stats.bedrooms,\n    developer,\n    "payments": stats.paymentPlan\n\n}': PROJECT_CARD_QUERYResult;
-    '\n  *[_type == "project" \n    && (!defined($searchQuery) || title match $searchQuery + "*" || location match $searchQuery + "*" || developer match $searchQuery + "*" || description match $searchQuery + "*") \n    && (!defined($category) || category->slug.current == $category)   ]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    location,\n    developer,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    tags,\n    _updatedAt,\n    _createdAt\n  }\n': FILTERED_PROJECTS_QUERYResult;
-    '\n  *[_type == "project" && slug.current == $slug][0] {\n    _id,\n    title,\n    "slug": slug.current,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    location,\n    developer,\n    status,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n\n    stats,\n    shortDescription,\n    overview,\n    propertyFeatures,\n    gallery,\n    descriptionSections,\n    seo,\n    _updatedAt,\n    _createdAt,\n  }\n': PROJECT_BY_SLUG_QUERYResult;
+    '*[_type == "project"] | order(_createdAt desc)[0..8]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    location,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    "tags": overview.tags,\n    "bedrooms": stats.bedrooms,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current\n    },\n    "payments": stats.paymentPlan\n\n}': PROJECT_CARD_QUERYResult;
+    '*[_type == "project"] | order(_createdAt desc)  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    location,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    "tags": overview.tags,\n    "bedrooms": stats.bedrooms,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current\n    },\n    "payments": stats.paymentPlan\n\n}': PORTFOLIOS_QUERYResult;
+    '\n  *[_type == "project" \n    && (!defined($searchQuery) || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || description match $searchQuery + "*") \n    && (!defined($category) || category->slug.current == $category)   ]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    location,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current\n    },\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    tags,\n    _updatedAt,\n    _createdAt\n  }\n': FILTERED_PROJECTS_QUERYResult;
+    '\n  count(*[_type == "project"])\n': PROJECTS_COUNT_QUERYResult;
+    '*[_type == "project"] | order(_createdAt desc)[$start..$end]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    location,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    "tags": overview.tags,\n    "bedrooms": stats.bedrooms,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current\n    },\n    "payments": stats.paymentPlan\n\n}': PAGINATED_PROJECTS_QUERYResult;
+    '\n  *[_type == "project" && slug.current == $slug][0] {\n    _id,\n    title,\n    "slug": slug.current,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    location,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current,\n      description,\n      website,\n      contactInfo\n    },\n    status,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n\n    stats,\n    shortDescription,\n    overview,\n    propertyFeatures,\n    gallery,\n    descriptionSections,\n    seo,\n    _updatedAt,\n    _createdAt,\n  }\n': PROJECT_BY_SLUG_QUERYResult;
     '*[_type == "expertise"] | order(orderRank) {\n    _id,\n    title,\n    image,\n    description,\n    "slug": slug.current,\n}': EXPERTISE_QUERYResult;
   }
 }

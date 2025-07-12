@@ -28,7 +28,11 @@ export const PROJECT_CARD_QUERY =
     "price": stats.price,
     "tags": overview.tags,
     "bedrooms": stats.bedrooms,
-    developer,
+    "developer": developer->{
+      name,
+      logo,
+      "slug": slug.current
+    },
     "payments": stats.paymentPlan
 
 }`);
@@ -61,14 +65,18 @@ export const PORTFOLIOS_QUERY =
     "price": stats.price,
     "tags": overview.tags,
     "bedrooms": stats.bedrooms,
-    developer,
+    "developer": developer->{
+      name,
+      logo,
+      "slug": slug.current
+    },
     "payments": stats.paymentPlan
 
 }`);
 
 export const FILTERED_PROJECTS_QUERY = defineQuery(`
   *[_type == "project" 
-    && (!defined($searchQuery) || title match $searchQuery + "*" || location match $searchQuery + "*" || developer match $searchQuery + "*" || description match $searchQuery + "*") 
+    && (!defined($searchQuery) || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || description match $searchQuery + "*") 
     && (!defined($category) || category->slug.current == $category)   ]  {
     _id,
     title,
@@ -88,7 +96,11 @@ export const FILTERED_PROJECTS_QUERY = defineQuery(`
     },
     "slug": slug.current,
     location,
-    developer,
+    "developer": developer->{
+      name,
+      logo,
+      "slug": slug.current
+    },
     isFeatured,
     "category": category->{
       title,
@@ -133,7 +145,11 @@ export const PAGINATED_PROJECTS_QUERY =
     "price": stats.price,
     "tags": overview.tags,
     "bedrooms": stats.bedrooms,
-    developer,
+    "developer": developer->{
+      name,
+      logo,
+      "slug": slug.current
+    },
     "payments": stats.paymentPlan
 
 }`);
@@ -158,7 +174,14 @@ export const PROJECT_BY_SLUG_QUERY = defineQuery(`
       alt
     },
     location,
-    developer,
+    "developer": developer->{
+      name,
+      logo,
+      "slug": slug.current,
+      description,
+      website,
+      contactInfo
+    },
     status,
     "category": category->{
       title,

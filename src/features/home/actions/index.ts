@@ -1,11 +1,11 @@
 import { sanityFetch } from "@/lib/sanity/lib/live";
-import { EXPERTISE_QUERY } from "@/lib/sanity/queries/site-queries";
+import { CATEGORIES_QUERY } from "@/lib/sanity/queries/categories-queries";
 
-import { EXPERTISE_QUERYResult } from "../../../../sanity.types";
+import { CATEGORIES_QUERYResult } from "../../../../sanity.types";
 
-export const getExpertise = async (): Promise<EXPERTISE_QUERYResult> => {
+export const getCategories = async (): Promise<CATEGORIES_QUERYResult> => {
   const { data } = await sanityFetch({
-    query: EXPERTISE_QUERY,
+    query: CATEGORIES_QUERY,
     tags: ["sanity-content", "expertise"],
   });
   return data;

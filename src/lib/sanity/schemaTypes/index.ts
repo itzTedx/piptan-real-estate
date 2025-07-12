@@ -2,6 +2,7 @@ import { type SchemaTypeDefinition } from "sanity";
 
 import { blockContentType } from "./blocks/blockContentType";
 import { categoryType } from "./categoryType";
+import { developerType } from "./developerType";
 import { expertiseType } from "./expertiseType";
 import { insightCategoryType, insightsType } from "./insightsType";
 import { projectType } from "./projects";
@@ -15,6 +16,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     blockContentType,
     categoryType,
+    developerType,
     projectType,
     authorType,
     statType,

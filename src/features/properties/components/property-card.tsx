@@ -18,14 +18,14 @@ interface Props {
 
 export const PropertyCard = ({ className, layout = "grid", data }: Props) => {
   const price = data.price ? parseFloat(data.price.replace(/[^0-9.]/g, "")) : 0;
-
+  console.log("data from card: ", data);
   return (
     <div className={cn("group", layout === "list" && "flex gap-12", className)}>
       <Link href={`/portfolio/${data.slug || ""}`}>
         <div
           className={cn(
             "outline-foreground/20 group-hover:outline-accent-foreground/50 relative flex flex-col justify-between overflow-hidden rounded-md p-6 outline",
-            layout === "grid" ? "aspect-4/5" : "aspect-video flex-shrink-0"
+            layout === "grid" ? "aspect-5/4" : "aspect-video flex-shrink-0"
           )}
         >
           <div className="relative z-10 flex items-start justify-between gap-3">
@@ -36,9 +36,21 @@ export const PropertyCard = ({ className, layout = "grid", data }: Props) => {
                 </li>
               ))}
             </ul>
-            <div className="bg-foreground text-background border-muted-foreground/10 relative grid aspect-4/3 w-20 shrink-0 place-content-center rounded border">
-              <p>{data.developer}</p>
-            </div>
+
+            {data.developer && (
+              <div className="bg-foreground text-background border-muted-foreground/10 relative grid aspect-4/3 w-20 shrink-0 place-content-center rounded border p-2">
+                {data.developer.logo ? (
+                  <Image
+                    src={urlFor(data.developer.logo).url()}
+                    alt={data.developer.logo.alt ?? data.developer.name ?? ""}
+                    height={60}
+                    width={70}
+                  />
+                ) : (
+                  data.developer.name
+                )}
+              </div>
+            )}
           </div>
           {data.mainImage && (
             <Image

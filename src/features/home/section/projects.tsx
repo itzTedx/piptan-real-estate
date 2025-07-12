@@ -29,7 +29,7 @@ export const ProjectsSection = async () => {
           }
         />
       </div>
-      <ul className="grid grid-cols-1 max-sm:divide-y sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+      <ul className="grid grid-cols-1 max-sm:divide-y sm:grid-cols-2 sm:gap-6">
         {projects.map((project) => (
           <PropertyCard
             key={project._id}
