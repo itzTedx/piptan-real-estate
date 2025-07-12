@@ -48,7 +48,7 @@ export const WhyUsSection = () => {
       ease: [0.42, 0, 0.58, 1],
     });
     return () => controls.stop();
-  }, [selectedTab]);
+  }, [selectedTab, tabY]);
 
   return (
     <section

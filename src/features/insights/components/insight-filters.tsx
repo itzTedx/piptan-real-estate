@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Loader2Icon, SearchIcon, XIcon } from "lucide-react";
 import { useQueryState } from "nuqs";
@@ -32,21 +32,21 @@ export function InsightFilters({
   const [localSearchValue, setLocalSearchValue] = useState(searchQuery || "");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   // Debounced search function
   const debouncedSearch = useCallback(
-    (() => {
-      let timeoutId: NodeJS.Timeout;
-      return (value: string) => {
-        clearTimeout(timeoutId);
-        setIsSearching(true);
-        timeoutId = setTimeout(async () => {
-          await setSearchQuery(value || null);
-          onSearch(value);
-          setIsSearching(false);
-        }, 300); // 300ms debounce
-      };
-    })(),
+    (value: string) => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      setIsSearching(true);
+      timeoutRef.current = setTimeout(async () => {
+        await setSearchQuery(value || null);
+        onSearch(value);
+        setIsSearching(false);
+      }, 300); // 300ms debounce
+    },
     [setSearchQuery, onSearch]
   );
 
