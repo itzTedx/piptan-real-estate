@@ -1540,6 +1540,13 @@
               },
               "optional": true
             },
+            "paymentPlan": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
             "otherStats": {
               "type": "objectAttribute",
               "value": {

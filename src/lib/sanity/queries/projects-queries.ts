@@ -1,6 +1,7 @@
 import { defineQuery } from "next-sanity";
 
-export const PROJECT_CARD_QUERY = defineQuery(`*[_type == "project"][0...6]  {
+export const PROJECT_CARD_QUERY =
+  defineQuery(`*[_type == "project"] | order(_createdAt desc)[0..8]  {
     _id,
     title,
     mainImage{
@@ -25,7 +26,11 @@ export const PROJECT_CARD_QUERY = defineQuery(`*[_type == "project"][0...6]  {
       "slug": slug.current
     },
     "price": stats.price,
-    "tags": overview.tags
+    "tags": overview.tags,
+    "bedrooms": stats.bedrooms,
+    developer,
+    "payments": stats.paymentPlan
+
 }`);
 
 export const FILTERED_PROJECTS_QUERY = defineQuery(`

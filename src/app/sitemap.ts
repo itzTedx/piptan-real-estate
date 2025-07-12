@@ -10,10 +10,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: "https://www.piptan.ae/about",
       lastModified: new Date().toISOString(),
     },
-    {
-      url: "https://www.piptan.ae/services",
-      lastModified: new Date().toISOString(),
-    },
+    // {
+    //   url: "https://www.piptan.ae/services",
+    //   lastModified: new Date().toISOString(),
+    // },
     {
       url: "https://www.piptan.ae/portfolio",
       lastModified: new Date().toISOString(),

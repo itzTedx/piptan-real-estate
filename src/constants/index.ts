@@ -31,7 +31,7 @@ export const FOOTER_LINKS = [
     links: [...NAV_LINKS],
   },
   {
-    heading: "Projects",
+    heading: "Portfolios",
     links: [
       { title: "Skyline Residences", href: "/" },
       { title: "Green Haven Villas", href: "/" },
@@ -41,15 +41,15 @@ export const FOOTER_LINKS = [
       { title: "Vista Heights", href: "/" },
     ],
   },
-  {
-    heading: "Properties",
-    links: [
-      { title: "Skyline Residences", href: "/" },
-      { title: "Green Haven Villas", href: "/" },
-      { title: "Serenity Resort", href: "/" },
-      { title: "Harmony Estates", href: "/" },
-    ],
-  },
+  // {
+  //   heading: "Properties",
+  //   links: [
+  //     { title: "Skyline Residences", href: "/" },
+  //     { title: "Green Haven Villas", href: "/" },
+  //     { title: "Serenity Resort", href: "/" },
+  //     { title: "Harmony Estates", href: "/" },
+  //   ],
+  // },
   {
     heading: "Contact",
     links: [
@@ -58,6 +58,12 @@ export const FOOTER_LINKS = [
       { title: "Email: hello@piptan.com", href: "/" },
     ],
   },
+];
+
+export const CONTACT = [
+  { title: "Business Bay, Dubai, UAE", href: "/" },
+  { title: "Phone: +971 123 456 7890", href: "/" },
+  { title: "Email: hello@piptan.com", href: "/" },
 ];
 
 export const FEATURES = [

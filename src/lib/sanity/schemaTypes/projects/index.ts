@@ -289,6 +289,13 @@ export const projectType = defineType({
           description:
             "When is the property expected to be completed? Example: 'Q1 2029'.",
         }),
+        defineField({
+          name: "paymentPlan",
+          title: "Payment Plan",
+          type: "string",
+          description:
+            "Payment structure and schedule for the property. Example: '10/40/50'.",
+        }),
 
         defineField({
           name: "otherStats",

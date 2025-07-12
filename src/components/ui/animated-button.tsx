@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { type ComponentProps, forwardRef } from "react";
+import React, { type ComponentProps, ReactNode, forwardRef } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -9,7 +9,7 @@ type LinkProps = ComponentProps<typeof Link>;
 interface BaseProps {
   variant?: "default" | "outline" | "secondary" | "primary";
   size?: "default" | "sm" | "lg";
-  text: string;
+  text: ReactNode;
   className?: string;
 }
 
@@ -64,16 +64,36 @@ const textAnimationStyles =
 const backgroundAnimationStyles =
   "absolute inset-0 translate-y-full rounded-[50%_50%_0_0] transition-all duration-500 ease-[cubic-bezier(.4,0,0,1)] group-hover:translate-y-0 group-hover:rounded-none group-focus-visible:rounded-none group-focus-visible:translate-y-0";
 
+// Helper function to extract text content from ReactNode
+const extractTextFromNode = (node: ReactNode): string => {
+  if (typeof node === "string") return node;
+  if (typeof node === "number") return String(node);
+  if (typeof node === "boolean") return "";
+
+  if (node && typeof node === "object" && "props" in node) {
+    const element = node as React.ReactElement;
+    const { children } = element.props as { children?: ReactNode };
+    if (children) {
+      if (Array.isArray(children)) {
+        return children.map(extractTextFromNode).join("");
+      }
+      return extractTextFromNode(children);
+    }
+  }
+
+  return "";
+};
+
 const ButtonContent = ({
   text,
   variant,
 }: {
-  text: string;
+  text: ReactNode;
   variant: AnimatedButtonProps["variant"];
 }) => (
   <>
     <span
-      data-text={text}
+      data-text={extractTextFromNode(text)}
       className={cn(
         "relative block overflow-hidden",
         textAnimationStyles,

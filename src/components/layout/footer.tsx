@@ -7,12 +7,14 @@ import {
   IconBrandTelegram,
 } from "@/assets/icons";
 import { Logo, Piptan, WordMark } from "@/assets/logo";
-import { FOOTER_LINKS } from "@/constants";
+import { CONTACT, NAV_LINKS } from "@/constants";
+import { getProjectsCardData } from "@/features/projects/actions/projects-actions";
 
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 
-export const Footer = () => {
+export const Footer = async () => {
+  const portfolios = await getProjectsCardData();
   return (
     <footer
       className="overflow-hidden bg-black"
@@ -99,28 +101,60 @@ export const Footer = () => {
             className="col-span-1 gap-8 max-sm:grid max-sm:grid-cols-2 md:col-span-2 md:flex md:flex-row md:gap-14 lg:col-span-2 lg:place-content-end"
             aria-label="Footer navigation"
           >
-            {FOOTER_LINKS.map((nav) => (
-              <ul key={nav.heading} role="list">
-                <li>
-                  <h3 className="text-muted-foreground text-base font-medium md:text-lg">
-                    {nav.heading}
-                  </h3>
-                  <ul className="mt-4 space-y-2 md:space-y-3" role="list">
-                    {nav.links.map((link) => (
-                      <li key={link.title}>
-                        <Link
-                          href={link.href}
-                          className="text-base font-medium md:text-lg"
-                          aria-label={`Navigate to ${link.title}`}
-                        >
-                          {link.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
+            <div>
+              <h3 className="text-muted-foreground text-base font-medium md:text-lg">
+                Quick Links
+              </h3>
+              <ul className="mt-4 space-y-2 md:space-y-3" role="list">
+                {NAV_LINKS.map((nav) => (
+                  <li key={nav.href}>
+                    <Link
+                      href={nav.href}
+                      className="text-base font-medium md:text-lg"
+                      aria-label={`Navigate to ${nav.title}`}
+                    >
+                      {nav.title}
+                    </Link>
+                  </li>
+                ))}
               </ul>
-            ))}
+            </div>
+            <div>
+              <h3 className="text-muted-foreground text-base font-medium md:text-lg">
+                Portfolios
+              </h3>
+              <ul className="mt-4 space-y-2 md:space-y-3" role="list">
+                {portfolios.map((data) => (
+                  <li key={data._id}>
+                    <Link
+                      href={`/portfolio/${data.slug || ""}`}
+                      className="text-base font-medium md:text-lg"
+                      aria-label={`Navigate to ${data.title}`}
+                    >
+                      {data.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-muted-foreground text-base font-medium md:text-lg">
+                Contact
+              </h3>
+              <ul className="mt-4 space-y-2 md:space-y-3" role="list">
+                {CONTACT.map((nav) => (
+                  <li key={nav.title}>
+                    <Link
+                      href={nav.href}
+                      className="text-base font-medium md:text-lg"
+                      aria-label={`Navigate to ${nav.title}`}
+                    >
+                      {nav.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </nav>
         </section>
         <Separator />

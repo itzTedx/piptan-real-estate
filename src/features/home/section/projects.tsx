@@ -9,13 +9,13 @@ export const ProjectsSection = async () => {
   return (
     <section
       className="container py-8 sm:py-12 md:py-16 lg:py-24"
-      aria-label="Projects section"
+      aria-label="Portfolios section"
     >
       <div className="mb-6 sm:mb-8 md:mb-12">
         <SectionHeader
-          badge="Projects"
+          badge="Portfolios"
           icon={<IconHouse className="size-3 sm:size-4" />}
-          title={` More Than Properties,\nWe Build Possibilities.`}
+          title={` More Than Portfolios,\nWe Build Possibilities.`}
           hasHighlight
           highlightText="We Build Possibilities."
           subtitle="Discover signature developments in Dubai's most sought-after
@@ -23,7 +23,7 @@ export const ProjectsSection = async () => {
           action={
             <AnimatedButton
               href="/projects"
-              text="View all projects"
+              text="View all Portfolios"
               variant="outline"
             />
           }
@@ -34,7 +34,7 @@ export const ProjectsSection = async () => {
           <PropertyCard
             key={project._id}
             data={project}
-            className="max-sm:py-6 first:sm:col-span-2"
+            className="max-sm:py-6"
           />
         ))}
       </ul>
