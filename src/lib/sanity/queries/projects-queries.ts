@@ -1,7 +1,7 @@
 import { defineQuery } from "next-sanity";
 
 export const PROJECT_CARD_QUERY =
-  defineQuery(`*[_type == "project"] | order(_createdAt desc)[0..8]  {
+  defineQuery(`*[_type == "project"] | order(_createdAt desc)[0..5]  {
     _id,
     title,
     mainImage{

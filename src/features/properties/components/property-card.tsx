@@ -86,7 +86,7 @@ export const PropertyCard = ({ className, layout = "grid", data }: Props) => {
               <MapPin className="text-muted-foreground size-4" />
               {data.location}
             </p>
-            <div className="mb-2 flex items-center justify-between">
+            <div className="mb-4 flex items-center justify-between">
               <div className="flex items-center gap-1.5">
                 <p className="text-foreground">
                   Price:{" "}

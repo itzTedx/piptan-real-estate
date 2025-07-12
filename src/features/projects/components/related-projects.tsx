@@ -38,10 +38,7 @@ export const RelatedProjects = ({ projects }: RelatedProjectsProps) => {
       <Carousel className="mt-4 w-full md:mt-6 lg:mt-9">
         <CarouselContent className="-ml-1">
           {projects.map((data, index) => (
-            <CarouselItem
-              key={index}
-              className="pl-1 md:basis-1/2 lg:basis-1/3"
-            >
+            <CarouselItem key={index} className="pl-1 md:basis-1/2">
               <div className="h-full p-1">
                 <PropertyCard data={data} />
               </div>

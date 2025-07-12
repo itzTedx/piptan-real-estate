@@ -1,11 +1,11 @@
 import { IconHouse } from "@/assets/icons";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { SectionHeader } from "@/components/ui/section-header";
-import { getProjects } from "@/features/projects/actions/projects-actions";
+import { getProjectsCardData } from "@/features/projects/actions/projects-actions";
 import { PropertyCard } from "@/features/properties/components/property-card";
 
 export const ProjectsSection = async () => {
-  const projects = await getProjects();
+  const projects = await getProjectsCardData();
   return (
     <section
       className="container py-8 sm:py-12 md:py-16 lg:py-24"
