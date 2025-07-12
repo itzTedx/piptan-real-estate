@@ -90,7 +90,7 @@ export const PortfolioFilters = ({
         marginRight: margin,
       }}
       className={cn(
-        "border-foreground/40 flex h-14 items-center rounded-md border",
+        "border-foreground/40 bg-background/60 sticky top-[10vh] z-50 my-6 flex h-14 items-center rounded-md border backdrop-blur-lg",
         className
       )}
     >

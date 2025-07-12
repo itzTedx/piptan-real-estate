@@ -48,9 +48,6 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
   const totalPages = Math.ceil(total / pageSize);
   const pagination = generatePagination(page, totalPages);
 
-  const hasActiveFilters = searchQuery || (category && category !== "all");
-  const resultsCount = projects.length;
-
   return (
     <main className="pt-4 sm:pt-9 md:pt-12">
       <section className="relative container mb-20">
@@ -61,29 +58,8 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
         <Separator />
 
         {/* Filters */}
-        <div className="my-8">
-          <PortfolioFilters categories={categories} />
-        </div>
 
-        {/* Search Results Counter */}
-        {hasActiveFilters && (
-          <div className="mb-6 text-center">
-            <p className="text-muted-foreground text-sm">
-              {resultsCount === 0
-                ? "No portfolios found"
-                : resultsCount === 1
-                  ? "1 portfolio found"
-                  : `${resultsCount} portfolios found`}
-              {searchQuery && <span> for &quot;{searchQuery}&quot;</span>}
-              {category && category !== "all" && (
-                <span>
-                  {" "}
-                  in {categories.find((c) => c.slug === category)?.title}
-                </span>
-              )}
-            </p>
-          </div>
-        )}
+        <PortfolioFilters categories={categories} />
 
         <Suspense fallback={<PropertiesListSkeleton />}>
           {projects.length === 0 ? (
