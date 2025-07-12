@@ -10,12 +10,14 @@ import {
 } from "@/components/ui/carousel";
 import { SectionHeader } from "@/components/ui/section-header";
 import { INSIGHTS } from "@/constants/mock-data";
+import { getInsights } from "@/features/insights/actions/query";
 import { InsightCard } from "@/features/insights/components/insights-card";
 
 import { ProgressIndicator } from "../components/progress-indicator";
 
-export const InsightsSection = () => {
+export const InsightsSection = async () => {
   const totalItems = INSIGHTS.length;
+  const insights = await getInsights();
 
   return (
     <section className="container py-20">
@@ -37,7 +39,7 @@ export const InsightsSection = () => {
 
       <Carousel className="mt-4 w-full md:mt-6 lg:mt-9">
         <CarouselContent className="-ml-1">
-          {INSIGHTS.map((data, index) => (
+          {insights.map((data, index) => (
             <CarouselItem
               key={index}
               className="pl-1 md:basis-1/2 lg:basis-1/3"
