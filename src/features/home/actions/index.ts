@@ -10,7 +10,7 @@ import {
 export const getCategories = async (): Promise<CATEGORIES_QUERYResult> => {
   const { data } = await sanityFetch({
     query: CATEGORIES_QUERY,
-    tags: ["sanity-content", "expertise"],
+    tags: ["sanity-content", "categories"],
   });
   return data;
 };
