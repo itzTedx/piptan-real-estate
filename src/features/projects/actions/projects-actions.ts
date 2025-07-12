@@ -2,6 +2,8 @@
 
 import { sanityFetch } from "@/lib/sanity/lib/live";
 import {
+  FILTERED_PAGINATED_PROJECTS_QUERY,
+  FILTERED_PROJECTS_COUNT_QUERY,
   FILTERED_PROJECTS_QUERY,
   PAGINATED_PROJECTS_QUERY,
   PORTFOLIOS_QUERY,
@@ -28,11 +30,43 @@ export const getProjectsCardData =
 
 export const getPaginatedProjects = async (
   page: number = 1,
-  pageSize: number = 9
+  pageSize: number = 9,
+  searchQuery?: string,
+  category?: string
 ): Promise<{ projects: PROJECT_CARD_QUERYResult; total: number }> => {
   const start = (page - 1) * pageSize;
   const end = start + pageSize;
 
+  // If we have filters, use the filtered queries
+  if (searchQuery || (category && category !== "all")) {
+    const [projectsResult, totalResult] = await Promise.all([
+      sanityFetch({
+        query: FILTERED_PAGINATED_PROJECTS_QUERY,
+        params: {
+          start,
+          end,
+          searchQuery: searchQuery || "",
+          category: category === "all" ? "" : category || "",
+        },
+        tags: ["sanity-content", "projects"],
+      }),
+      sanityFetch({
+        query: FILTERED_PROJECTS_COUNT_QUERY,
+        params: {
+          searchQuery: searchQuery || "",
+          category: category === "all" ? "" : category || "",
+        },
+        tags: ["sanity-content", "projects"],
+      }),
+    ]);
+
+    return {
+      projects: projectsResult.data,
+      total: totalResult.data,
+    };
+  }
+
+  // Otherwise use the regular paginated query
   const [projectsResult, totalResult] = await Promise.all([
     sanityFetch({
       query: PAGINATED_PROJECTS_QUERY,

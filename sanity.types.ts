@@ -687,7 +687,7 @@ export type INSIGHTS_QUERYResult = Array<{
   createdAt: string;
 }>;
 // Variable: FILTERED_INSIGHTS_QUERY
-// Query: *[_type == "insights"     && (!defined($searchQuery) || title match $searchQuery + "*" || excerpt match $searchQuery + "*" || categories->title match $searchQuery + "*")     && (!defined($category) || categories->slug.current == $category)   ] | order(_createdAt desc) {    _id,    title,    image{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    "slug": slug.current,    excerpt,    categories -> {      _id,      title,      "slug": slug.current    },    author,    body,    seo,    'createdAt': _createdAt  }
+// Query: *[_type == "insights"     && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || excerpt match $searchQuery + "*" || categories->title match $searchQuery + "*")     && (!defined($category) || $category == "" || categories->slug.current == $category)   ] | order(_createdAt desc) {    _id,    title,    image{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    "slug": slug.current,    excerpt,    categories -> {      _id,      title,      "slug": slug.current    },    author,    body,    seo,    'createdAt': _createdAt  }
 export type FILTERED_INSIGHTS_QUERYResult = Array<{
   _id: string;
   title: string | null;
@@ -1079,7 +1079,7 @@ export type PORTFOLIOS_QUERYResult = Array<{
   payments: string | null;
 }>;
 // Variable: FILTERED_PROJECTS_QUERY
-// Query: *[_type == "project"     && (!defined($searchQuery) || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || description match $searchQuery + "*")     && (!defined($category) || category->slug.current == $category)   ]  {    _id,    title,    mainImage{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    "slug": slug.current,    location,    "developer": developer->{      name,      logo,      "slug": slug.current    },    isFeatured,    "category": category->{      title,      "slug": slug.current    },    "price": stats.price,    tags,    _updatedAt,    _createdAt  }
+// Query: *[_type == "project"     && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || description match $searchQuery + "*")     && (!defined($category) || $category == "" || category->slug.current == $category)   ]  {    _id,    title,    mainImage{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    "slug": slug.current,    location,    "developer": developer->{      name,      logo,      "slug": slug.current    },    isFeatured,    "category": category->{      title,      "slug": slug.current    },    "price": stats.price,    tags,    _updatedAt,    _createdAt  }
 export type FILTERED_PROJECTS_QUERYResult = Array<{
   _id: string;
   title: string | null;
@@ -1126,6 +1126,57 @@ export type FILTERED_PROJECTS_QUERYResult = Array<{
   _updatedAt: string;
   _createdAt: string;
 }>;
+// Variable: FILTERED_PAGINATED_PROJECTS_QUERY
+// Query: *[_type == "project"     && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || shortDescription match $searchQuery + "*")     && (!defined($category) || $category == "" || category->slug.current == $category)   ] | order(_createdAt desc)[$start..$end]  {    _id,    title,    mainImage{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    "slug": slug.current,    location,    isFeatured,    "category": category->{      title,      "slug": slug.current    },    "price": stats.price,    "tags": overview.tags,    "bedrooms": stats.bedrooms,    "developer": developer->{      name,      logo,      "slug": slug.current    },    "payments": stats.paymentPlan  }
+export type FILTERED_PAGINATED_PROJECTS_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  mainImage: {
+    asset: {
+      _id: string;
+      url: string | null;
+      metadata: {
+        lqip: string | null;
+        dimensions: {
+          width: number | null;
+          height: number | null;
+        } | null;
+      } | null;
+    } | null;
+    alt: string | null;
+  } | null;
+  slug: string | null;
+  location: string | null;
+  isFeatured: boolean | null;
+  category: {
+    title: string | null;
+    slug: string | null;
+  } | null;
+  price: string | null;
+  tags: Array<string> | null;
+  bedrooms: string | null;
+  developer: {
+    name: string | null;
+    logo: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+    } | null;
+    slug: string | null;
+  } | null;
+  payments: string | null;
+}>;
+// Variable: FILTERED_PROJECTS_COUNT_QUERY
+// Query: count(*[_type == "project"     && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || shortDescription match $searchQuery + "*")     && (!defined($category) || $category == "" || category->slug.current == $category)])
+export type FILTERED_PROJECTS_COUNT_QUERYResult = number;
 // Variable: PROJECTS_COUNT_QUERY
 // Query: count(*[_type == "project"])
 export type PROJECTS_COUNT_QUERYResult = number;
@@ -1321,14 +1372,16 @@ declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "category"] | order(orderRank) {\n    _id,\n    title,\n    image,\n    "slug": slug.current,\n    description\n}': CATEGORIES_QUERYResult;
     '*[_type == "insights"]  {\n    _id,\n    title,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    excerpt,\n    categories -> ,\n    author,\n    body,\n    seo,\n    \'createdAt\': _createdAt\n}': INSIGHTS_QUERYResult;
-    '\n  *[_type == "insights" \n    && (!defined($searchQuery) || title match $searchQuery + "*" || excerpt match $searchQuery + "*" || categories->title match $searchQuery + "*") \n    && (!defined($category) || categories->slug.current == $category)   ] | order(_createdAt desc) {\n    _id,\n    title,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    excerpt,\n    categories -> {\n      _id,\n      title,\n      "slug": slug.current\n    },\n    author,\n    body,\n    seo,\n    \'createdAt\': _createdAt\n  }\n': FILTERED_INSIGHTS_QUERYResult;
+    '\n  *[_type == "insights" \n    && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || excerpt match $searchQuery + "*" || categories->title match $searchQuery + "*") \n    && (!defined($category) || $category == "" || categories->slug.current == $category)   ] | order(_createdAt desc) {\n    _id,\n    title,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    excerpt,\n    categories -> {\n      _id,\n      title,\n      "slug": slug.current\n    },\n    author,\n    body,\n    seo,\n    \'createdAt\': _createdAt\n  }\n': FILTERED_INSIGHTS_QUERYResult;
     '*[_type == "insights"] | order(_createdAt desc)[$start..$end]  {\n    _id,\n    title,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    excerpt,\n    categories -> {\n      _id,\n      title,\n      "slug": slug.current\n    },\n    author,\n    body,\n    seo,\n    \'createdAt\': _createdAt\n}': PAGINATED_INSIGHTS_QUERYResult;
     '\n  count(*[_type == "insights"])\n': INSIGHTS_COUNT_QUERYResult;
     '\n  *[_type == "insightCategory"] | order(title asc) {\n    _id,\n    title,\n    "slug": slug.current\n  }\n': INSIGHT_CATEGORIES_QUERYResult;
     '*[_type == "insights" && slug.current == $slug][0] {\n    _id,\n    title,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    excerpt,\n    categories -> {\n      _id,\n      title,\n      "slug": slug.current\n    },\n    author -> {\n      _id,\n      name,\n      image,\n      bio\n    },\n    body,\n    seo,\n    \'createdAt\': _createdAt,\n    \'updatedAt\': _updatedAt\n  }': INSIGHT_BY_SLUG_QUERYResult;
     '*[_type == "project"] | order(_createdAt desc)[0..5]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    location,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    "tags": overview.tags,\n    "bedrooms": stats.bedrooms,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current\n    },\n    "payments": stats.paymentPlan\n\n}': PROJECT_CARD_QUERYResult;
     '*[_type == "project"] | order(_createdAt desc)  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    location,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    "tags": overview.tags,\n    "bedrooms": stats.bedrooms,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current\n    },\n    "payments": stats.paymentPlan\n\n}': PORTFOLIOS_QUERYResult;
-    '\n  *[_type == "project" \n    && (!defined($searchQuery) || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || description match $searchQuery + "*") \n    && (!defined($category) || category->slug.current == $category)   ]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    location,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current\n    },\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    tags,\n    _updatedAt,\n    _createdAt\n  }\n': FILTERED_PROJECTS_QUERYResult;
+    '\n  *[_type == "project" \n    && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || description match $searchQuery + "*") \n    && (!defined($category) || $category == "" || category->slug.current == $category)   ]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    location,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current\n    },\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    tags,\n    _updatedAt,\n    _createdAt\n  }\n': FILTERED_PROJECTS_QUERYResult;
+    '\n  *[_type == "project" \n    && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || shortDescription match $searchQuery + "*") \n    && (!defined($category) || $category == "" || category->slug.current == $category)   ] | order(_createdAt desc)[$start..$end]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    location,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    "tags": overview.tags,\n    "bedrooms": stats.bedrooms,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current\n    },\n    "payments": stats.paymentPlan\n  }\n': FILTERED_PAGINATED_PROJECTS_QUERYResult;
+    '\n  count(*[_type == "project" \n    && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || shortDescription match $searchQuery + "*") \n    && (!defined($category) || $category == "" || category->slug.current == $category)])\n': FILTERED_PROJECTS_COUNT_QUERYResult;
     '\n  count(*[_type == "project"])\n': PROJECTS_COUNT_QUERYResult;
     '*[_type == "project"] | order(_createdAt desc)[$start..$end]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    location,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    "tags": overview.tags,\n    "bedrooms": stats.bedrooms,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current\n    },\n    "payments": stats.paymentPlan\n\n}': PAGINATED_PROJECTS_QUERYResult;
     '\n  *[_type == "project" && slug.current == $slug][0] {\n    _id,\n    title,\n    "slug": slug.current,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    location,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current,\n      description,\n      website,\n      contactInfo\n    },\n    status,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n\n    stats,\n    shortDescription,\n    overview,\n    propertyFeatures,\n    gallery,\n    descriptionSections,\n    seo,\n    _updatedAt,\n    _createdAt,\n  }\n': PROJECT_BY_SLUG_QUERYResult;

@@ -56,7 +56,7 @@ export const ExpertiseSection = async () => {
                       </div>
                       <AnimatedButton
                         text={`Explore more`}
-                        href={`/projects?tag=${slug}`}
+                        href={`/portfolio?category=${slug}`}
                         variant="secondary"
                       />
                     </div>

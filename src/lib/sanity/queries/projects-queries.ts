@@ -113,6 +113,51 @@ export const FILTERED_PROJECTS_QUERY = defineQuery(`
   }
 `);
 
+export const FILTERED_PAGINATED_PROJECTS_QUERY = defineQuery(`
+  *[_type == "project" 
+    && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || shortDescription match $searchQuery + "*") 
+    && (!defined($category) || $category == "" || category->slug.current == $category)   ] | order(_createdAt desc)[$start..$end]  {
+    _id,
+    title,
+    mainImage{
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions {
+            width,
+            height
+          }
+        }
+      },
+      alt
+    },
+    "slug": slug.current,
+    location,
+    isFeatured,
+    "category": category->{
+      title,
+      "slug": slug.current
+    },
+    "price": stats.price,
+    "tags": overview.tags,
+    "bedrooms": stats.bedrooms,
+    "developer": developer->{
+      name,
+      logo,
+      "slug": slug.current
+    },
+    "payments": stats.paymentPlan
+  }
+`);
+
+export const FILTERED_PROJECTS_COUNT_QUERY = defineQuery(`
+  count(*[_type == "project" 
+    && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || shortDescription match $searchQuery + "*") 
+    && (!defined($category) || $category == "" || category->slug.current == $category)])
+`);
+
 export const PROJECTS_COUNT_QUERY = defineQuery(`
   count(*[_type == "project"])
 `);

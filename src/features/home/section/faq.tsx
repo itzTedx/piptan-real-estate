@@ -13,7 +13,6 @@ import { getFaqs } from "../actions";
 
 export const FaqSection = async () => {
   const faqs = await getFaqs();
-  console.log(faqs);
   return (
     <section className="bg-muted my-10 border-t md:my-20">
       <div className="grid grid-cols-1 gap-6 md:container lg:grid-cols-4 lg:gap-0">

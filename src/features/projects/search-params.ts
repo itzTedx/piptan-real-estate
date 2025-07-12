@@ -33,7 +33,7 @@ export const searchParams = {
 
   // Pagination
   page: parseAsFloat.withDefault(1),
-  pageSize: parseAsFloat.withDefault(10),
+  pageSize: parseAsFloat.withDefault(9),
 };
 
 // Create type from the search params
