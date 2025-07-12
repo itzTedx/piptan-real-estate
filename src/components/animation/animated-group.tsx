@@ -127,7 +127,7 @@ function AnimatedGroup({
   return (
     <MotionComponent
       initial="hidden"
-      whileInView="visible"
+      animate="visible"
       variants={containerVariants}
       viewport={{ once: true }}
       className={className}

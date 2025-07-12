@@ -1,20 +1,30 @@
+import { unstable_noStore as noStore } from "next/cache";
 import { Suspense } from "react";
 
 import { IconCollection } from "@/assets/icons";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
-import {
-  getInsightCategories,
-  getInsights,
-} from "@/features/insights/actions/query";
+import { getFilteredInsightsWithParams } from "@/features/insights/actions/query";
 import { InsightsList } from "@/features/insights/components/insights-list";
 import { InsightsListSkeleton } from "@/features/insights/components/insights-list-skeleton";
 
-export default async function InsightsContent() {
-  const [allInsights, categories] = await Promise.all([
-    getInsights(),
-    getInsightCategories(),
-  ]);
+type SearchParams = Promise<{ q?: string; category?: string }>;
+
+// Force dynamic rendering to prevent caching issues
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+export default async function InsightsContent({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
+  noStore();
+
+  const searchParam = await searchParams;
+
+  const { insights, categories } =
+    await getFilteredInsightsWithParams(searchParam);
 
   return (
     <main className="container space-y-12 pt-4 sm:pt-9 md:pt-12">
@@ -30,8 +40,17 @@ export default async function InsightsContent() {
       </section>
       <Separator />
       <section className="mb-20">
-        <Suspense fallback={<InsightsListSkeleton />}>
-          <InsightsList categories={categories} initialInsights={allInsights} />
+        <Suspense
+          fallback={
+            <div className="space-y-8">
+              <InsightsListSkeleton />
+              <div className="text-muted-foreground text-center">
+                <p>Searching insights...</p>
+              </div>
+            </div>
+          }
+        >
+          <InsightsList categories={categories} initialInsights={insights} />
         </Suspense>
       </section>
     </main>

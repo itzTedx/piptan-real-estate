@@ -28,8 +28,8 @@ export const INSIGHTS_QUERY = defineQuery(`*[_type == "insights"]  {
 
 export const FILTERED_INSIGHTS_QUERY = defineQuery(`
   *[_type == "insights" 
-    && (!defined($searchQuery) || title match $searchQuery + "*" || excerpt match $searchQuery + "*" || categories->title match $searchQuery + "*") 
-    && (!defined($category) || categories->slug.current == $category)   ] | order(_createdAt desc) {
+    && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || excerpt match $searchQuery + "*" || categories->title match $searchQuery + "*") 
+    && (!defined($category) || $category == "" || categories->slug.current == $category)   ] | order(_createdAt desc) {
     _id,
     title,
     image{

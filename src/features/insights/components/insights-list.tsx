@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 import { useQueryState } from "nuqs";
 
@@ -16,16 +17,14 @@ import {
 } from "../../../../sanity.types";
 import { EmptyState } from "./empty-state";
 
-type InsightItem =
-  | INSIGHTS_QUERYResult[number]
-  | FILTERED_INSIGHTS_QUERYResult[number];
-
 interface Props {
   categories: INSIGHT_CATEGORIES_QUERYResult;
   initialInsights: INSIGHTS_QUERYResult | FILTERED_INSIGHTS_QUERYResult;
 }
 
 export function InsightsList({ categories, initialInsights }: Props) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [category, setCategory] = useQueryState("category", {
     defaultValue: "all",
   });
@@ -33,56 +32,27 @@ export function InsightsList({ categories, initialInsights }: Props) {
     defaultValue: "",
   });
 
-  const [insights, setInsights] = useState<InsightItem[]>(initialInsights);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  // Client-side filtering function
-  const filterInsights = useCallback(() => {
-    setIsLoading(true);
-
-    try {
-      const filtered = initialInsights.filter((insight) => {
-        const matchesSearch =
-          !searchQuery ||
-          insight.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          insight.excerpt?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          (insight.categories &&
-            "title" in insight.categories &&
-            insight.categories.title
-              ?.toLowerCase()
-              .includes(searchQuery.toLowerCase()));
-
-        const matchesCategory =
-          category === "all" ||
-          (insight.categories &&
-            "slug" in insight.categories &&
-            insight.categories.slug === category);
-
-        return matchesSearch && matchesCategory;
-      });
-
-      setInsights(filtered);
-      setError(null);
-    } catch (error) {
-      console.error("Error filtering insights:", error);
-      setError("Failed to update filters. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
-  }, [initialInsights, searchQuery, category]);
-
+  // Force refresh when search parameters change
   useEffect(() => {
-    filterInsights();
-  }, [filterInsights]);
+    const currentQ = searchParams.get("q");
+    const currentCategory = searchParams.get("category");
+
+    // If URL params don't match our state, refresh the page
+    if (currentQ !== searchQuery || currentCategory !== category) {
+      router.refresh();
+    }
+  }, [searchParams, searchQuery, category, router]);
 
   const handleSearch = () => {
-    // This will be handled by the URL state
+    // This will be handled by the URL state and server-side filtering
   };
 
   const handleTagChange = (tag: string) => {
     setCategory(tag);
   };
+
+  const hasActiveFilters = searchQuery || (category && category !== "all");
+  const resultsCount = initialInsights.length;
 
   return (
     <div className="relative">
@@ -92,27 +62,41 @@ export function InsightsList({ categories, initialInsights }: Props) {
         className={cn(
           "bg-muted/40 sticky top-[9%] z-50 my-8 backdrop-blur-2xl"
         )}
-        initialSearch={searchQuery || ""}
         initialTag={category || "all"}
         categories={categories}
       />
 
-      {error && (
-        <div className="text-destructive my-4 text-center text-sm">{error}</div>
+      {/* Search Results Counter */}
+      {hasActiveFilters && (
+        <div className="mb-6 text-center">
+          <p className="text-muted-foreground text-sm">
+            {resultsCount === 0
+              ? "No insights found"
+              : resultsCount === 1
+                ? "1 insight found"
+                : `${resultsCount} insights found`}
+            {searchQuery && <span> for &quot;{searchQuery}&quot;</span>}
+            {category && category !== "all" && (
+              <span>
+                {" "}
+                in {categories.find((c) => c.slug === category)?.title}
+              </span>
+            )}
+          </p>
+        </div>
       )}
 
-      {insights.length === 0 ? (
+      {initialInsights.length === 0 ? (
         <EmptyState className="my-8" />
       ) : (
         <AnimatedGroup
           preset="blur-slide"
           className={cn(
             "grid gap-6",
-            "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
-            isLoading && "opacity-50"
+            "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
           )}
         >
-          {insights.map((insight) => (
+          {initialInsights.map((insight) => (
             <div className="h-full p-1" key={insight._id}>
               <InsightCard data={insight} />
             </div>

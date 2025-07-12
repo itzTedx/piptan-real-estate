@@ -96,3 +96,37 @@ export const getInsightCategories =
     });
     return data;
   };
+
+export async function getFilteredInsightsWithParams(searchParams: {
+  q?: string;
+  category?: string;
+}): Promise<{
+  insights: FILTERED_INSIGHTS_QUERYResult;
+  categories: INSIGHT_CATEGORIES_QUERYResult;
+}> {
+  try {
+    const [insightsResult, categoriesResult] = await Promise.all([
+      sanityFetch({
+        query: FILTERED_INSIGHTS_QUERY,
+        params: {
+          searchQuery: searchParams.q || "",
+          category:
+            searchParams.category === "all" ? "" : searchParams.category || "",
+        },
+        tags: ["sanity-content", "insight"],
+      }),
+      sanityFetch({
+        query: INSIGHT_CATEGORIES_QUERY,
+        tags: ["sanity-content", "insightCategory"],
+      }),
+    ]);
+
+    return {
+      insights: insightsResult.data,
+      categories: categoriesResult.data,
+    };
+  } catch (error) {
+    console.error("Error fetching filtered insights:", error);
+    throw new Error("Failed to fetch filtered insights");
+  }
+}

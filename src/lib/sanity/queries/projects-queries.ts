@@ -76,8 +76,8 @@ export const PORTFOLIOS_QUERY =
 
 export const FILTERED_PROJECTS_QUERY = defineQuery(`
   *[_type == "project" 
-    && (!defined($searchQuery) || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || description match $searchQuery + "*") 
-    && (!defined($category) || category->slug.current == $category)   ]  {
+    && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || description match $searchQuery + "*") 
+    && (!defined($category) || $category == "" || category->slug.current == $category)   ]  {
     _id,
     title,
     mainImage{
