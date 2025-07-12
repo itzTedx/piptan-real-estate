@@ -22,6 +22,14 @@ export const getProjectsCardData =
     return data;
   };
 
+export const getProjects = async (): Promise<PROJECT_CARD_QUERYResult> => {
+  const { data } = await sanityFetch({
+    query: PROJECT_CARD_QUERY,
+    tags: ["sanity-content", "projects"],
+  });
+  return data;
+};
+
 interface GetFilteredProjectsParams {
   searchQuery?: string;
   category?: string;

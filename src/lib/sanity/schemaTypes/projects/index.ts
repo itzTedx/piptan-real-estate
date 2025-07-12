@@ -122,7 +122,7 @@ export const descriptionSectionType = defineType({
 // Main Project Schema
 export const projectType = defineType({
   name: "project",
-  title: "Projects",
+  title: "Portfolios",
   type: "document",
   icon: IconHouse,
   groups: [

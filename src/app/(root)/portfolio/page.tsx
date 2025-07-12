@@ -3,6 +3,15 @@ import { Suspense } from "react";
 // import { SearchParams } from "nuqs";
 
 import { AnimatedGroup } from "@/components/animation/animated-group";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
 import { LeadSection } from "@/features/forms/lead-form/section";
@@ -27,13 +36,11 @@ export default async function ProjectsPage() {
 
   const projects = await getProjectsCardData();
 
-  // console.log("projects", projects);
-
   return (
     <main className="pt-4 sm:pt-9 md:pt-12">
       <section className="relative container mb-20">
         <SectionHeader
-          title="Properties"
+          title="Portfolios"
           subtitle="Discover signature developments in Dubai's most sought-after communities."
         />
         <Separator />
@@ -59,6 +66,28 @@ export default async function ProjectsPage() {
           </AnimatedGroup>
           {/* <PropertiesList categories={categories} initialProjects={projects} /> */}
         </Suspense>
+        <Pagination className="mt-12">
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious href="#" />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">1</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">2</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">3</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationNext href="#" />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       </section>
       <LeadSection
         title={`Let the experts help you\nmake the right investment`}

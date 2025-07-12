@@ -33,6 +33,39 @@ export const PROJECT_CARD_QUERY =
 
 }`);
 
+export const PORTFOLIOS_QUERY =
+  defineQuery(`*[_type == "project"] | order(_createdAt desc)  {
+    _id,
+    title,
+    mainImage{
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions {
+            width,
+            height
+          }
+        }
+      },
+      alt
+    },
+    "slug": slug.current,
+    location,
+    isFeatured,
+    "category": category->{
+      title,
+      "slug": slug.current
+    },
+    "price": stats.price,
+    "tags": overview.tags,
+    "bedrooms": stats.bedrooms,
+    developer,
+    "payments": stats.paymentPlan
+
+}`);
+
 export const FILTERED_PROJECTS_QUERY = defineQuery(`
   *[_type == "project" 
     && (!defined($searchQuery) || title match $searchQuery + "*" || location match $searchQuery + "*" || developer match $searchQuery + "*" || description match $searchQuery + "*") 
