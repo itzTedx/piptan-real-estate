@@ -50,7 +50,7 @@ export const Navbar = () => {
             <IconPhone />
           </Button>
           <AnimatedButton
-            href="/projects"
+            href="/portfolio"
             text="Explore More"
             variant="primary"
           />

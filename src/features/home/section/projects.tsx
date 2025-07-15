@@ -22,7 +22,7 @@ export const ProjectsSection = async () => {
             communities."
           action={
             <AnimatedButton
-              href="/projects"
+              href="/portfolio"
               text="View all Portfolios"
               variant="outline"
             />
