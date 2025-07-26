@@ -60,7 +60,9 @@ export const metadata: Metadata = {
     apple: "/apple-icon.png",
   },
   manifest: "/manifest.json",
-
+  verification: {
+    google: "4jnLKLwAQxiAxdxZcSMWXA3NKw3f79_By4a_AlLNCPQ",
+  },
   robots: {
     index: true,
     follow: true,
