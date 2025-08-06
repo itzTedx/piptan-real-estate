@@ -74,6 +74,15 @@ export const PORTFOLIOS_QUERY =
 
 }`);
 
+
+export const PORTFOLIOS_SLUGS_QUERY =
+  defineQuery(`*[_type == "project" && defined(slug.current) &&  slug.current != null]    {
+    _id,
+    "slug": slug.current
+}`);
+
+
+
 export const FILTERED_PROJECTS_QUERY = defineQuery(`
   *[_type == "project" 
     && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || description match $searchQuery + "*") 

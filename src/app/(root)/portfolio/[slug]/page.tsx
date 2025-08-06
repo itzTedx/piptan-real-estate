@@ -5,8 +5,9 @@ import { Separator } from "@/components/ui/separator";
 import { LeadSection } from "@/features/forms/lead-form/section";
 import {
   getProjectBySlug,
-  getProjects,
+  getProjectBySlugStatic,
   getProjectsCardData,
+  getProjectsSlugsStatic
 } from "@/features/projects/actions/projects-actions";
 import { ProjectAmenities } from "@/features/projects/components/project-amenities";
 import { ProjectDescription } from "@/features/projects/components/project-description";
@@ -26,12 +27,12 @@ export const revalidate = 300;
 // Generate static params for all projects
 export async function generateStaticParams() {
   try {
-    const projects = await getProjects();
+    const projects = await getProjectsSlugsStatic();
 
     return projects
       .filter((project: { slug: string | null }) => project.slug) // Only include projects with slugs
       .map((project: { slug: string | null }) => ({
-        slug: project.slug!,
+        slug: project.slug,
       }));
   } catch (error) {
     console.error("Error generating static params for projects:", error);
@@ -94,7 +95,7 @@ export async function generateMetadata({
   params: Params;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const project = await getProjectBySlug(slug);
+  const project = await getProjectBySlugStatic(slug);
   if (!project) {
     return {
       title: "Project Not Found | Piptan Investments",

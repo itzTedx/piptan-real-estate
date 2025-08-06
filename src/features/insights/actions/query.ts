@@ -1,3 +1,4 @@
+import { client } from "@/lib/sanity/lib/client";
 import { sanityFetch } from "@/lib/sanity/lib/live";
 import {
   FILTERED_INSIGHTS_QUERY,
@@ -24,6 +25,12 @@ export const getInsights = async (): Promise<INSIGHTS_QUERYResult> => {
   return data;
 };
 
+// Static version for generateStaticParams - doesn't use draftMode
+export const getInsightsStatic = async (): Promise<INSIGHTS_QUERYResult> => {
+  const data = await client.fetch(INSIGHTS_QUERY);
+  return data;
+};
+
 export const getInsightBySlug = async (
   slug: string
 ): Promise<INSIGHT_BY_SLUG_QUERYResult | null> => {
@@ -32,6 +39,14 @@ export const getInsightBySlug = async (
     params: { slug },
     tags: ["sanity-content", "insight"],
   });
+  return data;
+};
+
+// Static version for generateMetadata - doesn't use draftMode
+export const getInsightBySlugStatic = async (
+  slug: string
+): Promise<INSIGHT_BY_SLUG_QUERYResult | null> => {
+  const data = await client.fetch(INSIGHT_BY_SLUG_QUERY, { slug });
   return data;
 };
 

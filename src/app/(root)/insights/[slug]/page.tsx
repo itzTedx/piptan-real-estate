@@ -5,7 +5,8 @@ import { notFound } from "next/navigation";
 import { HeroHeader } from "@/components/hero-header";
 import {
   getInsightBySlug,
-  getInsights,
+  getInsightBySlugStatic,
+  getInsightsStatic,
 } from "@/features/insights/actions/query";
 import { InsightContent } from "@/features/insights/components/insight-content";
 import { urlFor } from "@/lib/sanity/image";
@@ -20,7 +21,7 @@ export const revalidate = 300;
 // Generate static params for all insights
 export async function generateStaticParams() {
   try {
-    const insights = await getInsights();
+    const insights = await getInsightsStatic();
 
     return insights
       .filter((insight: { slug: string | null }) => insight.slug) // Only include insights with slugs
@@ -40,7 +41,7 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const insight = await getInsightBySlug(slug);
+  const insight = await getInsightBySlugStatic(slug);
 
   if (!insight) {
     return {

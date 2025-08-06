@@ -9,11 +9,11 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
 
-  logging: {
-    fetches: {
-      fullUrl: true,
-    },
-  },
+  // logging: {
+  //   fetches: {
+  //     fullUrl: true,
+  //   },
+  // },
   images: {
     remotePatterns: [
       { hostname: "plus.unsplash.com" },

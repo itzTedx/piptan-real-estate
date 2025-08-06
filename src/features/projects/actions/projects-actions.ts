@@ -1,5 +1,6 @@
 "use server";
 
+import { client } from "@/lib/sanity/lib/client";
 import { sanityFetch } from "@/lib/sanity/lib/live";
 import {
   FILTERED_PAGINATED_PROJECTS_QUERY,
@@ -7,6 +8,7 @@ import {
   FILTERED_PROJECTS_QUERY,
   PAGINATED_PROJECTS_QUERY,
   PORTFOLIOS_QUERY,
+  PORTFOLIOS_SLUGS_QUERY,
   PROJECTS_COUNT_QUERY,
   PROJECT_BY_SLUG_QUERY,
   PROJECT_CARD_QUERY,
@@ -14,6 +16,7 @@ import {
 
 import {
   FILTERED_PROJECTS_QUERYResult,
+  PORTFOLIOS_SLUGS_QUERYResult,
   PROJECT_BY_SLUG_QUERYResult,
   PROJECT_CARD_QUERYResult,
 } from "../../../../sanity.types";
@@ -93,6 +96,20 @@ export const getProjects = async (): Promise<PROJECT_CARD_QUERYResult> => {
   return data;
 };
 
+export const getProjectsSlugs = async (): Promise<PORTFOLIOS_SLUGS_QUERYResult> => {
+  const { data } = await sanityFetch({
+    query: PORTFOLIOS_SLUGS_QUERY,
+    tags: ["sanity-content", "projects"],
+  });
+  return data;
+};
+
+// Static version for generateStaticParams - doesn't use draftMode
+export const getProjectsSlugsStatic = async (): Promise<PORTFOLIOS_SLUGS_QUERYResult> => {
+  const data = await client.fetch(PORTFOLIOS_SLUGS_QUERY);
+  return data;
+};
+
 interface GetFilteredProjectsParams {
   searchQuery?: string;
   category?: string;
@@ -131,6 +148,19 @@ export async function getProjectBySlug(
       tags: ["sanity-content", "projects", slug],
     });
 
+    return project;
+  } catch (error) {
+    console.error("Error fetching project by slug:", error);
+    throw new Error("Failed to fetch project by slug");
+  }
+}
+
+// Static version for generateMetadata - doesn't use draftMode
+export async function getProjectBySlugStatic(
+  slug: string
+): Promise<PROJECT_BY_SLUG_QUERYResult> {
+  try {
+    const project = await client.fetch(PROJECT_BY_SLUG_QUERY, { slug });
     return project;
   } catch (error) {
     console.error("Error fetching project by slug:", error);
