@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-import { Transition, motion } from "framer-motion";
+import { Transition, motion } from "motion/react";
 
 interface UnderlineProps {
   label: string;

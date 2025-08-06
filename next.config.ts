@@ -19,11 +19,57 @@ const nextConfig: NextConfig = {
       { hostname: "plus.unsplash.com" },
       { hostname: "cdn.sanity.io" },
     ],
+    // Optimize image formats
+    formats: ['image/webp', 'image/avif'],
+    // Enable image optimization
+    unoptimized: false,
   },
   // Enable experimental features for better caching
   experimental: {
     // Enable optimized package imports
-    optimizePackageImports: ["@sanity/image-url", "next-sanity"],
+    optimizePackageImports: ["@sanity/image-url", "next-sanity", "gsap", "lucide-react", "radix-ui", "framer-motion", "react-hook-form", "embla-carousel-react", "nuqs", "react-zoom-pan-pinch", "vaul", "@hookform/resolvers"],
+    // Enable optimized CSS
+    // optimizeCss: true,
+  },
+  // Webpack configuration for optimization
+  webpack: (config) => {
+    // Bundle analyzer (uncomment to analyze bundle)
+    // if (!dev && !isServer) {
+    //   const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+    //   config.plugins.push(
+    //     new BundleAnalyzerPlugin({
+    //       analyzerMode: 'static',
+    //       openAnalyzer: false,
+    //     })
+    //   );
+    // }
+
+    // Optimize bundle splitting
+    config.optimization = {
+      ...config.optimization,
+      splitChunks: {
+        chunks: 'all',
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+          },
+          sanity: {
+            test: /[\\/]node_modules[\\/]@sanity[\\/]/,
+            name: 'sanity',
+            chunks: 'all',
+          },
+          gsap: {
+            test: /[\\/]node_modules[\\/]gsap[\\/]/,
+            name: 'gsap',
+            chunks: 'all',
+          },
+        },
+      },
+    };
+
+    return config;
   },
   // Configure headers for better caching
   async headers() {
@@ -42,6 +88,11 @@ const nextConfig: NextConfig = {
           {
             key: "X-XSS-Protection",
             value: "1; mode=block",
+          },
+          // Enable compression
+          {
+            key: "Accept-Encoding",
+            value: "gzip, deflate, br",
           },
         ],
       },
@@ -63,8 +114,35 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      // Add caching for fonts
+      {
+        source: "/fonts/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      // Add caching for API routes
+      {
+        source: "/api/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, s-maxage=3600",
+          },
+        ],
+      },
     ];
   },
+  // Enable compression
+  compress: true,
+  // Enable powered by header removal
+  poweredByHeader: false,
+  // Enable strict mode for better development
+  reactStrictMode: true,
+
 };
 
 export default nextConfig;

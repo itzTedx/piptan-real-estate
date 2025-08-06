@@ -2,7 +2,7 @@
 
 import React, { ElementType, ReactNode } from "react";
 
-import { HTMLMotionProps, Variants, motion } from "framer-motion";
+import { HTMLMotionProps, Variants, motion } from "motion/react";
 
 export type PresetType =
   | "fade"

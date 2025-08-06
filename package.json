@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "sanity:types": "sanity typegen generate",
-    "sanity:extract": "sanity schema extract"
+    "sanity:extract": "sanity schema extract",
+    "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
     "@bprogress/next": "^3.2.12",
@@ -24,11 +25,10 @@
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "embla-carousel-wheel-gestures": "^8.0.2",
-    "framer-motion": "^12.17.3",
     "gsap": "^3.13.0",
     "lucide-react": "^0.514.0",
     "motion": "^12.18.1",
-    "next": "15.3.3",
+    "next": "^15.4.5",
     "next-sanity": "^9.12.0",
     "nuqs": "^2.4.3",
     "radix-ui": "^1.4.2",

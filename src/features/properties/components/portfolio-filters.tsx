@@ -4,8 +4,8 @@ import { useEffect } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SearchIcon } from "@sanity/icons";
-import { motion, useScroll, useTransform } from "framer-motion";
 import { XIcon } from "lucide-react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { useQueryState } from "nuqs";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
