@@ -1,41 +1,35 @@
 import { Suspense } from "react";
 
-import { SearchParams } from "nuqs";
+// import { SearchParams } from "nuqs";
 
+import { Carousel, CarouselActiveIndex, CarouselContent, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
 import { LeadSection } from "@/features/forms/lead-form/section";
-import { getPaginatedProjects } from "@/features/projects/actions/projects-actions";
-import { loadSearchParams } from "@/features/projects/search-params";
-import { PortfolioFilters } from "@/features/properties/components/portfolio-filters";
-import { PortfolioList } from "@/features/properties/components/portfolio-list";
+import { ProgressIndicator } from "@/features/home/components/progress-indicator";
+import { getProjects } from "@/features/projects/actions/projects-actions";
 import { PropertiesListSkeleton } from "@/features/properties/components/properties-list-skeleton";
-import { getCategories } from "@/lib/sanity/fetch";
+import { PropertyCard } from "@/features/properties/components/property-card";
 
-type PageProps = {
-  searchParams: Promise<SearchParams>;
-};
+// type PageProps = {
+//   searchParams: Promise<SearchParams>;
+// };
 
 // Enable caching with revalidation every 5 minutes
 export const revalidate = 300;
 
-export default async function ProjectsPage({ searchParams }: PageProps) {
-  const {
-    page,
-    pageSize,
-    q: searchQuery,
-    category,
-  } = await loadSearchParams(searchParams);
+export default async function ProjectsPage() {
+  // const {
+  //   page,
+  //   pageSize,
+  //   q: searchQuery,
+  //   category,
+  // } = await loadSearchParams(searchParams);
 
   // Fetch categories for filtering
-  const categories = await getCategories();
+  // const categories = await getCategories();
 
-  const { projects, total } = await getPaginatedProjects(
-    page,
-    pageSize,
-    searchQuery,
-    category
-  );
+
 
   return (
     <main className="pt-4 sm:pt-9 md:pt-12">
@@ -47,17 +41,10 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
         <Separator />
 
         {/* Filters */}
-        <PortfolioFilters categories={categories} />
+        {/* <PortfolioFilters categories={categories} /> */}
 
         <Suspense fallback={<PropertiesListSkeleton />}>
-          <PortfolioList
-            projects={projects}
-            total={total}
-            page={page}
-            pageSize={pageSize}
-            searchQuery={searchQuery}
-            category={category}
-          />
+            <SuspendedPortfolioList  />
         </Suspense>
       </section>
       <LeadSection
@@ -68,4 +55,33 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
       />
     </main>
   );
+}
+
+async function SuspendedPortfolioList() {
+  const projects = await getProjects();
+  const totalItems = projects.length;
+  
+  return (
+    <Carousel className="mt-4 w-full md:mt-6 lg:mt-9">
+        <CarouselContent className="-ml-4">
+          {projects.map((project) => (
+            <PropertyCard
+            key={project._id}
+            data={project}
+              className="pl-4 md:basis-1/2 lg:basis-1/3 pb-1"
+           />
+          ))}
+        </CarouselContent>
+        <div className="mt-6 flex items-center gap-12">
+          <p className="text-foreground/80 shrink-0 tracking-widest">
+            <CarouselActiveIndex /> / {totalItems.toString().padStart(2, "0")}
+          </p>
+          <ProgressIndicator totalItems={totalItems} />
+          <div className="relative flex gap-2">
+            <CarouselPrevious className="static translate-y-0" />
+            <CarouselNext className="static translate-y-0" />
+          </div>
+        </div>
+      </Carousel>
+)
 }

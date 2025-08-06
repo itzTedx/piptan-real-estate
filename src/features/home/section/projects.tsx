@@ -1,11 +1,14 @@
 import { IconHouse } from "@/assets/icons";
 import { AnimatedButton } from "@/components/ui/animated-button";
+import { Carousel, CarouselActiveIndex, CarouselContent, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { SectionHeader } from "@/components/ui/section-header";
 import { getProjectsCardData } from "@/features/projects/actions/projects-actions";
 import { PropertyCard } from "@/features/properties/components/property-card";
+import { ProgressIndicator } from "../components/progress-indicator";
 
 export const ProjectsSection = async () => {
   const projects = await getProjectsCardData();
+  const totalItems = projects.length;
   return (
     <section
       className="container py-8 sm:py-12 md:py-16 lg:py-24"
@@ -29,7 +32,28 @@ export const ProjectsSection = async () => {
           }
         />
       </div>
-      <ul className="grid grid-cols-1 max-sm:divide-y sm:grid-cols-2 sm:gap-6">
+      <Carousel className="mt-4 w-full md:mt-6 lg:mt-9">
+        <CarouselContent className="-ml-4">
+          {projects.map((project) => (
+            <PropertyCard
+            key={project._id}
+            data={project}
+              className="pl-4 md:basis-1/2 lg:basis-1/3 pb-1"
+           />
+          ))}
+        </CarouselContent>
+        <div className="mt-6 flex items-center gap-12">
+          <p className="text-foreground/80 shrink-0 tracking-widest">
+            <CarouselActiveIndex /> / {totalItems.toString().padStart(2, "0")}
+          </p>
+          <ProgressIndicator totalItems={totalItems} />
+          <div className="relative flex gap-2">
+            <CarouselPrevious className="static translate-y-0" />
+            <CarouselNext className="static translate-y-0" />
+          </div>
+        </div>
+      </Carousel>
+      {/* <ul className="grid grid-cols-1 max-sm:divide-y sm:grid-cols-2 sm:gap-6">
         {projects.map((project) => (
           <PropertyCard
             key={project._id}
@@ -37,7 +61,7 @@ export const ProjectsSection = async () => {
             className="max-sm:py-6"
           />
         ))}
-      </ul>
+      </ul> */}
     </section>
   );
 };

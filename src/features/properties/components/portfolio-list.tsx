@@ -1,9 +1,3 @@
-"use client";
-
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-
-import { useQueryState } from "nuqs";
 
 import { AnimatedGroup } from "@/components/animation/animated-group";
 import {
@@ -43,28 +37,28 @@ export function PortfolioList({
   searchQuery,
   category,
 }: PortfolioListProps) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const [currentCategory] = useQueryState("category", {
-    defaultValue: "all",
-  });
-  const [currentSearchQuery] = useQueryState("q", {
-    defaultValue: "",
-  });
+  // const router = useRouter();
+  // const searchParams = useSearchParams();
+  // const [currentCategory] = useQueryState("category", {
+  //   defaultValue: "all",
+  // });
+  // const [currentSearchQuery] = useQueryState("q", {
+  //   defaultValue: "",
+  // });
 
-  // Force refresh when search parameters change
-  useEffect(() => {
-    const currentQ = searchParams.get("q");
-    const currentCategoryParam = searchParams.get("category");
+  // // Force refresh when search parameters change
+  // useEffect(() => {
+  //   const currentQ = searchParams.get("q");
+  //   const currentCategoryParam = searchParams.get("category");
 
-    // If URL params don't match our state, refresh the page
-    if (
-      currentQ !== currentSearchQuery ||
-      currentCategoryParam !== currentCategory
-    ) {
-      router.refresh();
-    }
-  }, [searchParams, currentSearchQuery, currentCategory, router]);
+  //   // If URL params don't match our state, refresh the page
+  //   if (
+  //     currentQ !== currentSearchQuery ||
+  //     currentCategoryParam !== currentCategory
+  //   ) {
+  //     router.refresh();
+  //   }
+  // }, [searchParams, currentSearchQuery, currentCategory, router]);
 
   const totalPages = Math.ceil(total / pageSize);
   const pagination = generatePagination(page, totalPages);
@@ -74,6 +68,7 @@ export function PortfolioList({
       {projects.length === 0 ? (
         <PortfolioEmptyState className="my-8" />
       ) : (
+          
         <AnimatedGroup
           preset="blur-slide"
           className={cn("grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2")}

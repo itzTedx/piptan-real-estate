@@ -9,15 +9,14 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { SectionHeader } from "@/components/ui/section-header";
-import { INSIGHTS } from "@/constants/mock-data";
 import { getInsights } from "@/features/insights/actions/query";
 import { InsightCard } from "@/features/insights/components/insights-card";
 
 import { ProgressIndicator } from "../components/progress-indicator";
 
 export const InsightsSection = async () => {
-  const totalItems = INSIGHTS.length;
   const insights = await getInsights();
+  const totalItems = insights.length;
 
   return (
     <section className="container py-20">

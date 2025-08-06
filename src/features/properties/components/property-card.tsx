@@ -24,7 +24,7 @@ export const PropertyCard = ({ className, layout = "grid", data }: Props) => {
         <div
           className={cn(
             "outline-foreground/20 group-hover:outline-accent-foreground/50 relative flex flex-col justify-between overflow-hidden rounded-md p-6 outline",
-            layout === "grid" ? "aspect-5/4" : "aspect-video flex-shrink-0"
+            layout === "grid" ? "aspect-5/6" : "aspect-video flex-shrink-0"
           )}
         >
           <div className="relative z-10 flex items-start justify-between gap-3">
