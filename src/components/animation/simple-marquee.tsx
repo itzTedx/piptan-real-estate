@@ -1,6 +1,6 @@
 "use client";
 
-import { RefObject, useRef } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 
 import {
   SpringOptions,
@@ -43,7 +43,7 @@ interface SimpleMarqueeProps {
   grabCursor?: boolean; // Whether to change the cursor to grabbing when dragging
 }
 
-const SimpleMarquee = ({
+const SimpleMarqueeInner = ({
   children,
   className,
   direction = "right",
@@ -67,10 +67,17 @@ const SimpleMarquee = ({
   const innerContainer = useRef<HTMLDivElement>(null);
   const baseX = useMotionValue(0);
   const baseY = useMotionValue(0);
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Ensure component is mounted before using scroll
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const { scrollY } = useScroll({
-    container:
-      (scrollContainer as RefObject<HTMLDivElement>) || innerContainer.current,
+    container: isMounted
+      ? ((scrollContainer as RefObject<HTMLDivElement>) || innerContainer.current)
+      : undefined,
   });
 
   const scrollVelocity = useVelocity(scrollY);
@@ -78,6 +85,9 @@ const SimpleMarquee = ({
 
   const hoverFactorValue = useMotionValue(1);
   const defaultVelocity = useMotionValue(1);
+
+  // Only use scroll velocity if component is mounted and scrollY is available
+  const effectiveScrollVelocity = isMounted ? smoothVelocity : defaultVelocity;
 
   // Track if user is currently dragging
   const isDragging = useRef(false);
@@ -89,7 +99,7 @@ const SimpleMarquee = ({
 
   // Transform scroll velocity into a factor that affects marquee speed
   const velocityFactor = useTransform(
-    useScrollVelocity ? smoothVelocity : defaultVelocity,
+    useScrollVelocity ? effectiveScrollVelocity : defaultVelocity,
     [0, 1000],
     [0, 5],
     {
@@ -124,6 +134,9 @@ const SimpleMarquee = ({
   });
 
   useAnimationFrame((t, delta) => {
+    // Don't run animation if component is not mounted
+    if (!isMounted) return;
+    
     if (isDragging.current && draggable) {
       if (isHorizontal) {
         baseX.set(baseX.get() + dragVelocity.current);
@@ -271,6 +284,37 @@ const SimpleMarquee = ({
       ))}
     </motion.div>
   );
+};
+
+// Wrapper component to handle hydration
+const SimpleMarquee = (props: SimpleMarqueeProps) => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    // Return a static version during SSR
+    return (
+      <div className={cn("flex", props.direction === "left" || props.direction === "right" ? "flex-row" : "flex-col", props.className)}>
+        {Array.from({ length: props.repeat || 3 }, (_, i) => i).map((i) => (
+          <div
+            key={i}
+            className={cn(
+              "shrink-0",
+              (props.direction === "left" || props.direction === "right") && "flex items-center gap-12"
+            )}
+            aria-hidden={i > 0}
+          >
+            {props.children}
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  return <SimpleMarqueeInner {...props} />;
 };
 
 export default SimpleMarquee;

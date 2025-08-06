@@ -2,7 +2,7 @@ import { Suspense } from "react";
 
 // import { SearchParams } from "nuqs";
 
-import { Carousel, CarouselActiveIndex, CarouselContent, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselActiveIndex, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
 import { LeadSection } from "@/features/forms/lead-form/section";
@@ -62,26 +62,33 @@ async function SuspendedPortfolioList() {
   const totalItems = projects.length;
   
   return (
-    <Carousel className="mt-4 w-full md:mt-6 lg:mt-9">
-        <CarouselContent className="-ml-4">
-          {projects.map((project) => (
-            <PropertyCard
-            key={project._id}
-            data={project}
-              className="pl-4 md:basis-1/2 lg:basis-1/3 pb-1"
-           />
-          ))}
-        </CarouselContent>
-        <div className="mt-6 flex items-center gap-12">
-          <p className="text-foreground/80 shrink-0 tracking-widest">
-            <CarouselActiveIndex /> / {totalItems.toString().padStart(2, "0")}
-          </p>
-          <ProgressIndicator totalItems={totalItems} />
-          <div className="relative flex gap-2">
-            <CarouselPrevious className="static translate-y-0" />
-            <CarouselNext className="static translate-y-0" />
+    <Carousel className="mt-4 w-full md:mt-6 lg:mt-9" autoplay>
+    <CarouselContent className="-ml-1">
+    {projects.map((project) => (
+        <CarouselItem
+        key={project._id}
+          className="pl-1 md:basis-1/2 lg:basis-1/3"
+        >
+          <div className="h-full p-1">
+          <PropertyCard
+       
+        data={project}
+          className="md:pl-4 pl-1 md:basis-1/2 lg:basis-1/3 pb-1"
+       />
           </div>
-        </div>
-      </Carousel>
+        </CarouselItem>
+      ))}
+    </CarouselContent>
+    <div className="mt-6 flex items-center gap-12">
+      <p className="text-foreground/80 shrink-0 tracking-widest">
+        <CarouselActiveIndex /> / {totalItems.toString().padStart(2, "0")}
+      </p>
+      <ProgressIndicator totalItems={totalItems} />
+      <div className="relative flex gap-2">
+        <CarouselPrevious className="static translate-y-0" />
+        <CarouselNext className="static translate-y-0" />
+      </div>
+    </div>
+  </Carousel>
 )
 }

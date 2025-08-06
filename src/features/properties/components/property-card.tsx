@@ -12,19 +12,18 @@ import { WhatsappButton } from "./whatsapp-button";
 
 interface Props {
   className?: string;
-  layout?: "grid" | "list";
   data: PROJECT_CARD_QUERYResult[number];
 }
 
-export const PropertyCard = ({ className, layout = "grid", data }: Props) => {
+export const PropertyCard = ({ className,  data }: Props) => {
   const price = data.price ? parseFloat(data.price.replace(/[^0-9.]/g, "")) : 0;
   return (
-    <div className={cn("group", layout === "list" && "flex gap-12", className)}>
+    <div className={cn("group", "group flex h-full flex-col overflow-hidden rounded-md", className)}>
       <Link href={`/portfolio/${data.slug || ""}`}>
         <div
           className={cn(
-            "outline-foreground/20 group-hover:outline-accent-foreground/50 relative flex flex-col justify-between overflow-hidden rounded-md p-6 outline",
-            layout === "grid" ? "aspect-5/6" : "aspect-video flex-shrink-0"
+            "outline-foreground/20 group-hover:outline-accent-foreground/50 relative flex flex-col justify-between overflow-hidden rounded-md p-6 outline shrink-0 aspect-5/6",
+       
           )}
         >
           <div className="relative z-10 flex items-start justify-between gap-3">
@@ -66,7 +65,7 @@ export const PropertyCard = ({ className, layout = "grid", data }: Props) => {
           <div
             className={cn(
               "relative z-10",
-              layout === "list" && "flex flex-col justify-center"
+             
             )}
           >
             <div className="flex items-center justify-between">

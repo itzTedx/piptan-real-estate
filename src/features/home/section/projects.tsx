@@ -1,6 +1,6 @@
 import { IconHouse } from "@/assets/icons";
 import { AnimatedButton } from "@/components/ui/animated-button";
-import { Carousel, CarouselActiveIndex, CarouselContent, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselActiveIndex, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { SectionHeader } from "@/components/ui/section-header";
 import { getProjectsCardData } from "@/features/projects/actions/projects-actions";
 import { PropertyCard } from "@/features/properties/components/property-card";
@@ -32,14 +32,21 @@ export const ProjectsSection = async () => {
           }
         />
       </div>
-      <Carousel className="mt-4 w-full md:mt-6 lg:mt-9">
-        <CarouselContent className="-ml-4">
-          {projects.map((project) => (
-            <PropertyCard
+      <Carousel className="mt-4 w-full md:mt-6 lg:mt-9" autoplay>
+        <CarouselContent className="-ml-1">
+        {projects.map((project) => (
+            <CarouselItem
             key={project._id}
+              className="pl-1 md:basis-1/2 lg:basis-1/3"
+            >
+              <div className="h-full p-1">
+              <PropertyCard
+           
             data={project}
-              className="pl-4 md:basis-1/2 lg:basis-1/3 pb-1"
+              className="md:pl-4 pl-1 md:basis-1/2 lg:basis-1/3 pb-1"
            />
+              </div>
+            </CarouselItem>
           ))}
         </CarouselContent>
         <div className="mt-6 flex items-center gap-12">
@@ -53,6 +60,7 @@ export const ProjectsSection = async () => {
           </div>
         </div>
       </Carousel>
+      
       {/* <ul className="grid grid-cols-1 max-sm:divide-y sm:grid-cols-2 sm:gap-6">
         {projects.map((project) => (
           <PropertyCard
