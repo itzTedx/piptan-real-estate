@@ -4,6 +4,7 @@ import { AboutSection } from "@/features/home/section/about";
 import { ExpertiseSection } from "@/features/home/section/expertise";
 import { FaqSection } from "@/features/home/section/faq";
 import { FeaturesSection } from "@/features/home/section/features";
+import { Hero } from "@/features/home/section/hero";
 import { InsightsSection } from "@/features/home/section/insights";
 import { ProjectsSection } from "@/features/home/section/projects";
 import { Testimonials } from "@/features/home/section/testimonials";
@@ -76,7 +77,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="-mt-20 divide-y">
-      {/* <Hero /> */}
+      <Hero />
 
       <AboutSection />
       <ExpertiseSection />
