@@ -31,46 +31,7 @@ const nextConfig: NextConfig = {
     // Enable optimized CSS
     // optimizeCss: true,
   },
-  // Webpack configuration for optimization
-  webpack: (config) => {
-    // Bundle analyzer (uncomment to analyze bundle)
-    // if (!dev && !isServer) {
-    //   const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-    //   config.plugins.push(
-    //     new BundleAnalyzerPlugin({
-    //       analyzerMode: 'static',
-    //       openAnalyzer: false,
-    //     })
-    //   );
-    // }
-
-    // Optimize bundle splitting
-    config.optimization = {
-      ...config.optimization,
-      splitChunks: {
-        chunks: 'all',
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
-          },
-          sanity: {
-            test: /[\\/]node_modules[\\/]@sanity[\\/]/,
-            name: 'sanity',
-            chunks: 'all',
-          },
-          gsap: {
-            test: /[\\/]node_modules[\\/]gsap[\\/]/,
-            name: 'gsap',
-            chunks: 'all',
-          },
-        },
-      },
-    };
-
-    return config;
-  },
+ 
   // Configure headers for better caching
   async headers() {
     return [
