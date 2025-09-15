@@ -1,4 +1,7 @@
+import Link from "next/link";
+
 import { SectionHeader } from "@/components/ui/section-header";
+import { CONTACT } from "@/constants";
 import { ContactForm } from "@/features/forms/contact-form/form";
 import { FaqSection } from "@/features/home/section/faq";
 
@@ -20,27 +23,15 @@ export default function ContactPage() {
           <aside>
             <h2 className="font-jaguar text-3xl">Other Ways to Reach Us</h2>
             <div className="mt-4 grid grid-cols-1 gap-6">
-              {[
-                {
-                  title: "Office Location",
-                  content: "Dubai, United Arab Emirates",
-                },
-                {
-                  title: "Email",
-                  content: "info@piptan.com",
-                },
-                {
-                  title: "Phone",
-                  content: "+971 4 123 4567",
-                },
-              ].map((info) => (
-                <div
+              {CONTACT.map((info) => (
+                <Link
+                  href={info.href}
                   key={info.title}
                   className="group hover:border-primary/50 rounded-lg border p-6 transition-colors duration-300"
                 >
-                  <h3 className="mb-2 text-xl font-medium">{info.title}</h3>
-                  <p className="text-primary-foreground">{info.content}</p>
-                </div>
+                  <h3 className="mb-2 text-xl font-medium">{info.label}</h3>
+                  <p className="text-primary-foreground">{info.title}</p>
+                </Link>
               ))}
             </div>
           </aside>

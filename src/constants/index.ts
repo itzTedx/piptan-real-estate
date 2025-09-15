@@ -26,9 +26,9 @@ export const NAV_LINKS = [
 ];
 
 export const CONTACT = [
-  { title: "Business Bay, Dubai, UAE", href: "/" },
-  { title: "Phone: +971 56 401 4000", href: "tel:+971564014000" },
-  { title: "Email: invest@piptan.com", href: "mailto:invest@piptan.com" },
+  {label: "Office", title: "Business Bay, Dubai, UAE", href: "/" },
+  {label: "Phone", title: " +971 56 401 4000", href: "tel:+971564014000" },
+  {label: "Email", title: " invest@piptan.com", href: "mailto:invest@piptan.com" },
 ];
 
 
