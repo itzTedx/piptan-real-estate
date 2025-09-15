@@ -1,7 +1,7 @@
 import { orderRankField } from "@sanity/orderable-document-list";
 import { defineField, defineType } from "sanity";
 
-import { IconCollection } from "@/assets/icons";
+import { IconCollection } from "@/app/assets/icons";
 
 export const categoryType = defineType({
   name: "category",

@@ -12,8 +12,8 @@ import {
   useTransform,
 } from "motion/react";
 
-import { BuildingOutline } from "@/assets/building-outline";
-import { IconDiamond } from "@/assets/icons";
+import { BuildingOutline } from "@/app/assets/building-outline";
+import { IconDiamond } from "@/app/assets/icons";
 
 import { AnimatedTabs } from "../components/animated-tabs";
 

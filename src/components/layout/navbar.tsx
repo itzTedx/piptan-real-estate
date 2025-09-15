@@ -2,8 +2,8 @@ import Link from "next/link";
 
 import { MenuIcon } from "@sanity/icons";
 
-import { IconPhone } from "@/assets/icons";
-import { Logo, WordMark } from "@/assets/logo";
+import { IconPhone } from "@/app/assets/icons";
+import { Logo, WordMark } from "@/app/assets/logo";
 import {
   Drawer,
   DrawerClose,

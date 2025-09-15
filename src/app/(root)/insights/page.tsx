@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 
-import { IconCollection } from "@/assets/icons";
+import { IconCollection } from "@/app/assets/icons";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
 import { getFilteredInsightsWithParams } from "@/features/insights/actions/query";

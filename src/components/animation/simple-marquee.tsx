@@ -54,7 +54,7 @@ const SimpleMarqueeInner = ({
   useScrollVelocity = false,
   scrollAwareDirection = false,
   scrollSpringConfig = { damping: 50, stiffness: 400 },
-  scrollContainer,
+
   repeat = 3,
   draggable = false,
   dragSensitivity = 0.2,
@@ -75,9 +75,7 @@ const SimpleMarqueeInner = ({
   }, []);
 
   const { scrollY } = useScroll({
-    container: isMounted
-      ? ((scrollContainer as RefObject<HTMLDivElement>) || innerContainer.current)
-      : undefined,
+    container: isMounted ? innerContainer : undefined,
   });
 
   const scrollVelocity = useVelocity(scrollY);
@@ -136,7 +134,7 @@ const SimpleMarqueeInner = ({
   useAnimationFrame((t, delta) => {
     // Don't run animation if component is not mounted
     if (!isMounted) return;
-    
+
     if (isDragging.current && draggable) {
       if (isHorizontal) {
         baseX.set(baseX.get() + dragVelocity.current);
@@ -297,13 +295,22 @@ const SimpleMarquee = (props: SimpleMarqueeProps) => {
   if (!isClient) {
     // Return a static version during SSR
     return (
-      <div className={cn("flex", props.direction === "left" || props.direction === "right" ? "flex-row" : "flex-col", props.className)}>
+      <div
+        className={cn(
+          "flex",
+          props.direction === "left" || props.direction === "right"
+            ? "flex-row"
+            : "flex-col",
+          props.className
+        )}
+      >
         {Array.from({ length: props.repeat || 3 }, (_, i) => i).map((i) => (
           <div
             key={i}
             className={cn(
               "shrink-0",
-              (props.direction === "left" || props.direction === "right") && "flex items-center gap-12"
+              (props.direction === "left" || props.direction === "right") &&
+                "flex items-center gap-12"
             )}
             aria-hidden={i > 0}
           >

@@ -1,6 +1,6 @@
 import { ChevronDownIcon } from "@sanity/icons";
 
-import { IconFaq } from "@/assets/icons";
+import { IconFaq } from "@/app/assets/icons";
 import {
   Accordion,
   AccordionContent,

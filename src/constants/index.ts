@@ -25,6 +25,13 @@ export const NAV_LINKS = [
   },
 ];
 
+export const CONTACT = [
+  { title: "Business Bay, Dubai, UAE", href: "/" },
+  { title: "Phone: +971 56 401 4000", href: "tel:+971564014000" },
+  { title: "Email: invest@piptan.com", href: "mailto:invest@piptan.com" },
+];
+
+
 export const FOOTER_LINKS = [
   {
     heading: "Quick Links",
@@ -53,18 +60,11 @@ export const FOOTER_LINKS = [
   {
     heading: "Contact",
     links: [
-      { title: "Business Bay, Dubai, UAE", href: "/" },
-      { title: "Phone: +971 123 456 7890", href: "/" },
-      { title: "Email: hello@piptan.com", href: "/" },
+      CONTACT
     ],
   },
 ];
 
-export const CONTACT = [
-  { title: "Business Bay, Dubai, UAE", href: "/" },
-  { title: "Phone: +971 123 456 7890", href: "/" },
-  { title: "Email: hello@piptan.com", href: "/" },
-];
 
 export const FEATURES = [
   {

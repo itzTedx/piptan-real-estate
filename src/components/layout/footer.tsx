@@ -5,8 +5,8 @@ import {
   IconBrandInstagram,
   IconBrandLinkedin,
   IconBrandTelegram,
-} from "@/assets/icons";
-import { Logo, Piptan, WordMark } from "@/assets/logo";
+} from "@/app/assets/icons";
+import { Logo, Piptan, WordMark } from "@/app/assets/logo";
 import { CONTACT, NAV_LINKS } from "@/constants";
 import { getProjectsCardData } from "@/features/projects/actions/projects-actions";
 

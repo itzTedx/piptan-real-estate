@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
-import { jaguar, neueMontreal } from "@/assets/fonts";
+import { jaguar, neueMontreal } from "@/app/assets/fonts";
 import BreakpointIndicator from "@/components/breakpoint-indicator";
 import Providers from "@/components/providers";
 import { SanityLive } from "@/lib/sanity/lib/live";

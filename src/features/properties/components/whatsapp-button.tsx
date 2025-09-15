@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-import { IconBrandWhatsappFilled } from "@/assets/icons";
+import { IconBrandWhatsappFilled } from "@/app/assets/icons";
 import { Button } from "@/components/ui/button";
 
 interface Props {

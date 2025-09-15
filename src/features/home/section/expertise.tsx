@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { IconCollection } from "@/assets/icons";
+import { IconCollection } from "@/app/assets/icons";
 import StackingCards, {
   StackingCardItem,
 } from "@/components/animation/stacking-cards";

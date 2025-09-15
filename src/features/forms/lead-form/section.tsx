@@ -6,8 +6,8 @@ import { useRef } from "react";
 
 import { motion, useScroll, useTransform } from "motion/react";
 
-import { IconBrandTelegram, IconBrandWhatsapp } from "@/assets/icons";
-import { Piptan } from "@/assets/logo";
+import { IconBrandTelegram, IconBrandWhatsapp } from "@/app/assets/icons";
+import { Piptan } from "@/app/assets/logo";
 import { cn } from "@/lib/utils";
 
 import { LeadForm } from "./form";

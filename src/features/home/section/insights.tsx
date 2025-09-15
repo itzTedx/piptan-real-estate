@@ -1,4 +1,4 @@
-import { IconCollection } from "@/assets/icons";
+import { IconCollection } from "@/app/assets/icons";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import {
   Carousel,

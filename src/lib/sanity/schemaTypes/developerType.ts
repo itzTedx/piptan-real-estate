@@ -1,6 +1,6 @@
 import { defineField, defineType } from "sanity";
 
-import { IconHouse } from "@/assets/icons";
+import { IconHouse } from "@/app/assets/icons";
 import { slugify } from "@/lib/utils";
 
 import { client } from "../lib/client";

@@ -1,7 +1,11 @@
+import dynamic from "next/dynamic";
 import Image from "next/image";
 
-import SimpleMarquee from "@/components/animation/simple-marquee";
 import { Separator } from "@/components/ui/separator";
+
+const SimpleMarquee = dynamic(
+  () => import("@/components/animation/simple-marquee")
+);
 
 export const Hero = () => {
   return (

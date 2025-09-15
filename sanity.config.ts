@@ -9,7 +9,7 @@ import { media } from "sanity-plugin-media";
 import { structureTool } from "sanity/structure";
 
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
-import { Logo } from "@/assets/logo";
+import { Logo } from "@/app/assets/logo";
 
 import { apiVersion, dataset, projectId } from "./src/lib/sanity/env";
 import { schema } from "./src/lib/sanity/schemaTypes";

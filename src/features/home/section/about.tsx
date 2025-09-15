@@ -1,4 +1,4 @@
-import { IconInfo } from "@/assets/icons";
+import { IconInfo } from "@/app/assets/icons";
 import MomentumLines from "@/components/animation/momentum-lines";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { SectionHeader } from "@/components/ui/section-header";

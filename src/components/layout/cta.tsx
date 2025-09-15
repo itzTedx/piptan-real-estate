@@ -4,8 +4,8 @@ import { useRef } from "react";
 
 import { motion, useScroll, useTransform } from "motion/react";
 
-import { BuildingOutline } from "@/assets/building-outline";
-import { Logo } from "@/assets/logo";
+import { BuildingOutline } from "@/app/assets/building-outline";
+import { Logo } from "@/app/assets/logo";
 import { AnimatedButton } from "@/components/ui/animated-button";
 
 export const Cta = () => {

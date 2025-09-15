@@ -5,8 +5,8 @@ import { useRef } from "react";
 
 import { motion, useScroll, useTransform } from "motion/react";
 
-import { IconChatBubble } from "@/assets/icons";
-import { Logo, WordMark } from "@/assets/logo";
+import { IconChatBubble } from "@/app/assets/icons";
+import { Logo, WordMark } from "@/app/assets/logo";
 import { SectionHeader } from "@/components/ui/section-header";
 import { FEEDBACKS } from "@/constants/mock-data";
 import { cn } from "@/lib/utils";

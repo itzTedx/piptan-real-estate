@@ -1,4 +1,4 @@
-import { IconHouse } from "@/assets/icons";
+import { IconHouse } from "@/app/assets/icons";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import {
   Carousel,

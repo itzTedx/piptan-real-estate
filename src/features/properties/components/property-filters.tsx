@@ -10,7 +10,7 @@ import { useQueryState } from "nuqs";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { IconGrid, IconList, IconSort } from "@/assets/icons";
+import { IconGrid, IconList, IconSort } from "@/app/assets/icons";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
