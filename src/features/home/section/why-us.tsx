@@ -27,10 +27,10 @@ export const WhyUsSection = () => {
 
   // Images for each tab (replace with your actual image paths)
   const images = [
-    "/images/isolated-home.webp",
-    "/images/residential-tower-wide.webp",
-    "/images/feature3.webp",
-    "/images/feature4.webp",
+    "/images/puzzle.svg",
+    "/images/growth.svg",
+    "/images/maze.svg",
+    "/images/magnifier.svg",
   ];
 
   // --- Combine scroll and tab animation for y ---
@@ -79,7 +79,7 @@ export const WhyUsSection = () => {
         <AnimatePresence mode="wait">
           <motion.div
             key={selectedTab}
-            className="absolute top-0 -left-[15vw] hidden aspect-5/3 w-2/3 sm:block 2xl:-left-[11vw]"
+            className="absolute top-0 -left-[15vw] hidden aspect-5/3 w-[60%] sm:block 2xl:-left-[11vw]"
             style={{ y: combinedY }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -90,7 +90,7 @@ export const WhyUsSection = () => {
               src={images[selectedTab]}
               fill
               alt="Modern luxury home showcasing premium architecture and design"
-              className="object-cover"
+              className="object-contain"
             />
           </motion.div>
         </AnimatePresence>
