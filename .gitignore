@@ -41,3 +41,4 @@ next.zip
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+*.zip
