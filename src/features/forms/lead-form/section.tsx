@@ -132,7 +132,7 @@ export const LeadSection = ({
         <p className="text-muted-foreground mt-3 text-center text-xs sm:mt-4 sm:text-sm md:text-base">
           By submitting this form, you agree to our{" "}
           <Link
-            href="/privacy"
+            href="/legal/privacy"
             className="hover:text-primary-foreground underline underline-offset-2 transition-colors"
           >
             privacy policy

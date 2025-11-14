@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import {
@@ -35,20 +36,12 @@ export const Footer = async () => {
               >
                 <FullLogo />
               </Link>
-              <p className="mt-4 flex items-center gap-2">
-                Reg. No.: 2699641
-                <span
-                  className="bg-muted-foreground block size-1.5 rounded-full"
-                  aria-hidden="true"
-                />
-                Lic. No.: 1551118
-              </p>
+
               <p className="text-primary-foreground mt-2 text-base text-balance">
-                Piptan Capital L.L.C operates in accordance with the laws and
-                regulations of the United Arab Emirates, We uphold the highest
-                ethical and regulatory standards in all our activities, ensuring
-                that our practices reflect both local and international best
-                practices.
+                Piptan Investment is your trusted partner in premium real
+                estate. From luxury residences to strategic investments, we help
+                you make confident, future-ready property decisions in Dubai and
+                beyond.
               </p>
             </div>
             <div className="w-full">
@@ -166,18 +159,47 @@ export const Footer = async () => {
           className="text-muted-foreground flex flex-col items-center justify-between gap-4 pt-6 pb-8 text-xs md:flex-row md:pt-9 md:pb-12 md:text-sm"
           role="contentinfo"
         >
-          <p>© {new Date().getFullYear()}, PIPTAN CAPITAL L.L.C (UAE)</p>
-          <nav aria-label="Legal links">
+          <div className="max-w-3xl">
+            <p>© {new Date().getFullYear()}, Piptan Capital L.L.C</p>
+            <div className="mt-2 flex items-center justify-between gap-2">
+              <div className="mb-1">
+                <p className="mt-3 flex items-center gap-2 font-semibold">
+                  Reg. No.: 2699641
+                  <span
+                    className="bg-muted-foreground block size-1.5 rounded-full"
+                    aria-hidden="true"
+                  />
+                  Lic. No.: 1551118
+                </p>
+                <p>
+                  Piptan Capital L.L.C operates in accordance with the laws and
+                  regulations of the United Arab Emirates, We uphold the highest
+                  ethical and regulatory standards in all our activities,
+                  ensuring that our practices reflect both local and
+                  international best practices.
+                </p>
+              </div>
+              <div className="shrink-0 rounded-md border bg-white p-1.5">
+                <Image
+                  src="/images/licence-qrcode.jpg"
+                  alt="Licence QR Code"
+                  width={72}
+                  height={72}
+                />
+              </div>
+            </div>
+          </div>
+          <nav aria-label="Legal links" className="shrink-0">
             <div className="flex items-center gap-3">
-              <Link href="/privacy" aria-label="Privacy Policy">
-                Privacy policy
+              <Link href="/legal/terms-of-service" aria-label="Terms   ">
+                Terms of Service
               </Link>
               <span
                 className="bg-muted-foreground block size-1.5 rounded-full"
                 aria-hidden="true"
               />
-              <Link href="/privacy" aria-label="Terms and Conditions">
-                Terms
+              <Link href="/legal/privacy" aria-label="Privacy Policy">
+                Privacy policy
               </Link>
             </div>
           </nav>
