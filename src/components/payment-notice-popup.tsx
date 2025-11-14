@@ -17,11 +17,11 @@ export const PaymentNoticePopup = () => {
   if (!isOpen) return null;
 
   return (
-    <Card className="bg-card/80 fixed right-3 bottom-3 z-[999999] w-lg gap-1 py-3.5 backdrop-blur-lg">
-      <CardHeader className="px-3.5">
+    <Card className="bg-card/80 fixed right-0 bottom-0 z-[999999] max-w-lg gap-1 rounded-none py-2 backdrop-blur-lg md:right-3 md:bottom-3 md:rounded-lg md:py-3.5">
+      <CardHeader className="px-2 md:px-3.5">
         <CardTitle>Payment Security Notice</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-1 px-3.5">
+      <CardContent className="space-y-1 md:px-3.5">
         <p className="text-xs">
           Piptan Capital Inc. maintains the highest standards of financial
           integrity and client security. Please note that the company does not
@@ -37,7 +37,7 @@ export const PaymentNoticePopup = () => {
           compliance with UAE financial regulations.
         </p>
       </CardContent>
-      <CardFooter className="mt-2 px-3.5">
+      <CardFooter className="mt-1.5 px-2 md:mt-2 md:px-3.5">
         <Button size="sm" onClick={() => setIsOpen(false)} className="text-sm">
           Ok, I Understand
         </Button>
