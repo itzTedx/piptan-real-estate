@@ -11,6 +11,7 @@ type SearchParams = Promise<{ q?: string; category?: string }>;
 
 // Enable caching with revalidation every 5 minutes
 export const revalidate = 300;
+export const dynamic = "force-static";
 
 export default async function InsightsContent({
   searchParams,
@@ -18,9 +19,6 @@ export default async function InsightsContent({
   searchParams: SearchParams;
 }) {
   const searchParam = await searchParams;
-
-  const { insights, categories } =
-    await getFilteredInsightsWithParams(searchParam);
 
   return (
     <main className="container space-y-12 pt-4 sm:pt-9 md:pt-12">
@@ -46,9 +44,20 @@ export default async function InsightsContent({
             </div>
           }
         >
-          <InsightsList categories={categories} initialInsights={insights} />
+          <Insights searchParam={searchParam} />
         </Suspense>
       </section>
     </main>
   );
+}
+
+export async function Insights({
+  searchParam,
+}: {
+  searchParam: Awaited<SearchParams>;
+}) {
+  const { insights, categories } =
+    await getFilteredInsightsWithParams(searchParam);
+
+  return <InsightsList categories={categories} initialInsights={insights} />;
 }

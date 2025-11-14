@@ -119,6 +119,8 @@ export async function getFilteredInsightsWithParams(searchParams: {
   insights: FILTERED_INSIGHTS_QUERYResult;
   categories: INSIGHT_CATEGORIES_QUERYResult;
 }> {
+
+  
   try {
     const [insightsResult, categoriesResult] = await Promise.all([
       sanityFetch({
