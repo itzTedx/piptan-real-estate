@@ -596,6 +596,27 @@ export type CATEGORIES_QUERYResult = Array<{
   description: string | null;
 }>;
 
+// Source: ./src/lib/sanity/queries/developers-queries.ts
+// Variable: DEVELOPERS_QUERY
+// Query: *[_type == "developer"] | order(_createdAt) {    _id,    name,    logo,}
+export type DEVELOPERS_QUERYResult = Array<{
+  _id: string;
+  name: string | null;
+  logo: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+}>;
+
 // Source: ./src/lib/sanity/queries/insights-queries.ts
 // Variable: INSIGHTS_QUERY
 // Query: *[_type == "insights"]  {    _id,    title,    image{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    "slug": slug.current,    excerpt,    categories -> ,    author,    body,    seo,    'createdAt': _createdAt}
@@ -1377,6 +1398,7 @@ export type FAQS_QUERYResult = Array<{
 declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "category"] | order(orderRank) {\n    _id,\n    title,\n    image,\n    "slug": slug.current,\n    description\n}': CATEGORIES_QUERYResult;
+    '*[_type == "developer"] | order(_createdAt) {\n    _id,\n    name,\n    logo,\n}': DEVELOPERS_QUERYResult;
     '*[_type == "insights"]  {\n    _id,\n    title,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    excerpt,\n    categories -> ,\n    author,\n    body,\n    seo,\n    \'createdAt\': _createdAt\n}': INSIGHTS_QUERYResult;
     '\n  *[_type == "insights" \n    && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || excerpt match $searchQuery + "*" || categories->title match $searchQuery + "*") \n    && (!defined($category) || $category == "" || categories->slug.current == $category)   ] | order(_createdAt desc) {\n    _id,\n    title,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    excerpt,\n    categories -> {\n      _id,\n      title,\n      "slug": slug.current\n    },\n    author,\n    body,\n    seo,\n    \'createdAt\': _createdAt\n  }\n': FILTERED_INSIGHTS_QUERYResult;
     '*[_type == "insights"] | order(_createdAt desc)[$start..$end]  {\n    _id,\n    title,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    excerpt,\n    categories -> {\n      _id,\n      title,\n      "slug": slug.current\n    },\n    author,\n    body,\n    seo,\n    \'createdAt\': _createdAt\n}': PAGINATED_INSIGHTS_QUERYResult;

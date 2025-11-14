@@ -3,7 +3,7 @@ import Link from "next/link";
 import { MenuIcon } from "@sanity/icons";
 
 import { IconPhone } from "@/app/assets/icons";
-import { Logo, WordMark } from "@/app/assets/logo";
+import { FullLogo } from "@/app/assets/logo";
 import {
   Drawer,
   DrawerClose,
@@ -21,13 +21,12 @@ export const Navbar = () => {
   return (
     <header className="sticky top-0 z-[999] flex h-20 items-center transition-all duration-300 ease-in-out">
       <div
-        className="from-background/60 to-background/0 absolute top-0 z-10 h-full w-full bg-gradient-to-b"
+        className="from-background/80 absolute top-0 z-10 h-full w-full bg-gradient-to-b to-transparent"
         aria-hidden="true"
       />
       <nav className="relative z-[999] container flex items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-2">
-          <Logo />
-          <WordMark />
+          <FullLogo />
         </Link>
 
         {/* Desktop Navigation */}

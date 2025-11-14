@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { AboutSection } from "@/features/home/section/about";
+import { Developers } from "@/features/home/section/developers";
 import { ExpertiseSection } from "@/features/home/section/expertise";
 import { FaqSection } from "@/features/home/section/faq";
 import { FeaturesSection } from "@/features/home/section/features";
@@ -83,6 +84,7 @@ export default function Home() {
       <ExpertiseSection />
       <ProjectsSection />
       <WhyUsSection />
+      <Developers />
       <FeaturesSection />
       <Testimonials />
       <InsightsSection />

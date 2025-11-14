@@ -6,7 +6,7 @@ import {
   IconBrandLinkedin,
   IconBrandTelegram,
 } from "@/app/assets/icons";
-import { Logo, Piptan, WordMark } from "@/app/assets/logo";
+import { FullLogo, Piptan } from "@/app/assets/logo";
 import { CONTACT, NAV_LINKS } from "@/constants";
 import { getProjectsCardData } from "@/features/projects/actions/projects-actions";
 
@@ -22,10 +22,6 @@ export const Footer = async () => {
       aria-label="Website footer"
     >
       <div className="container">
-        {/* <h2 className="font-jaguar text-primary py-3 text-center text-4xl md:text-6xl lg:text-[8rem]">
-          <TextEffect text="Invest. Grow. Thrive." />
-        </h2>
-        <Separator /> */}
         <section
           className="grid grid-cols-1 gap-6 py-8 md:grid-cols-2 md:py-12 lg:grid-cols-3 lg:py-16"
           aria-label="Footer content"
@@ -37,14 +33,22 @@ export const Footer = async () => {
                 className="flex items-center"
                 aria-label="Piptan Investment Home"
               >
-                <Logo />
-                <WordMark />
+                <FullLogo />
               </Link>
-              <p className="text-primary-foreground mt-3 text-base text-balance md:text-lg">
-                Piptan Investment is your trusted partner in premium real
-                estate. From luxury residences to strategic investments, we help
-                you make confident, future-ready property decisions in Dubai and
-                beyond.
+              <p className="mt-4 flex items-center gap-2">
+                Reg. No.: 2699641
+                <span
+                  className="bg-muted-foreground block size-1.5 rounded-full"
+                  aria-hidden="true"
+                />
+                Lic. No.: 1551118
+              </p>
+              <p className="text-primary-foreground mt-2 text-base text-balance">
+                Piptan Capital L.L.C operates in accordance with the laws and
+                regulations of the United Arab Emirates, We uphold the highest
+                ethical and regulatory standards in all our activities, ensuring
+                that our practices reflect both local and international best
+                practices.
               </p>
             </div>
             <div className="w-full">
@@ -162,7 +166,7 @@ export const Footer = async () => {
           className="text-muted-foreground flex flex-col items-center justify-between gap-4 pt-6 pb-8 text-xs md:flex-row md:pt-9 md:pb-12 md:text-sm"
           role="contentinfo"
         >
-          <p>© {new Date().getFullYear()}, Piptan Investment & Securities</p>
+          <p>© {new Date().getFullYear()}, PIPTAN CAPITAL L.L.C (UAE)</p>
           <nav aria-label="Legal links">
             <div className="flex items-center gap-3">
               <Link href="/privacy" aria-label="Privacy Policy">

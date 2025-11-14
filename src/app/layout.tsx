@@ -87,7 +87,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn(`antialiased`, neueMontreal.className, jaguar.variable)}
+        className={cn(
+          `relative antialiased`,
+          neueMontreal.className,
+          jaguar.variable
+        )}
       >
         <Providers>
           <NuqsAdapter>{children}</NuqsAdapter>

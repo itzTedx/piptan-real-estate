@@ -19,6 +19,7 @@ export const structure: StructureResolver = (S, context) =>
         S,
         context,
       }),
+      S.documentTypeListItem("developer").title("Developers"),
       // orderableDocumentListDeskItem({
       //   type: "services",
       //   title: "Services",

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Cta } from "@/components/layout/cta";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
+import { PaymentNoticePopup } from "@/components/payment-notice-popup";
 
 const meta = {
   title: "Luxury Real Estate Investments in the UAE - Piptan Investment",
@@ -28,6 +29,7 @@ export default function RootLayout({
       {children}
       <Cta />
       <Footer />
+      <PaymentNoticePopup />
     </>
   );
 }
