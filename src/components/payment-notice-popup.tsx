@@ -22,7 +22,7 @@ export const PaymentNoticePopup = () => {
         <CardTitle>Payment Security Notice</CardTitle>
       </CardHeader>
       <CardContent className="space-y-1 px-2.5 md:px-3.5">
-        <p className="text-xs">
+        <p className="text-[10px] md:text-xs">
           Piptan Capital Inc. maintains the highest standards of financial
           integrity and client security. Please note that the company does not
           accept cash payments in any form. No employee, associate, or
@@ -30,7 +30,7 @@ export const PaymentNoticePopup = () => {
           payment through personal accounts, messaging platforms, or third-party
           channels.
         </p>
-        <p className="text-xs">
+        <p className="text-[10px] md:text-xs">
           All transactions and payments must be made directly to Piptan Capital
           Inc. through our official and verified banking or digital payment
           channels only. This measure ensures transparency, safety, and full
