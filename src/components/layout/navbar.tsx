@@ -96,8 +96,9 @@ export const Navbar = () => {
                 </DrawerClose>
                 <DrawerClose asChild>
                   <AnimatedButton
-                    href="/projects"
-                    text="Explore More"
+                    href="/portfolio"
+                    className="h-12"
+                    text="Explore Portfolio"
                     variant="primary"
                   />
                 </DrawerClose>

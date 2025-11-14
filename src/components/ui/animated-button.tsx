@@ -1,3 +1,4 @@
+import { Route } from "next";
 import Link from "next/link";
 import React, { type ComponentProps, ReactNode, forwardRef } from "react";
 
@@ -16,17 +17,17 @@ interface BaseProps {
 interface ButtonButtonProps
   extends BaseProps,
     Omit<ButtonProps, keyof BaseProps> {
-  href?: never;
+  href?: Route;
 }
 
 interface LinkButtonProps extends BaseProps, Omit<LinkProps, keyof BaseProps> {
-  href: string;
+  href: Route;
 }
 
 type AnimatedButtonProps = ButtonButtonProps | LinkButtonProps;
 
 const baseStyles =
-  "font-medium relative group pointer-events-auto relative flex w-fit cursor-pointer items-center justify-center overflow-hidden rounded-sm  transition-transform duration-700 ease-out will-change-transform hover:scale-x-[1.02] hover:ease-[cubic-bezier(.34,5.56,.64,1)] focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none  ring-offset-2";
+  "font-medium relative group pointer-events-auto relative flex w-full md:w-fit cursor-pointer items-center justify-center overflow-hidden rounded-sm  transition-transform duration-700 ease-out will-change-transform hover:scale-x-[1.02] hover:ease-[cubic-bezier(.34,5.56,.64,1)] focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none  ring-offset-2";
 
 const variants = {
   default: "bg-primary text-primary-foreground border",

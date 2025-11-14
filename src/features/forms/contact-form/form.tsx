@@ -31,7 +31,7 @@ export function ContactForm() {
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
-          "bg-muted col-span-2 flex w-full flex-col gap-4 rounded-md p-9"
+          "bg-muted flex w-full flex-col gap-4 rounded-md p-4 sm:p-6 md:p-8 lg:col-span-2 lg:p-9"
         )}
       >
         <FloatingLabelInput control={form.control} name="name" label="Name" />
