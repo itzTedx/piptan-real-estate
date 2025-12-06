@@ -6,7 +6,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 
 import { IconChatBubble } from "@/app/assets/icons";
-import { Logo, WordMark } from "@/app/assets/logo";
+import { Logo } from "@/app/assets/logo";
 import { SectionHeader } from "@/components/ui/section-header";
 import { FEEDBACKS } from "@/constants/mock-data";
 import { cn } from "@/lib/utils";
@@ -34,7 +34,7 @@ export const Testimonials = () => {
       <ul className="mt-12 grid grid-cols-1 grid-rows-8 gap-3 md:grid-cols-3 md:grid-rows-3 md:gap-6">
         <li className="sticky top-[calc(50%-12rem)] col-start-1 row-start-1 flex flex-col items-center justify-center gap-4 rounded-sm p-10 max-md:h-fit md:col-start-2">
           <Logo className="h-14 w-auto md:h-20" />
-          <WordMark className="h-8 w-auto md:h-11" />
+          {/* <WordMark className="h-8 w-auto md:h-11" /> */}
         </li>
 
         <li className="to-foreground group relative col-start-1 row-span-2 row-start-7 flex flex-col justify-end overflow-hidden rounded-sm bg-gradient-to-b from-[#60A2D7] md:row-span-2 md:row-start-2">

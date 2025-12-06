@@ -7,7 +7,7 @@ import {
   IconBrandLinkedin,
   IconBrandTelegram,
 } from "@/app/assets/icons";
-import { FullLogo, Piptan } from "@/app/assets/logo";
+import { Logo, Piptan } from "@/app/assets/logo";
 import { CONTACT, NAV_LINKS } from "@/constants";
 import { getProjectsCardData } from "@/features/projects/actions/projects-actions";
 
@@ -34,7 +34,7 @@ export const Footer = async () => {
                 className="flex items-center"
                 aria-label="Piptan Investment Home"
               >
-                <FullLogo />
+                <Logo />
               </Link>
 
               <p className="text-primary-foreground mt-2 text-base text-balance">

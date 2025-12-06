@@ -3,7 +3,7 @@ import Link from "next/link";
 import { MenuIcon } from "@sanity/icons";
 
 import { IconPhone } from "@/app/assets/icons";
-import { FullLogo } from "@/app/assets/logo";
+import { Logo } from "@/app/assets/logo";
 import {
   Drawer,
   DrawerClose,
@@ -26,7 +26,7 @@ export const Navbar = () => {
       />
       <nav className="relative z-[999] container flex items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-2">
-          <FullLogo />
+          <Logo />
         </Link>
 
         {/* Desktop Navigation */}
