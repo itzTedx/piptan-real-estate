@@ -24,7 +24,7 @@ const nextConfig: NextConfig = {
   // Enable experimental features for better caching
   experimental: {
     // Enable optimized package imports
-    optimizePackageImports: ["@sanity/image-url", "next-sanity", "gsap", "lucide-react", "radix-ui", "framer-motion", "react-hook-form", "embla-carousel-react", "nuqs", "react-zoom-pan-pinch", "vaul", "@hookform/resolvers"],
+    optimizePackageImports: ["@sanity/image-url", "next-sanity", "gsap", "lucide-react", "framer-motion"],
     // Enable optimized CSS
     // optimizeCss: true,
   },
@@ -94,12 +94,10 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  // Enable compression
-  compress: true,
+
   // Enable powered by header removal
   poweredByHeader: false,
-  // Enable strict mode for better development
-  reactStrictMode: true,
+
 
 };
 

@@ -17,7 +17,7 @@ export const PaymentNoticePopup = () => {
   if (!isOpen) return null;
 
   return (
-    <Card className="bg-card/80 fixed right-0 bottom-0 z-[999999] max-w-lg gap-1 rounded-none py-2.5 backdrop-blur-lg md:right-3 md:bottom-3 md:rounded-lg md:py-3.5">
+    <Card className="bg-card/80 fixed right-0 bottom-0 z-999 max-w-lg gap-1 rounded-none py-2.5 backdrop-blur-lg md:right-3 md:bottom-3 md:rounded-lg md:py-3.5">
       <CardHeader className="px-2.5 md:px-3.5">
         <CardTitle>Payment Security Notice</CardTitle>
       </CardHeader>

@@ -11,10 +11,10 @@ export const NAV_LINKS = [
     title: "Portfolios",
     href: "/portfolio",
   },
-  // {
-  //   title: "Services",
-  //   href: "/services",
-  // },
+  {
+    title: "Services",
+    href: "/services",
+  },
   {
     title: "Insights",
     href: "/insights",
