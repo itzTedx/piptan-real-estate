@@ -186,7 +186,7 @@ export const Logo = ({ className }: LogoProps) => {
       className={className}
       src="/piptan-logo.svg"
       alt="Piptan Logo"
-      width={80}
+      width={200}
       height={60}
     />
   );

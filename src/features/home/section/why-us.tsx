@@ -75,11 +75,11 @@ export const WhyUsSection = () => {
           </p>
         </div>
       </div>
-      <div className="relative z-10 container grid grid-cols-1 gap-4 pb-8 sm:grid-cols-2 sm:gap-6 sm:pb-12 md:pb-16 lg:pb-24">
+      <div className=" z-10 container grid grid-cols-1 gap-4 pb-8 sm:grid-cols-2 sm:gap-6 sm:pb-12 md:pb-16 lg:pb-24">
         <AnimatePresence mode="wait">
           <motion.div
             key={selectedTab}
-            className="absolute top-0 -left-[15vw] hidden aspect-5/3 w-[60%] sm:block 2xl:-left-[11vw]"
+            className="absolute top-1/2 -translate-y-1/2 left-0 hidden aspect-5/3 w-[60%] sm:block  "
             style={{ y: combinedY }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

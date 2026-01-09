@@ -206,7 +206,7 @@ export const Footer = async () => {
         </div>
       </div>
       <Piptan
-        className="h-auto w-full translate-y-1/3 text-white/10 md:translate-y-9"
+        className="h-auto w-full translate-y-1/3 text-primary md:translate-y-9"
         aria-hidden="true"
       />
     </footer>
