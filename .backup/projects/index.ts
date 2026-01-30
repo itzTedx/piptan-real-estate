@@ -1,6 +1,123 @@
-import { defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 import { IconHouse } from "@/app/assets/icons";
+import { slugify } from "@/lib/utils";
+
+import { client } from "../../lib/client";
+
+async function asyncSlugify(input: string): Promise<string> {
+	const slug = slugify(input);
+	const query = 'count(*[_type=="projects" && slug.current == $slug]{_id})';
+	const params = { slug: slug };
+	const count = await client.fetch(query, params);
+
+	if (count === 0) {
+		return slug;
+	}
+
+	return `${slug}-${count + 1}`;
+}
+
+// Feature Schema
+export const featureType = defineType({
+	name: "feature",
+	title: "Feature",
+	type: "string",
+});
+
+// Stat Schema
+export const statType = defineType({
+	name: "stat",
+	title: "Stat",
+	type: "object",
+	fields: [
+		defineField({
+			name: "stat",
+			type: "string",
+			title: "Stat Value",
+			validation: (Rule) => Rule.required(),
+		}),
+		defineField({
+			name: "label",
+			type: "string",
+			title: "Stat Label",
+			validation: (Rule) => Rule.required(),
+		}),
+	],
+	preview: {
+		select: {
+			stat: "stat",
+			label: "label",
+		},
+		prepare({ stat, label }) {
+			return {
+				title: `${stat} - ${label}`,
+			};
+		},
+	},
+});
+
+// Amenity Schema
+export const amenityType = defineType({
+	name: "amenity",
+	title: "Amenity",
+	type: "object",
+	fields: [
+		defineField({
+			name: "title",
+			type: "string",
+			title: "Title",
+			validation: (Rule) => Rule.required(),
+		}),
+		defineField({
+			name: "image",
+			type: "image",
+			title: "Image",
+			options: {
+				hotspot: true,
+			},
+			fields: [
+				defineField({
+					name: "alt",
+					type: "string",
+					title: "Alternative text",
+				}),
+			],
+		}),
+	],
+	preview: {
+		select: {
+			title: "title",
+			media: "image",
+		},
+	},
+});
+
+// Description Section Schema
+export const descriptionSectionType = defineType({
+	name: "descriptionSection",
+	title: "Description Section",
+	type: "object",
+	fields: [
+		defineField({
+			name: "title",
+			type: "string",
+			title: "Section Title",
+			validation: (Rule) => Rule.required(),
+		}),
+		defineField({
+			name: "content",
+			type: "text",
+			title: "Content",
+			validation: (Rule) => Rule.required(),
+		}),
+	],
+	preview: {
+		select: {
+			title: "title",
+		},
+	},
+});
 
 // Main Project Schema
 export const projectType = defineType({
@@ -36,7 +153,8 @@ export const projectType = defineType({
 			name: "title",
 			type: "string",
 			group: "hero",
-
+			description:
+				"Enter the main name of the project. Example: 'Nova Pearl Residences'. This will be shown as the headline.",
 			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
@@ -52,7 +170,8 @@ export const projectType = defineType({
 			type: "image",
 			group: "hero",
 			title: "Hero Image",
-
+			description:
+				"Upload the main image representing the project. Recommended size: 1920x1080px. This image appears at the top of the project page.",
 			options: {
 				hotspot: true,
 			},
@@ -61,6 +180,8 @@ export const projectType = defineType({
 					name: "alt",
 					type: "string",
 					title: "Alternative text",
+					description:
+						"Describe the image for accessibility and SEO. Example: 'Front view of Nova Pearl Residences'.",
 				}),
 			],
 			validation: (Rule) => Rule.required(),
@@ -71,12 +192,16 @@ export const projectType = defineType({
 			name: "location",
 			type: "string",
 			group: "overview",
+			description:
+				"Specify the project's location. Example: 'Jumeirah Beach Residence, Dubai'.",
+			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
 			name: "developer",
 			type: "reference",
 			group: "overview",
-
+			description:
+				"Select the developer or development company behind this project.",
 			to: { type: "developer" },
 			validation: (Rule) => Rule.required(),
 		}),
@@ -94,8 +219,17 @@ export const projectType = defineType({
 					{ title: "Coming Soon", value: "coming-soon" },
 				],
 			},
+			validation: (Rule) => Rule.required(),
 		}),
-
+		defineField({
+			name: "isFeatured",
+			type: "boolean",
+			group: "overview",
+			title: "Featured Project",
+			description:
+				"Enable this to highlight the project as a featured property on the website.",
+			initialValue: false,
+		}),
 		defineField({
 			name: "category",
 			type: "reference",
@@ -205,6 +339,52 @@ export const projectType = defineType({
 					description:
 						"Add keywords to help categorize and filter the project. Example: ['Luxury', 'Beachfront', 'Family'].",
 					of: [{ type: "string", name: "tag" }],
+				}),
+			],
+		}),
+		defineField({
+			name: "propertyFeatures",
+			title: "Property Features",
+			type: "object",
+			group: "content",
+			description: "Describe the main features and amenities of the property.",
+
+			fields: [
+				defineField({
+					name: "description",
+					type: "array",
+					description:
+						"Write a detailed, formatted description of the project. You can use rich text formatting.",
+					of: [
+						defineArrayMember({
+							type: "block",
+							styles: [{ title: "Normal", value: "normal" }],
+							lists: [],
+						}),
+					],
+				}),
+				defineField({
+					name: "image",
+					type: "image",
+					title: "Image",
+					description:
+						"Upload an image that illustrates the property's features.",
+				}),
+				defineField({
+					name: "features",
+					type: "array",
+					title: "Key Features",
+					description:
+						"List the main features of the project. Example: 'Waterfront', 'Private Beach', 'Smart Home'.",
+					of: [{ type: "string", initialValue: "" }],
+				}),
+				defineField({
+					name: "amenities",
+					type: "array",
+					title: "Amenities",
+					description:
+						"List all amenities and facilities available in the project. Example: 'Gym', 'Swimming Pool', 'Children's Play Area'.",
+					of: [{ type: "amenity" }],
 				}),
 			],
 		}),

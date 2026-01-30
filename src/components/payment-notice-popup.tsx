@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Button } from "./ui/button";
 import {
@@ -13,6 +13,36 @@ import {
 
 export const PaymentNoticePopup = () => {
 	const [isOpen, setIsOpen] = useState(true);
+
+	useEffect(() => {
+		// Check if user has dismissed the popup within the last week
+		const checkPopupStatus = () => {
+			const dismissedAt = localStorage.getItem("payment-notice-dismissed");
+
+			if (dismissedAt) {
+				const dismissedTime = Number.parseInt(dismissedAt, 10);
+				const oneWeekInMs = 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
+				const currentTime = Date.now();
+
+				// If it's been less than a week, keep the popup closed
+				if (currentTime - dismissedTime < oneWeekInMs) {
+					setIsOpen(false);
+				} else {
+					// More than a week has passed, clear the stored value and show popup again
+					localStorage.removeItem("payment-notice-dismissed");
+					setIsOpen(true);
+				}
+			}
+		};
+
+		checkPopupStatus();
+	}, []);
+
+	const handleDismiss = () => {
+		// Store the current timestamp when user dismisses the popup
+		localStorage.setItem("payment-notice-dismissed", Date.now().toString());
+		setIsOpen(false);
+	};
 
 	if (!isOpen) return null;
 
@@ -38,7 +68,7 @@ export const PaymentNoticePopup = () => {
 				</p>
 			</CardContent>
 			<CardFooter className="mt-1.5 px-2.5 md:mt-2 md:px-3.5">
-				<Button className="text-sm" onClick={() => setIsOpen(false)} size="sm">
+				<Button className="text-sm" onClick={handleDismiss} size="sm">
 					Ok, I Understand
 				</Button>
 			</CardFooter>

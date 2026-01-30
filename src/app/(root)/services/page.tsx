@@ -48,7 +48,7 @@ export default function ServicesPage() {
 							{ stat: "4", label: "years on the market" },
 							{ stat: "3,500+", label: "satisfied clients" },
 						].map((milestone, index) => (
-							<li key={index}>
+							<li key={`${index}-${milestone.label}`}>
 								<h3 className="mb-2 font-medium text-4xl transition-transform duration-300 group-hover:scale-110">
 									{milestone.stat}
 								</h3>

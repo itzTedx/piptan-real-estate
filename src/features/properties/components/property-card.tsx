@@ -1,3 +1,4 @@
+import { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -24,7 +25,7 @@ export const PropertyCard = ({ className, data }: Props) => {
 		>
 			<Link
 				className="relative aspect-5/6 shrink-0 overflow-hidden rounded-md border p-9"
-				href={`/portfolio/${data.slug || ""}`}
+				href={(data.slug as Route) || ""}
 			>
 				{/* <div className="relative z-10 flex items-start justify-between gap-3">
 						{data.category && (
@@ -51,26 +52,29 @@ export const PropertyCard = ({ className, data }: Props) => {
 						{data.title}
 					</h3>
 
-					{data.developer && (
-						<div className="relative grid w-20 shrink-0 place-content-center text-background">
-							{data.developer.logo ? (
-								<Image
-									alt={data.developer.logo.alt ?? data.developer.name ?? ""}
-									height={60}
-									src={urlFor(data.developer.logo).url()}
-									width={70}
-								/>
-							) : (
-								data.developer.name
-							)}
-						</div>
-					)}
+					<div className="flex gap-0.5 tracking-wide">
+						<span>by</span>
+						{data.developer && (
+							<div className="relative grid w-20 shrink-0 place-content-center text-background">
+								{data.developer.logo ? (
+									<Image
+										alt={data.developer.logo.alt ?? data.developer.name ?? ""}
+										height={60}
+										src={urlFor(data.developer.logo).url()}
+										width={70}
+									/>
+								) : (
+									data.developer.name
+								)}
+							</div>
+						)}
+					</div>
 					<Button size="sm">Explore portflio</Button>
 					{/* <WhatsappButton
 							message={`Hello, I'm interested in getting more information about ${data.title}. Project Link: https://www.piptan.ae/portfolio/${data.slug || ""} `}
 						/> */}
 				</div>
-				<div className="absolute inset-x-0 bottom-0 h-2/3 bg-linear-to-t from-background to-transparent" />
+				<div className="absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-background/75" />
 			</Link>
 		</div>
 	);

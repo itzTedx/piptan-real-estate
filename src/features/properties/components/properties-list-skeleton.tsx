@@ -22,8 +22,11 @@ export function PropertiesListSkeleton({
 			)}
 		>
 			{Array.from({ length: 6 }).map((_, index) => (
-				<div className="rounded-lg border bg-card p-4" key={index}>
-					<Skeleton className="aspect-[4/3] w-full rounded-md" />
+				<div
+					className="rounded-lg border bg-card p-4"
+					key={`item-${index + 1}`}
+				>
+					<Skeleton className="aspect-4/3 w-full rounded-md" />
 					<div className="mt-4 space-y-3">
 						<Skeleton className="h-4 w-3/4" />
 						<Skeleton className="h-4 w-1/2" />

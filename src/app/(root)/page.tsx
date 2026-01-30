@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 
 import { AboutSection } from "@/features/home/section/about";
 import { Developers } from "@/features/home/section/developers";
@@ -89,33 +90,30 @@ export default function Home() {
 			<Testimonials />
 			<InsightsSection />
 			<FaqSection />
-			<script
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify({
-						"@context": "https://schema.org",
-						"@type": "RealEstateAgent",
-						name: "Piptan Investment",
-						description:
-							"Premium real estate investment and development company in Dubai",
-						areaServed: "Dubai",
-						address: {
-							"@type": "PostalAddress",
-							addressLocality: "Dubai",
-							addressCountry: "UAE",
+			<Script type="application/ld+json">
+				{JSON.stringify({
+					"@context": "https://schema.org",
+					"@type": "RealEstateAgent",
+					name: "Piptan Investment",
+					description:
+						"Premium real estate investment and development company in Dubai",
+					areaServed: "Dubai",
+					address: {
+						"@type": "PostalAddress",
+						addressLocality: "Dubai",
+						addressCountry: "UAE",
+					},
+					offers: {
+						"@type": "AggregateOffer",
+						itemOffered: {
+							"@type": "Residence",
+							name: "Luxury Homes and Commercial Spaces",
+							description:
+								"Premium real estate properties in Dubai's most sought-after communities",
 						},
-						offers: {
-							"@type": "AggregateOffer",
-							itemOffered: {
-								"@type": "Residence",
-								name: "Luxury Homes and Commercial Spaces",
-								description:
-									"Premium real estate properties in Dubai's most sought-after communities",
-							},
-						},
-					}),
-				}}
-				type="application/ld+json"
-			/>
+					},
+				})}
+			</Script>
 		</main>
 	);
 }
