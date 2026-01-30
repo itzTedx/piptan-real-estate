@@ -100,113 +100,17 @@ export const projectType = defineType({
 			name: "category",
 			type: "reference",
 			group: "overview",
-			description:
-				"Select the main category for this project. Example: 'Luxury', 'Waterfront', etc.",
+
 			to: { type: "category" },
 			validation: (Rule) => Rule.required(),
 		}),
 
-		// Property Details Section
-		defineField({
-			name: "stats",
-			title: "Property Details",
-			type: "object",
-			group: "details",
-			description:
-				"Enter the main specifications and statistics for the property (e.g., price, bedrooms, area, etc.).",
-			fields: [
-				defineField({
-					name: "price",
-					title: "Price",
-					type: "string",
-					description:
-						"Enter the starting price of the property. Example: '1,200,000'.",
-					validation: (Rule) => Rule.required(),
-				}),
-				defineField({
-					name: "bedrooms",
-					title: "Number of Bedrooms",
-					type: "string",
-					description:
-						"Specify the number of bedrooms. Example: '2-5' or '8-9'.",
-					validation: (Rule) => Rule.required(),
-				}),
-				defineField({
-					name: "furnished",
-					title: "Furnished",
-					type: "boolean",
-					description: "Is the property furnished? Enable if yes.",
-					initialValue: false,
-				}),
-				defineField({
-					name: "area",
-					title: "Area (sq ft)",
-					type: "number",
-					description:
-						"Total area of the property in square feet. Example: 2500.",
-				}),
-				defineField({
-					name: "completionDate",
-					title: "Expected Completion Date",
-					type: "string",
-					description:
-						"When is the property expected to be completed? Example: 'Q1 2029'.",
-				}),
-				defineField({
-					name: "paymentPlan",
-					title: "Payment Plan",
-					type: "string",
-					description:
-						"Payment structure and schedule for the property. Example: '10/40/50'.",
-				}),
-
-				defineField({
-					name: "otherStats",
-					type: "array",
-					title: "Other Key Stats",
-					description:
-						"Add any additional statistics about the project (e.g., 'Parking Spaces: 2').",
-					of: [{ type: "stat" }],
-				}),
-			],
-		}),
 		defineField({
 			name: "shortDescription",
 			type: "text",
 			group: "overview",
 			description:
 				"A brief summary to display next to key stats. Example: 'Luxury beachfront apartments with stunning views.'",
-		}),
-		defineField({
-			name: "overview",
-			title: "Property Overview",
-			type: "object",
-			group: "details",
-			description:
-				"Write a short overview of the property, including its main selling points.",
-			validation: (Rule) => Rule.required(),
-			fields: [
-				defineField({
-					name: "title",
-					title: "Title",
-					type: "string",
-					description:
-						"Section heading for the overview. Example: 'Unlock your dream lifestyle'.",
-					initialValue: "Unlock your dream lifestyle",
-				}),
-				defineField({
-					name: "description",
-					type: "text",
-					description: "A concise summary or introduction to the project.",
-				}),
-				defineField({
-					name: "tags",
-					type: "array",
-					description:
-						"Add keywords to help categorize and filter the project. Example: ['Luxury', 'Beachfront', 'Family'].",
-					of: [{ type: "string", name: "tag" }],
-				}),
-			],
 		}),
 
 		defineField({
@@ -215,7 +119,7 @@ export const projectType = defineType({
 			group: "content",
 			title: "Project Gallery",
 			description:
-				"Upload a collection of images that showcase the project. Recommended size: 1920x1080px. These images will appear in a gallery on the project page.",
+				"Recommended size: 1920x1080px. These images will appear in a gallery on the project page.",
 			of: [
 				{
 					type: "image",
@@ -238,16 +142,6 @@ export const projectType = defineType({
 				layout: "grid",
 				modal: { type: "popover" },
 			},
-			validation: (Rule) => Rule.required(),
-		}),
-		defineField({
-			name: "descriptionSections",
-			type: "array",
-			group: "content",
-			title: "Description Sections",
-			description:
-				"Add detailed sections about the project, such as Description, Benefits, or Investment Potential. Each section can have a title and content.",
-			of: [{ type: "descriptionSection" }],
 			validation: (Rule) => Rule.required(),
 		}),
 

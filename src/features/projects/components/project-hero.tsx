@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { SanityImageSource } from "@sanity/image-url";
 
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { Badge } from "@/components/ui/badge";
@@ -69,7 +69,7 @@ export const ProjectHero = ({
 
 				<Link
 					aria-label="Book a private viewing"
-					className="group place-content-center-safe relative grid aspect-[4/1] overflow-hidden rounded-sm border md:aspect-auto"
+					className="group place-content-center-safe relative grid aspect-4/1 overflow-hidden rounded-sm border md:aspect-auto"
 					href="/contact"
 				>
 					<p className="relative z-10 px-4 text-center font-medium text-xl md:text-3xl lg:text-4xl">

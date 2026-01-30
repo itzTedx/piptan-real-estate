@@ -1,4 +1,4 @@
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { SanityImageSource } from "@sanity/image-url";
 
 import {
 	Carousel,
@@ -39,7 +39,7 @@ export const ProjectGallery = ({
 						{images.map((img, index) => (
 							<CarouselItem
 								className="3xl:basis-1/3 pl-1 md:basis-1/2"
-								key={index}
+								key={`${projectName} - Gallery Image ${index + 1}`}
 							>
 								<div className="h-full p-1">
 									<div className="relative aspect-square overflow-hidden rounded-md xl:aspect-5/4">

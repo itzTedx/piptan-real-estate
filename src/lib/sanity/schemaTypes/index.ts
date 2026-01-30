@@ -14,7 +14,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
 		categoryType,
 		developerType,
 		projectType,
-
 		faqType,
 		insightsType,
 		insightCategoryType,

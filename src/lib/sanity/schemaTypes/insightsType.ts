@@ -90,13 +90,13 @@ export const insightsType = defineType({
 			group: "settings",
 			to: { type: "insightCategory" },
 		}),
-		defineField({
-			name: "author",
-			title: "Author",
-			type: "reference",
-			to: [{ type: "author" }],
-			group: "settings",
-		}),
+		// defineField({
+		// 	name: "author",
+		// 	title: "Author",
+		// 	type: "reference",
+		// 	to: [{ type: "author" }],
+		// 	group: "settings",
+		// }),
 		defineField({
 			name: "body",
 			title: "Body",

@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { SanityImageSource } from "@sanity/image-url";
 import { PortableText } from "next-sanity";
 
 import { urlFor } from "@/lib/sanity/image";

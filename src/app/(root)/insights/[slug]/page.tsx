@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 
 import { HeroHeader } from "@/components/hero-header";
 
@@ -167,12 +168,9 @@ export default async function InsightsSlugPage({
 
 	return (
 		<>
-			<script
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify(articleStructuredData),
-				}}
-				type="application/ld+json"
-			/>
+			<Script type="application/ld+json">
+				{JSON.stringify(articleStructuredData)}
+			</Script>
 			<main className="container relative z-10 rounded-b-3xl bg-background pb-20 shadow-xl">
 				<HeroHeader
 					className="mx-auto max-w-6xl"
