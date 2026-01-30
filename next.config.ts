@@ -22,12 +22,12 @@ const nextConfig: NextConfig = {
     unoptimized: false,
   },
   // Enable experimental features for better caching
-  experimental: {
-    // Enable optimized package imports
-    optimizePackageImports: ["@sanity/image-url", "next-sanity", "gsap", "lucide-react", "framer-motion"],
-    // Enable optimized CSS
-    // optimizeCss: true,
-  },
+  // experimental: {
+  //   // Enable optimized package imports
+  //   optimizePackageImports: ["@sanity/image-url", "next-sanity", "gsap", "lucide-react", "framer-motion"],
+  //   // Enable optimized CSS
+  //   // optimizeCss: true,
+  // },
  
   // Configure headers for better caching
   async headers() {

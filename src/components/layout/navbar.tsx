@@ -26,12 +26,12 @@ import { Button } from "../ui/button";
 
 export const Navbar = () => {
   return (
-    <header className="sticky top-0 z-[999] flex h-20 items-center transition-all duration-300 ease-in-out">
+    <header className="sticky top-0 z-999 flex h-20 items-center transition-all duration-300 ease-in-out">
       <div
-        className="from-background/80 absolute top-0 z-10 h-full w-full bg-gradient-to-b to-transparent"
+        className="from-background/80 absolute top-0 z-10 h-full w-full bg-linear-to-b to-transparent"
         aria-hidden="true"
       />
-      <nav className="relative z-[999] container flex items-center justify-between gap-4">
+      <nav className="relative z-999 container flex items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-2">
           <Logo />
         </Link>
@@ -52,7 +52,7 @@ export const Navbar = () => {
                         <ChevronDown className="size-4" />
                       </button>
                     </HoverCardTrigger>
-                    <HoverCardContent className="w-[38rem] p-0" align="center">
+                    <HoverCardContent className="w-152 p-0" align="center">
                       <div className="p-2">
                         <div className="mb-2 px-2 py-1.5 text-sm font-semibold">
                           Our Services

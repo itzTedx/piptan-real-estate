@@ -145,7 +145,7 @@ export const LeadSection = ({
       </div>
 
       {variant === "default" && (
-        <div className="to-foreground group relative flex aspect-square flex-col justify-end overflow-hidden rounded-sm bg-gradient-to-b from-[#60A2D7] pb-12 sm:pb-16 md:aspect-auto md:pb-20 lg:pb-24">
+        <div className="to-foreground group relative flex aspect-square flex-col justify-end overflow-hidden rounded-sm bg-linear-to-b from-[#60A2D7] pb-12 sm:pb-16 md:aspect-auto md:pb-20 lg:pb-24">
           <Piptan className="w-full text-white" aria-hidden="true" />
 
           <motion.div

@@ -45,25 +45,25 @@ export const ExpertiseSection = async () => {
                 >
                   <div className="grid grid-cols-8 gap-3">
                     <p className="text-muted text-sm md:text-base">0{i + 1}</p>
-                    <div className="col-span-7 flex flex-1 flex-col justify-between">
+                    <div className="col-span-7   flex-1  ">
                       <div>
                         <h3 className="font-jaguar mb-2 text-2xl font-bold md:text-3xl lg:text-4xl">
                           {title}
                         </h3>
-                        <p className="text-primary-foreground text-sm md:text-base">
+                        <p className="text-primary-foreground text-sm md:text-base mb-4">
                           {description}
                         </p>
-                      </div>
                       <AnimatedButton
                         text={`Explore more`}
                         href={`/portfolio?category=${slug}`}
                         variant="secondary"
                       />
+                      </div>
                     </div>
                   </div>
 
                   {image && (
-                    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md md:aspect-[16/9] 2xl:aspect-[16/9]">
+                    <div className="relative aspect-4/3 w-full overflow-hidden rounded-md md:aspect-video  ">
                       <Image
                         src={urlFor(image).url()}
                         alt={title ?? ""}

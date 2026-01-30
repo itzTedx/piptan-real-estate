@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import React from "react";
 
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 

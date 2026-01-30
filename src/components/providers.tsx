@@ -1,6 +1,7 @@
 "use client";
 
 import { ProgressProvider } from "@bprogress/next/app";
+import React from "react";
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
   return (

@@ -68,15 +68,7 @@ export const ProjectsSection = async () => {
         </div>
       </Carousel>
 
-      {/* <ul className="grid grid-cols-1 max-sm:divide-y sm:grid-cols-2 sm:gap-6">
-        {projects.map((project) => (
-          <PropertyCard
-            key={project._id}
-            data={project}
-            className="max-sm:py-6"
-          />
-        ))}
-      </ul> */}
+     
     </section>
   );
 };

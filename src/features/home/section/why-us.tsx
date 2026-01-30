@@ -95,12 +95,12 @@ export const WhyUsSection = () => {
           </motion.div>
         </AnimatePresence>
         <AnimatedTabs
-          className="sm:col-start-2"
+          className="sm:col-start-2 relative z-10"
           selectedTab={selectedTab}
           onTabChange={setSelectedTab}
         />
       </div>
-      <BuildingOutline className="absolute top-0 -right-12 hidden sm:block" />
+      <BuildingOutline className="absolute top-0 -right-12 hidden sm:block pointer-events-none" />
     </section>
   );
 };

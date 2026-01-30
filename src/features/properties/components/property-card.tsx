@@ -1,11 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { MapPin } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
 import { urlFor } from "@/lib/sanity/image";
-import { cn, formatPrice } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 import { PROJECT_CARD_QUERYResult } from "../../../../sanity.types";
 import { WhatsappButton } from "./whatsapp-button";
@@ -27,13 +25,20 @@ export const PropertyCard = ({ className,  data }: Props) => {
           )}
         >
           <div className="relative z-10 flex items-start justify-between gap-3">
-            <ul className="flex flex-wrap gap-1.5">
+            {/* <ul className="flex flex-wrap gap-1.5">
               {data.tags?.map((tag) => (
                 <li key={tag}>
                   <Badge>{tag}</Badge>
                 </li>
               ))}
-            </ul>
+            </ul> */}
+            
+            {data.category && (
+                <p className="text-foreground/80 group/category hover:text-primary-foreground flex items-center gap-2 text-sm transition-colors">
+                  <span className="group-hover/category:bg-primary-foreground bg-foreground/80 size-1 rounded-full transition-colors" />
+                  {data.category.title}
+                </p>
+              )}
 
             {data.developer && (
               <div className="bg-foreground text-background border-muted-foreground/10 relative grid aspect-4/3 w-20 shrink-0 place-content-center rounded border p-2">
@@ -49,6 +54,8 @@ export const PropertyCard = ({ className,  data }: Props) => {
                 )}
               </div>
             )}
+
+
           </div>
           {data.mainImage && (
             <Image
@@ -68,23 +75,17 @@ export const PropertyCard = ({ className,  data }: Props) => {
              
             )}
           >
-            <div className="flex items-center justify-between">
-              <h3 className="font-jaguar hover:text-primary-foreground text-2xl font-bold transition-colors">
+          
+              <h3 className="font-jaguar hover:text-primary-foreground text-3xl font-bold transition-colors mb-6 text-center tracking-wider">
                 {data.title}
               </h3>
 
-              {data.category && (
-                <p className="text-foreground/80 group/category hover:text-primary-foreground flex items-center gap-2 text-sm transition-colors">
-                  <span className="group-hover/category:bg-primary-foreground bg-foreground/80 size-1 rounded-full transition-colors" />
-                  {data.category.title}
-                </p>
-              )}
-            </div>
-            <p className="text-foreground mb-2 flex items-center gap-1">
+        
+            {/* <p className="text-foreground mb-2 flex items-center gap-1">
               <MapPin className="text-muted-foreground size-4" />
               {data.location}
-            </p>
-            <div className="mb-4 flex items-center justify-between">
+            </p> */}
+            {/* <div className="mb-4 flex items-center justify-between">
               <div className="flex items-center gap-1.5">
                 <p className="text-foreground">
                   Price:{" "}
@@ -97,7 +98,7 @@ export const PropertyCard = ({ className,  data }: Props) => {
                 )}
               </div>
               <p>{data.bedrooms} Bedrooms</p>
-            </div>
+            </div> */}
             <WhatsappButton
               message={`Hello, I'm interested in getting more information about ${data.title}. Project Link: https://www.piptan.ae/portfolio/${data.slug || ""} `}
             />
