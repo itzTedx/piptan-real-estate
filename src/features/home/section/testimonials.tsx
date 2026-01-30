@@ -1,86 +1,88 @@
 "use client";
 
-import Image from "next/image";
 import { useRef } from "react";
+
+import Image from "next/image";
 
 import { motion, useScroll, useTransform } from "motion/react";
 
+import { SectionHeader } from "@/components/ui/section-header";
+
 import { IconChatBubble } from "@/app/assets/icons";
 import { Logo } from "@/app/assets/logo";
-import { SectionHeader } from "@/components/ui/section-header";
 import { FEEDBACKS } from "@/constants/mock-data";
 import { cn } from "@/lib/utils";
 
 export const Testimonials = () => {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
+	const containerRef = useRef(null);
+	const { scrollYProgress } = useScroll({
+		target: containerRef,
+		offset: ["start end", "end start"],
+	});
 
-  return (
-    <section ref={containerRef} className="container py-20">
-      <SectionHeader
-        badge="Testimonials"
-        icon={<IconChatBubble className="size-3 sm:size-4" />}
-        title={` Built on Trust,\nProven by Results.`}
-        hasHighlight
-        highlightText="Proven by Results."
-        subtitle="With expert insight and a client-first mindset, we provide clear
+	return (
+		<section className="container py-20" ref={containerRef}>
+			<SectionHeader
+				badge="Testimonials"
+				hasHighlight
+				highlightText="Proven by Results."
+				icon={<IconChatBubble className="size-3 sm:size-4" />}
+				subtitle="With expert insight and a client-first mindset, we provide clear
           guidance, fast execution, and a smooth journey — helping you secure
           the right property with confidence."
-      />
+				title={" Built on Trust,\nProven by Results."}
+			/>
 
-      <ul className="mt-12 grid grid-cols-1 grid-rows-8 gap-3 md:grid-cols-3 md:grid-rows-3 md:gap-6">
-        <li className="sticky top-[calc(50%-12rem)] col-start-1 row-start-1 flex flex-col items-center justify-center gap-4 rounded-sm p-10 max-md:h-fit md:col-start-2">
-          <Logo className="h-14 w-auto md:h-20" />
-          {/* <WordMark className="h-8 w-auto md:h-11" /> */}
-        </li>
+			<ul className="mt-12 grid grid-cols-1 grid-rows-8 gap-3 md:grid-cols-3 md:grid-rows-3 md:gap-6">
+				<li className="sticky top-[calc(50%-12rem)] col-start-1 row-start-1 flex flex-col items-center justify-center gap-4 rounded-sm p-10 max-md:h-fit md:col-start-2">
+					<Logo className="h-14 w-auto md:h-20" />
+					{/* <WordMark className="h-8 w-auto md:h-11" /> */}
+				</li>
 
-        <li className="to-foreground group relative col-start-1 row-span-2 row-start-7 flex flex-col justify-end overflow-hidden rounded-sm bg-gradient-to-b from-[#60A2D7] md:row-span-2 md:row-start-2">
-          <h3 className="text-background absolute top-0 p-6 text-4xl md:p-10 md:text-[3.25rem]">
-            Find the best properties in the{" "}
-            <span className="font-medium">Middle East</span>
-          </h3>
-          <motion.div
-            className="relative aspect-[3/4.5] md:aspect-3/5"
-            style={{
-              y: useTransform(scrollYProgress, [0, 1], [350, 0]),
-            }}
-          >
-            <Image
-              src="/images/residential-tower.webp"
-              alt=""
-              fill
-              className="object-cover brightness-100 saturate-100 transition-all duration-700 group-hover:brightness-110 group-hover:saturate-200"
-            />
-          </motion.div>
-        </li>
+				<li className="group relative col-start-1 row-span-2 row-start-7 flex flex-col justify-end overflow-hidden rounded-sm bg-linear-to-b from-[#60A2D7] to-foreground md:row-span-2 md:row-start-2">
+					<h3 className="absolute top-0 p-6 text-4xl text-background md:p-10 md:text-[3.25rem]">
+						Find the best properties in the{" "}
+						<span className="font-medium">Middle East</span>
+					</h3>
+					<motion.div
+						className="relative aspect-[3/4.5] md:aspect-3/5"
+						style={{
+							y: useTransform(scrollYProgress, [0, 1], [350, 0]),
+						}}
+					>
+						<Image
+							alt=""
+							className="object-cover brightness-100 saturate-100 transition-all duration-700 group-hover:brightness-110 group-hover:saturate-200"
+							fill
+							src="/images/residential-tower.webp"
+						/>
+					</motion.div>
+				</li>
 
-        {FEEDBACKS.map((f) => (
-          <li
-            key={f.name}
-            className={cn(
-              // Base Styles
-              "group relative z-10 flex flex-col justify-between rounded-sm p-6 backdrop-blur-2xl md:p-10",
-              // Layout
-              "nth-[3]:col-start-1 nth-[3]:row-start-2 nth-[4]:row-start-3 nth-[5]:row-start-4 nth-[6]:row-start-5 nth-[7]:row-start-6 max-md:col-start-1 md:nth-[3]:row-start-1 md:nth-[4]:col-start-3 md:nth-[4]:row-start-1 md:nth-[5]:row-start-2 md:nth-[6]:col-start-2 md:nth-[6]:row-start-3 md:nth-[7]:col-start-3 md:nth-[7]:row-start-3",
-              // Colors
-              "nth-[4]:text-background nth-[5]:bg-foreground/10 nth-[6]:bg-primary nth-[3]:bg-primary/30 nth-[4]:bg-foreground/85 nth-[7]:bg-[#344D35]"
-            )}
-          >
-            <p className="text-xl font-medium text-balance md:text-3xl">
-              {f.content}
-            </p>
-            <div className="mt-4 md:mt-6">
-              <h3 className="md:text-xl">{f.name}</h3>
-              <span className="text-sm font-medium tracking-wide md:text-lg">
-                {f.designation}
-              </span>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
+				{FEEDBACKS.map((f) => (
+					<li
+						className={cn(
+							// Base Styles
+							"group relative z-10 flex flex-col justify-between rounded-sm p-6 backdrop-blur-2xl md:p-10",
+							// Layout
+							"nth-[3]:col-start-1 nth-[3]:row-start-2 nth-[4]:row-start-3 nth-[5]:row-start-4 nth-[6]:row-start-5 nth-[7]:row-start-6 max-md:col-start-1 md:nth-[4]:col-start-3 md:nth-[6]:col-start-2 md:nth-[7]:col-start-3 md:nth-[3]:row-start-1 md:nth-[4]:row-start-1 md:nth-[5]:row-start-2 md:nth-[6]:row-start-3 md:nth-[7]:row-start-3",
+							// Colors
+							"nth-[3]:bg-primary/30 nth-[4]:bg-foreground/85 nth-[5]:bg-foreground/10 nth-[6]:bg-primary nth-[7]:bg-[#344D35] nth-[4]:text-background"
+						)}
+						key={f.name}
+					>
+						<p className="text-balance font-medium text-xl md:text-3xl">
+							{f.content}
+						</p>
+						<div className="mt-4 md:mt-6">
+							<h3 className="md:text-xl">{f.name}</h3>
+							<span className="font-medium text-sm tracking-wide md:text-lg">
+								{f.designation}
+							</span>
+						</div>
+					</li>
+				))}
+			</ul>
+		</section>
+	);
 };

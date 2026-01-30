@@ -1,7 +1,7 @@
 import { defineQuery } from "next-sanity";
 
 export const PROJECT_CARD_QUERY =
-  defineQuery(`*[_type == "project"] | order(_createdAt desc)[0..5]  {
+	defineQuery(`*[_type == "project"] | order(_createdAt desc)[0..5]  {
     _id,
     title,
     mainImage{
@@ -38,7 +38,7 @@ export const PROJECT_CARD_QUERY =
 }`);
 
 export const PORTFOLIOS_QUERY =
-  defineQuery(`*[_type == "project"] | order(_createdAt desc)  {
+	defineQuery(`*[_type == "project"] | order(_createdAt desc)  {
     _id,
     title,
     mainImage{
@@ -74,14 +74,11 @@ export const PORTFOLIOS_QUERY =
 
 }`);
 
-
 export const PORTFOLIOS_SLUGS_QUERY =
-  defineQuery(`*[_type == "project" && defined(slug.current) &&  slug.current != null]    {
+	defineQuery(`*[_type == "project" && defined(slug.current) &&  slug.current != null]    {
     _id,
     "slug": slug.current
 }`);
-
-
 
 export const FILTERED_PROJECTS_QUERY = defineQuery(`
   *[_type == "project" 
@@ -172,7 +169,7 @@ export const PROJECTS_COUNT_QUERY = defineQuery(`
 `);
 
 export const PAGINATED_PROJECTS_QUERY =
-  defineQuery(`*[_type == "project"] | order(_createdAt desc)[$start..$end]  {
+	defineQuery(`*[_type == "project"] | order(_createdAt desc)[$start..$end]  {
     _id,
     title,
     mainImage{

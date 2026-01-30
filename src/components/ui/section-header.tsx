@@ -18,18 +18,18 @@ import { cn } from "@/lib/utils";
  * @property {string} [as] - The level of the heading to use (h1 or h2)
  */
 interface SectionHeaderProps {
-  title: string;
-  subtitle?: string;
-  badge?: string;
-  icon?: ReactNode;
-  className?: string;
-  titleClassName?: string;
-  subtitleClassName?: string;
-  containerClassName?: string;
-  hasHighlight?: boolean;
-  highlightText?: string;
-  action?: ReactNode;
-  as?: "h1" | "h2";
+	title: string;
+	subtitle?: string;
+	badge?: string;
+	icon?: ReactNode;
+	className?: string;
+	titleClassName?: string;
+	subtitleClassName?: string;
+	containerClassName?: string;
+	hasHighlight?: boolean;
+	highlightText?: string;
+	action?: ReactNode;
+	as?: "h1" | "h2";
 }
 
 /**
@@ -50,95 +50,95 @@ interface SectionHeaderProps {
  * ```
  */
 export const SectionHeader = ({
-  title,
-  subtitle,
-  icon,
-  badge,
-  className,
-  titleClassName,
-  subtitleClassName,
-  containerClassName,
-  hasHighlight,
-  highlightText,
-  action,
-  as = "h2",
+	title,
+	subtitle,
+	icon,
+	badge,
+	className,
+	titleClassName,
+	subtitleClassName,
+	containerClassName,
+	hasHighlight,
+	highlightText,
+	action,
+	as = "h2",
 }: SectionHeaderProps) => {
-  const renderTitle = () => {
-    if (!hasHighlight || !highlightText) {
-      return title.split("\n").map((line, index) => (
-        <span key={index}>
-          {line}
-          {index < title.split("\n").length - 1 && <br />}
-        </span>
-      ));
-    }
+	const renderTitle = () => {
+		if (!hasHighlight || !highlightText) {
+			return title.split("\n").map((line, index) => (
+				<span key={index}>
+					{line}
+					{index < title.split("\n").length - 1 && <br />}
+				</span>
+			));
+		}
 
-    const parts = title.split(highlightText);
-    return (
-      <>
-        {parts[0].split("\n").map((line, index) => (
-          <span key={`before-${index}`}>
-            {line}
-            {index < parts[0].split("\n").length - 1 && <br />}
-          </span>
-        ))}
-        <span className="text-primary-foreground">{highlightText}</span>
-        {parts[1]?.split("\n").map((line, index) => (
-          <span key={`after-${index}`}>
-            {line}
-            {index < parts[1].split("\n").length - 1 && <br />}
-          </span>
-        ))}
-      </>
-    );
-  };
+		const parts = title.split(highlightText);
+		return (
+			<>
+				{parts[0].split("\n").map((line, index) => (
+					<span key={`before-${index}`}>
+						{line}
+						{index < parts[0].split("\n").length - 1 && <br />}
+					</span>
+				))}
+				<span className="text-primary-foreground">{highlightText}</span>
+				{parts[1]?.split("\n").map((line, index) => (
+					<span key={`after-${index}`}>
+						{line}
+						{index < parts[1].split("\n").length - 1 && <br />}
+					</span>
+				))}
+			</>
+		);
+	};
 
-  return (
-    <div className={cn(className)}>
-      {badge && (
-        <p className="mb-2 inline-flex items-center gap-1 sm:mb-3 sm:gap-1.5">
-          {icon}
-          {badge}
-        </p>
-      )}
-      <div
-        className={cn(
-          "z-10 mb-4 grid gap-4 sm:gap-6",
-          "grid-cols-1 sm:grid-cols-2 md:grid-cols-3",
-          containerClassName
-        )}
-      >
-        {as === "h1" ? (
-          <h1
-            className={cn(
-              "text-2xl leading-[1.2] font-medium sm:col-span-2 sm:text-3xl md:text-4xl lg:text-5xl",
-              titleClassName
-            )}
-          >
-            {renderTitle()}
-          </h1>
-        ) : (
-          <h2
-            className={cn(
-              "text-2xl leading-[1.2] font-medium sm:col-span-2 sm:text-3xl md:text-4xl lg:text-5xl",
-              titleClassName
-            )}
-          >
-            {renderTitle()}
-          </h2>
-        )}
-        {subtitle && (
-          <p
-            className={cn(
-              "text-primary-foreground text-base font-light text-balance sm:text-lg md:text-xl",
-              subtitleClassName
-            )}
-          >
-            {subtitle}
-          </p>
-        )}
-      </div>
-      {action}
-    </div>
-  );
+	return (
+		<div className={cn(className)}>
+			{badge && (
+				<p className="mb-2 inline-flex items-center gap-1 sm:mb-3 sm:gap-1.5">
+					{icon}
+					{badge}
+				</p>
+			)}
+			<div
+				className={cn(
+					"z-10 mb-4 grid gap-4 sm:gap-6",
+					"grid-cols-1 sm:grid-cols-2 md:grid-cols-3",
+					containerClassName
+				)}
+			>
+				{as === "h1" ? (
+					<h1
+						className={cn(
+							"font-medium text-2xl leading-[1.2] sm:col-span-2 sm:text-3xl md:text-4xl lg:text-5xl",
+							titleClassName
+						)}
+					>
+						{renderTitle()}
+					</h1>
+				) : (
+					<h2
+						className={cn(
+							"font-medium text-2xl leading-[1.2] sm:col-span-2 sm:text-3xl md:text-4xl lg:text-5xl",
+							titleClassName
+						)}
+					>
+						{renderTitle()}
+					</h2>
+				)}
+				{subtitle && (
+					<p
+						className={cn(
+							"text-balance font-light text-base text-primary-foreground sm:text-lg md:text-xl",
+							subtitleClassName
+						)}
+					>
+						{subtitle}
+					</p>
+				)}
+			</div>
+			{action}
+		</div>
+	);
 };

@@ -5,91 +5,91 @@ import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 interface StaggeredTextProps {
-  text: string;
-  className?: string;
-  delay?: number;
-  duration?: number;
-  staggerChildren?: number;
-  ease?: string;
+	text: string;
+	className?: string;
+	delay?: number;
+	duration?: number;
+	staggerChildren?: number;
+	ease?: string;
 }
 
 export const StaggeredText = ({
-  text,
-  className,
-  delay = 0,
-  duration = 0.5,
-  staggerChildren = 0.02,
-  ease = "easeOut",
+	text,
+	className,
+	delay = 0,
+	duration = 0.5,
+	staggerChildren = 0.02,
+	ease = "easeOut",
 }: StaggeredTextProps) => {
-  // Split text into words
-  const words = text.split(" ");
+	// Split text into words
+	const words = text.split(" ");
 
-  // Container animation
-  const container = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren,
-        delayChildren: delay,
-        ease: ease as "easeOut" | "easeIn" | "easeInOut",
-      },
-    },
-    exit: {
-      opacity: 0,
-      transition: {
-        staggerChildren: staggerChildren,
-        staggerDirection: -1,
-      },
-    },
-  };
+	// Container animation
+	const container = {
+		hidden: { opacity: 0 },
+		visible: {
+			opacity: 1,
+			transition: {
+				staggerChildren,
+				delayChildren: delay,
+				ease: ease as "easeOut" | "easeIn" | "easeInOut",
+			},
+		},
+		exit: {
+			opacity: 0,
+			transition: {
+				staggerChildren: staggerChildren,
+				staggerDirection: -1,
+			},
+		},
+	};
 
-  // Word animation
-  const child = {
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring" as const,
-        damping: 12,
-        stiffness: 100,
-        duration,
-      },
-    },
-    hidden: {
-      opacity: 0,
-      y: 20,
-    },
-    exit: {
-      opacity: 0,
-      y: -20,
-      transition: {
-        duration: duration / 2,
-      },
-    },
-  };
+	// Word animation
+	const child = {
+		visible: {
+			opacity: 1,
+			y: 0,
+			transition: {
+				type: "spring" as const,
+				damping: 12,
+				stiffness: 100,
+				duration,
+			},
+		},
+		hidden: {
+			opacity: 0,
+			y: 20,
+		},
+		exit: {
+			opacity: 0,
+			y: -20,
+			transition: {
+				duration: duration / 2,
+			},
+		},
+	};
 
-  return (
-    <AnimatePresence mode="wait">
-      <motion.span
-        key={text}
-        variants={container}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        exit="exit"
-        className={cn("overflow-hidden", className)}
-      >
-        {words.map((word, index) => (
-          <motion.span
-            variants={child}
-            key={index}
-            className="inline-block whitespace-pre"
-          >
-            {word}{" "}
-          </motion.span>
-        ))}
-      </motion.span>
-    </AnimatePresence>
-  );
+	return (
+		<AnimatePresence mode="wait">
+			<motion.span
+				className={cn("overflow-hidden", className)}
+				exit="exit"
+				initial="hidden"
+				key={text}
+				variants={container}
+				viewport={{ once: true, amount: 0.3 }}
+				whileInView="visible"
+			>
+				{words.map((word, index) => (
+					<motion.span
+						className="inline-block whitespace-pre"
+						key={index}
+						variants={child}
+					>
+						{word}{" "}
+					</motion.span>
+				))}
+			</motion.span>
+		</AnimatePresence>
+	);
 };

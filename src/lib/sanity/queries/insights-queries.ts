@@ -61,7 +61,7 @@ export const FILTERED_INSIGHTS_QUERY = defineQuery(`
 `);
 
 export const PAGINATED_INSIGHTS_QUERY =
-  defineQuery(`*[_type == "insights"] | order(_createdAt desc)[$start..$end]  {
+	defineQuery(`*[_type == "insights"] | order(_createdAt desc)[$start..$end]  {
     _id,
     title,
     image{
@@ -104,7 +104,7 @@ export const INSIGHT_CATEGORIES_QUERY = defineQuery(`
 `);
 
 export const INSIGHT_BY_SLUG_QUERY =
-  defineQuery(`*[_type == "insights" && slug.current == $slug][0] {
+	defineQuery(`*[_type == "insights" && slug.current == $slug][0] {
     _id,
     title,
     image{

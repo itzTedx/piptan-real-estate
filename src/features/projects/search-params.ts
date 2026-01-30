@@ -1,8 +1,8 @@
 import {
-  createLoader,
-  parseAsFloat,
-  parseAsString,
-  parseAsStringEnum,
+	createLoader,
+	parseAsFloat,
+	parseAsString,
+	parseAsStringEnum,
 } from "nuqs/server";
 
 // Define all possible sort fields
@@ -18,29 +18,29 @@ const SORT_ORDERS = ["asc", "desc"];
 export type SortOrder = (typeof SORT_ORDERS)[number];
 
 export const searchParams = {
-  // Search query
-  q: parseAsString.withDefault(""),
+	// Search query
+	q: parseAsString.withDefault(""),
 
-  // Category/tag filter
-  category: parseAsString.withDefault("all"),
+	// Category/tag filter
+	category: parseAsString.withDefault("all"),
 
-  // Sorting
-  sort: parseAsStringEnum(SORT_FIELDS).withDefault("date"),
-  order: parseAsStringEnum(SORT_ORDERS).withDefault("desc"),
+	// Sorting
+	sort: parseAsStringEnum(SORT_FIELDS).withDefault("date"),
+	order: parseAsStringEnum(SORT_ORDERS).withDefault("desc"),
 
-  // View mode
-  view: parseAsStringEnum(VIEW_MODES).withDefault("grid"),
+	// View mode
+	view: parseAsStringEnum(VIEW_MODES).withDefault("grid"),
 
-  // Pagination
-  page: parseAsFloat.withDefault(1),
-  pageSize: parseAsFloat.withDefault(9),
+	// Pagination
+	page: parseAsFloat.withDefault(1),
+	pageSize: parseAsFloat.withDefault(9),
 };
 
 // Create type from the search params
 export type SearchParams = {
-  [K in keyof typeof searchParams]: ReturnType<
-    (typeof searchParams)[K]["parse"]
-  >;
+	[K in keyof typeof searchParams]: ReturnType<
+		(typeof searchParams)[K]["parse"]
+	>;
 };
 
 // Create the loader

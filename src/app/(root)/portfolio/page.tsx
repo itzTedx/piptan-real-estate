@@ -2,9 +2,17 @@ import { Suspense } from "react";
 
 // import { SearchParams } from "nuqs";
 
-import { Carousel, CarouselActiveIndex, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import {
+	Carousel,
+	CarouselActiveIndex,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+} from "@/components/ui/carousel";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
+
 import { LeadSection } from "@/features/forms/lead-form/section";
 import { ProgressIndicator } from "@/features/home/components/progress-indicator";
 import { getProjects } from "@/features/projects/actions/projects-actions";
@@ -19,76 +27,73 @@ import { PropertyCard } from "@/features/properties/components/property-card";
 export const revalidate = 300;
 
 export default async function ProjectsPage() {
-  // const {
-  //   page,
-  //   pageSize,
-  //   q: searchQuery,
-  //   category,
-  // } = await loadSearchParams(searchParams);
+	// const {
+	//   page,
+	//   pageSize,
+	//   q: searchQuery,
+	//   category,
+	// } = await loadSearchParams(searchParams);
 
-  // Fetch categories for filtering
-  // const categories = await getCategories();
+	// Fetch categories for filtering
+	// const categories = await getCategories();
 
+	return (
+		<main className="pt-4 sm:pt-9 md:pt-12">
+			<section className="container relative mb-20">
+				<SectionHeader
+					subtitle="Discover signature developments in Dubai's most sought-after communities."
+					title="Portfolios"
+				/>
+				<Separator />
 
+				{/* Filters */}
+				{/* <PortfolioFilters categories={categories} /> */}
 
-  return (
-    <main className="pt-4 sm:pt-9 md:pt-12">
-      <section className="relative container mb-20">
-        <SectionHeader
-          title="Portfolios"
-          subtitle="Discover signature developments in Dubai's most sought-after communities."
-        />
-        <Separator />
-
-        {/* Filters */}
-        {/* <PortfolioFilters categories={categories} /> */}
-
-        <Suspense fallback={<PropertiesListSkeleton />}>
-            <SuspendedPortfolioList  />
-        </Suspense>
-      </section>
-      <LeadSection
-        title={`Let the experts help you\nmake the right investment`}
-        highlightText="the right investment"
-        subtitle="Feel free to contact with us"
-        variant="compact"
-      />
-    </main>
-  );
+				<Suspense fallback={<PropertiesListSkeleton />}>
+					<SuspendedPortfolioList />
+				</Suspense>
+			</section>
+			<LeadSection
+				highlightText="the right investment"
+				subtitle="Feel free to contact with us"
+				title={"Let the experts help you\nmake the right investment"}
+				variant="compact"
+			/>
+		</main>
+	);
 }
 
 async function SuspendedPortfolioList() {
-  const projects = await getProjects();
-  const totalItems = projects.length;
-  
-  return (
-    <Carousel className="mt-4 w-full md:mt-6 lg:mt-9" autoplay>
-    <CarouselContent className="-ml-1">
-    {projects.map((project) => (
-        <CarouselItem
-        key={project._id}
-          className="pl-1 md:basis-1/2 lg:basis-1/3"
-        >
-          <div className="h-full p-1">
-          <PropertyCard
-       
-        data={project}
-          className="md:pl-4 pl-1 md:basis-1/2 lg:basis-1/3 pb-1"
-       />
-          </div>
-        </CarouselItem>
-      ))}
-    </CarouselContent>
-    <div className="mt-6 flex items-center gap-12">
-      <p className="text-foreground/80 shrink-0 tracking-widest">
-        <CarouselActiveIndex /> / {totalItems.toString().padStart(2, "0")}
-      </p>
-      <ProgressIndicator totalItems={totalItems} />
-      <div className="relative flex gap-2">
-        <CarouselPrevious className="static translate-y-0" />
-        <CarouselNext className="static translate-y-0" />
-      </div>
-    </div>
-  </Carousel>
-)
+	const projects = await getProjects();
+	const totalItems = projects.length;
+
+	return (
+		<Carousel autoplay className="mt-4 w-full md:mt-6 lg:mt-9">
+			<CarouselContent className="-ml-1">
+				{projects.map((project) => (
+					<CarouselItem
+						className="pl-1 md:basis-1/2 lg:basis-1/3"
+						key={project._id}
+					>
+						<div className="h-full p-1">
+							<PropertyCard
+								className="pb-1 pl-1 md:basis-1/2 md:pl-4 lg:basis-1/3"
+								data={project}
+							/>
+						</div>
+					</CarouselItem>
+				))}
+			</CarouselContent>
+			<div className="mt-6 flex items-center gap-12">
+				<p className="shrink-0 text-foreground/80 tracking-widest">
+					<CarouselActiveIndex /> / {totalItems.toString().padStart(2, "0")}
+				</p>
+				<ProgressIndicator totalItems={totalItems} />
+				<div className="relative flex gap-2">
+					<CarouselPrevious className="static translate-y-0" />
+					<CarouselNext className="static translate-y-0" />
+				</div>
+			</div>
+		</Carousel>
+	);
 }

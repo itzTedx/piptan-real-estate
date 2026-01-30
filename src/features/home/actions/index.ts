@@ -1,33 +1,33 @@
 import { sanityFetch } from "@/lib/sanity/lib/live";
 import { CATEGORIES_QUERY } from "@/lib/sanity/queries/categories-queries";
+import { DEVELOPERS_QUERY } from "@/lib/sanity/queries/developers-queries";
 import { FAQS_QUERY } from "@/lib/sanity/queries/site-queries";
 
-import { DEVELOPERS_QUERY } from "@/lib/sanity/queries/developers-queries";
 import {
-  CATEGORIES_QUERYResult,
-  DEVELOPERS_QUERYResult,
-  FAQS_QUERYResult,
+	CATEGORIES_QUERYResult,
+	DEVELOPERS_QUERYResult,
+	FAQS_QUERYResult,
 } from "../../../../sanity.types";
 
 export const getCategories = async (): Promise<CATEGORIES_QUERYResult> => {
-  const { data } = await sanityFetch({
-    query: CATEGORIES_QUERY,
-    tags: ["sanity-content", "category"],
-  });
-  return data;
+	const { data } = await sanityFetch({
+		query: CATEGORIES_QUERY,
+		tags: ["sanity-content", "category"],
+	});
+	return data;
 };
 export const getFaqs = async (): Promise<FAQS_QUERYResult> => {
-  const { data } = await sanityFetch({
-    query: FAQS_QUERY,
-    tags: ["sanity-content", "faq"],
-  });
-  return data;
+	const { data } = await sanityFetch({
+		query: FAQS_QUERY,
+		tags: ["sanity-content", "faq"],
+	});
+	return data;
 };
 
 export const getDevelopers = async (): Promise<DEVELOPERS_QUERYResult> => {
-  const { data } = await sanityFetch({
-    query: DEVELOPERS_QUERY,
-    tags: ["sanity-content", "developer"],
-  });
-  return data;
+	const { data } = await sanityFetch({
+		query: DEVELOPERS_QUERY,
+		tags: ["sanity-content", "developer"],
+	});
+	return data;
 };

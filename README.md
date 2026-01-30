@@ -13,6 +13,7 @@ A premium luxury real estate investment platform built for Piptan Investment, sp
 ## ✨ Features
 
 ### 🏢 Property Management
+
 - **Comprehensive Property Listings** - Residential, commercial, and investment properties
 - **Advanced Property Details** - Detailed descriptions, amenities, and specifications
 - **Interactive Image Galleries** - High-quality property photos with zoom and pan functionality
@@ -20,6 +21,7 @@ A premium luxury real estate investment platform built for Piptan Investment, sp
 - **Developer Information** - Complete developer profiles and project details
 
 ### 🎨 User Experience
+
 - **Modern Design** - Clean, luxury-focused interface with premium aesthetics
 - **Responsive Layout** - Optimized for all devices and screen sizes
 - **Smooth Animations** - GSAP and Framer Motion powered interactions
@@ -27,6 +29,7 @@ A premium luxury real estate investment platform built for Piptan Investment, sp
 - **Accessibility** - WCAG compliant with proper ARIA labels and semantic HTML
 
 ### 🔍 Search & Discovery
+
 - **Property Categories** - Filter by residential, commercial, luxury, and investment
 - **Location-based Search** - Find properties in specific Dubai areas
 - **Advanced Filtering** - Price range, bedrooms, area, and amenities
@@ -34,6 +37,7 @@ A premium luxury real estate investment platform built for Piptan Investment, sp
 - **Related Properties** - Smart recommendations
 
 ### 📱 Content Management
+
 - **Sanity CMS Integration** - Headless CMS for content management
 - **Rich Text Editor** - WYSIWYG content editing
 - **Media Management** - Optimized image handling and storage
@@ -41,6 +45,7 @@ A premium luxury real estate investment platform built for Piptan Investment, sp
 - **Multi-language Support** - Ready for internationalization
 
 ### 💼 Business Features
+
 - **Investment Focus** - ROI calculations and investment strategies
 - **Contact Forms** - Lead generation and inquiry management
 - **WhatsApp Integration** - Direct property inquiries
@@ -50,6 +55,7 @@ A premium luxury real estate investment platform built for Piptan Investment, sp
 ## 🛠️ Tech Stack
 
 ### Frontend
+
 - **Next.js 15** - React framework with App Router
 - **React 19** - Latest React with concurrent features
 - **TypeScript** - Type-safe development
@@ -59,17 +65,20 @@ A premium luxury real estate investment platform built for Piptan Investment, sp
 - **Radix UI** - Accessible component primitives
 
 ### Backend & CMS
+
 - **Sanity CMS** - Headless content management
 - **Next.js API Routes** - Server-side functionality
 - **GROQ** - Query language for Sanity
 
 ### Development Tools
+
 - **ESLint** - Code linting and formatting
 - **Prettier** - Code formatting
 - **TypeScript** - Static type checking
 - **Turbopack** - Fast development bundler
 
 ### Performance & SEO
+
 - **Next.js Image Optimization** - Automatic image optimization
 - **Static Site Generation** - Fast loading times
 - **SEO Metadata** - Comprehensive SEO setup
@@ -79,19 +88,22 @@ A premium luxury real estate investment platform built for Piptan Investment, sp
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - npm, yarn, pnpm, or bun
 - Sanity account (for CMS)
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/your-username/real-estate.git
    cd real-estate
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    # or
@@ -104,6 +116,7 @@ A premium luxury real estate investment platform built for Piptan Investment, sp
 
 3. **Environment Setup**
    Create a `.env.local` file in the root directory:
+
    ```env
    NEXT_PUBLIC_SANITY_PROJECT_ID=your_sanity_project_id
    NEXT_PUBLIC_SANITY_DATASET=production
@@ -111,6 +124,7 @@ A premium luxury real estate investment platform built for Piptan Investment, sp
    ```
 
 4. **Run the development server**
+
    ```bash
    npm run dev
    # or
@@ -135,6 +149,7 @@ A premium luxury real estate investment platform built for Piptan Investment, sp
    - Add media assets
 
 3. **Generate Types**
+
    ```bash
    npm run sanity:types
    ```
@@ -167,18 +182,21 @@ src/
 ## 🎯 Key Features Implementation
 
 ### Property Showcase
+
 - Dynamic property cards with hover effects
 - Image galleries with zoom functionality
 - Detailed property pages with comprehensive information
 - Related properties suggestions
 
 ### Content Management
+
 - Sanity Studio for content editing
 - Rich text content with custom blocks
 - Media optimization and management
 - SEO-friendly content structure
 
 ### Performance Optimization
+
 - Static site generation for fast loading
 - Image optimization and lazy loading
 - Code splitting and bundle optimization
@@ -197,11 +215,13 @@ src/
 ## 🌐 Deployment
 
 ### Vercel (Recommended)
+
 1. Connect your GitHub repository to Vercel
 2. Configure environment variables
 3. Deploy automatically on push
 
 ### Other Platforms
+
 - **Netlify** - Static site hosting
 - **AWS Amplify** - Full-stack hosting
 - **DigitalOcean App Platform** - Containerized deployment
@@ -232,11 +252,9 @@ Piptan Investment is a premium real estate investment and development company sp
 ## 📞 Contact
 
 - **Website**: [https://www.piptan.ae](https://www.piptan.ae)
-- **Email**: hello@piptan.com
+- **Email**: <hello@piptan.com>
 - **Location**: Dubai, UAE
 
 ---
 
 **Web Design & Development by [Ziron Media](https://www.zironmedia.com)**
-
-

@@ -5,8 +5,8 @@
  */
 import { visionTool } from "@sanity/vision";
 import { defineConfig, isDev } from "sanity";
-import { media } from "sanity-plugin-media";
 import { structureTool } from "sanity/structure";
+import { media } from "sanity-plugin-media";
 
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import { Logo } from "@/app/assets/logo";
@@ -16,19 +16,19 @@ import { schema } from "./src/lib/sanity/schemaTypes";
 import { structure } from "./src/lib/sanity/structure";
 
 export default defineConfig({
-  basePath: "/studio",
-  title: "Piptan Investment & Securities",
-  icon: Logo,
-  // theme: theme,
-  projectId,
-  dataset,
-  // Add and edit the content schema in the './sanity/schemaTypes' folder
-  schema,
-  plugins: isDev
-    ? [
-        structureTool({ structure }),
-        media(),
-        visionTool({ defaultApiVersion: apiVersion }),
-      ]
-    : [structureTool({ structure }), media()],
+	basePath: "/studio",
+	title: "Piptan Investment & Securities",
+	icon: Logo,
+	// theme: theme,
+	projectId,
+	dataset,
+	// Add and edit the content schema in the './sanity/schemaTypes' folder
+	schema,
+	plugins: isDev
+		? [
+				structureTool({ structure }),
+				media(),
+				visionTool({ defaultApiVersion: apiVersion }),
+			]
+		: [structureTool({ structure }), media()],
 });

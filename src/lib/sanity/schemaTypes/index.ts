@@ -13,18 +13,18 @@ import { statType } from "./projects/statType";
 import { serviceType } from "./serviceType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [
-    blockContentType,
-    categoryType,
-    developerType,
-    projectType,
-    authorType,
-    statType,
-    amenityType,
-    descriptionSectionType,
-    faqType,
-    insightsType,
-    insightCategoryType,
-    serviceType,
-  ],
+	types: [
+		blockContentType,
+		categoryType,
+		developerType,
+		projectType,
+		authorType,
+		statType,
+		amenityType,
+		descriptionSectionType,
+		faqType,
+		insightsType,
+		insightCategoryType,
+		serviceType,
+	],
 };

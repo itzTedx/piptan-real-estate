@@ -1,20 +1,21 @@
 "use client";
 
-import { ProgressProvider } from "@bprogress/next/app";
 import React from "react";
 
+import { ProgressProvider } from "@bprogress/next/app";
+
 const Providers = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <ProgressProvider
-      height="3px"
-      color="#D40C1A"
-      options={{ showSpinner: false }}
-      shallowRouting
-      memo
-    >
-      {children}
-    </ProgressProvider>
-  );
+	return (
+		<ProgressProvider
+			color="#D40C1A"
+			height="3px"
+			memo
+			options={{ showSpinner: false }}
+			shallowRouting
+		>
+			{children}
+		</ProgressProvider>
+	);
 };
 
 export default Providers;
