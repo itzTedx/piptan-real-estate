@@ -28,7 +28,7 @@ export const PropertyCard = ({ className, data }: Props) => {
 				href={(data.link as Route) || "/"}
 				target="_blank"
 			>
-				<div className="absolute top-2 right-2 bg-red-500">
+				<div className="absolute top-3 right-3 z-10 flex size-9 -translate-y-full items-center justify-center rounded-md bg-accent/20 opacity-0 backdrop-blur-md transition-all hover:bg-accent/50 group-hover:translate-y-0 group-hover:opacity-100">
 					<ArrowUpRight className="size-6 text-foreground" />
 				</div>
 				{data.category && (
@@ -43,10 +43,10 @@ export const PropertyCard = ({ className, data }: Props) => {
 							{data.title}
 						</h3>
 
-						<div className="flex gap-0.5 tracking-wide">
-							<span>by</span>
+						<div className="flex gap-2 sm:gap-0.5">
+							<span className="font-light tracking-wider">by</span>
 							{data.developer && (
-								<div className="relative grid w-20 shrink-0 place-content-center text-background leading-none">
+								<div className="relative grid w-16 shrink-0 place-content-center text-background leading-none tracking-wider sm:w-20">
 									{data.developer.logo ? (
 										<Image
 											alt={data.developer.logo.alt ?? data.developer.name ?? ""}
