@@ -1,6 +1,6 @@
 import { defineQuery } from "next-sanity";
 
-export const PROJECT_CARD_QUERY =
+export const PORTFOLIO_CARD_QUERY =
 	defineQuery(`*[_type == "project"] | order(_createdAt desc)[0..5]  {
     _id,
     title,
@@ -18,12 +18,25 @@ export const PROJECT_CARD_QUERY =
       },
       alt
     },
-    "slug": slug.current,
+    qrCode{
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions {
+            width,
+            height
+          }
+        }
+      },
+    },
+    link,
     location,
     isFeatured,
     "category": category->{
       title,
-      "slug": slug.current
+      "slug": slug.current,
     },
     "price": stats.price,
     "tags": overview.tags,
@@ -31,7 +44,7 @@ export const PROJECT_CARD_QUERY =
     "developer": developer->{
       name,
       logo,
-      "slug": slug.current
+      "slug": slug.current,
     },
     "payments": stats.paymentPlan
 
@@ -55,7 +68,20 @@ export const PORTFOLIOS_QUERY =
       },
       alt
     },
-    "slug": slug.current,
+    qrCode{
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions {
+            width,
+            height
+          }
+        }
+      },
+    },
+    link,
     location,
     isFeatured,
     "category": category->{
@@ -74,16 +100,16 @@ export const PORTFOLIOS_QUERY =
 
 }`);
 
-export const PORTFOLIOS_SLUGS_QUERY =
-	defineQuery(`*[_type == "project" && defined(slug.current) &&  slug.current != null]    {
+export const PORTFOLIOS_LINKS_QUERY =
+	defineQuery(`*[_type == "project" && defined(link.current) &&  link.current != null]    {
     _id,
-    "slug": slug.current
+    link,
 }`);
 
 export const FILTERED_PROJECTS_QUERY = defineQuery(`
   *[_type == "project" 
     && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || description match $searchQuery + "*") 
-    && (!defined($category) || $category == "" || category->slug.current == $category)   ]  {
+    && (!defined($category) || $category == "" || category->link.current == $category)   ]  {
     _id,
     title,
     mainImage{
@@ -100,7 +126,20 @@ export const FILTERED_PROJECTS_QUERY = defineQuery(`
       },
       alt
     },
-    "slug": slug.current,
+    qrCode{
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions {
+            width,
+            height
+          }
+        }
+      },
+    },
+    link,
     location,
     "developer": developer->{
       name,
@@ -122,7 +161,7 @@ export const FILTERED_PROJECTS_QUERY = defineQuery(`
 export const FILTERED_PAGINATED_PROJECTS_QUERY = defineQuery(`
   *[_type == "project" 
     && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || shortDescription match $searchQuery + "*") 
-    && (!defined($category) || $category == "" || category->slug.current == $category)   ] | order(_createdAt desc)[$start..$end]  {
+    && (!defined($category) || $category == "" || category->link.current == $category)   ] | order(_createdAt desc)[$start..$end]  {
     _id,
     title,
     mainImage{
@@ -139,7 +178,20 @@ export const FILTERED_PAGINATED_PROJECTS_QUERY = defineQuery(`
       },
       alt
     },
-    "slug": slug.current,
+    qrCode{
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions {
+            width,
+            height
+          }
+        }
+      },
+    },
+    link,
     location,
     isFeatured,
     "category": category->{
@@ -161,7 +213,7 @@ export const FILTERED_PAGINATED_PROJECTS_QUERY = defineQuery(`
 export const FILTERED_PROJECTS_COUNT_QUERY = defineQuery(`
   count(*[_type == "project" 
     && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || shortDescription match $searchQuery + "*") 
-    && (!defined($category) || $category == "" || category->slug.current == $category)])
+    && (!defined($category) || $category == "" || category->link.current == $category)])
 `);
 
 export const PROJECTS_COUNT_QUERY = defineQuery(`
@@ -186,7 +238,20 @@ export const PAGINATED_PROJECTS_QUERY =
       },
       alt
     },
-    "slug": slug.current,
+    qrCode{
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions {
+            width,
+            height
+          }
+        }
+      },
+    },
+    link,
     location,
     isFeatured,
     "category": category->{
@@ -205,11 +270,11 @@ export const PAGINATED_PROJECTS_QUERY =
 
 }`);
 
-export const PROJECT_BY_SLUG_QUERY = defineQuery(`
-  *[_type == "project" && slug.current == $slug][0] {
+export const PROJECT_BY_LINK_QUERY = defineQuery(`
+  *[_type == "project" && link.current == $link][0] {
     _id,
     title,
-    "slug": slug.current,
+    "link": link.current,
     mainImage{
       asset->{
         _id,
@@ -224,11 +289,24 @@ export const PROJECT_BY_SLUG_QUERY = defineQuery(`
       },
       alt
     },
+     qrCode{
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions {
+            width,
+            height
+          }
+        }
+      },
+    },
     location,
     "developer": developer->{
       name,
       logo,
-      "slug": slug.current,
+      "link": link.current,
       description,
       website,
       contactInfo
@@ -236,7 +314,7 @@ export const PROJECT_BY_SLUG_QUERY = defineQuery(`
     status,
     "category": category->{
       title,
-      "slug": slug.current
+      "link": link.current
     },
 
     stats,

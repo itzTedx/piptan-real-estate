@@ -59,7 +59,7 @@ export const ProjectAmenities = ({ amenities }: ProjectAmenitiesProps) => {
 											title={amenity.image.alt ?? amenity.title}
 										/>
 
-										<div className="absolute inset-0 z-10 flex items-end bg-gradient-to-t from-black/70 to-50% to-transparent p-4">
+										<div className="absolute inset-0 z-10 flex items-end bg-linear-to-t from-black/70 to-50% to-transparent p-4">
 											<AmenityTitle title={amenity.title} />
 										</div>
 										<ProgressiveBlur

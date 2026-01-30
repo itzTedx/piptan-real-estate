@@ -13,10 +13,10 @@ import { IconHouse } from "@/app/assets/icons";
 import { ProgressIndicator } from "@/features/home/components/progress-indicator";
 import { PropertyCard } from "@/features/properties/components/property-card";
 
-import { PROJECT_CARD_QUERYResult } from "../../../../sanity.types";
+import { PORTFOLIO_CARD_QUERY_RESULT } from "../../../../sanity.types";
 
 interface RelatedProjectsProps {
-	projects: PROJECT_CARD_QUERYResult;
+	projects: PORTFOLIO_CARD_QUERY_RESULT;
 }
 
 export const RelatedProjects = ({ projects }: RelatedProjectsProps) => {
@@ -25,8 +25,8 @@ export const RelatedProjects = ({ projects }: RelatedProjectsProps) => {
 			<SectionHeader
 				action={
 					<AnimatedButton
-						href="/projects"
-						text="View all projects"
+						href="/portfolio"
+						text="View all portfolios"
 						variant="outline"
 					/>
 				}
@@ -34,12 +34,12 @@ export const RelatedProjects = ({ projects }: RelatedProjectsProps) => {
 				hasHighlight
 				highlightText="Chosen with You"
 				icon={<IconHouse className="size-3 md:size-4" />}
-				title="Residences Chosen with You in Mind"
+				title="Portfolios Chosen with You in Mind"
 			/>
 			<Carousel className="mt-4 w-full md:mt-6 lg:mt-9">
 				<CarouselContent className="-ml-1">
-					{projects.map((data, index) => (
-						<CarouselItem className="pl-1 md:basis-1/2" key={index}>
+					{projects.map((data) => (
+						<CarouselItem className="pl-1 md:basis-1/2" key={data._id}>
 							<div className="h-full p-1">
 								<PropertyCard data={data} />
 							</div>

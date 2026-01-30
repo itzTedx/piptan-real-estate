@@ -7,24 +7,24 @@ import {
 	FILTERED_PROJECTS_COUNT_QUERY,
 	FILTERED_PROJECTS_QUERY,
 	PAGINATED_PROJECTS_QUERY,
+	PORTFOLIO_CARD_QUERY,
+	PORTFOLIOS_LINKS_QUERY,
 	PORTFOLIOS_QUERY,
-	PORTFOLIOS_SLUGS_QUERY,
-	PROJECT_BY_SLUG_QUERY,
-	PROJECT_CARD_QUERY,
+	PROJECT_BY_LINK_QUERY,
 	PROJECTS_COUNT_QUERY,
 } from "@/lib/sanity/queries/projects-queries";
 
 import {
-	FILTERED_PROJECTS_QUERYResult,
-	PORTFOLIOS_SLUGS_QUERYResult,
-	PROJECT_BY_SLUG_QUERYResult,
-	PROJECT_CARD_QUERYResult,
+	FILTERED_PROJECTS_QUERY_RESULT,
+	PORTFOLIO_CARD_QUERY_RESULT,
+	PORTFOLIOS_LINKS_QUERY_RESULT,
+	PROJECT_BY_LINK_QUERY_RESULT,
 } from "../../../../sanity.types";
 
 export const getProjectsCardData =
-	async (): Promise<PROJECT_CARD_QUERYResult> => {
+	async (): Promise<PORTFOLIO_CARD_QUERY_RESULT> => {
 		const { data } = await sanityFetch({
-			query: PROJECT_CARD_QUERY,
+			query: PORTFOLIO_CARD_QUERY,
 			tags: ["sanity-content", "projects"],
 		});
 
@@ -36,7 +36,7 @@ export const getPaginatedProjects = async (
 	pageSize = 9,
 	searchQuery?: string,
 	category?: string
-): Promise<{ projects: PROJECT_CARD_QUERYResult; total: number }> => {
+): Promise<{ projects: PORTFOLIO_CARD_QUERY_RESULT; total: number }> => {
 	const start = (page - 1) * pageSize;
 	const end = start + pageSize;
 
@@ -88,7 +88,7 @@ export const getPaginatedProjects = async (
 	};
 };
 
-export const getProjects = async (): Promise<PROJECT_CARD_QUERYResult> => {
+export const getProjects = async (): Promise<PORTFOLIO_CARD_QUERY_RESULT> => {
 	const { data } = await sanityFetch({
 		query: PORTFOLIOS_QUERY,
 		tags: ["sanity-content", "projects"],
@@ -97,9 +97,9 @@ export const getProjects = async (): Promise<PROJECT_CARD_QUERYResult> => {
 };
 
 export const getProjectsSlugs =
-	async (): Promise<PORTFOLIOS_SLUGS_QUERYResult> => {
+	async (): Promise<PORTFOLIOS_LINKS_QUERY_RESULT> => {
 		const { data } = await sanityFetch({
-			query: PORTFOLIOS_SLUGS_QUERY,
+			query: PORTFOLIOS_LINKS_QUERY,
 			tags: ["sanity-content", "projects"],
 		});
 		return data;
@@ -107,8 +107,8 @@ export const getProjectsSlugs =
 
 // Static version for generateStaticParams - doesn't use draftMode
 export const getProjectsSlugsStatic =
-	async (): Promise<PORTFOLIOS_SLUGS_QUERYResult> => {
-		const data = await client.fetch(PORTFOLIOS_SLUGS_QUERY);
+	async (): Promise<PORTFOLIOS_LINKS_QUERY_RESULT> => {
+		const data = await client.fetch(PORTFOLIOS_LINKS_QUERY);
 		return data;
 	};
 
@@ -121,7 +121,7 @@ export async function getFilteredProjects({
 	searchQuery,
 	category,
 }: GetFilteredProjectsParams): Promise<{
-	projects: FILTERED_PROJECTS_QUERYResult;
+	projects: FILTERED_PROJECTS_QUERY_RESULT;
 }> {
 	try {
 		const { data: projects } = await sanityFetch({
@@ -142,10 +142,10 @@ export async function getFilteredProjects({
 
 export async function getProjectBySlug(
 	slug: string
-): Promise<PROJECT_BY_SLUG_QUERYResult> {
+): Promise<PROJECT_BY_LINK_QUERY_RESULT> {
 	try {
 		const { data: project } = await sanityFetch({
-			query: PROJECT_BY_SLUG_QUERY,
+			query: PROJECT_BY_LINK_QUERY,
 			params: { slug },
 			tags: ["sanity-content", "projects", slug],
 		});
@@ -160,9 +160,9 @@ export async function getProjectBySlug(
 // Static version for generateMetadata - doesn't use draftMode
 export async function getProjectBySlugStatic(
 	slug: string
-): Promise<PROJECT_BY_SLUG_QUERYResult> {
+): Promise<PROJECT_BY_LINK_QUERY_RESULT> {
 	try {
-		const project = await client.fetch(PROJECT_BY_SLUG_QUERY, { slug });
+		const project = await client.fetch(PROJECT_BY_LINK_QUERY, { slug });
 		return project;
 	} catch (error) {
 		console.error("Error fetching project by slug:", error);

@@ -68,7 +68,7 @@ function Carousel({
 						stopOnInteraction: false,
 						stopOnFocusIn: true,
 						stopOnMouseEnter: true,
-						delay: 3000,
+						delay: 4000,
 					}),
 				]
 			: [WheelGesturesPlugin()]
