@@ -4,6 +4,14 @@ import Link from "next/link";
 
 import { ArrowUpRight } from "lucide-react";
 
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
+
 import { urlFor } from "@/lib/sanity/image";
 import { cn } from "@/lib/utils";
 
@@ -15,7 +23,6 @@ interface Props {
 }
 
 export const PropertyCard = ({ className, data }: Props) => {
-	console.log("PropertyCard data: ", data);
 	return (
 		<div
 			className={cn(
@@ -28,14 +35,30 @@ export const PropertyCard = ({ className, data }: Props) => {
 				href={(data.link as Route) || "/"}
 				target="_blank"
 			>
-				<div className="absolute top-3 right-3 z-10 flex size-9 -translate-y-full items-center justify-center rounded-md bg-accent/20 opacity-0 backdrop-blur-md transition-all hover:bg-accent/50 group-hover:translate-y-0 group-hover:opacity-100">
-					<ArrowUpRight className="size-6 text-foreground" />
+				<div className="absolute top-3 right-3 z-10 flex flex-col gap-3">
+					<Tooltip delayDuration={100}>
+						<TooltipTrigger asChild>
+							<Button
+								className="flex size-9 -translate-y-full items-center justify-center rounded-md bg-accent/20 opacity-0 backdrop-blur-md transition-all hover:bg-accent/50 group-hover:translate-y-0 group-hover:opacity-100"
+								size="icon"
+								variant="outline"
+							>
+								<ArrowUpRight className="size-6 text-foreground" />
+							</Button>
+						</TooltipTrigger>
+						<TooltipContent side="right">
+							<div className="flex items-center gap-2">Explore more</div>
+						</TooltipContent>
+					</Tooltip>
 				</div>
+
 				{data.category && (
-					<p className="group/category relative z-10 flex items-center gap-2 p-6 text-foreground/80 text-sm transition-colors hover:text-primary-foreground">
-						<span className="size-1 rounded-full bg-primary/80 transition-colors group-hover/category:bg-primary-foreground" />
-						{data.category.title}
-					</p>
+					<div className="relative z-10 flex items-center gap-2 p-6">
+						<Badge>
+							<span className="size-1 rounded-full bg-primary/80 transition-colors group-hover/category:bg-primary-foreground" />
+							{data.category.title}
+						</Badge>
+					</div>
 				)}
 				<div className="relative z-10 flex w-full items-center justify-between gap-1 p-6 lg:p-9">
 					<div className="flex flex-col items-start lg:gap-2">
@@ -79,8 +102,8 @@ export const PropertyCard = ({ className, data }: Props) => {
 					)}
 
 					{/* <WhatsappButton
-							message={`Hello, I'm interested in getting more information about ${data.title}. Project Link: https://www.piptan.ae/portfolio/${data.slug || ""} `}
-						/> */}
+						message={`Hello, I'm interested in getting more information about ${data.title}. Project Link: https://www.piptan.ae/portfolio/${data.slug || ""} `}
+					/> */}
 				</div>
 				{data.mainImage && (
 					<Image

@@ -125,38 +125,6 @@ export const projectType = defineType({
 			},
 			validation: (Rule) => Rule.required(),
 		}),
-
-		// SEO Section
-		defineField({
-			name: "seo",
-			type: "object",
-			description:
-				"Set up SEO settings to improve the project's visibility in search engines.",
-			fields: [
-				defineField({
-					name: "title",
-					type: "string",
-					title: "SEO Title",
-					description:
-						"Custom title tag for search engines. If left empty, the project title will be used.",
-				}),
-				defineField({
-					name: "description",
-					type: "text",
-					title: "SEO Description",
-					description:
-						"Meta description for search engines. If left empty, the project overview will be used.",
-				}),
-				defineField({
-					name: "keywords",
-					type: "array",
-					title: "SEO Keywords",
-					description:
-						"Add keywords to help search engines find this project. Example: ['Dubai', 'Luxury', 'Apartments'].",
-					of: [{ type: "string" }],
-				}),
-			],
-		}),
 	],
 	preview: {
 		select: {
