@@ -14,7 +14,7 @@ export function PropertiesListSkeleton({
 	return (
 		<div
 			className={cn(
-				"grid gap-6",
+				"mt-6 grid gap-6",
 				viewMode === "grid"
 					? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
 					: "grid-cols-1",

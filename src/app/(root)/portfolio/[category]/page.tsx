@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 
-import type { Metadata, Route } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 
@@ -13,13 +13,20 @@ import {
 	CarouselNext,
 	CarouselPrevious,
 } from "@/components/ui/carousel";
+import {
+	Empty,
+	EmptyContent,
+	EmptyDescription,
+	EmptyHeader,
+	EmptyTitle,
+} from "@/components/ui/empty";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
 
 import { LeadSection } from "@/features/forms/lead-form/section";
-import { getCategories } from "@/features/home/actions";
 import { ProgressIndicator } from "@/features/home/components/progress-indicator";
 import { getFilteredProjects } from "@/features/projects/actions/projects-actions";
+import { CategoriesSelector } from "@/features/projects/components/categories-selector";
 import { PropertiesListSkeleton } from "@/features/properties/components/properties-list-skeleton";
 import { PropertyCard } from "@/features/properties/components/property-card";
 import { client } from "@/lib/sanity/lib/client";
@@ -87,9 +94,9 @@ export const revalidate = 300;
 export default async function ProjectsPage({
 	params,
 }: {
-	params: { category: string };
+	params: Promise<{ category: string }>;
 }) {
-	const categories = await getCategories();
+	const { category } = await params;
 
 	return (
 		<main className="pt-4 sm:pt-9 md:pt-12">
@@ -101,23 +108,10 @@ export default async function ProjectsPage({
 				/>
 
 				<Separator />
-				{categories?.length ? (
-					<div className="mt-6 flex flex-wrap gap-2">
-						<Button asChild size="sm" variant="secondary">
-							<Link href="/portfolio">All</Link>
-						</Button>
-						{categories.map((category) => (
-							<Button asChild key={category._id} size="sm" variant="secondary">
-								<Link href={`/portfolio/${category.slug}` as Route}>
-									{category.title}
-								</Link>
-							</Button>
-						))}
-					</div>
-				) : null}
+				<CategoriesSelector />
 
 				<Suspense fallback={<PropertiesListSkeleton />}>
-					<SuspendedPortfolioList categorySlug={params.category} />
+					<SuspendedPortfolioList categorySlug={category} />
 				</Suspense>
 				<Separator className="my-12 md:my-20" />
 			</section>
@@ -207,6 +201,26 @@ async function SuspendedPortfolioList({
 			}),
 		},
 	};
+
+	if (totalItems === 0) {
+		return (
+			<Empty className="mt-6">
+				<EmptyHeader>
+					<EmptyTitle>No projects found in this category</EmptyTitle>
+					<EmptyDescription>
+						We&apos;re not currently showcasing projects under this filter.
+						Explore our full portfolio to discover active real estate
+						opportunities across Dubai and Abu Dhabi.
+					</EmptyDescription>
+				</EmptyHeader>
+				<EmptyContent>
+					<Button asChild size="sm">
+						<Link href="/portfolio">View all projects</Link>
+					</Button>
+				</EmptyContent>
+			</Empty>
+		);
+	}
 
 	return (
 		<>

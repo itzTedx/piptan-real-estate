@@ -120,12 +120,12 @@ export const PropertyCard = ({ className, data }: Props) => {
 						</div>
 					</div>
 					{data.qrCode && (
-						<div className="group/qr-code size-24 rounded-sm bg-foreground p-1 md:size-20">
+						<div className="size-24 rounded-sm bg-foreground p-1 transition-transform duration-300 ease-out group-hover:scale-150 md:size-20">
 							<div className="relative aspect-square">
 								<Image
 									alt={`${data.title} QR Code`}
 									blurDataURL={data.qrCode.asset?.metadata?.lqip ?? undefined}
-									className="object-cover transition-transform duration-300 ease-out group-hover/qr-code:scale-150"
+									className="object-cover"
 									fill
 									placeholder={
 										data.qrCode.asset?.metadata?.lqip ? "blur" : undefined

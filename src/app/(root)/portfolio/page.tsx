@@ -1,10 +1,8 @@
 import { Suspense } from "react";
 
-import type { Metadata, Route } from "next";
-import Link from "next/link";
+import type { Metadata } from "next";
 import Script from "next/script";
 
-import { Button } from "@/components/ui/button";
 import {
 	Carousel,
 	CarouselActiveIndex,
@@ -17,9 +15,9 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
 
 import { LeadSection } from "@/features/forms/lead-form/section";
-import { getCategories } from "@/features/home/actions";
 import { ProgressIndicator } from "@/features/home/components/progress-indicator";
 import { getProjects } from "@/features/projects/actions/projects-actions";
+import { CategoriesSelector } from "@/features/projects/components/categories-selector";
 import { PropertiesListSkeleton } from "@/features/properties/components/properties-list-skeleton";
 import { PropertyCard } from "@/features/properties/components/property-card";
 
@@ -83,8 +81,6 @@ export const metadata: Metadata = {
 export const revalidate = 300;
 
 export default async function ProjectsPage() {
-	const categories = await getCategories();
-
 	return (
 		<main className="pt-4 sm:pt-9 md:pt-12">
 			<section className="container relative mb-20">
@@ -96,20 +92,7 @@ export default async function ProjectsPage() {
 
 				<Separator />
 
-				{categories?.length ? (
-					<div className="mt-6 flex flex-wrap gap-2">
-						<Button asChild size="sm" variant="secondary">
-							<Link href="/portfolio">All</Link>
-						</Button>
-						{categories.map((category) => (
-							<Button asChild key={category._id} size="sm" variant="secondary">
-								<Link href={`/portfolio/${category.slug}` as Route}>
-									{category.title}
-								</Link>
-							</Button>
-						))}
-					</div>
-				) : null}
+				<CategoriesSelector />
 
 				<Suspense fallback={<PropertiesListSkeleton />}>
 					<SuspendedPortfolioList />

@@ -10,6 +10,7 @@ import {
 	PORTFOLIO_CARD_QUERY,
 	PORTFOLIOS_LINKS_QUERY,
 	PORTFOLIOS_QUERY,
+	PROJECTS_BY_CATEGORY_QUERY,
 	PROJECT_BY_LINK_QUERY,
 	PROJECTS_COUNT_QUERY,
 } from "@/lib/sanity/queries/projects-queries";
@@ -124,12 +125,18 @@ export async function getFilteredProjects({
 	projects: FILTERED_PROJECTS_QUERY_RESULT;
 }> {
 	try {
+		const isSearching = !!searchQuery && searchQuery.trim() !== "";
+
 		const { data: projects } = await sanityFetch({
-			query: FILTERED_PROJECTS_QUERY,
-			params: {
-				searchQuery: searchQuery || "",
-				category: category === "all" ? "" : category || "",
-			},
+			query: isSearching ? FILTERED_PROJECTS_QUERY : PROJECTS_BY_CATEGORY_QUERY,
+			params: isSearching
+				? {
+						searchQuery: searchQuery || "",
+						category: category === "all" ? "" : category || "",
+					}
+				: {
+						category: category === "all" ? "" : category || "",
+					},
 			tags: ["sanity-content", "projects"],
 		});
 

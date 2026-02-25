@@ -109,7 +109,57 @@ export const PORTFOLIOS_LINKS_QUERY =
 export const FILTERED_PROJECTS_QUERY = defineQuery(`
   *[_type == "project" 
     && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || description match $searchQuery + "*") 
-    && (!defined($category) || $category == "" || category->link.current == $category)   ]  {
+    && (!defined($category) || $category == "" || category->slug.current == $category)   ]  {
+    _id,
+    title,
+    mainImage{
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions {
+            width,
+            height
+          }
+        }
+      },
+      alt
+    },
+    qrCode{
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions {
+            width,
+            height
+          }
+        }
+      },
+    },
+    link,
+    location,
+    "developer": developer->{
+      name,
+      logo,
+      "slug": slug.current
+    },
+    isFeatured,
+    "category": category->{
+      title,
+      "slug": slug.current
+    },
+    "price": stats.price,
+    tags,
+    _updatedAt,
+    _createdAt
+  }
+`);
+
+export const PROJECTS_BY_CATEGORY_QUERY = defineQuery(`
+  *[_type == "project" && category->slug.current == $category] | order(_createdAt desc) {
     _id,
     title,
     mainImage{
@@ -161,7 +211,7 @@ export const FILTERED_PROJECTS_QUERY = defineQuery(`
 export const FILTERED_PAGINATED_PROJECTS_QUERY = defineQuery(`
   *[_type == "project" 
     && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || shortDescription match $searchQuery + "*") 
-    && (!defined($category) || $category == "" || category->link.current == $category)   ] | order(_createdAt desc)[$start..$end]  {
+    && (!defined($category) || $category == "" || category->slug.current == $category)   ] | order(_createdAt desc)[$start..$end]  {
     _id,
     title,
     mainImage{
@@ -213,7 +263,7 @@ export const FILTERED_PAGINATED_PROJECTS_QUERY = defineQuery(`
 export const FILTERED_PROJECTS_COUNT_QUERY = defineQuery(`
   count(*[_type == "project" 
     && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || shortDescription match $searchQuery + "*") 
-    && (!defined($category) || $category == "" || category->link.current == $category)])
+    && (!defined($category) || $category == "" || category->slug.current == $category)])
 `);
 
 export const PROJECTS_COUNT_QUERY = defineQuery(`
