@@ -22,6 +22,8 @@ import { ProgressIndicator } from "@/features/home/components/progress-indicator
 import { getFilteredProjects } from "@/features/projects/actions/projects-actions";
 import { PropertiesListSkeleton } from "@/features/properties/components/properties-list-skeleton";
 import { PropertyCard } from "@/features/properties/components/property-card";
+import { client } from "@/lib/sanity/lib/client";
+import { CATEGORIES_QUERY } from "@/lib/sanity/queries/categories-queries";
 
 const meta = {
 	title: "Real Estate Portfolio — Dubai & Abu Dhabi Projects | Piptan",
@@ -243,7 +245,8 @@ async function SuspendedPortfolioList({
 }
 
 export async function generateStaticParams() {
-	const categories = await getCategories();
+	const categories = await client.fetch(CATEGORIES_QUERY);
+
 	return categories.map((category) => ({
 		category: category.slug,
 	}));
