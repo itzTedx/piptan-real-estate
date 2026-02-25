@@ -66,7 +66,7 @@ export const SectionHeader = ({
 	const renderTitle = () => {
 		if (!hasHighlight || !highlightText) {
 			return title.split("\n").map((line, index) => (
-				<span key={index}>
+				<span key={line}>
 					{line}
 					{index < title.split("\n").length - 1 && <br />}
 				</span>
@@ -77,14 +77,14 @@ export const SectionHeader = ({
 		return (
 			<>
 				{parts[0].split("\n").map((line, index) => (
-					<span key={`before-${index}`}>
+					<span key={`before-${line}`}>
 						{line}
 						{index < parts[0].split("\n").length - 1 && <br />}
 					</span>
 				))}
 				<span className="text-primary-foreground">{highlightText}</span>
 				{parts[1]?.split("\n").map((line, index) => (
-					<span key={`after-${index}`}>
+					<span key={`after-${line}`}>
 						{line}
 						{index < parts[1].split("\n").length - 1 && <br />}
 					</span>
@@ -104,14 +104,14 @@ export const SectionHeader = ({
 			<div
 				className={cn(
 					"z-10 mb-4 grid gap-4 sm:gap-6",
-					"grid-cols-1 sm:grid-cols-2 md:grid-cols-3",
+					"grid-cols-1 sm:grid-cols-[1fr_1fr]",
 					containerClassName
 				)}
 			>
 				{as === "h1" ? (
 					<h1
 						className={cn(
-							"font-medium text-2xl leading-[1.2] sm:col-span-2 sm:text-3xl md:text-4xl lg:text-5xl",
+							"text-balance font-medium text-2xl leading-[1.2] sm:text-3xl md:text-4xl lg:text-5xl",
 							titleClassName
 						)}
 					>
@@ -120,7 +120,7 @@ export const SectionHeader = ({
 				) : (
 					<h2
 						className={cn(
-							"font-medium text-2xl leading-[1.2] sm:col-span-2 sm:text-3xl md:text-4xl lg:text-5xl",
+							"font-medium text-2xl leading-[1.2] sm:text-3xl md:text-4xl lg:text-5xl",
 							titleClassName
 						)}
 					>

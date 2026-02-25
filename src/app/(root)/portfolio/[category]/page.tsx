@@ -19,7 +19,7 @@ import { Separator } from "@/components/ui/separator";
 import { LeadSection } from "@/features/forms/lead-form/section";
 import { getCategories } from "@/features/home/actions";
 import { ProgressIndicator } from "@/features/home/components/progress-indicator";
-import { getProjects } from "@/features/projects/actions/projects-actions";
+import { getFilteredProjects } from "@/features/projects/actions/projects-actions";
 import { PropertiesListSkeleton } from "@/features/properties/components/properties-list-skeleton";
 import { PropertyCard } from "@/features/properties/components/property-card";
 
@@ -82,7 +82,11 @@ export const metadata: Metadata = {
 // Enable caching with revalidation every 5 minutes
 export const revalidate = 300;
 
-export default async function ProjectsPage() {
+export default async function ProjectsPage({
+	params,
+}: {
+	params: { category: string };
+}) {
 	const categories = await getCategories();
 
 	return (
@@ -95,7 +99,6 @@ export default async function ProjectsPage() {
 				/>
 
 				<Separator />
-
 				{categories?.length ? (
 					<div className="mt-6 flex flex-wrap gap-2">
 						<Button asChild size="sm" variant="secondary">
@@ -112,7 +115,7 @@ export default async function ProjectsPage() {
 				) : null}
 
 				<Suspense fallback={<PropertiesListSkeleton />}>
-					<SuspendedPortfolioList />
+					<SuspendedPortfolioList categorySlug={params.category} />
 				</Suspense>
 				<Separator className="my-12 md:my-20" />
 			</section>
@@ -156,8 +159,14 @@ export default async function ProjectsPage() {
 	);
 }
 
-async function SuspendedPortfolioList() {
-	const projects = await getProjects();
+async function SuspendedPortfolioList({
+	categorySlug,
+}: {
+	categorySlug: string;
+}) {
+	const { projects } = await getFilteredProjects({
+		category: categorySlug,
+	});
 	const totalItems = projects.length;
 
 	const structuredData = {
@@ -165,7 +174,7 @@ async function SuspendedPortfolioList() {
 		"@type": "CollectionPage",
 		name: meta.title,
 		description: meta.description,
-		url: "https://www.piptan.ae/portfolio",
+		url: `https://www.piptan.ae/portfolio/${categorySlug}`,
 		mainEntity: {
 			"@type": "ItemList",
 			itemListElement: projects.map((project, index) => {
@@ -231,4 +240,11 @@ async function SuspendedPortfolioList() {
 			</Carousel>
 		</>
 	);
+}
+
+export async function generateStaticParams() {
+	const categories = await getCategories();
+	return categories.map((category) => ({
+		category: category.slug,
+	}));
 }

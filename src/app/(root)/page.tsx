@@ -8,7 +8,7 @@ import { FaqSection } from "@/features/home/section/faq";
 import { FeaturesSection } from "@/features/home/section/features";
 import { Hero } from "@/features/home/section/hero";
 import { InsightsSection } from "@/features/home/section/insights";
-import { PortfolioSection } from "@/features/home/section/projects";
+import { PortfolioSection } from "@/features/home/section/portfolio";
 import { Testimonials } from "@/features/home/section/testimonials";
 import { WhyUsSection } from "@/features/home/section/why-us";
 

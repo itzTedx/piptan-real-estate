@@ -1,3 +1,4 @@
+import { Route } from "next";
 import Image from "next/image";
 
 import StackingCards, {
@@ -55,7 +56,7 @@ export const ExpertiseSection = async () => {
 													{description}
 												</p>
 												<AnimatedButton
-													href={`/portfolio?category=${slug}`}
+													href={`/portfolio/${slug}` as Route}
 													text={"Explore more"}
 													variant="secondary"
 												/>
