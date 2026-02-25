@@ -43,7 +43,7 @@ export const Navbar = () => {
 						if (link.href === "/services") {
 							return (
 								<li
-									className="font-jaguar text-lg tracking-wide"
+									className="relative z-9999 font-jaguar text-lg tracking-wide"
 									key={link.href}
 								>
 									<HoverCard closeDelay={100} openDelay={100}>
@@ -53,7 +53,10 @@ export const Navbar = () => {
 												<ChevronDown className="size-4" />
 											</button>
 										</HoverCardTrigger>
-										<HoverCardContent align="center" className="w-152 p-0">
+										<HoverCardContent
+											align="center"
+											className="z-99999 w-3xl p-0"
+										>
 											<div className="p-2">
 												<div className="mb-2 px-2 py-1.5 font-semibold text-sm">
 													Our Services
@@ -68,7 +71,7 @@ export const Navbar = () => {
 															key={service.id}
 														>
 															<div className="font-medium">{service.title}</div>
-															<div className="line-clamp-1 text-muted-foreground text-xs">
+															<div className="line-clamp-2 text-muted-foreground text-xs">
 																{service.description}
 															</div>
 														</Link>

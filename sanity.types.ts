@@ -14,548 +14,548 @@
 
 // Source: schema.json
 export type SanityImageAssetReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+	_ref: string;
+	_type: "reference";
+	_weak?: boolean;
+	[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
 };
 
 export type Services = {
-  _id: string;
-  _type: "services";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  description?: string;
-  image?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
-  orderRank?: string;
+	_id: string;
+	_type: "services";
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	title?: string;
+	description?: string;
+	image?: {
+		asset?: SanityImageAssetReference;
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt?: string;
+		_type: "image";
+	};
+	orderRank?: string;
 };
 
 export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
+	_type: "sanity.imageCrop";
+	top?: number;
+	bottom?: number;
+	left?: number;
+	right?: number;
 };
 
 export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
+	_type: "sanity.imageHotspot";
+	x?: number;
+	y?: number;
+	height?: number;
+	width?: number;
 };
 
 export type InsightCategoryReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "insightCategory";
+	_ref: string;
+	_type: "reference";
+	_weak?: boolean;
+	[internalGroqTypeReferenceTo]?: "insightCategory";
 };
 
 export type Insights = {
-  _id: string;
-  _type: "insights";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  excerpt?: string;
-  image?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
-  categories?: InsightCategoryReference;
-  body?: BlockContent;
-  seo?: {
-    meta_title?: string;
-    meta_description?: string;
-    meta_keywords?: string;
-    ogImage?: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  };
+	_id: string;
+	_type: "insights";
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	title?: string;
+	slug?: Slug;
+	excerpt?: string;
+	image?: {
+		asset?: SanityImageAssetReference;
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt?: string;
+		_type: "image";
+	};
+	categories?: InsightCategoryReference;
+	body?: BlockContent;
+	seo?: {
+		meta_title?: string;
+		meta_description?: string;
+		meta_keywords?: string;
+		ogImage?: {
+			asset?: SanityImageAssetReference;
+			media?: unknown;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			_type: "image";
+		};
+	};
 };
 
 export type BlockContent = Array<
-  | {
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-      listItem?: "bullet" | "number";
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }
-  | {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      alt?: string;
-      _type: "image";
-      _key: string;
-    }
+	| {
+			children?: Array<{
+				marks?: Array<string>;
+				text?: string;
+				_type: "span";
+				_key: string;
+			}>;
+			style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+			listItem?: "bullet" | "number";
+			markDefs?: Array<{
+				href?: string;
+				_type: "link";
+				_key: string;
+			}>;
+			level?: number;
+			_type: "block";
+			_key: string;
+	  }
+	| {
+			asset?: SanityImageAssetReference;
+			media?: unknown;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			alt?: string;
+			_type: "image";
+			_key: string;
+	  }
 >;
 
 export type InsightCategory = {
-  _id: string;
-  _type: "insightCategory";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
+	_id: string;
+	_type: "insightCategory";
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	title?: string;
+	slug?: Slug;
 };
 
 export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
+	_type: "slug";
+	current?: string;
+	source?: string;
 };
 
 export type Faq = {
-  _id: string;
-  _type: "faq";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  question?: string;
-  answer?: string;
-  orderRank?: string;
+	_id: string;
+	_type: "faq";
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	question?: string;
+	answer?: string;
+	orderRank?: string;
 };
 
 export type DeveloperReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "developer";
+	_ref: string;
+	_type: "reference";
+	_weak?: boolean;
+	[internalGroqTypeReferenceTo]?: "developer";
 };
 
 export type CategoryReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "category";
+	_ref: string;
+	_type: "reference";
+	_weak?: boolean;
+	[internalGroqTypeReferenceTo]?: "category";
 };
 
 export type Project = {
-  _id: string;
-  _type: "project";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  link?: string;
-  mainImage?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
-  location?: string;
-  developer?: DeveloperReference;
-  qrCode?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  status?: "available" | "sold" | "coming-soon";
-  category?: CategoryReference;
-  description?: string;
-  gallery?: Array<{
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  }>;
-  seo?: {
-    title?: string;
-    description?: string;
-    keywords?: Array<string>;
-  };
+	_id: string;
+	_type: "project";
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	title?: string;
+	link?: string;
+	mainImage?: {
+		asset?: SanityImageAssetReference;
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt?: string;
+		_type: "image";
+	};
+	location?: string;
+	developer?: DeveloperReference;
+	qrCode?: {
+		asset?: SanityImageAssetReference;
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		_type: "image";
+	};
+	status?: "available" | "sold" | "coming-soon";
+	category?: CategoryReference;
+	description?: string;
+	gallery?: Array<{
+		asset?: SanityImageAssetReference;
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt?: string;
+		_type: "image";
+		_key: string;
+	}>;
+	seo?: {
+		title?: string;
+		description?: string;
+		keywords?: Array<string>;
+	};
 };
 
 export type Developer = {
-  _id: string;
-  _type: "developer";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  slug?: Slug;
-  logo?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
+	_id: string;
+	_type: "developer";
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	name?: string;
+	slug?: Slug;
+	logo?: {
+		asset?: SanityImageAssetReference;
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt?: string;
+		_type: "image";
+	};
 };
 
 export type Category = {
-  _id: string;
-  _type: "category";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  description?: string;
-  image?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
-  orderRank?: string;
+	_id: string;
+	_type: "category";
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	title?: string;
+	slug?: Slug;
+	description?: string;
+	image?: {
+		asset?: SanityImageAssetReference;
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt?: string;
+		_type: "image";
+	};
+	orderRank?: string;
 };
 
 export type MediaTag = {
-  _id: string;
-  _type: "media.tag";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: Slug;
+	_id: string;
+	_type: "media.tag";
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	name?: Slug;
 };
 
 export type SanityImagePaletteSwatch = {
-  _type: "sanity.imagePaletteSwatch";
-  background?: string;
-  foreground?: string;
-  population?: number;
-  title?: string;
+	_type: "sanity.imagePaletteSwatch";
+	background?: string;
+	foreground?: string;
+	population?: number;
+	title?: string;
 };
 
 export type SanityImagePalette = {
-  _type: "sanity.imagePalette";
-  darkMuted?: SanityImagePaletteSwatch;
-  lightVibrant?: SanityImagePaletteSwatch;
-  darkVibrant?: SanityImagePaletteSwatch;
-  vibrant?: SanityImagePaletteSwatch;
-  dominant?: SanityImagePaletteSwatch;
-  lightMuted?: SanityImagePaletteSwatch;
-  muted?: SanityImagePaletteSwatch;
+	_type: "sanity.imagePalette";
+	darkMuted?: SanityImagePaletteSwatch;
+	lightVibrant?: SanityImagePaletteSwatch;
+	darkVibrant?: SanityImagePaletteSwatch;
+	vibrant?: SanityImagePaletteSwatch;
+	dominant?: SanityImagePaletteSwatch;
+	lightMuted?: SanityImagePaletteSwatch;
+	muted?: SanityImagePaletteSwatch;
 };
 
 export type SanityImageDimensions = {
-  _type: "sanity.imageDimensions";
-  height?: number;
-  width?: number;
-  aspectRatio?: number;
+	_type: "sanity.imageDimensions";
+	height?: number;
+	width?: number;
+	aspectRatio?: number;
 };
 
 export type SanityImageMetadata = {
-  _type: "sanity.imageMetadata";
-  location?: Geopoint;
-  dimensions?: SanityImageDimensions;
-  palette?: SanityImagePalette;
-  lqip?: string;
-  blurHash?: string;
-  thumbHash?: string;
-  hasAlpha?: boolean;
-  isOpaque?: boolean;
+	_type: "sanity.imageMetadata";
+	location?: Geopoint;
+	dimensions?: SanityImageDimensions;
+	palette?: SanityImagePalette;
+	lqip?: string;
+	blurHash?: string;
+	thumbHash?: string;
+	hasAlpha?: boolean;
+	isOpaque?: boolean;
 };
 
 export type SanityFileAsset = {
-  _id: string;
-  _type: "sanity.fileAsset";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  originalFilename?: string;
-  label?: string;
-  title?: string;
-  description?: string;
-  altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
-  uploadId?: string;
-  path?: string;
-  url?: string;
-  source?: SanityAssetSourceData;
+	_id: string;
+	_type: "sanity.fileAsset";
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	originalFilename?: string;
+	label?: string;
+	title?: string;
+	description?: string;
+	altText?: string;
+	sha1hash?: string;
+	extension?: string;
+	mimeType?: string;
+	size?: number;
+	assetId?: string;
+	uploadId?: string;
+	path?: string;
+	url?: string;
+	source?: SanityAssetSourceData;
 };
 
 export type SanityAssetSourceData = {
-  _type: "sanity.assetSourceData";
-  name?: string;
-  id?: string;
-  url?: string;
+	_type: "sanity.assetSourceData";
+	name?: string;
+	id?: string;
+	url?: string;
 };
 
 export type SanityImageAsset = {
-  _id: string;
-  _type: "sanity.imageAsset";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  originalFilename?: string;
-  label?: string;
-  title?: string;
-  description?: string;
-  altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
-  uploadId?: string;
-  path?: string;
-  url?: string;
-  metadata?: SanityImageMetadata;
-  source?: SanityAssetSourceData;
+	_id: string;
+	_type: "sanity.imageAsset";
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	originalFilename?: string;
+	label?: string;
+	title?: string;
+	description?: string;
+	altText?: string;
+	sha1hash?: string;
+	extension?: string;
+	mimeType?: string;
+	size?: number;
+	assetId?: string;
+	uploadId?: string;
+	path?: string;
+	url?: string;
+	metadata?: SanityImageMetadata;
+	source?: SanityAssetSourceData;
 };
 
 export type Geopoint = {
-  _type: "geopoint";
-  lat?: number;
-  lng?: number;
-  alt?: number;
+	_type: "geopoint";
+	lat?: number;
+	lng?: number;
+	alt?: number;
 };
 
 export type AllSanitySchemaTypes =
-  | SanityImageAssetReference
-  | Services
-  | SanityImageCrop
-  | SanityImageHotspot
-  | InsightCategoryReference
-  | Insights
-  | BlockContent
-  | InsightCategory
-  | Slug
-  | Faq
-  | DeveloperReference
-  | CategoryReference
-  | Project
-  | Developer
-  | Category
-  | MediaTag
-  | SanityImagePaletteSwatch
-  | SanityImagePalette
-  | SanityImageDimensions
-  | SanityImageMetadata
-  | SanityFileAsset
-  | SanityAssetSourceData
-  | SanityImageAsset
-  | Geopoint;
+	| SanityImageAssetReference
+	| Services
+	| SanityImageCrop
+	| SanityImageHotspot
+	| InsightCategoryReference
+	| Insights
+	| BlockContent
+	| InsightCategory
+	| Slug
+	| Faq
+	| DeveloperReference
+	| CategoryReference
+	| Project
+	| Developer
+	| Category
+	| MediaTag
+	| SanityImagePaletteSwatch
+	| SanityImagePalette
+	| SanityImageDimensions
+	| SanityImageMetadata
+	| SanityFileAsset
+	| SanityAssetSourceData
+	| SanityImageAsset
+	| Geopoint;
 
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 type ArrayOf<T> = Array<
-  T & {
-    _key: string;
-  }
+	T & {
+		_key: string;
+	}
 >;
 
 // Source: src\lib\sanity\queries\categories-queries.ts
 // Variable: CATEGORIES_QUERY
 // Query: *[_type == "category"] | order(orderRank) {    _id,    title,    image,    "slug": slug.current,    description}
 export type CATEGORIES_QUERY_RESULT = Array<{
-  _id: string;
-  title: string | null;
-  image: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  } | null;
-  slug: string | null;
-  description: string | null;
+	_id: string;
+	title: string | null;
+	image: {
+		asset?: SanityImageAssetReference;
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt?: string;
+		_type: "image";
+	} | null;
+	slug: string | null;
+	description: string | null;
 }>;
 
 // Source: src\lib\sanity\queries\developers-queries.ts
 // Variable: DEVELOPERS_QUERY
 // Query: *[_type == "developer"] | order(_createdAt) {    _id,    name,    logo,}
 export type DEVELOPERS_QUERY_RESULT = Array<{
-  _id: string;
-  name: string | null;
-  logo: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  } | null;
+	_id: string;
+	name: string | null;
+	logo: {
+		asset?: SanityImageAssetReference;
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt?: string;
+		_type: "image";
+	} | null;
 }>;
 
 // Source: src\lib\sanity\queries\insights-queries.ts
 // Variable: INSIGHTS_QUERY
 // Query: *[_type == "insights"]  {    _id,    title,    image{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    "slug": slug.current,    excerpt,    categories -> ,    author,    body,    seo,    'createdAt': _createdAt}
 export type INSIGHTS_QUERY_RESULT = Array<{
-  _id: string;
-  title: string | null;
-  image: {
-    asset: {
-      _id: string;
-      url: string | null;
-      metadata: {
-        lqip: string | null;
-        dimensions: {
-          width: number | null;
-          height: number | null;
-        } | null;
-      } | null;
-    } | null;
-    alt: string | null;
-  } | null;
-  slug: string | null;
-  excerpt: string | null;
-  categories: {
-    _id: string;
-    _type: "insightCategory";
-    _createdAt: string;
-    _updatedAt: string;
-    _rev: string;
-    title?: string;
-    slug?: Slug;
-  } | null;
-  author: null;
-  body: BlockContent | null;
-  seo: {
-    meta_title?: string;
-    meta_description?: string;
-    meta_keywords?: string;
-    ogImage?: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  } | null;
-  createdAt: string;
+	_id: string;
+	title: string | null;
+	image: {
+		asset: {
+			_id: string;
+			url: string | null;
+			metadata: {
+				lqip: string | null;
+				dimensions: {
+					width: number | null;
+					height: number | null;
+				} | null;
+			} | null;
+		} | null;
+		alt: string | null;
+	} | null;
+	slug: string | null;
+	excerpt: string | null;
+	categories: {
+		_id: string;
+		_type: "insightCategory";
+		_createdAt: string;
+		_updatedAt: string;
+		_rev: string;
+		title?: string;
+		slug?: Slug;
+	} | null;
+	author: null;
+	body: BlockContent | null;
+	seo: {
+		meta_title?: string;
+		meta_description?: string;
+		meta_keywords?: string;
+		ogImage?: {
+			asset?: SanityImageAssetReference;
+			media?: unknown;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			_type: "image";
+		};
+	} | null;
+	createdAt: string;
 }>;
 
 // Source: src\lib\sanity\queries\insights-queries.ts
 // Variable: FILTERED_INSIGHTS_QUERY
 // Query: *[_type == "insights"     && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || excerpt match $searchQuery + "*" || categories->title match $searchQuery + "*")     && (!defined($category) || $category == "" || categories->slug.current == $category)   ] | order(_createdAt desc) {    _id,    title,    image{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    "slug": slug.current,    excerpt,    categories -> {      _id,      title,      "slug": slug.current    },    author,    body,    seo,    'createdAt': _createdAt  }
 export type FILTERED_INSIGHTS_QUERY_RESULT = Array<{
-  _id: string;
-  title: string | null;
-  image: {
-    asset: {
-      _id: string;
-      url: string | null;
-      metadata: {
-        lqip: string | null;
-        dimensions: {
-          width: number | null;
-          height: number | null;
-        } | null;
-      } | null;
-    } | null;
-    alt: string | null;
-  } | null;
-  slug: string | null;
-  excerpt: string | null;
-  categories: {
-    _id: string;
-    title: string | null;
-    slug: string | null;
-  } | null;
-  author: null;
-  body: BlockContent | null;
-  seo: {
-    meta_title?: string;
-    meta_description?: string;
-    meta_keywords?: string;
-    ogImage?: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  } | null;
-  createdAt: string;
+	_id: string;
+	title: string | null;
+	image: {
+		asset: {
+			_id: string;
+			url: string | null;
+			metadata: {
+				lqip: string | null;
+				dimensions: {
+					width: number | null;
+					height: number | null;
+				} | null;
+			} | null;
+		} | null;
+		alt: string | null;
+	} | null;
+	slug: string | null;
+	excerpt: string | null;
+	categories: {
+		_id: string;
+		title: string | null;
+		slug: string | null;
+	} | null;
+	author: null;
+	body: BlockContent | null;
+	seo: {
+		meta_title?: string;
+		meta_description?: string;
+		meta_keywords?: string;
+		ogImage?: {
+			asset?: SanityImageAssetReference;
+			media?: unknown;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			_type: "image";
+		};
+	} | null;
+	createdAt: string;
 }>;
 
 // Source: src\lib\sanity\queries\insights-queries.ts
 // Variable: PAGINATED_INSIGHTS_QUERY
 // Query: *[_type == "insights"] | order(_createdAt desc)[$start..$end]  {    _id,    title,    image{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    "slug": slug.current,    excerpt,    categories -> {      _id,      title,      "slug": slug.current    },    author,    body,    seo,    'createdAt': _createdAt}
 export type PAGINATED_INSIGHTS_QUERY_RESULT = Array<{
-  _id: string;
-  title: string | null;
-  image: {
-    asset: {
-      _id: string;
-      url: string | null;
-      metadata: {
-        lqip: string | null;
-        dimensions: {
-          width: number | null;
-          height: number | null;
-        } | null;
-      } | null;
-    } | null;
-    alt: string | null;
-  } | null;
-  slug: string | null;
-  excerpt: string | null;
-  categories: {
-    _id: string;
-    title: string | null;
-    slug: string | null;
-  } | null;
-  author: null;
-  body: BlockContent | null;
-  seo: {
-    meta_title?: string;
-    meta_description?: string;
-    meta_keywords?: string;
-    ogImage?: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  } | null;
-  createdAt: string;
+	_id: string;
+	title: string | null;
+	image: {
+		asset: {
+			_id: string;
+			url: string | null;
+			metadata: {
+				lqip: string | null;
+				dimensions: {
+					width: number | null;
+					height: number | null;
+				} | null;
+			} | null;
+		} | null;
+		alt: string | null;
+	} | null;
+	slug: string | null;
+	excerpt: string | null;
+	categories: {
+		_id: string;
+		title: string | null;
+		slug: string | null;
+	} | null;
+	author: null;
+	body: BlockContent | null;
+	seo: {
+		meta_title?: string;
+		meta_description?: string;
+		meta_keywords?: string;
+		ogImage?: {
+			asset?: SanityImageAssetReference;
+			media?: unknown;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			_type: "image";
+		};
+	} | null;
+	createdAt: string;
 }>;
 
 // Source: src\lib\sanity\queries\insights-queries.ts
@@ -567,170 +567,170 @@ export type INSIGHTS_COUNT_QUERY_RESULT = number;
 // Variable: INSIGHT_CATEGORIES_QUERY
 // Query: *[_type == "insightCategory"] | order(title asc) {    _id,    title,    "slug": slug.current  }
 export type INSIGHT_CATEGORIES_QUERY_RESULT = Array<{
-  _id: string;
-  title: string | null;
-  slug: string | null;
+	_id: string;
+	title: string | null;
+	slug: string | null;
 }>;
 
 // Source: src\lib\sanity\queries\insights-queries.ts
 // Variable: INSIGHT_BY_SLUG_QUERY
 // Query: *[_type == "insights" && slug.current == $slug][0] {    _id,    title,    image{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    "slug": slug.current,    excerpt,    categories -> {      _id,      title,      "slug": slug.current    },    author -> {      _id,      name,      image,      bio    },    body,    seo,    'createdAt': _createdAt,    'updatedAt': _updatedAt  }
 export type INSIGHT_BY_SLUG_QUERY_RESULT = {
-  _id: string;
-  title: string | null;
-  image: {
-    asset: {
-      _id: string;
-      url: string | null;
-      metadata: {
-        lqip: string | null;
-        dimensions: {
-          width: number | null;
-          height: number | null;
-        } | null;
-      } | null;
-    } | null;
-    alt: string | null;
-  } | null;
-  slug: string | null;
-  excerpt: string | null;
-  categories: {
-    _id: string;
-    title: string | null;
-    slug: string | null;
-  } | null;
-  author: null;
-  body: BlockContent | null;
-  seo: {
-    meta_title?: string;
-    meta_description?: string;
-    meta_keywords?: string;
-    ogImage?: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  } | null;
-  createdAt: string;
-  updatedAt: string;
+	_id: string;
+	title: string | null;
+	image: {
+		asset: {
+			_id: string;
+			url: string | null;
+			metadata: {
+				lqip: string | null;
+				dimensions: {
+					width: number | null;
+					height: number | null;
+				} | null;
+			} | null;
+		} | null;
+		alt: string | null;
+	} | null;
+	slug: string | null;
+	excerpt: string | null;
+	categories: {
+		_id: string;
+		title: string | null;
+		slug: string | null;
+	} | null;
+	author: null;
+	body: BlockContent | null;
+	seo: {
+		meta_title?: string;
+		meta_description?: string;
+		meta_keywords?: string;
+		ogImage?: {
+			asset?: SanityImageAssetReference;
+			media?: unknown;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			_type: "image";
+		};
+	} | null;
+	createdAt: string;
+	updatedAt: string;
 } | null;
 
 // Source: src\lib\sanity\queries\projects-queries.ts
 // Variable: PORTFOLIO_CARD_QUERY
 // Query: *[_type == "project"] | order(_createdAt desc)[0..5]  {    _id,    title,    mainImage{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    qrCode{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },    },    link,    location,    isFeatured,    "category": category->{      title,      "slug": slug.current,    },    "price": stats.price,    "tags": overview.tags,    "bedrooms": stats.bedrooms,    "developer": developer->{      name,      logo,      "slug": slug.current,    },    "payments": stats.paymentPlan}
 export type PORTFOLIO_CARD_QUERY_RESULT = Array<{
-  _id: string;
-  title: string | null;
-  mainImage: {
-    asset: {
-      _id: string;
-      url: string | null;
-      metadata: {
-        lqip: string | null;
-        dimensions: {
-          width: number | null;
-          height: number | null;
-        } | null;
-      } | null;
-    } | null;
-    alt: string | null;
-  } | null;
-  qrCode: {
-    asset: {
-      _id: string;
-      url: string | null;
-      metadata: {
-        lqip: string | null;
-        dimensions: {
-          width: number | null;
-          height: number | null;
-        } | null;
-      } | null;
-    } | null;
-  } | null;
-  link: string | null;
-  location: string | null;
-  isFeatured: null;
-  category: {
-    title: string | null;
-    slug: string | null;
-  } | null;
-  price: null;
-  tags: null;
-  bedrooms: null;
-  developer: {
-    name: string | null;
-    logo: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      alt?: string;
-      _type: "image";
-    } | null;
-    slug: string | null;
-  } | null;
-  payments: null;
+	_id: string;
+	title: string | null;
+	mainImage: {
+		asset: {
+			_id: string;
+			url: string | null;
+			metadata: {
+				lqip: string | null;
+				dimensions: {
+					width: number | null;
+					height: number | null;
+				} | null;
+			} | null;
+		} | null;
+		alt: string | null;
+	} | null;
+	qrCode: {
+		asset: {
+			_id: string;
+			url: string | null;
+			metadata: {
+				lqip: string | null;
+				dimensions: {
+					width: number | null;
+					height: number | null;
+				} | null;
+			} | null;
+		} | null;
+	} | null;
+	link: string | null;
+	location: string | null;
+	isFeatured: null;
+	category: {
+		title: string | null;
+		slug: string | null;
+	} | null;
+	price: null;
+	tags: null;
+	bedrooms: null;
+	developer: {
+		name: string | null;
+		logo: {
+			asset?: SanityImageAssetReference;
+			media?: unknown;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			alt?: string;
+			_type: "image";
+		} | null;
+		slug: string | null;
+	} | null;
+	payments: null;
 }>;
 
 // Source: src\lib\sanity\queries\projects-queries.ts
 // Variable: PORTFOLIOS_QUERY
 // Query: *[_type == "project"] | order(_createdAt desc)  {    _id,    title,    mainImage{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    qrCode{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },    },    link,    location,    isFeatured,    "category": category->{      title,      "slug": slug.current    },    "price": stats.price,    "tags": overview.tags,    "bedrooms": stats.bedrooms,    "developer": developer->{      name,      logo,      "slug": slug.current    },    "payments": stats.paymentPlan}
 export type PORTFOLIOS_QUERY_RESULT = Array<{
-  _id: string;
-  title: string | null;
-  mainImage: {
-    asset: {
-      _id: string;
-      url: string | null;
-      metadata: {
-        lqip: string | null;
-        dimensions: {
-          width: number | null;
-          height: number | null;
-        } | null;
-      } | null;
-    } | null;
-    alt: string | null;
-  } | null;
-  qrCode: {
-    asset: {
-      _id: string;
-      url: string | null;
-      metadata: {
-        lqip: string | null;
-        dimensions: {
-          width: number | null;
-          height: number | null;
-        } | null;
-      } | null;
-    } | null;
-  } | null;
-  link: string | null;
-  location: string | null;
-  isFeatured: null;
-  category: {
-    title: string | null;
-    slug: string | null;
-  } | null;
-  price: null;
-  tags: null;
-  bedrooms: null;
-  developer: {
-    name: string | null;
-    logo: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      alt?: string;
-      _type: "image";
-    } | null;
-    slug: string | null;
-  } | null;
-  payments: null;
+	_id: string;
+	title: string | null;
+	mainImage: {
+		asset: {
+			_id: string;
+			url: string | null;
+			metadata: {
+				lqip: string | null;
+				dimensions: {
+					width: number | null;
+					height: number | null;
+				} | null;
+			} | null;
+		} | null;
+		alt: string | null;
+	} | null;
+	qrCode: {
+		asset: {
+			_id: string;
+			url: string | null;
+			metadata: {
+				lqip: string | null;
+				dimensions: {
+					width: number | null;
+					height: number | null;
+				} | null;
+			} | null;
+		} | null;
+	} | null;
+	link: string | null;
+	location: string | null;
+	isFeatured: null;
+	category: {
+		title: string | null;
+		slug: string | null;
+	} | null;
+	price: null;
+	tags: null;
+	bedrooms: null;
+	developer: {
+		name: string | null;
+		logo: {
+			asset?: SanityImageAssetReference;
+			media?: unknown;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			alt?: string;
+			_type: "image";
+		} | null;
+		slug: string | null;
+	} | null;
+	payments: null;
 }>;
 
 // Source: src\lib\sanity\queries\projects-queries.ts
@@ -742,116 +742,116 @@ export type PORTFOLIOS_LINKS_QUERY_RESULT = Array<never>;
 // Variable: FILTERED_PROJECTS_QUERY
 // Query: *[_type == "project"     && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || description match $searchQuery + "*")     && (!defined($category) || $category == "" || category->link.current == $category)   ]  {    _id,    title,    mainImage{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    qrCode{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },    },    link,    location,    "developer": developer->{      name,      logo,      "slug": slug.current    },    isFeatured,    "category": category->{      title,      "slug": slug.current    },    "price": stats.price,    tags,    _updatedAt,    _createdAt  }
 export type FILTERED_PROJECTS_QUERY_RESULT = Array<{
-  _id: string;
-  title: string | null;
-  mainImage: {
-    asset: {
-      _id: string;
-      url: string | null;
-      metadata: {
-        lqip: string | null;
-        dimensions: {
-          width: number | null;
-          height: number | null;
-        } | null;
-      } | null;
-    } | null;
-    alt: string | null;
-  } | null;
-  qrCode: {
-    asset: {
-      _id: string;
-      url: string | null;
-      metadata: {
-        lqip: string | null;
-        dimensions: {
-          width: number | null;
-          height: number | null;
-        } | null;
-      } | null;
-    } | null;
-  } | null;
-  link: string | null;
-  location: string | null;
-  developer: {
-    name: string | null;
-    logo: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      alt?: string;
-      _type: "image";
-    } | null;
-    slug: string | null;
-  } | null;
-  isFeatured: null;
-  category: {
-    title: string | null;
-    slug: string | null;
-  } | null;
-  price: null;
-  tags: null;
-  _updatedAt: string;
-  _createdAt: string;
+	_id: string;
+	title: string | null;
+	mainImage: {
+		asset: {
+			_id: string;
+			url: string | null;
+			metadata: {
+				lqip: string | null;
+				dimensions: {
+					width: number | null;
+					height: number | null;
+				} | null;
+			} | null;
+		} | null;
+		alt: string | null;
+	} | null;
+	qrCode: {
+		asset: {
+			_id: string;
+			url: string | null;
+			metadata: {
+				lqip: string | null;
+				dimensions: {
+					width: number | null;
+					height: number | null;
+				} | null;
+			} | null;
+		} | null;
+	} | null;
+	link: string | null;
+	location: string | null;
+	developer: {
+		name: string | null;
+		logo: {
+			asset?: SanityImageAssetReference;
+			media?: unknown;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			alt?: string;
+			_type: "image";
+		} | null;
+		slug: string | null;
+	} | null;
+	isFeatured: null;
+	category: {
+		title: string | null;
+		slug: string | null;
+	} | null;
+	price: null;
+	tags: null;
+	_updatedAt: string;
+	_createdAt: string;
 }>;
 
 // Source: src\lib\sanity\queries\projects-queries.ts
 // Variable: FILTERED_PAGINATED_PROJECTS_QUERY
 // Query: *[_type == "project"     && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || shortDescription match $searchQuery + "*")     && (!defined($category) || $category == "" || category->link.current == $category)   ] | order(_createdAt desc)[$start..$end]  {    _id,    title,    mainImage{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    qrCode{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },    },    link,    location,    isFeatured,    "category": category->{      title,      "slug": slug.current    },    "price": stats.price,    "tags": overview.tags,    "bedrooms": stats.bedrooms,    "developer": developer->{      name,      logo,      "slug": slug.current    },    "payments": stats.paymentPlan  }
 export type FILTERED_PAGINATED_PROJECTS_QUERY_RESULT = Array<{
-  _id: string;
-  title: string | null;
-  mainImage: {
-    asset: {
-      _id: string;
-      url: string | null;
-      metadata: {
-        lqip: string | null;
-        dimensions: {
-          width: number | null;
-          height: number | null;
-        } | null;
-      } | null;
-    } | null;
-    alt: string | null;
-  } | null;
-  qrCode: {
-    asset: {
-      _id: string;
-      url: string | null;
-      metadata: {
-        lqip: string | null;
-        dimensions: {
-          width: number | null;
-          height: number | null;
-        } | null;
-      } | null;
-    } | null;
-  } | null;
-  link: string | null;
-  location: string | null;
-  isFeatured: null;
-  category: {
-    title: string | null;
-    slug: string | null;
-  } | null;
-  price: null;
-  tags: null;
-  bedrooms: null;
-  developer: {
-    name: string | null;
-    logo: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      alt?: string;
-      _type: "image";
-    } | null;
-    slug: string | null;
-  } | null;
-  payments: null;
+	_id: string;
+	title: string | null;
+	mainImage: {
+		asset: {
+			_id: string;
+			url: string | null;
+			metadata: {
+				lqip: string | null;
+				dimensions: {
+					width: number | null;
+					height: number | null;
+				} | null;
+			} | null;
+		} | null;
+		alt: string | null;
+	} | null;
+	qrCode: {
+		asset: {
+			_id: string;
+			url: string | null;
+			metadata: {
+				lqip: string | null;
+				dimensions: {
+					width: number | null;
+					height: number | null;
+				} | null;
+			} | null;
+		} | null;
+	} | null;
+	link: string | null;
+	location: string | null;
+	isFeatured: null;
+	category: {
+		title: string | null;
+		slug: string | null;
+	} | null;
+	price: null;
+	tags: null;
+	bedrooms: null;
+	developer: {
+		name: string | null;
+		logo: {
+			asset?: SanityImageAssetReference;
+			media?: unknown;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			alt?: string;
+			_type: "image";
+		} | null;
+		slug: string | null;
+	} | null;
+	payments: null;
 }>;
 
 // Source: src\lib\sanity\queries\projects-queries.ts
@@ -868,168 +868,168 @@ export type PROJECTS_COUNT_QUERY_RESULT = number;
 // Variable: PAGINATED_PROJECTS_QUERY
 // Query: *[_type == "project"] | order(_createdAt desc)[$start..$end]  {    _id,    title,    mainImage{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },    qrCode{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },    },    link,    location,    isFeatured,    "category": category->{      title,      "slug": slug.current    },    "price": stats.price,    "tags": overview.tags,    "bedrooms": stats.bedrooms,    "developer": developer->{      name,      logo,      "slug": slug.current    },    "payments": stats.paymentPlan}
 export type PAGINATED_PROJECTS_QUERY_RESULT = Array<{
-  _id: string;
-  title: string | null;
-  mainImage: {
-    asset: {
-      _id: string;
-      url: string | null;
-      metadata: {
-        lqip: string | null;
-        dimensions: {
-          width: number | null;
-          height: number | null;
-        } | null;
-      } | null;
-    } | null;
-    alt: string | null;
-  } | null;
-  qrCode: {
-    asset: {
-      _id: string;
-      url: string | null;
-      metadata: {
-        lqip: string | null;
-        dimensions: {
-          width: number | null;
-          height: number | null;
-        } | null;
-      } | null;
-    } | null;
-  } | null;
-  link: string | null;
-  location: string | null;
-  isFeatured: null;
-  category: {
-    title: string | null;
-    slug: string | null;
-  } | null;
-  price: null;
-  tags: null;
-  bedrooms: null;
-  developer: {
-    name: string | null;
-    logo: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      alt?: string;
-      _type: "image";
-    } | null;
-    slug: string | null;
-  } | null;
-  payments: null;
+	_id: string;
+	title: string | null;
+	mainImage: {
+		asset: {
+			_id: string;
+			url: string | null;
+			metadata: {
+				lqip: string | null;
+				dimensions: {
+					width: number | null;
+					height: number | null;
+				} | null;
+			} | null;
+		} | null;
+		alt: string | null;
+	} | null;
+	qrCode: {
+		asset: {
+			_id: string;
+			url: string | null;
+			metadata: {
+				lqip: string | null;
+				dimensions: {
+					width: number | null;
+					height: number | null;
+				} | null;
+			} | null;
+		} | null;
+	} | null;
+	link: string | null;
+	location: string | null;
+	isFeatured: null;
+	category: {
+		title: string | null;
+		slug: string | null;
+	} | null;
+	price: null;
+	tags: null;
+	bedrooms: null;
+	developer: {
+		name: string | null;
+		logo: {
+			asset?: SanityImageAssetReference;
+			media?: unknown;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			alt?: string;
+			_type: "image";
+		} | null;
+		slug: string | null;
+	} | null;
+	payments: null;
 }>;
 
 // Source: src\lib\sanity\queries\projects-queries.ts
 // Variable: PROJECT_BY_LINK_QUERY
 // Query: *[_type == "project" && link.current == $link][0] {    _id,    title,    "link": link.current,    mainImage{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },      alt    },     qrCode{      asset->{        _id,        url,        metadata {          lqip,          dimensions {            width,            height          }        }      },    },    location,    "developer": developer->{      name,      logo,      "link": link.current,      description,      website,      contactInfo    },    status,    "category": category->{      title,      "link": link.current    },    stats,    shortDescription,    overview,    propertyFeatures,    gallery,    descriptionSections,    seo,    _updatedAt,    _createdAt,  }
 export type PROJECT_BY_LINK_QUERY_RESULT = {
-  _id: string;
-  title: string | null;
-  link: null;
-  mainImage: {
-    asset: {
-      _id: string;
-      url: string | null;
-      metadata: {
-        lqip: string | null;
-        dimensions: {
-          width: number | null;
-          height: number | null;
-        } | null;
-      } | null;
-    } | null;
-    alt: string | null;
-  } | null;
-  qrCode: {
-    asset: {
-      _id: string;
-      url: string | null;
-      metadata: {
-        lqip: string | null;
-        dimensions: {
-          width: number | null;
-          height: number | null;
-        } | null;
-      } | null;
-    } | null;
-  } | null;
-  location: string | null;
-  developer: {
-    name: string | null;
-    logo: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      alt?: string;
-      _type: "image";
-    } | null;
-    link: null;
-    description: null;
-    website: null;
-    contactInfo: null;
-  } | null;
-  status: "available" | "coming-soon" | "sold" | null;
-  category: {
-    title: string | null;
-    link: null;
-  } | null;
-  stats: null;
-  shortDescription: null;
-  overview: null;
-  propertyFeatures: null;
-  gallery: Array<{
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  }> | null;
-  descriptionSections: null;
-  seo: {
-    title?: string;
-    description?: string;
-    keywords?: Array<string>;
-  } | null;
-  _updatedAt: string;
-  _createdAt: string;
+	_id: string;
+	title: string | null;
+	link: null;
+	mainImage: {
+		asset: {
+			_id: string;
+			url: string | null;
+			metadata: {
+				lqip: string | null;
+				dimensions: {
+					width: number | null;
+					height: number | null;
+				} | null;
+			} | null;
+		} | null;
+		alt: string | null;
+	} | null;
+	qrCode: {
+		asset: {
+			_id: string;
+			url: string | null;
+			metadata: {
+				lqip: string | null;
+				dimensions: {
+					width: number | null;
+					height: number | null;
+				} | null;
+			} | null;
+		} | null;
+	} | null;
+	location: string | null;
+	developer: {
+		name: string | null;
+		logo: {
+			asset?: SanityImageAssetReference;
+			media?: unknown;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			alt?: string;
+			_type: "image";
+		} | null;
+		link: null;
+		description: null;
+		website: null;
+		contactInfo: null;
+	} | null;
+	status: "available" | "coming-soon" | "sold" | null;
+	category: {
+		title: string | null;
+		link: null;
+	} | null;
+	stats: null;
+	shortDescription: null;
+	overview: null;
+	propertyFeatures: null;
+	gallery: Array<{
+		asset?: SanityImageAssetReference;
+		media?: unknown;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt?: string;
+		_type: "image";
+		_key: string;
+	}> | null;
+	descriptionSections: null;
+	seo: {
+		title?: string;
+		description?: string;
+		keywords?: Array<string>;
+	} | null;
+	_updatedAt: string;
+	_createdAt: string;
 } | null;
 
 // Source: src\lib\sanity\queries\site-queries.ts
 // Variable: FAQS_QUERY
 // Query: *[_type == "faq"] | order(orderRank) {    _id,    question,    answer,   }
 export type FAQS_QUERY_RESULT = Array<{
-  _id: string;
-  question: string | null;
-  answer: string | null;
+	_id: string;
+	question: string | null;
+	answer: string | null;
 }>;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
-  interface SanityQueries {
-    '*[_type == "category"] | order(orderRank) {\n    _id,\n    title,\n    image,\n    "slug": slug.current,\n    description\n}': CATEGORIES_QUERY_RESULT;
-    '*[_type == "developer"] | order(_createdAt) {\n    _id,\n    name,\n    logo,\n}': DEVELOPERS_QUERY_RESULT;
-    '*[_type == "insights"]  {\n    _id,\n    title,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    excerpt,\n    categories -> ,\n    author,\n    body,\n    seo,\n    \'createdAt\': _createdAt\n}': INSIGHTS_QUERY_RESULT;
-    '\n  *[_type == "insights" \n    && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || excerpt match $searchQuery + "*" || categories->title match $searchQuery + "*") \n    && (!defined($category) || $category == "" || categories->slug.current == $category)   ] | order(_createdAt desc) {\n    _id,\n    title,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    excerpt,\n    categories -> {\n      _id,\n      title,\n      "slug": slug.current\n    },\n    author,\n    body,\n    seo,\n    \'createdAt\': _createdAt\n  }\n': FILTERED_INSIGHTS_QUERY_RESULT;
-    '*[_type == "insights"] | order(_createdAt desc)[$start..$end]  {\n    _id,\n    title,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    excerpt,\n    categories -> {\n      _id,\n      title,\n      "slug": slug.current\n    },\n    author,\n    body,\n    seo,\n    \'createdAt\': _createdAt\n}': PAGINATED_INSIGHTS_QUERY_RESULT;
-    '\n  count(*[_type == "insights"])\n': INSIGHTS_COUNT_QUERY_RESULT;
-    '\n  *[_type == "insightCategory"] | order(title asc) {\n    _id,\n    title,\n    "slug": slug.current\n  }\n': INSIGHT_CATEGORIES_QUERY_RESULT;
-    '*[_type == "insights" && slug.current == $slug][0] {\n    _id,\n    title,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    excerpt,\n    categories -> {\n      _id,\n      title,\n      "slug": slug.current\n    },\n    author -> {\n      _id,\n      name,\n      image,\n      bio\n    },\n    body,\n    seo,\n    \'createdAt\': _createdAt,\n    \'updatedAt\': _updatedAt\n  }': INSIGHT_BY_SLUG_QUERY_RESULT;
-    '*[_type == "project"] | order(_createdAt desc)[0..5]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    qrCode{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    },\n    link,\n    location,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current,\n    },\n    "price": stats.price,\n    "tags": overview.tags,\n    "bedrooms": stats.bedrooms,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current,\n    },\n    "payments": stats.paymentPlan\n\n}': PORTFOLIO_CARD_QUERY_RESULT;
-    '*[_type == "project"] | order(_createdAt desc)  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    qrCode{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    },\n    link,\n    location,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    "tags": overview.tags,\n    "bedrooms": stats.bedrooms,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current\n    },\n    "payments": stats.paymentPlan\n\n}': PORTFOLIOS_QUERY_RESULT;
-    '*[_type == "project" && defined(link.current) &&  link.current != null]    {\n    _id,\n    link,\n}': PORTFOLIOS_LINKS_QUERY_RESULT;
-    '\n  *[_type == "project" \n    && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || description match $searchQuery + "*") \n    && (!defined($category) || $category == "" || category->link.current == $category)   ]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    qrCode{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    },\n    link,\n    location,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current\n    },\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    tags,\n    _updatedAt,\n    _createdAt\n  }\n': FILTERED_PROJECTS_QUERY_RESULT;
-    '\n  *[_type == "project" \n    && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || shortDescription match $searchQuery + "*") \n    && (!defined($category) || $category == "" || category->link.current == $category)   ] | order(_createdAt desc)[$start..$end]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    qrCode{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    },\n    link,\n    location,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    "tags": overview.tags,\n    "bedrooms": stats.bedrooms,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current\n    },\n    "payments": stats.paymentPlan\n  }\n': FILTERED_PAGINATED_PROJECTS_QUERY_RESULT;
-    '\n  count(*[_type == "project" \n    && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || shortDescription match $searchQuery + "*") \n    && (!defined($category) || $category == "" || category->link.current == $category)])\n': FILTERED_PROJECTS_COUNT_QUERY_RESULT;
-    '\n  count(*[_type == "project"])\n': PROJECTS_COUNT_QUERY_RESULT;
-    '*[_type == "project"] | order(_createdAt desc)[$start..$end]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    qrCode{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    },\n    link,\n    location,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    "tags": overview.tags,\n    "bedrooms": stats.bedrooms,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current\n    },\n    "payments": stats.paymentPlan\n\n}': PAGINATED_PROJECTS_QUERY_RESULT;
-    '\n  *[_type == "project" && link.current == $link][0] {\n    _id,\n    title,\n    "link": link.current,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n     qrCode{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    },\n    location,\n    "developer": developer->{\n      name,\n      logo,\n      "link": link.current,\n      description,\n      website,\n      contactInfo\n    },\n    status,\n    "category": category->{\n      title,\n      "link": link.current\n    },\n\n    stats,\n    shortDescription,\n    overview,\n    propertyFeatures,\n    gallery,\n    descriptionSections,\n    seo,\n    _updatedAt,\n    _createdAt,\n  }\n': PROJECT_BY_LINK_QUERY_RESULT;
-    '*[_type == "faq"] | order(orderRank) {\n    _id,\n    question,\n    answer,\n   \n}': FAQS_QUERY_RESULT;
-  }
+	interface SanityQueries {
+		'*[_type == "category"] | order(orderRank) {\n    _id,\n    title,\n    image,\n    "slug": slug.current,\n    description\n}': CATEGORIES_QUERY_RESULT;
+		'*[_type == "developer"] | order(_createdAt) {\n    _id,\n    name,\n    logo,\n}': DEVELOPERS_QUERY_RESULT;
+		'*[_type == "insights"]  {\n    _id,\n    title,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    excerpt,\n    categories -> ,\n    author,\n    body,\n    seo,\n    \'createdAt\': _createdAt\n}': INSIGHTS_QUERY_RESULT;
+		'\n  *[_type == "insights" \n    && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || excerpt match $searchQuery + "*" || categories->title match $searchQuery + "*") \n    && (!defined($category) || $category == "" || categories->slug.current == $category)   ] | order(_createdAt desc) {\n    _id,\n    title,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    excerpt,\n    categories -> {\n      _id,\n      title,\n      "slug": slug.current\n    },\n    author,\n    body,\n    seo,\n    \'createdAt\': _createdAt\n  }\n': FILTERED_INSIGHTS_QUERY_RESULT;
+		'*[_type == "insights"] | order(_createdAt desc)[$start..$end]  {\n    _id,\n    title,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    excerpt,\n    categories -> {\n      _id,\n      title,\n      "slug": slug.current\n    },\n    author,\n    body,\n    seo,\n    \'createdAt\': _createdAt\n}': PAGINATED_INSIGHTS_QUERY_RESULT;
+		'\n  count(*[_type == "insights"])\n': INSIGHTS_COUNT_QUERY_RESULT;
+		'\n  *[_type == "insightCategory"] | order(title asc) {\n    _id,\n    title,\n    "slug": slug.current\n  }\n': INSIGHT_CATEGORIES_QUERY_RESULT;
+		'*[_type == "insights" && slug.current == $slug][0] {\n    _id,\n    title,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    "slug": slug.current,\n    excerpt,\n    categories -> {\n      _id,\n      title,\n      "slug": slug.current\n    },\n    author -> {\n      _id,\n      name,\n      image,\n      bio\n    },\n    body,\n    seo,\n    \'createdAt\': _createdAt,\n    \'updatedAt\': _updatedAt\n  }': INSIGHT_BY_SLUG_QUERY_RESULT;
+		'*[_type == "project"] | order(_createdAt desc)[0..5]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    qrCode{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    },\n    link,\n    location,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current,\n    },\n    "price": stats.price,\n    "tags": overview.tags,\n    "bedrooms": stats.bedrooms,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current,\n    },\n    "payments": stats.paymentPlan\n\n}': PORTFOLIO_CARD_QUERY_RESULT;
+		'*[_type == "project"] | order(_createdAt desc)  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    qrCode{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    },\n    link,\n    location,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    "tags": overview.tags,\n    "bedrooms": stats.bedrooms,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current\n    },\n    "payments": stats.paymentPlan\n\n}': PORTFOLIOS_QUERY_RESULT;
+		'*[_type == "project" && defined(link.current) &&  link.current != null]    {\n    _id,\n    link,\n}': PORTFOLIOS_LINKS_QUERY_RESULT;
+		'\n  *[_type == "project" \n    && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || description match $searchQuery + "*") \n    && (!defined($category) || $category == "" || category->link.current == $category)   ]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    qrCode{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    },\n    link,\n    location,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current\n    },\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    tags,\n    _updatedAt,\n    _createdAt\n  }\n': FILTERED_PROJECTS_QUERY_RESULT;
+		'\n  *[_type == "project" \n    && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || shortDescription match $searchQuery + "*") \n    && (!defined($category) || $category == "" || category->link.current == $category)   ] | order(_createdAt desc)[$start..$end]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    qrCode{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    },\n    link,\n    location,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    "tags": overview.tags,\n    "bedrooms": stats.bedrooms,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current\n    },\n    "payments": stats.paymentPlan\n  }\n': FILTERED_PAGINATED_PROJECTS_QUERY_RESULT;
+		'\n  count(*[_type == "project" \n    && (!defined($searchQuery) || $searchQuery == "" || title match $searchQuery + "*" || location match $searchQuery + "*" || developer->name match $searchQuery + "*" || shortDescription match $searchQuery + "*") \n    && (!defined($category) || $category == "" || category->link.current == $category)])\n': FILTERED_PROJECTS_COUNT_QUERY_RESULT;
+		'\n  count(*[_type == "project"])\n': PROJECTS_COUNT_QUERY_RESULT;
+		'*[_type == "project"] | order(_createdAt desc)[$start..$end]  {\n    _id,\n    title,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n    qrCode{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    },\n    link,\n    location,\n    isFeatured,\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    "price": stats.price,\n    "tags": overview.tags,\n    "bedrooms": stats.bedrooms,\n    "developer": developer->{\n      name,\n      logo,\n      "slug": slug.current\n    },\n    "payments": stats.paymentPlan\n\n}': PAGINATED_PROJECTS_QUERY_RESULT;
+		'\n  *[_type == "project" && link.current == $link][0] {\n    _id,\n    title,\n    "link": link.current,\n    mainImage{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n      alt\n    },\n     qrCode{\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      },\n    },\n    location,\n    "developer": developer->{\n      name,\n      logo,\n      "link": link.current,\n      description,\n      website,\n      contactInfo\n    },\n    status,\n    "category": category->{\n      title,\n      "link": link.current\n    },\n\n    stats,\n    shortDescription,\n    overview,\n    propertyFeatures,\n    gallery,\n    descriptionSections,\n    seo,\n    _updatedAt,\n    _createdAt,\n  }\n': PROJECT_BY_LINK_QUERY_RESULT;
+		'*[_type == "faq"] | order(orderRank) {\n    _id,\n    question,\n    answer,\n   \n}': FAQS_QUERY_RESULT;
+	}
 }

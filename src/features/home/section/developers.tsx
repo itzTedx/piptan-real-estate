@@ -22,8 +22,8 @@ export const Developers = async () => {
 				</p>
 			</div>
 			<div className="relative mt-6 md:mt-9">
-				<div className="absolute top-0 left-0 z-10 h-full w-1/6 bg-gradient-to-r from-background to-transparent" />
-				<div className="absolute top-0 right-0 z-10 h-full w-1/6 bg-gradient-to-l from-background to-transparent" />
+				<div className="absolute top-0 left-0 z-10 h-full w-1/6 bg-linear-to-r from-background to-transparent" />
+				<div className="absolute top-0 right-0 z-10 h-full w-1/6 bg-linear-to-r from-background to-transparent" />
 				<InfiniteSlider>
 					{developers.map((developer) => (
 						<div

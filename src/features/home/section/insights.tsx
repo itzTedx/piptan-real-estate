@@ -39,10 +39,10 @@ export const InsightsSection = async () => {
 
 			<Carousel className="mt-4 w-full md:mt-6 lg:mt-9">
 				<CarouselContent className="-ml-1">
-					{insights.map((data, index) => (
+					{insights.map((data) => (
 						<CarouselItem
 							className="pl-1 md:basis-1/2 lg:basis-1/3"
-							key={index}
+							key={data._id}
 						>
 							<div className="h-full p-1">
 								<InsightCard data={data} />

@@ -1,5 +1,16 @@
 import { Badge } from "@/components/ui/badge";
 
+const FEATURES = [
+	"Sustainable",
+	"Smart",
+	"Luxury",
+	"Premium",
+	"High ROI",
+	"Growing Market",
+	"Prime Location",
+	"Private & Secure",
+] as const;
+
 export const FeaturesSection = () => {
 	return (
 		<section
@@ -21,16 +32,7 @@ export const FeaturesSection = () => {
 						quality.
 					</p>
 					<ul className="flex flex-wrap gap-1.5 sm:gap-2 md:gap-3">
-						{[
-							"Sustainable",
-							"Smart",
-							"Luxury",
-							"Premium",
-							"High ROI",
-							"Growing Market",
-							"Prime Location",
-							"Private & Secure",
-						].map((badge) => (
+						{FEATURES.map((badge) => (
 							<li key={badge}>
 								<Badge
 									className="text-sm sm:text-base md:text-lg lg:text-2xl"

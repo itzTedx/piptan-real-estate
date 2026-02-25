@@ -23,7 +23,7 @@ export const NAV_LINKS = [
 		title: "Contact",
 		href: "/contact",
 	},
-];
+] as const;
 
 export const CONTACT = [
 	{ label: "Office", title: "Business Bay, Dubai, UAE", href: "/" },

@@ -42,6 +42,7 @@ export const WhyUsSection = () => {
 		([s, t]) => (s as number) + (t as number)
 	);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: we need to stop the animation when the component unmounts
 	useEffect(() => {
 		tabY.set(80); // Start below
 		const controls = animate(tabY, 0, {
@@ -76,7 +77,7 @@ export const WhyUsSection = () => {
 					</p>
 				</div>
 			</div>
-			<div className="container z-10 grid grid-cols-1 gap-4 pb-8 sm:grid-cols-2 sm:gap-6 sm:pb-12 md:pb-16 lg:pb-24">
+			<div className="container z-50 grid grid-cols-1 gap-4 pb-8 sm:grid-cols-2 sm:gap-6 sm:pb-12 md:pb-16 lg:pb-24">
 				<AnimatePresence mode="wait">
 					<motion.div
 						animate={{ opacity: 1 }}

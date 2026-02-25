@@ -1,3 +1,4 @@
+import { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -108,7 +109,7 @@ export const Footer = async () => {
 										<Link
 											aria-label={`Navigate to ${nav.title}`}
 											className="font-medium text-base md:text-lg"
-											href={nav.href}
+											href={nav.href as Route}
 										>
 											{nav.title}
 										</Link>
@@ -126,7 +127,8 @@ export const Footer = async () => {
 										<Link
 											aria-label={`Navigate to ${data.title}`}
 											className="font-medium text-base md:text-lg"
-											href={`/portfolio/${data.slug || ""}`}
+											href={(data.link as Route) ?? "/"}
+											target="_blank"
 										>
 											{data.title}
 										</Link>
@@ -144,7 +146,7 @@ export const Footer = async () => {
 										<Link
 											aria-label={`Navigate to ${nav.title}`}
 											className="font-medium text-base md:text-lg"
-											href={nav.href}
+											href={nav.href as Route}
 										>
 											{nav.title}
 										</Link>
@@ -161,9 +163,17 @@ export const Footer = async () => {
 				>
 					<div className="max-w-3xl">
 						<p>© {new Date().getFullYear()}, Piptan Capital L.L.C</p>
-						<div className="mt-2 flex items-center justify-between gap-2">
-							<div className="mb-1">
-								<p className="mt-3 flex items-center gap-2 font-semibold">
+						<div className="mt-2 flex items-center justify-between gap-4">
+							<div className="shrink-0 rounded-md border bg-white p-1.5">
+								<Image
+									alt="Licence QR Code"
+									height={72}
+									src="/images/licence-qrcode.jpg"
+									width={72}
+								/>
+							</div>
+							<div>
+								<p className="flex items-center gap-2 font-semibold">
 									Reg. No.: 2699641
 									<span
 										aria-hidden="true"
@@ -178,14 +188,6 @@ export const Footer = async () => {
 									ensuring that our practices reflect both local and
 									international best practices.
 								</p>
-							</div>
-							<div className="shrink-0 rounded-md border bg-white p-1.5">
-								<Image
-									alt="Licence QR Code"
-									height={72}
-									src="/images/licence-qrcode.jpg"
-									width={72}
-								/>
 							</div>
 						</div>
 					</div>

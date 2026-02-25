@@ -7,12 +7,12 @@ import { urlFor } from "@/lib/sanity/image";
 import { formatDate } from "@/lib/utils";
 
 import {
-	FILTERED_INSIGHTS_QUERYResult,
-	INSIGHTS_QUERYResult,
+	FILTERED_INSIGHTS_QUERY_RESULT,
+	INSIGHTS_QUERY_RESULT,
 } from "../../../../sanity.types";
 
 interface Props {
-	data: INSIGHTS_QUERYResult[number] | FILTERED_INSIGHTS_QUERYResult[number];
+	data: INSIGHTS_QUERY_RESULT[number] | FILTERED_INSIGHTS_QUERY_RESULT[number];
 }
 
 export const InsightCard = ({ data }: Props) => {
@@ -31,7 +31,7 @@ export const InsightCard = ({ data }: Props) => {
 					/>
 				</div>
 			)}
-			<div className="flex h-full flex-col items-center justify-between p-6">
+			<div className="flex h-full flex-col justify-between p-6">
 				<div>
 					<div className="mb-3 flex items-center justify-between gap-3">
 						<span className="inline-flex items-center gap-2">

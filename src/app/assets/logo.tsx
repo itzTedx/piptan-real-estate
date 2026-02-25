@@ -2,6 +2,8 @@ import { JSX, SVGProps } from "react";
 
 import Image from "next/image";
 
+import { cn } from "@/lib/utils";
+
 export const FullLogo = (
 	props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
 ) => {
@@ -179,13 +181,14 @@ export const FullLogo = (
 
 interface LogoProps {
 	className?: string;
+	isColor?: boolean;
 }
 
-export const Logo = ({ className }: LogoProps) => {
+export const Logo = ({ className, isColor = true }: LogoProps) => {
 	return (
 		<Image
 			alt="Piptan Logo"
-			className={className}
+			className={cn(!isColor && "brightness-1000 saturate-0", className)}
 			height={60}
 			src="/piptan-logo.svg"
 			width={200}
