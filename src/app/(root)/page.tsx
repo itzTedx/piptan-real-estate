@@ -8,7 +8,7 @@ import { FaqSection } from "@/features/home/section/faq";
 import { FeaturesSection } from "@/features/home/section/features";
 import { Hero } from "@/features/home/section/hero";
 import { InsightsSection } from "@/features/home/section/insights";
-import { ProjectsSection } from "@/features/home/section/projects";
+import { PortfolioSection } from "@/features/home/section/projects";
 import { Testimonials } from "@/features/home/section/testimonials";
 import { WhyUsSection } from "@/features/home/section/why-us";
 
@@ -83,7 +83,7 @@ export default function Home() {
 
 			<AboutSection />
 			<ExpertiseSection />
-			<ProjectsSection />
+			<PortfolioSection />
 			<WhyUsSection />
 			<Developers />
 			<FeaturesSection />
@@ -112,6 +112,23 @@ export default function Home() {
 								"Premium real estate properties in Dubai's most sought-after communities",
 						},
 					},
+				})}
+			</Script>
+			<Script id="organization-schema" type="application/ld+json">
+				{JSON.stringify({
+					"@context": "https://schema.org",
+					"@type": "Organization",
+					name: "Piptan Investment",
+					url: "https://www.piptan.ae",
+					description:
+						"Premium real estate investment and development company in Dubai, specializing in luxury homes and commercial properties.",
+					address: {
+						"@type": "PostalAddress",
+						addressLocality: "Dubai",
+						addressCountry: "AE",
+					},
+					areaServed: ["Dubai", "United Arab Emirates"],
+					sameAs: [],
 				})}
 			</Script>
 		</main>

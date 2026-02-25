@@ -15,7 +15,7 @@ import { PropertyCard } from "@/features/properties/components/property-card";
 
 import { ProgressIndicator } from "../components/progress-indicator";
 
-export const ProjectsSection = async () => {
+export const PortfolioSection = async () => {
 	const projects = await getProjectsCardData();
 	const totalItems = projects.length;
 	return (

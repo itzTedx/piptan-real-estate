@@ -43,7 +43,9 @@ export const InsightCard = ({ data }: Props) => {
 					<h3 className="mb-2 text-2xl" title={data.title ?? ""}>
 						{data.title}
 					</h3>
-					<p className="line-clamp-2 text-lg">{data.excerpt}</p>
+					<p className="line-clamp-3 font-light text-sm tracking-wider">
+						{data.excerpt}
+					</p>
 				</div>
 
 				<AnimatedButton

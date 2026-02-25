@@ -15,6 +15,7 @@ export const Hero = () => {
 			aria-label="Hero section"
 			className="relative h-[60vh] md:h-[70vh] lg:h-dvh"
 		>
+			<h1 className="sr-only">Real Estate Investment & Development in UAE</h1>
 			<div className="relative z-10 flex h-full flex-col justify-end py-4 sm:py-6 md:py-8 lg:py-12">
 				<SimpleMarquee
 					baseVelocity={4}
@@ -40,7 +41,7 @@ export const Hero = () => {
 				<div className="container relative z-10 space-y-3 sm:space-y-4 md:space-y-6">
 					<Separator className="bg-white/80" />
 					<div className="flex items-center justify-between gap-3">
-						<h1 className="text-3xl lg:text-4xl">High Capital Growth</h1>
+						<h2 className="text-3xl lg:text-4xl">High Capital Growth</h2>
 						<p className="font-light text-sm sm:text-xl md:text-2xl">
 							Invest with Purpose.
 							<br className="md:hidden" /> Profit with Integrity

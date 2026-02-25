@@ -14,24 +14,6 @@ import { cn } from "@/lib/utils";
 import "./globals.css";
 
 export const metadata: Metadata = {
-	title: {
-		default: "Piptan Investments - Luxury Real Estate in Dubai",
-		template: "%s | Piptan Investments",
-	},
-	description:
-		"Discover luxury homes, commercial spaces, and investment opportunities in Dubai. Expert guidance and premium listings for confident real estate decisions.",
-	keywords: [
-		"Dubai real estate",
-		"luxury homes",
-		"commercial property",
-		"real estate investment",
-		"property development",
-		"Dubai property market",
-		"luxury apartments",
-		"villas Dubai",
-		"real estate agents Dubai",
-		"property investment UAE",
-	],
 	metadataBase: new URL("https://www.piptan.ae"),
 	openGraph: {
 		type: "website",

@@ -13,7 +13,11 @@ export const AboutSection = () => {
 			<div className="pointer-events-none z-10 space-y-2 sm:col-span-3 sm:space-y-3 md:col-span-5">
 				<SectionHeader
 					action={
-						<AnimatedButton href="/about" text="About us" variant="outline" />
+						<AnimatedButton
+							href="/about"
+							text="More about us"
+							variant="outline"
+						/>
 					}
 					badge="Who we are?"
 					hasHighlight
