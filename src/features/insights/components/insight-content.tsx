@@ -45,7 +45,7 @@ export const InsightContent = ({ data }: Props) => {
 				</div>
 
 				{data.excerpt && (
-					<p className="text-muted-foreground text-xl leading-relaxed">
+					<p className="text-muted-foreground leading-relaxed md:text-xl">
 						{data.excerpt}
 					</p>
 				)}

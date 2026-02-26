@@ -248,7 +248,7 @@ export default async function InsightsSlugPage({
 				>
 					<StaggeredText text="Insights & News " />
 				</p>
-				<h1 className="mb-4 text-balance text-center font-normal text-4xl leading-tight lg:text-5xl">
+				<h1 className="mb-4 text-balance text-center font-normal text-3xl leading-tight md:text-4xl lg:text-5xl">
 					{insight.title}
 				</h1>
 
