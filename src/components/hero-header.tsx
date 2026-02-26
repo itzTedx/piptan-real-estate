@@ -34,8 +34,8 @@ export function HeroHeader({
 			);
 		}
 
-		return title.map((segment, index) => (
-			<span className={cn(segment.className)} key={index}>
+		return title.map((segment) => (
+			<span className={cn(segment.className)} key={segment.text}>
 				<StaggeredText
 					duration={0.7}
 					staggerChildren={0.03}

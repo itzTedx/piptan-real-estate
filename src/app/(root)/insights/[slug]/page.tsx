@@ -3,7 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 
-import { HeroHeader } from "@/components/hero-header";
+import { StaggeredText } from "@/components/animation/staggered-text";
 
 import {
 	getInsightBySlug,
@@ -12,6 +12,7 @@ import {
 } from "@/features/insights/actions/query";
 import { InsightContent } from "@/features/insights/components/insight-content";
 import { urlFor } from "@/lib/sanity/image";
+import { cn } from "@/lib/utils";
 
 const BASE_URL = "https://www.piptan.ae";
 
@@ -240,15 +241,19 @@ export default async function InsightsSlugPage({
 	return (
 		<>
 			<main className="container relative z-10 rounded-b-3xl bg-background pb-20 shadow-xl">
-				<HeroHeader
-					className="mx-auto max-w-6xl"
-					subtitle="Insights & News"
-					title={insight.title || "Insight"}
-					titleClassName="lg:text-6xl text-balance"
-				/>
+				<p
+					className={cn(
+						"z-10 mt-2 text-center text-base text-secondary md:text-xl lg:text-2xl"
+					)}
+				>
+					<StaggeredText text="Insights & News " />
+				</p>
+				<h1 className="mb-4 text-balance text-center font-normal text-4xl leading-tight lg:text-5xl">
+					{insight.title}
+				</h1>
 
 				{insight.image && (
-					<figure className="container relative -mt-12 mb-20 aspect-video max-w-7xl overflow-hidden rounded-3xl">
+					<figure className="container relative mt-6 mb-20 aspect-video max-w-7xl overflow-hidden rounded-3xl">
 						<Image
 							alt={insight.image.alt || insight.title || "Insight image"}
 							className="object-cover"

@@ -15,7 +15,7 @@ interface Props {
 export const InsightContent = ({ data }: Props) => {
 	if (!data) return null;
 	return (
-		<article className="prose lg:prose-xl prose-invert mx-auto max-w-prose prose-li:marker:text-brand-gray/50">
+		<article className="prose lg:prose-xl prose-invert mx-auto max-w-[70ch] prose-li:marker:text-brand-gray/50">
 			{/* Article Header */}
 			<header className="mb-8">
 				<div className="mb-4 flex items-center justify-between gap-4 text-sm">
@@ -23,13 +23,13 @@ export const InsightContent = ({ data }: Props) => {
 						<div>
 							{data.categories.slug ? (
 								<Link
-									className="inline-block rounded-full bg-brand-gray/10 px-3 py-1 font-medium text-brand-gray underline-offset-4 hover:underline"
+									className="inline-block rounded-full bg-brand-gray/10 py-1 font-medium text-brand-gray underline-offset-4 hover:underline"
 									href={`/insights?tag=${encodeURIComponent(data.categories.slug)}`}
 								>
 									{data.categories.title}
 								</Link>
 							) : (
-								<span className="inline-block rounded-full bg-brand-gray/10 px-3 py-1 font-medium text-brand-gray">
+								<span className="inline-block rounded-full bg-brand-gray/10 py-1 font-medium text-brand-gray">
 									{data.categories.title}
 								</span>
 							)}
@@ -43,10 +43,6 @@ export const InsightContent = ({ data }: Props) => {
 						All insights
 					</Link>
 				</div>
-
-				<h1 className="mb-4 font-bold text-4xl leading-tight lg:text-5xl">
-					{data.title}
-				</h1>
 
 				{data.excerpt && (
 					<p className="text-muted-foreground text-xl leading-relaxed">
