@@ -13,6 +13,8 @@ import {
 import { InsightContent } from "@/features/insights/components/insight-content";
 import { urlFor } from "@/lib/sanity/image";
 
+const BASE_URL = "https://www.piptan.ae";
+
 interface Params {
 	slug: string;
 }
@@ -47,23 +49,48 @@ export async function generateMetadata({
 
 	if (!insight) {
 		return {
-			title: "Insight Not Found | Maxline Global",
-			description: "The requested insight could not be found.",
+			title: "Insight Not Found | Piptan Investments",
+			description:
+				"The requested insight could not be found on Piptan Investments.",
 		};
 	}
 
+	const metaTitle =
+		insight.seo?.meta_title || `${insight.title} | Piptan Investments`;
+	const metaDescription =
+		insight.seo?.meta_description ||
+		insight.excerpt ||
+		"Expert real estate insights from Piptan Investments on the Dubai property market.";
+
+	const metaKeywords =
+		insight.seo?.meta_keywords
+			?.split(",")
+			.map((keyword) => keyword.trim())
+			.filter(Boolean) ||
+		[
+			insight.title ?? "",
+			insight.categories?.title ?? "",
+			"Dubai real estate",
+			"property investment Dubai",
+			"Piptan Investments insights",
+		].filter(Boolean);
+
+	const url = `${BASE_URL}/insights/${slug}`;
+
 	return {
-		title: insight.seo?.meta_title || `${insight.title} | Maxline Global`,
-		description:
-			insight.seo?.meta_description ||
-			insight.excerpt ||
-			"Expert insights from Maxline Global on international logistics.",
+		title: metaTitle,
+		description: metaDescription,
+		keywords: metaKeywords,
+		alternates: {
+			canonical: url,
+		},
 		openGraph: {
-			title: insight.seo?.meta_title || `${insight.title} | Maxline Global`,
-			description:
-				insight.seo?.meta_description ||
-				insight.excerpt ||
-				"Expert insights from Maxline Global on international logistics.",
+			title: metaTitle,
+			description: metaDescription,
+			url,
+			type: "article",
+			publishedTime: insight.createdAt,
+			modifiedTime: insight.updatedAt || insight.createdAt,
 			images: insight.seo?.ogImage
 				? [
 						{
@@ -87,17 +114,14 @@ export async function generateMetadata({
 								url: "/images/blogs/transport-logistics-products.jpg",
 								width: 1200,
 								height: 630,
-								alt: "Transport and logistics products",
+								alt: "Piptan Investments Dubai real estate insight",
 							},
 						],
 		},
 		twitter: {
 			card: "summary_large_image",
-			title: insight.seo?.meta_title || `${insight.title} | Maxline Global`,
-			description:
-				insight.seo?.meta_description ||
-				insight.excerpt ||
-				"Expert insights from Maxline Global on international logistics.",
+			title: metaTitle,
+			description: metaDescription,
 			images: insight.seo?.ogImage
 				? [urlFor(insight.seo.ogImage).url()]
 				: insight.image?.asset?.url
@@ -111,6 +135,7 @@ export async function generateMetadata({
 const generateArticleStructuredData = (insight: {
 	title: string | null;
 	excerpt: string | null;
+	slug: string | null;
 	image: {
 		asset: {
 			url: string | null;
@@ -121,36 +146,81 @@ const generateArticleStructuredData = (insight: {
 	} | null;
 	createdAt: string;
 	updatedAt?: string;
-}) => ({
-	"@context": "https://schema.org",
-	"@type": "Article",
-	headline: insight.title,
-	description:
-		insight.excerpt ||
-		"Expert insights from Maxline Global on international logistics.",
-	image:
-		insight.image?.asset?.url ||
-		"/images/blogs/transport-logistics-products.jpg",
-	author: insight.author
-		? {
-				"@type": "Person",
-				name: insight.author.name,
-			}
-		: {
-				"@type": "Organization",
-				name: "Maxline Global",
+}) => {
+	const url = insight.slug
+		? `${BASE_URL}/insights/${insight.slug}`
+		: `${BASE_URL}/insights`;
+
+	return {
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		headline: insight.title,
+		description:
+			insight.excerpt ||
+			"Expert real estate insights from Piptan Investments on the Dubai property market.",
+		image:
+			insight.image?.asset?.url ||
+			"/images/blogs/transport-logistics-products.jpg",
+		author: insight.author
+			? {
+					"@type": "Person",
+					name: insight.author.name,
+				}
+			: {
+					"@type": "Organization",
+					name: "Piptan Investments",
+				},
+		publisher: {
+			"@type": "Organization",
+			name: "Piptan Investments",
+			logo: {
+				"@type": "ImageObject",
+				url: "/images/logo.png",
 			},
-	publisher: {
-		"@type": "Organization",
-		name: "Maxline Global",
-		logo: {
-			"@type": "ImageObject",
-			url: "/images/logo.png",
 		},
-	},
-	datePublished: insight.createdAt,
-	dateModified: insight.updatedAt || insight.createdAt,
-});
+		datePublished: insight.createdAt,
+		dateModified: insight.updatedAt || insight.createdAt,
+		mainEntityOfPage: {
+			"@type": "WebPage",
+			"@id": url,
+		},
+		url,
+	};
+};
+
+const generateBreadcrumbStructuredData = (insight: {
+	title: string | null;
+	slug: string | null;
+}) => {
+	const itemUrl = insight.slug
+		? `${BASE_URL}/insights/${insight.slug}`
+		: `${BASE_URL}/insights`;
+
+	return {
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Home",
+				item: BASE_URL,
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "Insights",
+				item: `${BASE_URL}/insights`,
+			},
+			{
+				"@type": "ListItem",
+				position: 3,
+				name: insight.title || "Insight",
+				item: itemUrl,
+			},
+		],
+	};
+};
 
 export default async function InsightsSlugPage({
 	params,
@@ -165,20 +235,13 @@ export default async function InsightsSlugPage({
 	}
 
 	const articleStructuredData = generateArticleStructuredData(insight);
+	const breadcrumbStructuredData = generateBreadcrumbStructuredData(insight);
 
 	return (
 		<>
-			<Script type="application/ld+json">
-				{JSON.stringify(articleStructuredData)}
-			</Script>
 			<main className="container relative z-10 rounded-b-3xl bg-background pb-20 shadow-xl">
 				<HeroHeader
 					className="mx-auto max-w-6xl"
-					description={
-						insight.excerpt ||
-						"Expert insights from Maxline Global on international logistics."
-					}
-					descriptionClassName="text-lg"
 					subtitle="Insights & News"
 					title={insight.title || "Insight"}
 					titleClassName="lg:text-6xl text-balance"
@@ -202,6 +265,12 @@ export default async function InsightsSlugPage({
 
 				<InsightContent data={insight} />
 			</main>
+			<Script type="application/ld+json">
+				{JSON.stringify(articleStructuredData)}
+			</Script>
+			<Script type="application/ld+json">
+				{JSON.stringify(breadcrumbStructuredData)}
+			</Script>
 		</>
 	);
 }

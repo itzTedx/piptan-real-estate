@@ -1,14 +1,15 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { PortableText } from "next-sanity";
 
 import { urlFor } from "@/lib/sanity/image";
 import { formatDate } from "@/lib/utils";
 
-import { INSIGHT_BY_SLUG_QUERYResult } from "../../../../sanity.types";
+import { INSIGHT_BY_SLUG_QUERY_RESULT } from "../../../../sanity.types";
 
 interface Props {
-	data: INSIGHT_BY_SLUG_QUERYResult;
+	data: INSIGHT_BY_SLUG_QUERY_RESULT;
 }
 
 export const InsightContent = ({ data }: Props) => {
@@ -17,13 +18,31 @@ export const InsightContent = ({ data }: Props) => {
 		<article className="prose lg:prose-xl prose-invert mx-auto max-w-prose prose-li:marker:text-brand-gray/50">
 			{/* Article Header */}
 			<header className="mb-8">
-				{data.categories && (
-					<div className="mb-4">
-						<span className="inline-block rounded-full bg-brand-gray/10 px-3 py-1 font-medium text-brand-gray text-sm">
-							{data.categories.title}
-						</span>
-					</div>
-				)}
+				<div className="mb-4 flex items-center justify-between gap-4 text-sm">
+					{data.categories && (
+						<div>
+							{data.categories.slug ? (
+								<Link
+									className="inline-block rounded-full bg-brand-gray/10 px-3 py-1 font-medium text-brand-gray underline-offset-4 hover:underline"
+									href={`/insights?tag=${encodeURIComponent(data.categories.slug)}`}
+								>
+									{data.categories.title}
+								</Link>
+							) : (
+								<span className="inline-block rounded-full bg-brand-gray/10 px-3 py-1 font-medium text-brand-gray">
+									{data.categories.title}
+								</span>
+							)}
+						</div>
+					)}
+
+					<Link
+						className="ml-auto text-muted-foreground underline-offset-4 hover:underline"
+						href="/insights"
+					>
+						All insights
+					</Link>
+				</div>
 
 				<h1 className="mb-4 font-bold text-4xl leading-tight lg:text-5xl">
 					{data.title}
@@ -36,34 +55,10 @@ export const InsightContent = ({ data }: Props) => {
 				)}
 
 				{/* Author and Date */}
-				<div className="mt-6 flex items-center gap-4 border-border border-t pt-6">
-					{data.author && (
-						<div className="flex items-center gap-3">
-							{data.author.image && (
-								<div className="relative h-12 w-12 overflow-hidden rounded-full">
-									<Image
-										alt={data.author.name || "Author"}
-										className="object-cover"
-										fill
-										sizes="48px"
-										src={urlFor(data.author.image).url()}
-									/>
-								</div>
-							)}
-							<div>
-								<p className="font-medium">{data.author.name}</p>
-								{data.author.bio && (
-									<p className="text-muted-foreground text-sm">
-										<PortableText value={data.author.bio} />
-									</p>
-								)}
-							</div>
-						</div>
-					)}
-
-					<div className="ml-auto text-muted-foreground text-sm">
+				<div className="mt-6 flex flex-wrap items-center gap-4 border-border border-t pt-6 text-muted-foreground text-sm">
+					<time className="ml-auto" dateTime={data.createdAt}>
 						{formatDate(data.createdAt)}
-					</div>
+					</time>
 				</div>
 			</header>
 

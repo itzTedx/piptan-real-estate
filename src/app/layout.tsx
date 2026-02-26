@@ -2,6 +2,7 @@ import React from "react";
 
 import type { Metadata } from "next";
 
+import { GoogleTagManager } from "@next/third-parties/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import BreakpointIndicator from "@/components/breakpoint-indicator";
@@ -10,7 +11,6 @@ import Providers from "@/components/providers";
 import { jaguar, neueMontreal } from "@/app/assets/fonts";
 import { SanityLive } from "@/lib/sanity/lib/live";
 import { cn } from "@/lib/utils";
-
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -71,6 +71,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
+			<GoogleTagManager gtmId="GTM-5ZPSZWGM" />
 			<body
 				className={cn(
 					"relative antialiased",
