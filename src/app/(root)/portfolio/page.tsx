@@ -80,7 +80,7 @@ export const metadata: Metadata = {
 // Enable caching with revalidation every 5 minutes
 export const revalidate = 300;
 
-export default async function ProjectsPage() {
+export default function ProjectsPage() {
 	return (
 		<main className="pt-4 sm:pt-9 md:pt-12">
 			<section className="container relative mb-20">
@@ -130,9 +130,8 @@ export default async function ProjectsPage() {
 				</p>
 			</section>
 			<LeadSection
-				highlightText="the right investment"
-				subtitle="Feel free to contact with us"
-				title={"Let the experts help you\nmake the right investment"}
+				subtitle="Book a 15-minute investment consult to walk through these projects in detail—no obligation, 24–48h response."
+				title={"Book a 15-minute\ninvestment consult"}
 				variant="compact"
 			/>
 		</main>

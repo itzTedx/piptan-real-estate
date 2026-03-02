@@ -1,7 +1,6 @@
 import Link from "next/link";
 
-import { MenuIcon } from "@sanity/icons";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 
 import {
 	Drawer,
@@ -33,7 +32,11 @@ export const Navbar = () => {
 				className="absolute top-0 z-10 h-full w-full bg-linear-to-b from-background/80 to-transparent"
 			/>
 			<nav className="container relative z-999 flex items-center justify-between gap-4">
-				<Link className="flex items-center gap-2" href="/">
+				<Link
+					className="flex items-center gap-2"
+					href="/"
+					title="Piptan Investment Home"
+				>
 					<Logo />
 				</Link>
 
@@ -108,6 +111,7 @@ export const Navbar = () => {
 				<div className="hidden items-center gap-2 lg:flex">
 					<Button size="icon" variant="outline">
 						<IconPhone />
+						<span className="sr-only">Contact us now</span>
 					</Button>
 					<AnimatedButton
 						href="/portfolio"
@@ -120,7 +124,7 @@ export const Navbar = () => {
 				<Drawer>
 					<DrawerTrigger asChild>
 						<Button className="size-9 lg:hidden" size="icon" variant="outline">
-							<MenuIcon />
+							<Menu />
 						</Button>
 					</DrawerTrigger>
 					<DrawerContent>

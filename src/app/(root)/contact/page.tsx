@@ -31,6 +31,7 @@ export default function ContactPage() {
 									className="group rounded-lg border p-4 transition-colors duration-300 hover:border-primary/50 sm:p-6"
 									href={info.href}
 									key={info.title}
+									title={`Navigate to ${info.title}`}
 								>
 									<h3 className="mb-2 font-medium text-lg sm:text-xl">
 										{info.label}

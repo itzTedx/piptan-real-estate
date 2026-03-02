@@ -598,7 +598,7 @@ export default function PrivacyPolicyPage() {
 							</div>
 							<div className="shrink-0 rounded-md border bg-white p-2">
 								<Image
-									alt="License QR Code - Piptan Capital L.L.C License Verification"
+									alt="Piptan Investment trade licence QR code (scan to verify)"
 									className="rounded"
 									height={120}
 									src="/images/licence-qrcode.jpg"

@@ -31,7 +31,7 @@ export const ExpertiseSection = async () => {
 					title={"Estate Experience meets\nInvestment Eminence."}
 				/>
 			</div>
-			<div className="relative mt-[-15vh] min-h-screen md:mt-[-70vh] lg:mt-[-80vh] xl:mt-[-45vh]">
+			<div className="relative mt-[-15vh] min-h-screen md:mt-[-70vh] lg:mt-[-80vh] xl:mt-[-45vh] 2xl:mt-[-35vh]">
 				<StackingCards totalCards={categories.length}>
 					{categories?.map(({ description, image, title, _id, slug }, i) => {
 						return (
@@ -67,11 +67,12 @@ export const ExpertiseSection = async () => {
 									{image && (
 										<div className="relative aspect-4/3 w-full overflow-hidden rounded-md md:aspect-video">
 											<Image
-												alt={title ?? ""}
+												alt={image.alt ?? title ?? ""}
 												className="object-cover"
 												fill
 												sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 												src={urlFor(image).url()}
+												title={image.alt ?? title ?? ""}
 											/>
 										</div>
 									)}

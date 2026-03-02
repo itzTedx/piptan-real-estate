@@ -25,7 +25,7 @@ export default function ServicesPage() {
 				/>
 				<div className="relative mt-9 aspect-square overflow-hidden rounded-md md:aspect-16/6">
 					<Image
-						alt=""
+						alt="Nighttime skyline of Dubai with illuminated skyscrapers"
 						className="object-cover"
 						fill
 						src="/images/dubai-night.jpg"
@@ -80,11 +80,11 @@ export default function ServicesPage() {
 					className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
 					preset="blur-slide"
 				>
-					{SERVICES.map(({ description, id, image, title }) => (
+					{SERVICES.map(({ alt, description, id, image, title }) => (
 						<div className="group" key={id}>
 							<div className="relative aspect-5/3 overflow-hidden rounded-sm bg-muted outline-foreground/50 group-hover:outline">
 								<Image
-									alt=""
+									alt={alt}
 									className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
 									fill
 									src={image}

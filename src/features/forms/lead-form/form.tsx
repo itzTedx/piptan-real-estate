@@ -47,7 +47,7 @@ export function LeadForm({ className }: Props) {
 					control={form.control}
 					name="name"
 					render={({ field }) => (
-						<FormItem className="w-full">
+						<FormItem className="w-full flex-1">
 							<FormLabel className="sr-only">Name</FormLabel>
 							<FormControl>
 								<div className="group relative">
@@ -74,7 +74,7 @@ export function LeadForm({ className }: Props) {
 					control={form.control}
 					name="phone"
 					render={({ field }) => (
-						<FormItem className="w-full">
+						<FormItem className="w-full flex-1">
 							<FormLabel className="sr-only">Phone Number</FormLabel>
 							<FormControl>
 								<div className="group relative">
@@ -101,7 +101,7 @@ export function LeadForm({ className }: Props) {
 					)}
 				/>
 				<AnimatedButton
-					className="w-full"
+					className="w-full flex-1"
 					text="Get Consultation"
 					type="submit"
 				/>

@@ -1,4 +1,4 @@
-import { ImageIcon, UnderlineIcon } from "@sanity/icons";
+import { Image, Underline } from "lucide-react";
 import { defineArrayMember, defineType } from "sanity";
 
 /**
@@ -45,7 +45,7 @@ export const blockContentType = defineType({
 					{
 						title: "Underline",
 						value: "u",
-						icon: UnderlineIcon,
+						icon: Underline,
 						component: ({ children }) => <u>{children}</u>,
 					},
 				],
@@ -71,7 +71,7 @@ export const blockContentType = defineType({
 		// as a block type.
 		defineArrayMember({
 			type: "image",
-			icon: ImageIcon,
+			icon: Image,
 			options: { hotspot: true },
 			fields: [
 				{

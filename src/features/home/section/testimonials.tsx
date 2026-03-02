@@ -1,11 +1,3 @@
-"use client";
-
-import { useRef } from "react";
-
-import Image from "next/image";
-
-import { motion, useScroll, useTransform } from "motion/react";
-
 import { SectionHeader } from "@/components/ui/section-header";
 
 import { IconChatBubble } from "@/app/assets/icons";
@@ -13,15 +5,12 @@ import { Logo } from "@/app/assets/logo";
 import { FEEDBACKS } from "@/constants/mock-data";
 import { cn } from "@/lib/utils";
 
-export const Testimonials = () => {
-	const containerRef = useRef(null);
-	const { scrollYProgress } = useScroll({
-		target: containerRef,
-		offset: ["start end", "end start"],
-	});
+import { ParallaxTestiImage } from "../components/parallax-testi-image";
+import { TestimonialsSection } from "./testimonials-section.client";
 
+export const Testimonials = () => {
 	return (
-		<section className="container py-20" ref={containerRef}>
+		<TestimonialsSection>
 			<SectionHeader
 				badge="Testimonials"
 				hasHighlight
@@ -44,19 +33,7 @@ export const Testimonials = () => {
 						Find the best properties in the{" "}
 						<span className="font-medium">Middle East</span>
 					</h3>
-					<motion.div
-						className="relative aspect-[3/4.5] md:aspect-3/5"
-						style={{
-							y: useTransform(scrollYProgress, [0, 1], [350, 0]),
-						}}
-					>
-						<Image
-							alt=""
-							className="object-cover brightness-100 saturate-100 transition-all duration-700 group-hover:brightness-110 group-hover:saturate-200"
-							fill
-							src="/images/residential-tower.webp"
-						/>
-					</motion.div>
+					<ParallaxTestiImage />
 				</li>
 
 				{FEEDBACKS.map((f) => (
@@ -83,6 +60,6 @@ export const Testimonials = () => {
 					</li>
 				))}
 			</ul>
-		</section>
+		</TestimonialsSection>
 	);
 };

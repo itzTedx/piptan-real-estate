@@ -11,11 +11,17 @@ import {
 	INSIGHTS_QUERY_RESULT,
 } from "../../../../sanity.types";
 
+type InsightWithReadingTime =
+	| (INSIGHTS_QUERY_RESULT[number] & { readingTime?: number })
+	| (FILTERED_INSIGHTS_QUERY_RESULT[number] & { readingTime?: number });
+
 interface Props {
-	data: INSIGHTS_QUERY_RESULT[number] | FILTERED_INSIGHTS_QUERY_RESULT[number];
+	data: InsightWithReadingTime;
 }
 
 export const InsightCard = ({ data }: Props) => {
+	const readingTime = Math.max(1, data.readingTime ?? 0);
+
 	return (
 		<Link
 			className="group flex h-full flex-col overflow-hidden rounded-md bg-muted"
@@ -24,21 +30,26 @@ export const InsightCard = ({ data }: Props) => {
 			{data.image && (
 				<div className="relative aspect-5/3 shrink-0 overflow-hidden">
 					<Image
-						alt=""
+						alt={data.image.alt ?? "Insight image"}
 						className="object-cover"
 						fill
 						src={urlFor(data.image).url()}
+						title={data.image.alt ?? "Insight image"}
 					/>
 				</div>
 			)}
 			<div className="flex h-full flex-col justify-between p-6">
 				<div>
-					<div className="mb-3 flex items-center justify-between gap-3">
+					<div className="mb-3 flex items-center justify-between gap-3 text-muted-foreground text-xs">
 						<span className="inline-flex items-center gap-2">
 							<div className="size-1.5 rounded-full bg-foreground" />
 							{data.categories?.title}
 						</span>
-						<div>{formatDate(data.createdAt)}</div>
+						<div className="ml-auto inline-flex items-center gap-2">
+							<span>{formatDate(data.createdAt)}</span>
+							<span className="text-foreground/40">•</span>
+							<span>{readingTime} min read</span>
+						</div>
 					</div>
 					<h3 className="mb-2 text-2xl" title={data.title ?? ""}>
 						{data.title}

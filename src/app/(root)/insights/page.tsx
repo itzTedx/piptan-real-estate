@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 
+import { AnimatedButton } from "@/components/ui/animated-button";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
 
@@ -23,6 +24,18 @@ export default function InsightsPage({
 		<main className="container space-y-12 pt-4 sm:pt-9 md:pt-12">
 			<section>
 				<SectionHeader
+					action={
+						<div className="mt-6 flex flex-col gap-1 sm:items-start">
+							<AnimatedButton
+								href="/contact"
+								text="Subscribe for market updates"
+								variant="primary"
+							/>
+							<p className="text-muted-foreground text-xs sm:text-sm">
+								No spam, just UAE market insights. Unsubscribe anytime.
+							</p>
+						</div>
+					}
 					badge="Insights"
 					hasHighlight
 					highlightText="Property Journey with Piptan"

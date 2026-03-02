@@ -1,8 +1,7 @@
-"use client";
-
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
+import { AnimatedButton } from "@/components/ui/animated-button";
 import { Separator } from "@/components/ui/separator";
 
 const SimpleMarquee = dynamic(
@@ -41,21 +40,35 @@ export const Hero = () => {
 				<div className="container relative z-10 space-y-3 sm:space-y-4 md:space-y-6">
 					<Separator className="bg-white/80" />
 					<div className="flex items-center justify-between gap-3">
-						<h2 className="text-3xl lg:text-4xl">High Capital Growth</h2>
-						<p className="font-light text-sm sm:text-xl md:text-2xl">
-							Invest with Purpose.
-							<br className="md:hidden" /> Profit with Integrity
-						</p>
+						<div className="space-y-3">
+							<h2 className="text-3xl lg:text-4xl">High Capital Growth</h2>
+							<p className="font-light text-sm tracking-wide sm:text-xl">
+								Invest with Purpose.
+								<br className="md:hidden" /> Profit with Integrity
+							</p>
+						</div>
+						<div>
+							<AnimatedButton
+								href="/contact"
+								size="lg"
+								text="Book a quick consult"
+								variant="primary"
+							/>
+							<p className="mt-2 text-primary-foreground/90 text-sm sm:ml-4">
+								No obligation, 24–48h response.
+							</p>
+						</div>
 					</div>
 				</div>
 				<div className="absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-background to-transparent md:h-2/5" />
 			</div>
 			<Image
-				alt="Luxury real estate property in Dubai showcasing modern architecture and premium living spaces"
+				alt="Dubai luxury real estate skyline and waterfront residences - premium investment properties"
 				className="object-cover max-md:object-right"
 				fill
 				priority
 				src="/images/hero.webp"
+				title="Dubai luxury real estate skyline and waterfront residences - premium investment properties"
 			/>
 		</section>
 	);

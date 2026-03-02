@@ -87,14 +87,6 @@ export const projectType = defineType({
 		}),
 
 		defineField({
-			name: "description",
-			type: "text",
-
-			description:
-				"A brief summary to display next to key stats. Example: 'Luxury beachfront apartments with stunning views.'",
-		}),
-
-		defineField({
 			name: "gallery",
 			type: "array",
 

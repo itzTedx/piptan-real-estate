@@ -3,8 +3,7 @@
 import { useEffect } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SearchIcon } from "@sanity/icons";
-import { XIcon } from "lucide-react";
+import { Search, XIcon } from "lucide-react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useQueryState } from "nuqs";
 import { useForm } from "react-hook-form";
@@ -29,7 +28,7 @@ import {
 import { IconGrid, IconList, IconSort } from "@/app/assets/icons";
 import { cn } from "@/lib/utils";
 
-import { CATEGORIES_QUERYResult } from "../../../../sanity.types";
+import { CATEGORIES_QUERY_RESULT } from "../../../../sanity.types";
 
 const propertyFiltersSchema = z.object({
 	searchQuery: z.string().optional(),
@@ -51,7 +50,7 @@ interface PropertyFiltersProps {
 	onCategoryChange: (tag: string) => void;
 	onSortChange: (sort: { field: string; order: "asc" | "desc" }) => void;
 	onViewChange: (view: "grid" | "list") => void;
-	categories: CATEGORIES_QUERYResult;
+	categories: CATEGORIES_QUERY_RESULT;
 	className?: string;
 }
 
@@ -167,7 +166,7 @@ export const PropertyFilters = ({
 						{...form.register("searchQuery")}
 						className="h-full border-0 pl-10 text-foreground"
 					/>
-					<SearchIcon className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
+					<Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
 					<Tooltip>
 						<TooltipTrigger asChild>
 							<Button

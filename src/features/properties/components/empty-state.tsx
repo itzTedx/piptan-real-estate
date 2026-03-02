@@ -1,6 +1,6 @@
 "use client";
 
-import { SearchIcon } from "@sanity/icons";
+import { Search } from "lucide-react";
 import { useQueryState } from "nuqs";
 
 import { Button } from "@/components/ui/button";
@@ -44,7 +44,7 @@ export function EmptyState({ className }: EmptyStateProps) {
 			)}
 		>
 			<div className="flex h-20 w-20 items-center justify-center rounded-full bg-muted">
-				<SearchIcon className="size-10 text-muted-foreground" />
+				<Search className="size-10 text-muted-foreground" />
 			</div>
 			<h3 className="mt-4 font-semibold text-lg">No properties found</h3>
 			<p className="mt-2 text-muted-foreground text-sm">

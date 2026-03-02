@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 
+import { AnimatedButton } from "@/components/ui/animated-button";
+
+import { FEEDBACKS, SERVICES } from "@/constants/mock-data";
+import { getFaqs } from "@/features/home/actions";
 import { AboutSection } from "@/features/home/section/about";
 import { Developers } from "@/features/home/section/developers";
 import { ExpertiseSection } from "@/features/home/section/expertise";
@@ -13,11 +17,11 @@ import { Testimonials } from "@/features/home/section/testimonials";
 import { WhyUsSection } from "@/features/home/section/why-us";
 
 const meta = {
-	title: "Luxury Real Estate Investments in the UAE - Piptan Investment",
+	title: "Dubai Luxury Real Estate Investments | Piptan Investment UAE",
 	description:
-		"Discover luxury homes, commercial spaces, and investment opportunities in Dubai's most sought-after communities. Expert guidance and premium listings for confident real estate decisions.",
+		"Explore Dubai luxury homes, commercial property and high-ROI portfolios across the UAE. Expert guidance, vetted developers—start your investment with Piptan.",
 	keywords:
-		"Dubai real estate, luxury homes, commercial property, real estate investment, property development, Dubai property market, luxury apartments, villas Dubai, real estate agents Dubai, property investment UAE",
+		"Dubai real estate investment, luxury property UAE, commercial real estate Dubai, property investment portfolios",
 };
 
 // Enable caching with revalidation every 10 minutes
@@ -76,7 +80,151 @@ export const metadata: Metadata = {
 	metadataBase: new URL("https://www.piptan.ae"),
 };
 
-export default function Home() {
+export default async function Home() {
+	const faqs = await getFaqs();
+
+	const faqSchema = {
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		name: "Dubai Real Estate Investment FAQs",
+		description:
+			"Answers to common questions about investing in Dubai property with Piptan Investment.",
+		mainEntity: faqs
+			.filter((faq) => faq.question && faq.answer)
+			.map((faq) => ({
+				"@type": "Question",
+				name: faq.question,
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: faq.answer,
+				},
+			})),
+	};
+
+	const howToSchema = {
+		"@context": "https://schema.org",
+		"@type": "HowTo",
+		name: "How to start your Dubai real estate investment with Piptan",
+		description:
+			"Step-by-step process to go from initial consultation to securing a Dubai real estate investment with Piptan.",
+		supply: [],
+		tool: [],
+		step: [
+			{
+				"@type": "HowToStep",
+				position: 1,
+				name: "Book a 15-minute consultation",
+				text: "Schedule a 15-minute investment consult using the contact page or call/WhatsApp to discuss your goals, budget, and timeline.",
+			},
+			{
+				"@type": "HowToStep",
+				position: 2,
+				name: "Clarify your investment profile",
+				text: "Together with an advisor, define your risk profile, preferred locations, property types, and target returns in the Dubai and UAE markets.",
+			},
+			{
+				"@type": "HowToStep",
+				position: 3,
+				name: "Review curated property options",
+				text: "Receive a shortlist of vetted Dubai and Abu Dhabi projects based on market data, rental yields, and long-term appreciation potential.",
+			},
+			{
+				"@type": "HowToStep",
+				position: 4,
+				name: "Complete due diligence and paperwork",
+				text: "Work with Piptan and partner developers to review legal documentation, payment plans, and any financing requirements.",
+			},
+			{
+				"@type": "HowToStep",
+				position: 5,
+				name: "Secure and manage your property",
+				text: "Finalize your purchase, complete registration, and optionally use Piptan’s advisory and management support to oversee your investment.",
+			},
+		],
+	};
+
+	const servicesSchema = {
+		"@context": "https://schema.org",
+		"@type": "ItemList",
+		name: "Piptan Investment Services",
+		description:
+			"Advisory and real estate services provided by Piptan Investment in Dubai and the UAE.",
+		itemListElement: SERVICES.map((service, index) => ({
+			"@type": "Service",
+			position: index + 1,
+			name: service.title,
+			description: service.description,
+			provider: {
+				"@type": "RealEstateAgent",
+				name: "Piptan Investment",
+				areaServed: "Dubai",
+			},
+		})),
+	};
+
+	const testimonialReviews = FEEDBACKS.map((feedback) => ({
+		"@type": "Review",
+		reviewBody: feedback.content,
+		author: {
+			"@type": "Person",
+			name: feedback.name,
+		},
+	}));
+
+	const realEstateAgentSchema = {
+		"@context": "https://schema.org",
+		"@type": "RealEstateAgent",
+		name: "Piptan Investment",
+		description:
+			"Premium real estate investment and development company in Dubai",
+		areaServed: "Dubai",
+		address: {
+			"@type": "PostalAddress",
+			addressLocality: "Dubai",
+			addressCountry: "UAE",
+		},
+		offers: {
+			"@type": "AggregateOffer",
+			itemOffered: {
+				"@type": "Residence",
+				name: "Luxury Homes and Commercial Spaces",
+				description:
+					"Premium real estate properties in Dubai's most sought-after communities",
+			},
+		},
+		knowsAbout: [
+			"Dubai luxury real estate",
+			"Dubai property investment",
+			"UAE real estate market",
+			"commercial real estate Dubai",
+		],
+		review: testimonialReviews,
+	};
+
+	const organizationSchema = {
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		name: "Piptan Investment",
+		url: "https://www.piptan.ae",
+		description:
+			"Premium real estate investment and development company in Dubai, specializing in luxury homes and commercial properties.",
+		address: {
+			"@type": "PostalAddress",
+			addressLocality: "Dubai",
+			addressCountry: "AE",
+		},
+		areaServed: ["Dubai", "United Arab Emirates"],
+		sameAs: [],
+		contactPoint: [
+			{
+				"@type": "ContactPoint",
+				contactType: "customer service",
+				telephone: "+971564014000",
+				availableLanguage: ["en"],
+			},
+		],
+	};
+
 	return (
 		<main className="-mt-20 divide-y">
 			<Hero />
@@ -84,52 +232,66 @@ export default function Home() {
 			<AboutSection />
 			<ExpertiseSection />
 			<PortfolioSection />
+			<section className="bg-muted/70">
+				<div className="container flex flex-col items-start justify-between gap-4 py-8 sm:flex-row sm:items-center sm:py-12">
+					<div>
+						<h2 className="text-lg sm:text-xl md:text-2xl">
+							Want a quick review of your options?
+						</h2>
+						<p className="text-muted-foreground text-sm sm:text-base">
+							Book a 15-minute investment consult. No obligation, 24 - 48h
+							response.
+						</p>
+					</div>
+					<AnimatedButton
+						href="/contact"
+						size="lg"
+						text="Book a 15-minute investment consult"
+						variant="primary"
+					/>
+				</div>
+			</section>
 			<WhyUsSection />
+
 			<Developers />
+
 			<FeaturesSection />
+			<section className="bg-background">
+				<div className="container flex flex-col items-start justify-between gap-4 py-8 sm:flex-row sm:items-center sm:py-12">
+					<div>
+						<h2 className="text-lg sm:text-xl md:text-2xl">
+							Prefer to talk through your strategy?
+						</h2>
+						<p className="text-muted-foreground text-sm sm:text-base">
+							Book a 15-minute investment consult. No obligation, 24–48h
+							response.
+						</p>
+					</div>
+					<AnimatedButton
+						href="/contact"
+						size="lg"
+						text="Book a 15-minute investment consult"
+						variant="primary"
+					/>
+				</div>
+			</section>
 			<Testimonials />
 			<InsightsSection />
-			<FaqSection />
-			<Script type="application/ld+json">
-				{JSON.stringify({
-					"@context": "https://schema.org",
-					"@type": "RealEstateAgent",
-					name: "Piptan Investment",
-					description:
-						"Premium real estate investment and development company in Dubai",
-					areaServed: "Dubai",
-					address: {
-						"@type": "PostalAddress",
-						addressLocality: "Dubai",
-						addressCountry: "UAE",
-					},
-					offers: {
-						"@type": "AggregateOffer",
-						itemOffered: {
-							"@type": "Residence",
-							name: "Luxury Homes and Commercial Spaces",
-							description:
-								"Premium real estate properties in Dubai's most sought-after communities",
-						},
-					},
-				})}
+			<FaqSection faqs={faqs} />
+			<Script id="faq-schema" type="application/ld+json">
+				{JSON.stringify(faqSchema)}
+			</Script>
+			<Script id="howto-schema" type="application/ld+json">
+				{JSON.stringify(howToSchema)}
+			</Script>
+			<Script id="services-schema" type="application/ld+json">
+				{JSON.stringify(servicesSchema)}
+			</Script>
+			<Script id="realestateagent-schema" type="application/ld+json">
+				{JSON.stringify(realEstateAgentSchema)}
 			</Script>
 			<Script id="organization-schema" type="application/ld+json">
-				{JSON.stringify({
-					"@context": "https://schema.org",
-					"@type": "Organization",
-					name: "Piptan Investment",
-					url: "https://www.piptan.ae",
-					description:
-						"Premium real estate investment and development company in Dubai, specializing in luxury homes and commercial properties.",
-					address: {
-						"@type": "PostalAddress",
-						addressLocality: "Dubai",
-						addressCountry: "AE",
-					},
-					areaServed: ["Dubai", "United Arab Emirates"],
-					sameAs: [],
-				})}
+				{JSON.stringify(organizationSchema)}
 			</Script>
 		</main>
 	);

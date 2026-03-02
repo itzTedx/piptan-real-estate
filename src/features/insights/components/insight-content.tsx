@@ -8,12 +8,19 @@ import { formatDate } from "@/lib/utils";
 
 import { INSIGHT_BY_SLUG_QUERY_RESULT } from "../../../../sanity.types";
 
+type InsightBySlugWithReadingTime = INSIGHT_BY_SLUG_QUERY_RESULT & {
+	readingTime?: number;
+};
+
 interface Props {
-	data: INSIGHT_BY_SLUG_QUERY_RESULT;
+	data: InsightBySlugWithReadingTime;
 }
 
 export const InsightContent = ({ data }: Props) => {
 	if (!data) return null;
+
+	const readingTime = Math.max(1, data.readingTime ?? 0);
+
 	return (
 		<article className="prose lg:prose-xl prose-invert mx-auto max-w-[70ch] prose-li:marker:text-brand-gray/50">
 			{/* Article Header */}
@@ -55,6 +62,8 @@ export const InsightContent = ({ data }: Props) => {
 					<time className="ml-auto" dateTime={data.createdAt}>
 						{formatDate(data.createdAt)}
 					</time>
+					<span className="text-foreground/40">•</span>
+					<span>{readingTime} min read</span>
 				</div>
 			</header>
 
@@ -68,11 +77,12 @@ export const InsightContent = ({ data }: Props) => {
 									<figure>
 										<div className="relative aspect-video w-full overflow-hidden rounded-lg">
 											<Image
-												alt={value.alt || "Article image"}
+												alt={value.alt ?? "Article image"}
 												className="object-cover"
 												fill
 												sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
 												src={urlFor(value).url()}
+												title={value.alt ?? "Article image"}
 											/>
 										</div>
 										{value.alt && (

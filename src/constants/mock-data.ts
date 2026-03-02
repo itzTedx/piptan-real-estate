@@ -164,6 +164,7 @@ export const SERVICES = [
 		description:
 			"Expert guidance on real estate investments, market analysis, and ROI optimization strategies.",
 		image: "/images/investment.jpg",
+		alt: "Property investment planning in the Dubai real estate market.",
 	},
 	{
 		id: 2,
@@ -171,6 +172,7 @@ export const SERVICES = [
 		description:
 			"Comprehensive property management services ensuring your investment is well-maintained and profitable.",
 		image: "/images/rental.jpg",
+		alt: "Modern rental apartment building managed by a property management service in Dubai.",
 	},
 	{
 		id: 3,
@@ -178,6 +180,7 @@ export const SERVICES = [
 		description:
 			"Exclusive access to premium properties, villas, and penthouses in Dubai's most prestigious locations.",
 		image: "/images/luxury.jpg",
+		alt: "Luxury villa and high-end real estate property in Dubai.",
 	},
 	{
 		id: 4,
@@ -185,6 +188,7 @@ export const SERVICES = [
 		description:
 			"End-to-end legal assistance for property transactions, ensuring compliance with Dubai's real estate laws.",
 		image: "/images/commercial.jpg",
+		alt: "Commercial buildings in Dubai representing legal support for property transactions.",
 	},
 	{
 		id: 5,
@@ -192,6 +196,7 @@ export const SERVICES = [
 		description:
 			"Smooth transition support for individuals and families moving to Dubai, from property search to settling in.",
 		image: "/images/isolated-home.webp",
+		alt: "Home illustration symbolizing relocation services for moving to Dubai.",
 	},
 	{
 		id: 6,
@@ -199,6 +204,7 @@ export const SERVICES = [
 		description:
 			"Professional property valuation services using market data and advanced analytics for accurate pricing.",
 		image: "/images/residential-tower.webp",
+		alt: "High-rise residential towers in Dubai representing professional property valuation.",
 	},
 ];
 

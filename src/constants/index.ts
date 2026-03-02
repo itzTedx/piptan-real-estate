@@ -33,7 +33,7 @@ export const CONTACT = [
 		title: " invest@piptan.com",
 		href: "mailto:invest@piptan.com",
 	},
-];
+] as const;
 
 export const FOOTER_LINKS = [
 	{

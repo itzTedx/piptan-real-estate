@@ -2,7 +2,6 @@ import React from "react";
 
 import type { Metadata } from "next";
 
-import { GoogleTagManager } from "@next/third-parties/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import BreakpointIndicator from "@/components/breakpoint-indicator";
@@ -71,7 +70,6 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<GoogleTagManager gtmId="GTM-5ZPSZWGM" />
 			<body
 				className={cn(
 					"relative antialiased",

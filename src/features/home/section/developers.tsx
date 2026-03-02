@@ -23,7 +23,7 @@ export const Developers = async () => {
 			</div>
 			<div className="relative mt-6 md:mt-9">
 				<div className="absolute top-0 left-0 z-10 h-full w-1/6 bg-linear-to-r from-background to-transparent" />
-				<div className="absolute top-0 right-0 z-10 h-full w-1/6 bg-linear-to-r from-background to-transparent" />
+				<div className="absolute top-0 right-0 z-10 h-full w-1/6 bg-linear-to-l from-background to-transparent" />
 				<InfiniteSlider>
 					{developers.map((developer) => (
 						<div
@@ -31,10 +31,11 @@ export const Developers = async () => {
 							key={developer._id}
 						>
 							<Image
-								alt={developer.name ?? ""}
+								alt={developer.logo?.alt ?? developer.name ?? "Developer logo"}
 								className="max-w-full object-contain"
 								height={40}
 								src={urlFor(developer?.logo ?? "").url()}
+								title={developer.logo?.alt ?? developer.name ?? "Developer logo"}
 								width={100}
 							/>
 						</div>

@@ -1,4 +1,6 @@
-import { ChevronDownIcon } from "@sanity/icons";
+import Link from "next/link";
+
+import { ChevronDown } from "lucide-react";
 
 import {
 	Accordion,
@@ -6,14 +8,16 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
-import { AnimatedButton } from "@/components/ui/animated-button";
+import { Button } from "@/components/ui/button";
 
 import { IconFaq } from "@/app/assets/icons";
+import type { FAQS_QUERY_RESULT } from "../../../../sanity.types";
 
-import { getFaqs } from "../actions";
+type FaqSectionProps = {
+	faqs: FAQS_QUERY_RESULT;
+};
 
-export const FaqSection = async () => {
-	const faqs = await getFaqs();
+export const FaqSection = ({ faqs }: FaqSectionProps) => {
 	return (
 		<section className="my-10 border-t bg-muted md:my-20">
 			<div className="grid grid-cols-1 gap-6 md:container lg:grid-cols-4 lg:gap-0">
@@ -28,8 +32,27 @@ export const FaqSection = async () => {
 						</h2>
 					</div>
 					<div className="mt-6 lg:mt-0">
-						<p className="mb-3 text-lg sm:text-xl">Having another question?</p>
-						<AnimatedButton href="/contact" text="Send a message" />
+						<p className="mb-3 text-lg sm:text-xl">
+							Still have questions about your investment?
+						</p>
+						<div className="space-y-2">
+							<Button
+								asChild
+								className="w-full justify-center sm:w-auto"
+								size="lg"
+							>
+								<Link
+									href="https://wa.me/971564014000?text=Hello%2C%20I%E2%80%99d%20like%20to%20talk%20to%20an%20advisor%20about%20Dubai%20real%20estate%20investments."
+									rel="noreferrer"
+									target="_blank"
+								>
+									Talk to an advisor on WhatsApp
+								</Link>
+							</Button>
+							<p className="text-muted-foreground text-xs sm:text-sm">
+								No obligation, 24-48h response from our team.
+							</p>
+						</div>
 					</div>
 				</aside>
 				<div className="border-x bg-background px-4 sm:px-6 lg:col-span-3 lg:px-9">
@@ -49,7 +72,7 @@ export const FaqSection = async () => {
 												{question}
 											</h3>
 										</div>
-										<ChevronDownIcon className="size-4 transition-transform duration-200 group-data-expanded:-rotate-180" />
+										<ChevronDown className="size-4 transition-transform duration-200 group-data-expanded:-rotate-180" />
 									</div>
 								</AccordionTrigger>
 								<AccordionContent className="pt-2 pl-8 sm:pl-14">

@@ -18,5 +18,13 @@
 		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"typescript.tsdk": "node_modules\\typescript\\lib",
-	"cSpell.words": ["groq", "gsap", "oklch", "Piptan", "trivago"]
+	"cSpell.words": [
+		"groq",
+		"gsap",
+		"lqip",
+		"oklch",
+		"Piptan",
+		"realestateagent",
+		"trivago"
+	]
 }

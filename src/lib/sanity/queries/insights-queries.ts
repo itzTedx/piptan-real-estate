@@ -22,6 +22,7 @@ export const INSIGHTS_QUERY = defineQuery(`*[_type == "insights"]  {
     categories -> ,
     author,
     body,
+    "readingTime": round(length(pt::text(body)) / 5 / 180),
     seo,
     'createdAt': _createdAt
 }`);
@@ -55,6 +56,7 @@ export const FILTERED_INSIGHTS_QUERY = defineQuery(`
     },
     author,
     body,
+    "readingTime": round(length(pt::text(body)) / 5 / 180),
     seo,
     'createdAt': _createdAt
   }
@@ -87,6 +89,7 @@ export const PAGINATED_INSIGHTS_QUERY =
     },
     author,
     body,
+    "readingTime": round(length(pt::text(body)) / 5 / 180),
     seo,
     'createdAt': _createdAt
 }`);
@@ -135,6 +138,7 @@ export const INSIGHT_BY_SLUG_QUERY =
       bio
     },
     body,
+    "readingTime": round(length(pt::text(body)) / 5 / 180),
     seo,
     'createdAt': _createdAt,
     'updatedAt': _updatedAt

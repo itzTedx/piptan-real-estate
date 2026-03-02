@@ -7,7 +7,7 @@ import Link from "next/link";
 
 import { motion, useScroll, useTransform } from "motion/react";
 
-import { IconBrandTelegram, IconBrandWhatsapp } from "@/app/assets/icons";
+import { IconBrandWhatsapp } from "@/app/assets/icons";
 import { Piptan } from "@/app/assets/logo";
 import { cn } from "@/lib/utils";
 
@@ -22,7 +22,7 @@ const SocialLinks = ({ className }: SocialLinksProps) => {
 		<div className={cn("flex w-fit items-center gap-6 md:gap-12", className)}>
 			<Link
 				className="group flex items-center gap-3 outline-0 focus-visible:ring-0"
-				href="/whatsapp"
+				href="/"
 			>
 				<div className="place-content-center-safe grid size-9 rounded-sm bg-foreground text-background">
 					<IconBrandWhatsapp />
@@ -31,7 +31,7 @@ const SocialLinks = ({ className }: SocialLinksProps) => {
 					Whatsapp
 				</span>
 			</Link>
-			<Link
+			{/* <Link
 				className="group flex items-center gap-3 outline-0 focus-visible:ring-0"
 				href="/telegram"
 			>
@@ -41,7 +41,7 @@ const SocialLinks = ({ className }: SocialLinksProps) => {
 				<span className="underline-offset-2 group-hover:text-primary-foreground group-focus-visible:text-primary-foreground group-focus-visible:underline">
 					Telegram
 				</span>
-			</Link>
+			</Link> */}
 		</div>
 	);
 };
@@ -70,7 +70,7 @@ export const LeadSection = ({
 	const renderTitle = () => {
 		if (!highlightText) {
 			return title.split("\n").map((line, index) => (
-				<span key={index}>
+				<span key={line}>
 					{line}
 					{index < title.split("\n").length - 1 && <br />}
 				</span>
@@ -81,7 +81,7 @@ export const LeadSection = ({
 		return (
 			<>
 				{parts[0].split("\n").map((line, index) => (
-					<span key={`before-${index}`}>
+					<span key={`before-${line}`}>
 						{line}
 						{index < parts[0].split("\n").length - 1 && <br />}
 					</span>
@@ -90,7 +90,7 @@ export const LeadSection = ({
 					{highlightText}
 				</span>
 				{parts[1]?.split("\n").map((line, index) => (
-					<span key={`after-${index}`}>
+					<span key={`after-${line}`}>
 						{line}
 						{index < parts[1].split("\n").length - 1 && <br />}
 					</span>
@@ -124,9 +124,9 @@ export const LeadSection = ({
 					</p>
 				</div>
 
-				{variant === "compact" && (
+				{/* {variant === "compact" && (
 					<SocialLinks className="mb-4 max-md:mx-auto sm:mb-6" />
-				)}
+				)} */}
 
 				<LeadForm className={cn(variant === "default" && "md:flex-col")} />
 

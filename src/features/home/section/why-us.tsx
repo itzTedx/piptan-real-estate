@@ -26,12 +26,24 @@ export const WhyUsSection = () => {
 		offset: ["start end", "end start"],
 	});
 
-	// Images for each tab (replace with your actual image paths)
+	// Images for each tab (with descriptive alt text for SEO)
 	const images = [
-		"/images/puzzle.svg",
-		"/images/growth.svg",
-		"/images/maze.svg",
-		"/images/magnifier.svg",
+		{
+			src: "/images/puzzle.svg",
+			alt: "Strategic real estate investment puzzle concept",
+		},
+		{
+			src: "/images/growth.svg",
+			alt: "Real estate portfolio growth and performance chart",
+		},
+		{
+			src: "/images/maze.svg",
+			alt: "Navigating complex real estate market maze",
+		},
+		{
+			src: "/images/magnifier.svg",
+			alt: "Detailed real estate due diligence magnifier",
+		},
 	];
 
 	// --- Combine scroll and tab animation for y ---
@@ -41,6 +53,15 @@ export const WhyUsSection = () => {
 		[scrollY, tabY],
 		([s, t]) => (s as number) + (t as number)
 	);
+
+	// Automatically cycle through tabs on a timer
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setSelectedTab((prev) => (prev + 1) % images.length);
+		}, 5000); // change tab every 5 seconds
+
+		return () => clearInterval(interval);
+	}, []);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: we need to stop the animation when the component unmounts
 	useEffect(() => {
@@ -81,7 +102,7 @@ export const WhyUsSection = () => {
 				<AnimatePresence mode="wait">
 					<motion.div
 						animate={{ opacity: 1 }}
-						className="absolute top-1/2 left-0 hidden aspect-5/3 w-[60%] -translate-y-1/2 sm:block"
+						className="absolute top-1/2 left-0 z-50 hidden aspect-5/3 w-[60%] -translate-y-1/2 sm:block"
 						exit={{ opacity: 0 }}
 						initial={{ opacity: 0 }}
 						key={selectedTab}
@@ -89,10 +110,11 @@ export const WhyUsSection = () => {
 						transition={{ duration: 0.5, ease: "easeInOut" }}
 					>
 						<Image
-							alt="Modern luxury home showcasing premium architecture and design"
+							alt={images[selectedTab].alt}
 							className="object-contain"
 							fill
-							src={images[selectedTab]}
+							src={images[selectedTab].src}
+							title={images[selectedTab].alt}
 						/>
 					</motion.div>
 				</AnimatePresence>

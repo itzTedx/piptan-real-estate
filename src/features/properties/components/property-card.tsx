@@ -101,29 +101,30 @@ export const PropertyCard = ({ className, data }: Props) => {
 							{data.title}
 						</h3>
 
-						<div className="flex gap-2 sm:gap-0.5">
-							<span className="font-light tracking-wider">by</span>
-							{data.developer && (
+						{data.developer && (
+							<div className="flex gap-2 sm:gap-0.5">
+								<span className="font-light tracking-wider">by</span>
 								<div className="relative grid w-16 shrink-0 place-content-center text-background leading-none tracking-wider sm:w-20">
 									{data.developer.logo ? (
 										<Image
 											alt={developerLogoAlt}
 											height={60}
 											src={urlFor(data.developer.logo).url()}
+											title={developerLogoAlt}
 											width={70}
 										/>
 									) : (
 										data.developer.name
 									)}
 								</div>
-							)}
-						</div>
+							</div>
+						)}
 					</div>
 					{data.qrCode && (
 						<div className="size-24 rounded-sm bg-foreground p-1 transition-transform duration-300 ease-out group-hover:scale-150 md:size-20">
 							<div className="relative aspect-square">
 								<Image
-									alt={`${data.title} QR Code`}
+									alt={`QR code to view ${data.title} details`}
 									blurDataURL={data.qrCode.asset?.metadata?.lqip ?? undefined}
 									className="object-cover"
 									fill
@@ -131,6 +132,7 @@ export const PropertyCard = ({ className, data }: Props) => {
 										data.qrCode.asset?.metadata?.lqip ? "blur" : undefined
 									}
 									src={urlFor(data.qrCode).url()}
+									title={`QR code to view ${data.title} details`}
 								/>
 							</div>
 						</div>
@@ -150,6 +152,7 @@ export const PropertyCard = ({ className, data }: Props) => {
 							data.mainImage.asset?.metadata?.lqip ? "blur" : undefined
 						}
 						src={urlFor(data.mainImage).url()}
+						title={projectImageAlt}
 					/>
 				)}
 				<div className="absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-background/70" />
@@ -159,6 +162,21 @@ export const PropertyCard = ({ className, data }: Props) => {
 					{data.location}
 				</p>
 			)}
+			<div className="mt-2 flex items-center justify-between px-1">
+				<Button
+					asChild
+					className="h-8 px-3 text-[11px] sm:h-9 sm:px-4 sm:text-xs"
+					size="sm"
+					variant="outline"
+				>
+					<Link href={href} target="_blank">
+						See sample assets
+					</Link>
+				</Button>
+				<p className="text-[11px] text-muted-foreground sm:text-xs">
+					Preview typical units & yields.
+				</p>
+			</div>
 		</article>
 	);
 };

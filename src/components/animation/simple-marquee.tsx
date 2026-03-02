@@ -131,7 +131,7 @@ const SimpleMarqueeInner = ({
 		return `${easing ? easing(wrappedValue / -100) * -100 : wrappedValue}%`;
 	});
 
-	useAnimationFrame((t, delta) => {
+	useAnimationFrame((_t, delta) => {
 		// Don't run animation if component is not mounted
 		if (!isMounted) return;
 
