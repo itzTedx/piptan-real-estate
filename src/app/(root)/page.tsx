@@ -138,7 +138,7 @@ export default async function Home() {
 				"@type": "HowToStep",
 				position: 5,
 				name: "Secure and manage your property",
-				text: "Finalize your purchase, complete registration, and optionally use Piptan’s advisory and management support to oversee your investment.",
+				text: "Finalize your purchase, complete registration, and optionally use Piptan's advisory and management support to oversee your investment.",
 			},
 		],
 	};
