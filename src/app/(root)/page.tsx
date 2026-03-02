@@ -4,7 +4,6 @@ import Script from "next/script";
 import { AnimatedButton } from "@/components/ui/animated-button";
 
 import { FEEDBACKS, SERVICES } from "@/constants/mock-data";
-import { getFaqs } from "@/features/home/actions";
 import { AboutSection } from "@/features/home/section/about";
 import { Developers } from "@/features/home/section/developers";
 import { ExpertiseSection } from "@/features/home/section/expertise";
@@ -81,26 +80,6 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-	const faqs = await getFaqs();
-
-	const faqSchema = {
-		"@context": "https://schema.org",
-		"@type": "FAQPage",
-		name: "Dubai Real Estate Investment FAQs",
-		description:
-			"Answers to common questions about investing in Dubai property with Piptan Investment.",
-		mainEntity: faqs
-			.filter((faq) => faq.question && faq.answer)
-			.map((faq) => ({
-				"@type": "Question",
-				name: faq.question,
-				acceptedAnswer: {
-					"@type": "Answer",
-					text: faq.answer,
-				},
-			})),
-	};
-
 	const howToSchema = {
 		"@context": "https://schema.org",
 		"@type": "HowTo",
@@ -277,10 +256,8 @@ export default async function Home() {
 			</section>
 			<Testimonials />
 			<InsightsSection />
-			<FaqSection faqs={faqs} />
-			<Script id="faq-schema" type="application/ld+json">
-				{JSON.stringify(faqSchema)}
-			</Script>
+			<FaqSection />
+
 			<Script id="howto-schema" type="application/ld+json">
 				{JSON.stringify(howToSchema)}
 			</Script>
