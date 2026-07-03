@@ -1,8 +1,8 @@
 import React from "react";
 
 import type { Metadata } from "next";
-import Script from "next/script";
 
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import BreakpointIndicator from "@/components/breakpoint-indicator";
@@ -46,10 +46,8 @@ export const metadata: Metadata = {
 	},
 	manifest: "/manifest.json",
 	verification: {
-		google: [
-			"haQWE4Rdy3_xxnLrXv87QDJ-XgAUwlCJRVg3VDT0dF0",
-			"4jnLKLwAQxiAxdxZcSMWXA3NKw3f79_By4a_AlLNCPQ",
-		],
+		google: "haQWE4Rdy3_xxnLrXv87QDJ-XgAUwlCJRVg3VDT0dF0",
+		// "4jnLKLwAQxiAxdxZcSMWXA3NKw3f79_By4a_AlLNCPQ",
 	},
 	robots: {
 		index: true,
@@ -74,23 +72,6 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<head>
-				<Script
-					src="https://www.googletagmanager.com/gtag/js?id=G-N3D28GZSBM"
-					strategy="afterInteractive"
-				/>
-				<Script
-					id="google-analytics"
-					strategy="afterInteractive"
-				>
-					{`
-						window.dataLayer = window.dataLayer || [];
-						window.gtag = function(){window.dataLayer.push(arguments);}
-						window.gtag('js', new Date());
-						window.gtag('config', 'G-N3D28GZSBM');
-					`}
-				</Script>
-			</head>
 			<body
 				className={cn(
 					"relative antialiased",
@@ -103,6 +84,7 @@ export default function RootLayout({
 				</Providers>
 				<BreakpointIndicator />
 				<SanityLive />
+				<GoogleAnalytics gaId="G-N3D28GZSBM" />
 			</body>
 		</html>
 	);
