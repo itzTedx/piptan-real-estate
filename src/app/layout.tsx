@@ -86,8 +86,8 @@ export default function RootLayout({
 				</Providers>
 				<BreakpointIndicator />
 				<SanityLive />
+				<GoogleAnalytics gaId="G-N3D28GZSBM" />
 			</body>
-			<GoogleAnalytics gaId="G-N3D28GZSBM" />
 		</html>
 	);
 }
