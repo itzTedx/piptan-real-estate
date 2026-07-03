@@ -1,8 +1,8 @@
 import React from "react";
 
 import type { Metadata } from "next";
+import Script from "next/script";
 
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import BreakpointIndicator from "@/components/breakpoint-indicator";
@@ -74,6 +74,23 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
+			<head>
+				<Script
+					src="https://www.googletagmanager.com/gtag/js?id=G-N3D28GZSBM"
+					strategy="afterInteractive"
+				/>
+				<Script
+					id="google-analytics"
+					strategy="afterInteractive"
+				>
+					{`
+						window.dataLayer = window.dataLayer || [];
+						function gtag(){dataLayer.push(arguments);}
+						gtag('js', new Date());
+						gtag('config', 'G-N3D28GZSBM');
+					`}
+				</Script>
+			</head>
 			<body
 				className={cn(
 					"relative antialiased",
@@ -86,7 +103,6 @@ export default function RootLayout({
 				</Providers>
 				<BreakpointIndicator />
 				<SanityLive />
-				<GoogleAnalytics gaId="G-N3D28GZSBM" />
 			</body>
 		</html>
 	);
