@@ -3,7 +3,6 @@
 import React from "react";
 
 import { ProgressProvider } from "@bprogress/next/app";
-import { GoogleAnalytics } from "@next/third-parties/google";
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
 	return (
@@ -17,7 +16,6 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
 			>
 				{children}
 			</ProgressProvider>
-			<GoogleAnalytics gaId="G-N3D28GZSBM" />
 		</>
 	);
 };

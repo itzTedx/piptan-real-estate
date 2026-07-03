@@ -2,6 +2,7 @@ import React from "react";
 
 import type { Metadata } from "next";
 
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import BreakpointIndicator from "@/components/breakpoint-indicator";
@@ -46,8 +47,8 @@ export const metadata: Metadata = {
 	manifest: "/manifest.json",
 	verification: {
 		google: [
-			"4jnLKLwAQxiAxdxZcSMWXA3NKw3f79_By4a_AlLNCPQ",
 			"haQWE4Rdy3_xxnLrXv87QDJ-XgAUwlCJRVg3VDT0dF0",
+			"4jnLKLwAQxiAxdxZcSMWXA3NKw3f79_By4a_AlLNCPQ",
 		],
 	},
 	robots: {
@@ -86,6 +87,7 @@ export default function RootLayout({
 				<BreakpointIndicator />
 				<SanityLive />
 			</body>
+			<GoogleAnalytics gaId="G-N3D28GZSBM" />
 		</html>
 	);
 }
