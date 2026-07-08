@@ -14,37 +14,49 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		// Static pages
 		const staticPages = [
 			{
-				url: "https://www.piptan.ae/",
+				url: "https://piptan.ae/",
 				lastModified: new Date().toISOString(),
 				changeFrequency: "daily" as const,
 				priority: 1,
 			},
 			{
-				url: "https://www.piptan.ae/about",
+				url: "https://piptan.ae/about",
 				lastModified: new Date().toISOString(),
 				changeFrequency: "monthly" as const,
 				priority: 0.8,
 			},
 			{
-				url: "https://www.piptan.ae/portfolio",
+				url: "https://piptan.ae/portfolio",
 				lastModified: new Date().toISOString(),
 				changeFrequency: "daily" as const,
-				priority: 0.9,
+				priority: 0.8,
 			},
 			{
-				url: "https://www.piptan.ae/insights",
+				url: "https://piptan.ae/insights",
 				lastModified: new Date().toISOString(),
 				changeFrequency: "weekly" as const,
 				priority: 0.8,
 			},
 			{
-				url: "https://www.piptan.ae/contact",
+				url: "https://piptan.ae/contact",
 				lastModified: new Date().toISOString(),
 				changeFrequency: "monthly" as const,
-				priority: 0.7,
+				priority: 0.8,
 			},
 			{
-				url: "https://www.piptan.ae/services",
+				url: "https://piptan.ae/services",
+				lastModified: new Date().toISOString(),
+				changeFrequency: "monthly" as const,
+				priority: 0.8,
+			},
+			{
+				url: "https://piptan.ae/legal/terms-of-service",
+				lastModified: new Date().toISOString(),
+				changeFrequency: "monthly" as const,
+				priority: 0.8,
+			},
+			{
+				url: "https://piptan.ae/legal/privacy",
 				lastModified: new Date().toISOString(),
 				changeFrequency: "monthly" as const,
 				priority: 0.8,
@@ -55,7 +67,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		const projectPages = projects
 			.filter((project: { slug: string | null }) => project.slug)
 			.map((project: { slug: string | null }) => ({
-				url: `https://www.piptan.ae/portfolio/${project.slug}`,
+				url: `https://piptan.ae/portfolio/${project.slug}`,
 				lastModified: new Date().toISOString(),
 				changeFrequency: "weekly" as const,
 				priority: 0.8,
@@ -65,10 +77,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		const insightPages = insights
 			.filter((insight: { slug: string | null }) => insight.slug)
 			.map((insight: { slug: string | null; createdAt: string }) => ({
-				url: `https://www.piptan.ae/insights/${insight.slug}`,
+				url: `https://piptan.ae/insights/${insight.slug}`,
 				lastModified: new Date(insight.createdAt).toISOString(),
 				changeFrequency: "monthly" as const,
-				priority: 0.7,
+				priority: 0.8,
 			}));
 
 		return [...staticPages, ...projectPages, ...insightPages];
@@ -78,37 +90,49 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		// Fallback to static pages only
 		return [
 			{
-				url: "https://www.piptan.ae/",
+				url: "https://piptan.ae/",
 				lastModified: new Date().toISOString(),
 				changeFrequency: "daily" as const,
 				priority: 1,
 			},
 			{
-				url: "https://www.piptan.ae/about",
+				url: "https://piptan.ae/about",
 				lastModified: new Date().toISOString(),
 				changeFrequency: "monthly" as const,
 				priority: 0.8,
 			},
 			{
-				url: "https://www.piptan.ae/portfolio",
+				url: "https://piptan.ae/portfolio",
 				lastModified: new Date().toISOString(),
 				changeFrequency: "daily" as const,
-				priority: 0.9,
+				priority: 0.8,
 			},
 			{
-				url: "https://www.piptan.ae/insights",
+				url: "https://piptan.ae/insights",
 				lastModified: new Date().toISOString(),
 				changeFrequency: "weekly" as const,
 				priority: 0.8,
 			},
 			{
-				url: "https://www.piptan.ae/contact",
+				url: "https://piptan.ae/contact",
 				lastModified: new Date().toISOString(),
 				changeFrequency: "monthly" as const,
-				priority: 0.7,
+				priority: 0.8,
 			},
 			{
-				url: "https://www.piptan.ae/services",
+				url: "https://piptan.ae/services",
+				lastModified: new Date().toISOString(),
+				changeFrequency: "monthly" as const,
+				priority: 0.8,
+			},
+			{
+				url: "https://piptan.ae/legal/terms-of-service",
+				lastModified: new Date().toISOString(),
+				changeFrequency: "monthly" as const,
+				priority: 0.8,
+			},
+			{
+				url: "https://piptan.ae/legal/privacy",
 				lastModified: new Date().toISOString(),
 				changeFrequency: "monthly" as const,
 				priority: 0.8,
