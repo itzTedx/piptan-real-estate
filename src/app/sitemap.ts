@@ -1,13 +1,13 @@
 import { type MetadataRoute } from "next";
 
+import { getCategories } from "@/features/home/actions";
 import { getInsights } from "@/features/insights/actions/query";
-import { getProjects } from "@/features/projects/actions/projects-actions";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	try {
-		// Fetch all projects and insights using existing actions
-		const [projects, insights] = await Promise.all([
-			getProjects(),
+		// Fetch all categories and insights using existing actions
+		const [categories, insights] = await Promise.all([
+			getCategories(),
 			getInsights(),
 		]);
 
@@ -63,11 +63,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			},
 		];
 
-		// Project pages - use current date since _updatedAt is not available in PORTFOLIOS_QUERY
-		const projectPages = projects
-			.filter((project: { slug: string | null }) => project.slug)
-			.map((project: { slug: string | null }) => ({
-				url: `https://piptan.ae/portfolio/${project.slug}`,
+		// Category pages
+		const categoryPages = categories
+			.filter((category: { slug: string | null }) => category.slug)
+			.map((category: { slug: string | null }) => ({
+				url: `https://piptan.ae/portfolio/${category.slug}`,
 				lastModified: new Date().toISOString(),
 				changeFrequency: "weekly" as const,
 				priority: 0.8,
@@ -83,7 +83,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 				priority: 0.8,
 			}));
 
-		return [...staticPages, ...projectPages, ...insightPages];
+		return [...staticPages, ...categoryPages, ...insightPages];
 	} catch (error) {
 		console.error("Error generating sitemap:", error);
 
