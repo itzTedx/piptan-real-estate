@@ -165,6 +165,7 @@ export const SERVICES = [
 			"Expert guidance on real estate investments, market analysis, and ROI optimization strategies.",
 		image: "/images/investment.jpg",
 		alt: "Property investment planning in the Dubai real estate market.",
+		url: "/services/property-investment",
 	},
 	{
 		id: 2,
@@ -173,6 +174,7 @@ export const SERVICES = [
 			"Comprehensive property management services ensuring your investment is well-maintained and profitable.",
 		image: "/images/rental.jpg",
 		alt: "Modern rental apartment building managed by a property management service in Dubai.",
+		url: "/services/property-management-in-dubai",
 	},
 	{
 		id: 3,
@@ -189,6 +191,7 @@ export const SERVICES = [
 			"End-to-end legal assistance for property transactions, ensuring compliance with Dubai's real estate laws.",
 		image: "/images/commercial.jpg",
 		alt: "Commercial buildings in Dubai representing legal support for property transactions.",
+		url: "/services/legal-support",
 	},
 	{
 		id: 5,

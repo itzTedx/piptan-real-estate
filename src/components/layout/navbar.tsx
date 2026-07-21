@@ -1,3 +1,6 @@
+"use client";
+
+import type { Route } from "next";
 import Link from "next/link";
 
 import { ChevronDown, Menu } from "lucide-react";
@@ -68,9 +71,12 @@ export const Navbar = () => {
 													{SERVICES.map((service) => (
 														<Link
 															className="rounded-sm px-2 py-2 text-sm transition-colors hover:bg-accent hover:text-accent-foreground"
-															href={`/services#${service.title
-																.toLowerCase()
-																.replace(/\s+/g, "-")}`}
+															href={
+																(service.url as Route) ||
+																(`/services#${service.title
+																	.toLowerCase()
+																	.replace(/\s+/g, "-")}` as Route)
+															}
 															key={service.id}
 														>
 															<div className="font-medium">{service.title}</div>
