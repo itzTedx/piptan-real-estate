@@ -14,25 +14,28 @@ import { AnimatedButton } from "@/components/ui/animated-button";
 import { IconFaq } from "@/app/assets/icons";
 
 import {
-	advisoryCompanyData,
-	advisoryProcessData,
 	callToActionData,
 	faqs,
 	headerData,
 	introData,
-	propertyManagementData,
-	wealthManagementData,
-	whyInvestorsData,
+	investmentLogicData,
+	servicesCoverData,
+	servingInvestorsData,
+	strategicInvestmentData,
+	structuringPortfolioData,
+	trustedByBuyersData,
+	whyInvestmentSenseData,
 } from "./data";
 
 export const metadata: Metadata = {
-	title:
-		"Real Estate Investment Advisory Dubai | Dubai Property Investment | Piptan Capital",
+	title: "Relocation Services in Dubai for Investors and Families",
 	description:
-		"Piptan Capital is a Real Estate Investment Advisory firm helping investors build wealth through Dubai Property Investment, UAE Property Investment, capital appreciation, rental yield, and strategic portfolio diversification.",
+		"Move to Dubai with confidence through Piptan relocation services. Get expert property search, settling in support, and guidance for smart real estate decisions.",
+	keywords:
+		"Relocation Services Dubai, Investment Portfolio Diversification, Capital Appreciation, Rental Yield, Strategic Property Investment, Premium Investment Opportunities, Institutional & HNI Investments, Global Property Investors",
 };
 
-export default function PropertyManagementPage() {
+export default function RelocationServicesPage() {
 	return (
 		<main className="pt-8 sm:pt-12 md:pt-16 lg:pt-20">
 			<article className="container mx-auto max-w-4xl px-4 sm:px-6">
@@ -54,17 +57,19 @@ export default function PropertyManagementPage() {
 					</div>
 				</header>
 
+				{/* Main Image */}
 				<div className="relative mb-12 aspect-square overflow-hidden rounded-md md:aspect-16/6">
 					<Image
-						alt="Property Management in Dubai"
+						alt="Family relocating to Dubai receiving property guidance from a Piptan Investment advisor"
 						className="object-cover"
 						fill
-						src="/images/rental.jpg"
+						priority
+						src="/images/isolated-home.webp"
 					/>
 				</div>
 
 				{/* Introduction */}
-				<section className="mb-24 space-y-6 text-center lg:px-20">
+				<section className="mb-24 space-y-6 text-center lg:px-12">
 					{introData.map((paragraph) => (
 						<p
 							className="text-base text-foreground/90 leading-relaxed sm:text-lg"
@@ -75,118 +80,117 @@ export default function PropertyManagementPage() {
 					))}
 				</section>
 
-				{/* Advisory Company */}
-				<section className="mb-24 grid grid-cols-1 gap-12 lg:grid-cols-2">
+				{/* Why Relocation to Dubai Makes Investment Sense */}
+				<section className="mb-24 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
 					<div className="relative h-100 w-full overflow-hidden rounded-md lg:h-125">
 						<Image
-							alt="Advisory Company"
+							alt="Dubai relocation and real estate investment advisory"
 							className="object-cover"
 							fill
 							src="/images/residential-tower.webp"
 						/>
 					</div>
-					<div className="flex flex-col justify-center py-4 lg:py-12">
+					<div className="flex flex-col justify-center py-4">
 						<h2 className="mb-6 font-semibold text-2xl sm:text-3xl">
-							{advisoryCompanyData.title}
+							{whyInvestmentSenseData.title}
 						</h2>
 						<div className="space-y-4 text-base text-foreground/90 leading-relaxed sm:text-lg">
-							{advisoryCompanyData.paragraphs.map((p) => (
+							{whyInvestmentSenseData.paragraphs.map((p) => (
 								<p key={p}>{p}</p>
 							))}
-							<ul className="list-disc space-y-2 pl-6">
-								{advisoryCompanyData.list.map((item) => (
-									<li key={item}>{item}</li>
-								))}
-							</ul>
-							<p className="pt-2">{advisoryCompanyData.conclusion}</p>
 						</div>
 					</div>
 				</section>
 
-				{/* Property Management Features */}
-				<section className="mb-24">
-					<div className="mb-8 flex flex-col justify-center">
-						<h2 className="mb-6 text-center font-semibold text-2xl sm:text-3xl">
-							{propertyManagementData.title}
+				{/* A Relocation Plan Built on Investment Logic */}
+				<section className="mb-24 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
+					<div className="flex flex-col justify-center py-4">
+						<h2 className="mb-6 font-semibold text-2xl sm:text-3xl">
+							{investmentLogicData.title}
 						</h2>
-						<p className="mx-auto mb-8 max-w-3xl text-center text-base text-foreground/90 leading-relaxed sm:text-lg">
-							{propertyManagementData.description}
-						</p>
-						<div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
-							{propertyManagementData.features.map((feature) => (
-								<div className="rounded-xl bg-muted p-6" key={feature.title}>
-									<h4 className="mb-2 font-semibold text-xl">
-										{feature.title}
-									</h4>
-									<p className="text-base text-foreground/90 leading-relaxed sm:text-lg">
-										{feature.description}
-									</p>
-								</div>
+						<div className="space-y-4 text-base text-foreground/90 leading-relaxed sm:text-lg">
+							{investmentLogicData.paragraphs.map((p) => (
+								<p key={p}>{p}</p>
 							))}
 						</div>
 					</div>
-					<div className="relative mt-12 aspect-video w-full overflow-hidden rounded-xl lg:aspect-21/9">
-						<Image
-							alt="Property Management"
-							className="object-cover"
-							fill
-							src="/images/commercial.jpg"
-						/>
-					</div>
-				</section>
-
-				{/* Why Investors Choose Piptan */}
-				<section className="mb-24 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
 					<div className="relative h-100 w-full overflow-hidden rounded-md lg:h-125">
 						<Image
-							alt="Investment"
+							alt="Investment logic and Golden Visa relocation support in Dubai"
 							className="object-cover"
 							fill
 							src="/images/investment.jpg"
 						/>
 					</div>
+				</section>
+
+				{/* Serving Individual Investors and Institutional Capital */}
+				<section className="mb-24 space-y-6 text-center lg:px-12">
+					<h2 className="font-semibold text-2xl sm:text-3xl">
+						{servingInvestorsData.title}
+					</h2>
+					{servingInvestorsData.paragraphs.map((p) => (
+						<p
+							className="text-base text-foreground/90 leading-relaxed sm:text-lg"
+							key={p}
+						>
+							{p}
+						</p>
+					))}
+				</section>
+
+				{/* Our Relocation Services Cover */}
+				<section className="mb-24 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
+					<div className="relative h-100 w-full overflow-hidden rounded-md lg:h-125">
+						<Image
+							alt="Comprehensive relocation and property search coverage in Dubai"
+							className="object-cover"
+							fill
+							src="/images/commercial.jpg"
+						/>
+					</div>
 					<div className="flex flex-col justify-center py-4">
 						<h2 className="mb-6 font-semibold text-2xl sm:text-3xl">
-							{whyInvestorsData.title}
+							{servicesCoverData.title}
 						</h2>
 						<div className="space-y-4 text-base text-foreground/90 leading-relaxed sm:text-lg">
-							{whyInvestorsData.paragraphs.map((p) => (
+							{servicesCoverData.paragraphs.map((p) => (
 								<p key={p}>{p}</p>
 							))}
-							<ul className="grid list-disc grid-cols-1 gap-2 pl-6 sm:grid-cols-2">
-								{whyInvestorsData.list.map((item) => (
-									<li key={item}>{item}</li>
-								))}
-							</ul>
 						</div>
 					</div>
 				</section>
 
-				{/* Wealth Management */}
+				{/* Beyond the Move, Structuring Your Property Portfolio */}
+				<section className="mb-24 space-y-6 text-center lg:px-12">
+					<h2 className="font-semibold text-2xl sm:text-3xl">
+						{structuringPortfolioData.title}
+					</h2>
+					{structuringPortfolioData.paragraphs.map((p) => (
+						<p
+							className="text-base text-foreground/90 leading-relaxed sm:text-lg"
+							key={p}
+						>
+							{p}
+						</p>
+					))}
+				</section>
+
+				{/* When Relocation Turns Into Strategic Property Investment */}
 				<section className="mb-24 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
-					<div className="order-first flex flex-col justify-center py-4 lg:order-last">
+					<div className="flex flex-col justify-center py-4">
 						<h2 className="mb-6 font-semibold text-2xl sm:text-3xl">
-							{wealthManagementData.title}
+							{strategicInvestmentData.title}
 						</h2>
 						<div className="space-y-4 text-base text-foreground/90 leading-relaxed sm:text-lg">
-							{wealthManagementData.paragraphs.map((p) => (
+							{strategicInvestmentData.paragraphs.map((p) => (
 								<p key={p}>{p}</p>
-							))}
-							<ul className="list-disc space-y-1 pl-6">
-								{wealthManagementData.list.map((item) => (
-									<li key={item}>{item}</li>
-								))}
-							</ul>
-							{wealthManagementData.conclusionParagraphs.map((p, idx) => (
-								<p className={idx === 0 ? "pt-2" : ""} key={p}>
-									{p}
-								</p>
 							))}
 						</div>
 					</div>
 					<div className="relative h-100 w-full overflow-hidden rounded-md lg:h-125">
 						<Image
-							alt="Wealth Management"
+							alt="Luxury real estate investment and rental yield optimization"
 							className="object-cover"
 							fill
 							src="/images/luxury.jpg"
@@ -194,36 +198,26 @@ export default function PropertyManagementPage() {
 					</div>
 				</section>
 
-				{/* Advisory Process */}
-				<section className="mb-24 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
-					<div className="relative h-100 w-full overflow-hidden rounded-md lg:h-125">
-						<Image
-							alt="Advisory Process"
-							className="object-cover"
-							fill
-							src="/images/dubai-night.jpg"
-						/>
-					</div>
-					<div className="flex flex-col justify-center py-4">
-						<h2 className="mb-6 font-semibold text-2xl sm:text-3xl">
-							{advisoryProcessData.title}
-						</h2>
-						<div className="space-y-6 text-base text-foreground/90 leading-relaxed sm:text-lg">
-							{advisoryProcessData.steps.map((step) => (
-								<div key={step.title}>
-									<h4 className="mb-1 font-semibold text-xl">{step.title}</h4>
-									<p>{step.description}</p>
-								</div>
-							))}
-						</div>
-					</div>
+				{/* Trusted by Buyers and Global Property Investors Alike */}
+				<section className="mb-24 space-y-6 text-center lg:px-12">
+					<h3 className="font-semibold text-2xl sm:text-3xl">
+						{trustedByBuyersData.title}
+					</h3>
+					{trustedByBuyersData.paragraphs.map((p) => (
+						<p
+							className="text-base text-foreground/90 leading-relaxed sm:text-lg"
+							key={p}
+						>
+							{p}
+						</p>
+					))}
 				</section>
 
 				{/* Call to Action */}
 				<section className="mb-16 rounded-xl bg-muted p-8 text-center sm:p-12">
-					<h2 className="mb-6 font-semibold text-2xl sm:text-3xl">
+					<h3 className="mb-6 font-semibold text-2xl sm:text-3xl">
 						{callToActionData.title}
-					</h2>
+					</h3>
 					<div className="mx-auto max-w-2xl space-y-4 text-base text-foreground/90 leading-relaxed sm:text-lg">
 						{callToActionData.paragraphs.map((p) => (
 							<p key={p}>{p}</p>
@@ -231,6 +225,7 @@ export default function PropertyManagementPage() {
 						<div className="pt-6">
 							<AnimatedButton
 								href={callToActionData.cta.href}
+								size="lg"
 								text={callToActionData.cta.text}
 								variant="primary"
 							/>
@@ -239,7 +234,7 @@ export default function PropertyManagementPage() {
 				</section>
 			</article>
 
-			{/* FAQs Section matching design from home page */}
+			{/* FAQs Section */}
 			<section className="border-t bg-muted">
 				<div className="mx-auto grid grid-cols-1 gap-6 md:container lg:grid-cols-4 lg:gap-0">
 					<aside className="flex flex-col justify-start px-6 py-8 lg:py-12 lg:pr-12">
@@ -248,9 +243,9 @@ export default function PropertyManagementPage() {
 								<IconFaq className="size-4" />
 								FAQs
 							</p>
-							<h2 className="text-3xl sm:text-4xl lg:text-5xl">
+							<h3 className="text-3xl sm:text-4xl lg:text-5xl">
 								Frequently Asked Questions
-							</h2>
+							</h3>
 						</div>
 					</aside>
 					<div className="h-full border-x bg-background px-4 sm:px-6 lg:col-span-3 lg:px-9">
@@ -270,9 +265,9 @@ export default function PropertyManagementPage() {
 												<span className="text-muted-foreground text-sm sm:text-base">
 													0{id + 1}
 												</span>
-												<h3 className="pl-0.5 text-lg sm:text-xl lg:text-2xl">
+												<h4 className="pl-0.5 font-medium text-lg sm:text-xl lg:text-2xl">
 													{question}
-												</h3>
+												</h4>
 											</div>
 											<ChevronDown className="size-4 shrink-0 transition-transform duration-200 group-data-expanded:-rotate-180" />
 										</div>

@@ -28,7 +28,8 @@ export const metadata: Metadata = {
 	title: "Dubai Property Investment Advisor | Piptan Capital",
 	description:
 		"Piptan Capital is a specialist Dubai Investment Advisor guiding luxury real estate investment in Dubai and UAE property investment decisions with data-driven.",
-	keywords: "Dubai Investment Advisor, UAE Investment Advisor, Luxury Real Estate Investment Dubai, Dubai Property Investment, UAE Property Investment, Piptan Capital, real estate advisory UAE",
+	keywords:
+		"Dubai Investment Advisor, UAE Investment Advisor, Luxury Real Estate Investment Dubai, Dubai Property Investment, UAE Property Investment, Piptan Capital, real estate advisory UAE",
 };
 
 export default function PropertyInvestmentPage() {
@@ -62,7 +63,6 @@ export default function PropertyInvestmentPage() {
 					/>
 				</div>
 
-
 				{/* Introduction */}
 				<section className="mb-24 space-y-6 text-center lg:px-20">
 					{introData.map((paragraph) => (
@@ -77,7 +77,7 @@ export default function PropertyInvestmentPage() {
 
 				{/* Trusted Advisor */}
 				<section className="mb-24 grid grid-cols-1 gap-12 lg:grid-cols-2">
-					<div className="relative h-[400px] w-full overflow-hidden rounded-md lg:sticky lg:top-24 lg:h-[600px]">
+					<div className="relative h-100 w-full overflow-hidden rounded-md lg:h-125">
 						<Image
 							alt="Trusted Advisor"
 							className="object-cover"
@@ -115,7 +115,7 @@ export default function PropertyInvestmentPage() {
 							))}
 						</div>
 					</div>
-					<div className="relative h-[400px] w-full overflow-hidden rounded-md lg:h-[500px]">
+					<div className="relative h-100 w-full overflow-hidden rounded-md lg:h-125">
 						<Image
 							alt="Luxury Real Estate"
 							className="object-cover"
@@ -137,7 +137,7 @@ export default function PropertyInvestmentPage() {
 							))}
 						</div>
 					</div>
-					<div className="relative mt-12 aspect-[16/9] w-full overflow-hidden rounded-xl lg:aspect-[21/9]">
+					<div className="relative mt-12 aspect-video w-full overflow-hidden rounded-xl lg:aspect-21/9">
 						<Image
 							alt="Why Investors Choose Piptan"
 							className="object-cover"
@@ -149,7 +149,7 @@ export default function PropertyInvestmentPage() {
 
 				{/* What Sets Us Apart */}
 				<section className="mb-24 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
-					<div className="relative h-[400px] w-full overflow-hidden rounded-md lg:h-[500px]">
+					<div className="relative h-100 w-full overflow-hidden rounded-md lg:h-125">
 						<Image
 							alt="What Sets Us Apart"
 							className="object-cover"

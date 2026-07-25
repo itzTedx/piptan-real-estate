@@ -72,7 +72,7 @@ export default function LegalSupportPage() {
 
 				{/* Comprehensive Legal Advisory */}
 				<section className="mb-24 grid grid-cols-1 gap-12 lg:grid-cols-2">
-					<div className="relative h-[400px] w-full overflow-hidden rounded-md lg:sticky lg:top-24 lg:h-[600px]">
+					<div className="relative h-100 w-full overflow-hidden rounded-md lg:h-125">
 						<Image
 							alt="Legal Advisory"
 							className="object-cover"
@@ -104,7 +104,7 @@ export default function LegalSupportPage() {
 							))}
 						</div>
 					</div>
-					<div className="relative mt-12 aspect-[16/9] w-full overflow-hidden rounded-xl lg:aspect-[21/9]">
+					<div className="relative mt-12 aspect-video w-full overflow-hidden rounded-xl lg:aspect-21/9">
 						<Image
 							alt="Legal Guidance"
 							className="object-cover"
@@ -116,7 +116,7 @@ export default function LegalSupportPage() {
 
 				{/* End-to-End Legal Support */}
 				<section className="mb-24 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
-					<div className="relative h-[400px] w-full overflow-hidden rounded-md lg:h-[500px]">
+					<div className="relative h-100 w-full overflow-hidden rounded-md lg:h-125">
 						<Image
 							alt="End-to-End Support"
 							className="object-cover"
@@ -148,7 +148,7 @@ export default function LegalSupportPage() {
 							))}
 						</div>
 					</div>
-					<div className="relative h-[400px] w-full overflow-hidden rounded-md lg:h-[500px]">
+					<div className="relative h-100 w-full overflow-hidden rounded-md lg:h-125">
 						<Image
 							alt="Global Expertise"
 							className="object-cover"
@@ -160,7 +160,7 @@ export default function LegalSupportPage() {
 
 				{/* Legal Support Tailored */}
 				<section className="mb-24 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
-					<div className="relative h-[400px] w-full overflow-hidden rounded-md lg:h-[500px]">
+					<div className="relative h-100 w-full overflow-hidden rounded-md lg:h-125">
 						<Image
 							alt="Tailored Support"
 							className="object-cover"

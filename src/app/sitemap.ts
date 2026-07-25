@@ -50,6 +50,36 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 				priority: 0.8,
 			},
 			{
+				url: "https://piptan.ae/services/property-investment",
+				lastModified: new Date().toISOString(),
+				changeFrequency: "monthly" as const,
+				priority: 0.8,
+			},
+			{
+				url: "https://piptan.ae/services/property-management-in-dubai",
+				lastModified: new Date().toISOString(),
+				changeFrequency: "monthly" as const,
+				priority: 0.8,
+			},
+			{
+				url: "https://piptan.ae/services/legal-support",
+				lastModified: new Date().toISOString(),
+				changeFrequency: "monthly" as const,
+				priority: 0.8,
+			},
+			{
+				url: "https://piptan.ae/services/property-valuation",
+				lastModified: new Date().toISOString(),
+				changeFrequency: "monthly" as const,
+				priority: 0.8,
+			},
+			{
+				url: "https://piptan.ae/services/relocation-services",
+				lastModified: new Date().toISOString(),
+				changeFrequency: "monthly" as const,
+				priority: 0.8,
+			},
+			{
 				url: "https://piptan.ae/legal/terms-of-service",
 				lastModified: new Date().toISOString(),
 				changeFrequency: "monthly" as const,
@@ -121,6 +151,36 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			},
 			{
 				url: "https://piptan.ae/services",
+				lastModified: new Date().toISOString(),
+				changeFrequency: "monthly" as const,
+				priority: 0.8,
+			},
+			{
+				url: "https://piptan.ae/services/property-investment",
+				lastModified: new Date().toISOString(),
+				changeFrequency: "monthly" as const,
+				priority: 0.8,
+			},
+			{
+				url: "https://piptan.ae/services/property-management-in-dubai",
+				lastModified: new Date().toISOString(),
+				changeFrequency: "monthly" as const,
+				priority: 0.8,
+			},
+			{
+				url: "https://piptan.ae/services/legal-support",
+				lastModified: new Date().toISOString(),
+				changeFrequency: "monthly" as const,
+				priority: 0.8,
+			},
+			{
+				url: "https://piptan.ae/services/property-valuation",
+				lastModified: new Date().toISOString(),
+				changeFrequency: "monthly" as const,
+				priority: 0.8,
+			},
+			{
+				url: "https://piptan.ae/services/relocation-services",
 				lastModified: new Date().toISOString(),
 				changeFrequency: "monthly" as const,
 				priority: 0.8,

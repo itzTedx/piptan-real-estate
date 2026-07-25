@@ -199,7 +199,8 @@ export const SERVICES = [
 		description:
 			"Smooth transition support for individuals and families moving to Dubai, from property search to settling in.",
 		image: "/images/isolated-home.webp",
-		alt: "Home illustration symbolizing relocation services for moving to Dubai.",
+		alt: "Family relocating to Dubai receiving property guidance from a Piptan Investment advisor",
+		url: "/services/relocation-services",
 	},
 	{
 		id: 6,
@@ -207,7 +208,8 @@ export const SERVICES = [
 		description:
 			"Professional property valuation services using market data and advanced analytics for accurate pricing.",
 		image: "/images/residential-tower.webp",
-		alt: "High-rise residential towers in Dubai representing professional property valuation.",
+		alt: "Dubai skyline representing professional property valuation for real estate investment advisory",
+		url: "/services/property-valuation",
 	},
 ];
 

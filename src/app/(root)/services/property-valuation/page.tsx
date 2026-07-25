@@ -14,25 +14,29 @@ import { AnimatedButton } from "@/components/ui/animated-button";
 import { IconFaq } from "@/app/assets/icons";
 
 import {
-	advisoryCompanyData,
-	advisoryProcessData,
 	callToActionData,
+	ctaQuote,
+	dataDrivenData,
 	faqs,
+	globalStandardsData,
 	headerData,
 	introData,
-	propertyManagementData,
-	wealthManagementData,
-	whyInvestorsData,
+	smarterPortfolioData,
+	strategicAcquisitionData,
+	valuationProcessData,
+	whoReliesData,
+	whyShapesData,
 } from "./data";
 
 export const metadata: Metadata = {
-	title:
-		"Real Estate Investment Advisory Dubai | Dubai Property Investment | Piptan Capital",
+	title: "Property Valuation Services in Dubai | Piptan Capital",
 	description:
-		"Piptan Capital is a Real Estate Investment Advisory firm helping investors build wealth through Dubai Property Investment, UAE Property Investment, capital appreciation, rental yield, and strategic portfolio diversification.",
+		"Get accurate property valuation backed by real market data. Piptan Capital delivers trusted Real Estate Investment Advisory for Dubai and UAE Property Investment.",
+	keywords:
+		"Dubai Property Investment, UAE Property Investment, Real Estate Investment Advisory, Investment Consultancy Dubai, High ROI Property Investment, Investment Portfolio Diversification, Property Valuation Dubai",
 };
 
-export default function PropertyManagementPage() {
+export default function PropertyValuationPage() {
 	return (
 		<main className="pt-8 sm:pt-12 md:pt-16 lg:pt-20">
 			<article className="container mx-auto max-w-4xl px-4 sm:px-6">
@@ -54,12 +58,14 @@ export default function PropertyManagementPage() {
 					</div>
 				</header>
 
+				{/* Main Image */}
 				<div className="relative mb-12 aspect-square overflow-hidden rounded-md md:aspect-16/6">
 					<Image
-						alt="Property Management in Dubai"
+						alt="Dubai skyline representing professional property valuation for real estate investment advisory"
 						className="object-cover"
 						fill
-						src="/images/rental.jpg"
+						priority
+						src="/images/residential-tower-wide.webp"
 					/>
 				</div>
 
@@ -75,71 +81,11 @@ export default function PropertyManagementPage() {
 					))}
 				</section>
 
-				{/* Advisory Company */}
-				<section className="mb-24 grid grid-cols-1 gap-12 lg:grid-cols-2">
-					<div className="relative h-100 w-full overflow-hidden rounded-md lg:h-125">
-						<Image
-							alt="Advisory Company"
-							className="object-cover"
-							fill
-							src="/images/residential-tower.webp"
-						/>
-					</div>
-					<div className="flex flex-col justify-center py-4 lg:py-12">
-						<h2 className="mb-6 font-semibold text-2xl sm:text-3xl">
-							{advisoryCompanyData.title}
-						</h2>
-						<div className="space-y-4 text-base text-foreground/90 leading-relaxed sm:text-lg">
-							{advisoryCompanyData.paragraphs.map((p) => (
-								<p key={p}>{p}</p>
-							))}
-							<ul className="list-disc space-y-2 pl-6">
-								{advisoryCompanyData.list.map((item) => (
-									<li key={item}>{item}</li>
-								))}
-							</ul>
-							<p className="pt-2">{advisoryCompanyData.conclusion}</p>
-						</div>
-					</div>
-				</section>
-
-				{/* Property Management Features */}
-				<section className="mb-24">
-					<div className="mb-8 flex flex-col justify-center">
-						<h2 className="mb-6 text-center font-semibold text-2xl sm:text-3xl">
-							{propertyManagementData.title}
-						</h2>
-						<p className="mx-auto mb-8 max-w-3xl text-center text-base text-foreground/90 leading-relaxed sm:text-lg">
-							{propertyManagementData.description}
-						</p>
-						<div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
-							{propertyManagementData.features.map((feature) => (
-								<div className="rounded-xl bg-muted p-6" key={feature.title}>
-									<h4 className="mb-2 font-semibold text-xl">
-										{feature.title}
-									</h4>
-									<p className="text-base text-foreground/90 leading-relaxed sm:text-lg">
-										{feature.description}
-									</p>
-								</div>
-							))}
-						</div>
-					</div>
-					<div className="relative mt-12 aspect-video w-full overflow-hidden rounded-xl lg:aspect-21/9">
-						<Image
-							alt="Property Management"
-							className="object-cover"
-							fill
-							src="/images/commercial.jpg"
-						/>
-					</div>
-				</section>
-
-				{/* Why Investors Choose Piptan */}
+				{/* Why Property Valuation Shapes Every Investment Decision */}
 				<section className="mb-24 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
 					<div className="relative h-100 w-full overflow-hidden rounded-md lg:h-125">
 						<Image
-							alt="Investment"
+							alt="Dubai property investment analysis and valuation"
 							className="object-cover"
 							fill
 							src="/images/investment.jpg"
@@ -147,46 +93,53 @@ export default function PropertyManagementPage() {
 					</div>
 					<div className="flex flex-col justify-center py-4">
 						<h2 className="mb-6 font-semibold text-2xl sm:text-3xl">
-							{whyInvestorsData.title}
+							{whyShapesData.title}
 						</h2>
 						<div className="space-y-4 text-base text-foreground/90 leading-relaxed sm:text-lg">
-							{whyInvestorsData.paragraphs.map((p) => (
+							{whyShapesData.paragraphs.map((p) => (
 								<p key={p}>{p}</p>
 							))}
-							<ul className="grid list-disc grid-cols-1 gap-2 pl-6 sm:grid-cols-2">
-								{whyInvestorsData.list.map((item) => (
-									<li key={item}>{item}</li>
-								))}
-							</ul>
 						</div>
 					</div>
 				</section>
 
-				{/* Wealth Management */}
+				{/* A Data Driven Approach to Valuation */}
+				<section className="mb-20 space-y-6 text-center lg:px-12">
+					<h2 className="font-semibold text-2xl sm:text-3xl">
+						{dataDrivenData.title}
+					</h2>
+					{dataDrivenData.paragraphs.map((p) => (
+						<p
+							className="text-base text-foreground/90 leading-relaxed sm:text-lg"
+							key={p}
+						>
+							{p}
+						</p>
+					))}
+				</section>
+
+				{/* CTA Quote Callout */}
+				<section className="mb-24 rounded-2xl bg-linear-to-r from-primary/10 via-primary/5 to-primary/10 p-8 text-center sm:p-12">
+					<blockquote className="font-bold text-2xl text-primary sm:text-3xl lg:text-4xl">
+						&ldquo;{ctaQuote}&rdquo;
+					</blockquote>
+				</section>
+
+				{/* Valuation That Supports Smarter Portfolio Decisions */}
 				<section className="mb-24 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
-					<div className="order-first flex flex-col justify-center py-4 lg:order-last">
+					<div className="flex flex-col justify-center py-4">
 						<h2 className="mb-6 font-semibold text-2xl sm:text-3xl">
-							{wealthManagementData.title}
+							{smarterPortfolioData.title}
 						</h2>
 						<div className="space-y-4 text-base text-foreground/90 leading-relaxed sm:text-lg">
-							{wealthManagementData.paragraphs.map((p) => (
+							{smarterPortfolioData.paragraphs.map((p) => (
 								<p key={p}>{p}</p>
-							))}
-							<ul className="list-disc space-y-1 pl-6">
-								{wealthManagementData.list.map((item) => (
-									<li key={item}>{item}</li>
-								))}
-							</ul>
-							{wealthManagementData.conclusionParagraphs.map((p, idx) => (
-								<p className={idx === 0 ? "pt-2" : ""} key={p}>
-									{p}
-								</p>
 							))}
 						</div>
 					</div>
 					<div className="relative h-100 w-full overflow-hidden rounded-md lg:h-125">
 						<Image
-							alt="Wealth Management"
+							alt="High ROI property investment and portfolio diversification"
 							className="object-cover"
 							fill
 							src="/images/luxury.jpg"
@@ -194,52 +147,99 @@ export default function PropertyManagementPage() {
 					</div>
 				</section>
 
-				{/* Advisory Process */}
+				{/* Who Relies on Piptan Capital's Valuation Service? */}
+				<section className="mb-24 space-y-6 text-center lg:px-12">
+					<h2 className="font-semibold text-2xl sm:text-3xl">
+						{whoReliesData.title}
+					</h2>
+					{whoReliesData.paragraphs.map((p) => (
+						<p
+							className="text-base text-foreground/90 leading-relaxed sm:text-lg"
+							key={p}
+						>
+							{p}
+						</p>
+					))}
+				</section>
+
+				{/* Precision Backed by Global Standards */}
 				<section className="mb-24 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
 					<div className="relative h-100 w-full overflow-hidden rounded-md lg:h-125">
 						<Image
-							alt="Advisory Process"
+							alt="Real estate valuation structured for due diligence and RERA guidelines"
 							className="object-cover"
 							fill
-							src="/images/dubai-night.jpg"
+							src="/images/commercial.jpg"
 						/>
 					</div>
 					<div className="flex flex-col justify-center py-4">
 						<h2 className="mb-6 font-semibold text-2xl sm:text-3xl">
-							{advisoryProcessData.title}
+							{globalStandardsData.title}
 						</h2>
-						<div className="space-y-6 text-base text-foreground/90 leading-relaxed sm:text-lg">
-							{advisoryProcessData.steps.map((step) => (
-								<div key={step.title}>
-									<h4 className="mb-1 font-semibold text-xl">{step.title}</h4>
-									<p>{step.description}</p>
-								</div>
+						<div className="space-y-4 text-base text-foreground/90 leading-relaxed sm:text-lg">
+							{globalStandardsData.paragraphs.map((p) => (
+								<p key={p}>{p}</p>
 							))}
 						</div>
 					</div>
 				</section>
 
+				{/* Our Valuation Process & Strategic Acquisition */}
+				<section className="mb-24 space-y-12">
+					<div className="space-y-6 text-center lg:px-12">
+						<h2 className="font-semibold text-2xl sm:text-3xl">
+							{valuationProcessData.title}
+						</h2>
+						{valuationProcessData.paragraphs.map((p) => (
+							<p
+								className="text-base text-foreground/90 leading-relaxed sm:text-lg"
+								key={p}
+							>
+								{p}
+							</p>
+						))}
+					</div>
+
+					<div className="space-y-6 text-center lg:px-12">
+						<h2 className="font-semibold text-2xl sm:text-3xl">
+							{strategicAcquisitionData.title}
+						</h2>
+						{strategicAcquisitionData.paragraphs.map((p) => (
+							<p
+								className="text-base text-foreground/90 leading-relaxed sm:text-lg"
+								key={p}
+							>
+								{p}
+							</p>
+						))}
+					</div>
+				</section>
+
 				{/* Call to Action */}
 				<section className="mb-16 rounded-xl bg-muted p-8 text-center sm:p-12">
-					<h2 className="mb-6 font-semibold text-2xl sm:text-3xl">
+					<h3 className="mb-6 font-semibold text-2xl sm:text-3xl">
 						{callToActionData.title}
-					</h2>
+					</h3>
 					<div className="mx-auto max-w-2xl space-y-4 text-base text-foreground/90 leading-relaxed sm:text-lg">
 						{callToActionData.paragraphs.map((p) => (
 							<p key={p}>{p}</p>
 						))}
-						<div className="pt-6">
-							<AnimatedButton
-								href={callToActionData.cta.href}
-								text={callToActionData.cta.text}
-								variant="primary"
-							/>
+						<div className="flex flex-wrap items-center justify-center gap-4 pt-6">
+							{callToActionData.ctaButtons.map((btn) => (
+								<AnimatedButton
+									href={btn.href}
+									key={btn.text}
+									size="lg"
+									text={btn.text}
+									variant="primary"
+								/>
+							))}
 						</div>
 					</div>
 				</section>
 			</article>
 
-			{/* FAQs Section matching design from home page */}
+			{/* FAQs Section */}
 			<section className="border-t bg-muted">
 				<div className="mx-auto grid grid-cols-1 gap-6 md:container lg:grid-cols-4 lg:gap-0">
 					<aside className="flex flex-col justify-start px-6 py-8 lg:py-12 lg:pr-12">
@@ -248,9 +248,9 @@ export default function PropertyManagementPage() {
 								<IconFaq className="size-4" />
 								FAQs
 							</p>
-							<h2 className="text-3xl sm:text-4xl lg:text-5xl">
+							<h3 className="text-3xl sm:text-4xl lg:text-5xl">
 								Frequently Asked Questions
-							</h2>
+							</h3>
 						</div>
 					</aside>
 					<div className="h-full border-x bg-background px-4 sm:px-6 lg:col-span-3 lg:px-9">
@@ -270,9 +270,9 @@ export default function PropertyManagementPage() {
 												<span className="text-muted-foreground text-sm sm:text-base">
 													0{id + 1}
 												</span>
-												<h3 className="pl-0.5 text-lg sm:text-xl lg:text-2xl">
+												<h4 className="pl-0.5 font-medium text-lg sm:text-xl lg:text-2xl">
 													{question}
-												</h3>
+												</h4>
 											</div>
 											<ChevronDown className="size-4 shrink-0 transition-transform duration-200 group-data-expanded:-rotate-180" />
 										</div>
