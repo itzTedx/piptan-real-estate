@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Script from "next/script";
 
 import { AnimatedButton } from "@/components/ui/animated-button";
@@ -5,6 +6,15 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
 
 import { AboutHeroVideo } from "@/features/about/components/video";
+
+export const metadata: Metadata = {
+	title: "About Us | Piptan Investment UAE",
+	description:
+		"Learn about Piptan Capital, a specialist investment advisor guiding luxury real estate decisions in Dubai and the UAE.",
+	alternates: {
+		canonical: "https://www.piptan.ae/about",
+	},
+};
 
 // Enable caching with revalidation every 30 minutes (mostly static content)
 export const revalidate = 1800;

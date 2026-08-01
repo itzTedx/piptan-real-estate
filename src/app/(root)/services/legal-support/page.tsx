@@ -31,6 +31,9 @@ export const metadata: Metadata = {
 		"Piptan Capital offers specialized legal support for property investors in Dubai and the UAE. Work with a trusted Dubai Investment Advisor for security.",
 	keywords:
 		"Dubai Investment Advisor, Legal Investment Advisor, UAE Investment Advisor, Investment Consultancy Dubai, real estate legal support Dubai, property investment advisory UAE",
+	alternates: {
+		canonical: "https://www.piptan.ae/services/legal-support",
+	},
 };
 
 export default function LegalSupportPage() {

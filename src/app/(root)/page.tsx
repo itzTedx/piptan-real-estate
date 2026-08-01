@@ -74,7 +74,7 @@ export const metadata: Metadata = {
 	},
 
 	alternates: {
-		canonical: "https://www.piptan.ae",
+		canonical: "https://www.piptan.ae/",
 	},
 	metadataBase: new URL("https://www.piptan.ae"),
 };

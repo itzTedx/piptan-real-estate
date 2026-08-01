@@ -9,6 +9,9 @@ export const metadata: Metadata = {
 	title: "Privacy Policy",
 	description:
 		"Privacy Policy for Piptan Capital L.L.C - Real Estate Investment Services in Dubai, UAE",
+	alternates: {
+		canonical: "https://www.piptan.ae/legal/privacy",
+	},
 };
 
 export default function PrivacyPolicyPage() {

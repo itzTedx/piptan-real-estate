@@ -35,6 +35,9 @@ export const metadata: Metadata = {
 		"Get accurate property valuation backed by real market data. Piptan Capital delivers trusted Real Estate Investment Advisory for Dubai and UAE Property Investment.",
 	keywords:
 		"Dubai Property Investment, UAE Property Investment, Real Estate Investment Advisory, Investment Consultancy Dubai, High ROI Property Investment, Investment Portfolio Diversification, Property Valuation Dubai",
+	alternates: {
+		canonical: "https://www.piptan.ae/services/property-valuation",
+	},
 };
 
 export default function PropertyValuationPage() {

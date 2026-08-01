@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 
@@ -6,6 +7,15 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { CONTACT } from "@/constants";
 import { ContactForm } from "@/features/forms/contact-form/form";
 import { FaqSection } from "@/features/home/section/faq";
+
+export const metadata: Metadata = {
+	title: "Contact Us | Piptan Investment UAE",
+	description:
+		"Get in touch with Piptan Capital's luxury real estate and property investment advisors in Dubai.",
+	alternates: {
+		canonical: "https://www.piptan.ae/contact",
+	},
+};
 
 export default function ContactPage() {
 	const contactPageSchema = {

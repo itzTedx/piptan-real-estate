@@ -31,6 +31,9 @@ export const metadata: Metadata = {
 		"Piptan Capital is a specialist Dubai Investment Advisor guiding luxury real estate investment in Dubai and UAE property investment decisions with data-driven.",
 	keywords:
 		"Dubai Investment Advisor, UAE Investment Advisor, Luxury Real Estate Investment Dubai, Dubai Property Investment, UAE Property Investment, Piptan Capital, real estate advisory UAE",
+	alternates: {
+		canonical: "https://www.piptan.ae/services/property-investment",
+	},
 };
 
 export default function PropertyInvestmentPage() {

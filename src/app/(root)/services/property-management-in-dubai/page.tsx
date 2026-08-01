@@ -31,6 +31,9 @@ export const metadata: Metadata = {
 		"Real Estate Investment Advisory Dubai | Dubai Property Investment | Piptan Capital",
 	description:
 		"Piptan Capital is a Real Estate Investment Advisory firm helping investors build wealth through Dubai Property Investment, UAE Property Investment, capital appreciation, rental yield, and strategic portfolio diversification.",
+	alternates: {
+		canonical: "https://www.piptan.ae/services/property-management-in-dubai",
+	},
 };
 
 export default function PropertyManagementPage() {

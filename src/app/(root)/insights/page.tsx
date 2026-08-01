@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 
 import { AnimatedButton } from "@/components/ui/animated-button";
@@ -8,6 +9,15 @@ import { IconCollection } from "@/app/assets/icons";
 import { getFilteredInsightsWithParams } from "@/features/insights/actions/query";
 import { InsightsList } from "@/features/insights/components/insights-list";
 import { InsightsListSkeleton } from "@/features/insights/components/insights-list-skeleton";
+
+export const metadata: Metadata = {
+	title: "Real Estate Insights & Market Analysis | Piptan Investment",
+	description:
+		"Explore market trends, property tips, and investment updates to help you stay ahead in the Dubai and UAE real estate world with confidence.",
+	alternates: {
+		canonical: "https://www.piptan.ae/insights",
+	},
+};
 
 type SearchParams = Promise<{ q?: string; category?: string }>;
 

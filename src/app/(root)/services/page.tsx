@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,6 +9,15 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
 
 import { SERVICES } from "@/constants/mock-data";
+
+export const metadata: Metadata = {
+	title: "Real Estate Services in Dubai | Piptan Investment",
+	description:
+		"Comprehensive real estate solutions for buying, selling, investing, and managing property in Dubai and the UAE with Piptan.",
+	alternates: {
+		canonical: "https://www.piptan.ae/services",
+	},
+};
 
 export default function ServicesPage() {
 	return (

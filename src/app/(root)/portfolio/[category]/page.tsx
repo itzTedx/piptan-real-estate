@@ -38,55 +38,93 @@ const meta = {
 		"Explore Piptan's portfolio of premium real estate developments including The Oasis and Grand Polo by Emaar in Dubai.",
 };
 
-export const metadata: Metadata = {
-	title: meta.title,
-	description: meta.description,
-	keywords: [
-		"Dubai real estate projects",
-		"Abu Dhabi property investment",
-		"Emaar developments",
-		"UAE real estate portfolio",
-		"Dubai property investments",
-		"Abu Dhabi real estate opportunities",
-	],
-	openGraph: {
-		type: "website",
-		title: meta.title,
-		description: meta.description,
-		url: "https://www.piptan.ae/portfolio",
-		siteName: "Piptan Investment",
-		locale: "en_US",
-		images: [
-			{
-				url: "/images/hero.webp",
-				width: 1200,
-				height: 630,
-				alt: "Piptan UAE real estate portfolio in Dubai and Abu Dhabi",
-			},
+const PORTFOLIO_SCHEMA_MAP: Record<string, { name: string; description: string }> = {
+	"invest-and-earn-portfolio": {
+		name: "Invest & Earn Portfolios",
+		description:
+			"Curated portfolios of 2 & 1-bedroom apartments, designed to generate consistent rental income and long-term returns—making property investment simple, smart, and rewarding.",
+	},
+	"the-commercial-curations": {
+		name: "The Commercial Curations",
+		description:
+			"A handpicked portfolio of retail spaces, bulk offices, and off-plan properties, designed to deliver high-yield returns through strategic, growth-focused commercial investments.",
+	},
+	"high-roi-properties": {
+		name: "High ROI Properties",
+		description:
+			"A premium portfolio of luxury villas and homes, carefully selected to deliver exceptional returns through high-demand, high-value real estate investments.",
+	},
+	"2x-capital-growth-portfolios": {
+		name: "2x Capital Growth Portfolios",
+		description:
+			"Exclusive land acquisition, development and construction opportunities—crafted for developers and large-scale investors aiming to double capital growth through high-potential real estate ventures.",
+	},
+};
+
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ category: string }>;
+}): Promise<Metadata> {
+	const { category } = await params;
+	const categoryMeta = PORTFOLIO_SCHEMA_MAP[category];
+
+	const title = categoryMeta
+		? `${categoryMeta.name} | Piptan Real Estate Portfolio`
+		: meta.title;
+	const description = categoryMeta?.description || meta.description;
+	const url = `https://www.piptan.ae/portfolio/${category}`;
+
+	return {
+		title,
+		description,
+		keywords: [
+			"Dubai real estate projects",
+			"Abu Dhabi property investment",
+			"Emaar developments",
+			"UAE real estate portfolio",
+			"Dubai property investments",
+			"Abu Dhabi real estate opportunities",
 		],
-	},
-	twitter: {
-		card: "summary_large_image",
-		title: meta.title,
-		description: meta.description,
-		images: ["/images/hero.webp"],
-	},
-	robots: {
-		index: true,
-		follow: true,
-		googleBot: {
+		openGraph: {
+			type: "website",
+			title,
+			description,
+			url,
+			siteName: "Piptan Investment",
+			locale: "en_US",
+			images: [
+				{
+					url: "/images/hero.webp",
+					width: 1200,
+					height: 630,
+					alt: "Piptan UAE real estate portfolio in Dubai and Abu Dhabi",
+				},
+			],
+		},
+		twitter: {
+			card: "summary_large_image",
+			title,
+			description,
+			images: ["/images/hero.webp"],
+		},
+		robots: {
 			index: true,
 			follow: true,
-			"max-video-preview": -1,
-			"max-image-preview": "large",
-			"max-snippet": -1,
+			googleBot: {
+				index: true,
+				follow: true,
+				"max-video-preview": -1,
+				"max-image-preview": "large",
+				"max-snippet": -1,
+			},
 		},
-	},
-	alternates: {
-		canonical: "https://www.piptan.ae/portfolio",
-	},
-	metadataBase: new URL("https://www.piptan.ae"),
-};
+		alternates: {
+			canonical: url,
+		},
+		metadataBase: new URL("https://www.piptan.ae"),
+	};
+}
 
 // Enable caching with revalidation every 5 minutes
 export const revalidate = 300;
@@ -154,29 +192,6 @@ export default async function ProjectsPage({
 		</main>
 	);
 }
-
-const PORTFOLIO_SCHEMA_MAP: Record<string, { name: string; description: string }> = {
-	"invest-and-earn-portfolio": {
-		name: "Invest & Earn Portfolios",
-		description:
-			"Curated portfolios of 2 & 1-bedroom apartments, designed to generate consistent rental income and long-term returns—making property investment simple, smart, and rewarding.",
-	},
-	"the-commercial-curations": {
-		name: "The Commercial Curations",
-		description:
-			"A handpicked portfolio of retail spaces, bulk offices, and off-plan properties, designed to deliver high-yield returns through strategic, growth-focused commercial investments.",
-	},
-	"high-roi-properties": {
-		name: "High ROI Properties",
-		description:
-			"A premium portfolio of luxury villas and homes, carefully selected to deliver exceptional returns through high-demand, high-value real estate investments.",
-	},
-	"2x-capital-growth-portfolios": {
-		name: "2x Capital Growth Portfolios",
-		description:
-			"Exclusive land acquisition, development and construction opportunities—crafted for developers and large-scale investors aiming to double capital growth through high-potential real estate ventures.",
-	},
-};
 
 async function SuspendedPortfolioList({
 	categorySlug,

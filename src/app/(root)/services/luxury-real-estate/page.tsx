@@ -10,6 +10,9 @@ export const metadata: Metadata = {
 		"Exclusive luxury real estate opportunities in Dubai, including prime waterfront properties and high-end investments.",
 	keywords:
 		"Luxury Real Estate Dubai, Dubai Luxury Villas, Waterfront Properties Dubai, High-End UAE Real Estate",
+	alternates: {
+		canonical: "https://www.piptan.ae/services/luxury-real-estate",
+	},
 };
 
 export default function LuxuryRealEstatePage() {

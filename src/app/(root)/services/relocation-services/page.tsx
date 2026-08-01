@@ -34,6 +34,9 @@ export const metadata: Metadata = {
 		"Move to Dubai with confidence through Piptan relocation services. Get expert property search, settling in support, and guidance for smart real estate decisions.",
 	keywords:
 		"Relocation Services Dubai, Investment Portfolio Diversification, Capital Appreciation, Rental Yield, Strategic Property Investment, Premium Investment Opportunities, Institutional & HNI Investments, Global Property Investors",
+	alternates: {
+		canonical: "https://www.piptan.ae/services/relocation-services",
+	},
 };
 
 export default function RelocationServicesPage() {

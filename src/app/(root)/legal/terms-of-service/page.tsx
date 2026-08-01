@@ -9,6 +9,9 @@ export const metadata: Metadata = {
 	title: "Terms of Service",
 	description:
 		"Terms of Service for Piptan Capital L.L.C - Real Estate Investment Services in Dubai, UAE",
+	alternates: {
+		canonical: "https://www.piptan.ae/legal/terms-of-service",
+	},
 };
 
 export default function TermsOfServicePage() {
