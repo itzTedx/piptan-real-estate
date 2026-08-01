@@ -137,20 +137,31 @@ const generateArticleStructuredData = (insight: {
 	title: string | null;
 	excerpt: string | null;
 	slug: string | null;
+	seo?: {
+		ogImage?: any;
+	} | null;
 	image: {
 		asset: {
 			url: string | null;
 		} | null;
 	} | null;
-	author: {
+	author?: {
 		name: string | null;
 	} | null;
 	createdAt: string;
 	updatedAt?: string;
 }) => {
-	const url = insight.slug
-		? `${BASE_URL}/insights/${insight.slug}`
-		: `${BASE_URL}/insights`;
+	const slug = insight.slug || "";
+	const pageUrl = `${BASE_URL}/insights/${slug}`;
+
+	let imageUrl = `https://www.piptan.ae/images/insights/${slug}-cover.jpg`;
+	if (insight.seo?.ogImage) {
+		try {
+			imageUrl = urlFor(insight.seo.ogImage).url();
+		} catch {}
+	} else if (insight.image?.asset?.url) {
+		imageUrl = insight.image.asset.url;
+	}
 
 	return {
 		"@context": "https://schema.org",
@@ -158,34 +169,22 @@ const generateArticleStructuredData = (insight: {
 		headline: insight.title,
 		description:
 			insight.excerpt ||
-			"Expert real estate insights from Piptan Investments on the Dubai property market.",
-		image:
-			insight.image?.asset?.url ||
-			"/images/blogs/transport-logistics-products.jpg",
-		author: insight.author
-			? {
-					"@type": "Person",
-					name: insight.author.name,
-				}
-			: {
-					"@type": "Organization",
-					name: "Piptan Investments",
-				},
+			"Expert real estate insights from Piptan Investment on the Dubai property market.",
+		image: imageUrl,
+		datePublished: insight.createdAt ? insight.createdAt.split("T")[0] : "",
+		dateModified: (insight.updatedAt || insight.createdAt)
+			? (insight.updatedAt || insight.createdAt).split("T")[0]
+			: "",
+		author: { "@id": "https://www.piptan.ae/#organization" },
 		publisher: {
 			"@type": "Organization",
-			name: "Piptan Investments",
+			name: "Piptan Investment",
 			logo: {
 				"@type": "ImageObject",
-				url: "/images/logo.png",
+				url: "https://piptan.ae/piptan-logo.svg",
 			},
 		},
-		datePublished: insight.createdAt,
-		dateModified: insight.updatedAt || insight.createdAt,
-		mainEntityOfPage: {
-			"@type": "WebPage",
-			"@id": url,
-		},
-		url,
+		mainEntityOfPage: pageUrl,
 	};
 };
 
@@ -193,9 +192,8 @@ const generateBreadcrumbStructuredData = (insight: {
 	title: string | null;
 	slug: string | null;
 }) => {
-	const itemUrl = insight.slug
-		? `${BASE_URL}/insights/${insight.slug}`
-		: `${BASE_URL}/insights`;
+	const slug = insight.slug || "";
+	const itemUrl = `${BASE_URL}/insights/${slug}`;
 
 	return {
 		"@context": "https://schema.org",
@@ -205,13 +203,13 @@ const generateBreadcrumbStructuredData = (insight: {
 				"@type": "ListItem",
 				position: 1,
 				name: "Home",
-				item: BASE_URL,
+				item: "https://www.piptan.ae/",
 			},
 			{
 				"@type": "ListItem",
 				position: 2,
 				name: "Insights",
-				item: `${BASE_URL}/insights`,
+				item: "https://www.piptan.ae/insights",
 			},
 			{
 				"@type": "ListItem",

@@ -1,3 +1,5 @@
+import Script from "next/script";
+
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Separator } from "@/components/ui/separator";
@@ -8,6 +10,33 @@ import { AboutHeroVideo } from "@/features/about/components/video";
 export const revalidate = 1800;
 
 export default function AboutPage() {
+	const aboutPageSchema = {
+		"@context": "https://schema.org",
+		"@type": "AboutPage",
+		url: "https://www.piptan.ae/about",
+		about: { "@id": "https://www.piptan.ae/#organization" },
+		mainEntity: { "@id": "https://www.piptan.ae/#organization" },
+	};
+
+	const breadcrumbSchema = {
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Home",
+				item: "https://www.piptan.ae/",
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "About",
+				item: "https://www.piptan.ae/about",
+			},
+		],
+	};
+
 	return (
 		<main className="container py-4 sm:py-9">
 			{/* Hero Section */}
@@ -234,6 +263,13 @@ export default function AboutPage() {
 					))}
 				</div>
 			</section>
+
+			<Script id="about-page-schema" type="application/ld+json">
+				{JSON.stringify(aboutPageSchema)}
+			</Script>
+			<Script id="about-breadcrumb-schema" type="application/ld+json">
+				{JSON.stringify(breadcrumbSchema)}
+			</Script>
 		</main>
 	);
 }

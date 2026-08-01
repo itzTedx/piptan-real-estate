@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Script from "next/script";
 
 import { ChevronDown } from "lucide-react";
 
@@ -33,6 +34,56 @@ export const metadata: Metadata = {
 };
 
 export default function PropertyInvestmentPage() {
+	const serviceSchema = {
+		"@context": "https://schema.org",
+		"@type": "Service",
+		name: "Property Investment",
+		serviceType: "Real Estate Investment Advisory",
+		provider: { "@id": "https://www.piptan.ae/#organization" },
+		areaServed: { "@type": "City", name: "Dubai" },
+		description:
+			"Expert guidance on real estate investments, market analysis, and ROI optimization strategies.",
+		url: "https://www.piptan.ae/services/property-investment",
+	};
+
+	const faqSchema = {
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: faqs.map((faq) => ({
+			"@type": "Question",
+			name: faq.question,
+			acceptedAnswer: {
+				"@type": "Answer",
+				text: faq.answer,
+			},
+		})),
+	};
+
+	const breadcrumbSchema = {
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Home",
+				item: "https://www.piptan.ae/",
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "Services",
+				item: "https://www.piptan.ae/services",
+			},
+			{
+				"@type": "ListItem",
+				position: 3,
+				name: "Property Investment",
+				item: "https://www.piptan.ae/services/property-investment",
+			},
+		],
+	};
+
 	return (
 		<main className="pt-8 sm:pt-12 md:pt-16 lg:pt-20">
 			<article className="container mx-auto max-w-4xl px-4 sm:px-6">
@@ -241,6 +292,18 @@ export default function PropertyInvestmentPage() {
 					</div>
 				</div>
 			</section>
+
+			<Script id="property-investment-service-schema" type="application/ld+json">
+				{JSON.stringify(serviceSchema)}
+			</Script>
+
+			<Script id="property-investment-faq-schema" type="application/ld+json">
+				{JSON.stringify(faqSchema)}
+			</Script>
+
+			<Script id="property-investment-breadcrumb-schema" type="application/ld+json">
+				{JSON.stringify(breadcrumbSchema)}
+			</Script>
 		</main>
 	);
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Script from "next/script";
 
 import { ChevronDown } from "lucide-react";
 
@@ -37,6 +38,57 @@ export const metadata: Metadata = {
 };
 
 export default function PropertyValuationPage() {
+	const serviceSchema = {
+		"@context": "https://schema.org",
+		"@type": "Service",
+		name: "Property Valuation",
+		serviceType: "Property Valuation",
+		provider: { "@id": "https://www.piptan.ae/#organization" },
+		areaServed: { "@type": "City", name: "Dubai" },
+		description:
+			(metadata.description as string) ||
+			"Get accurate property valuation backed by real market data. Piptan Capital delivers trusted Real Estate Investment Advisory for Dubai and UAE Property Investment.",
+		url: "https://www.piptan.ae/services/property-valuation",
+	};
+
+	const breadcrumbSchema = {
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Home",
+				item: "https://www.piptan.ae/",
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "Services",
+				item: "https://www.piptan.ae/services",
+			},
+			{
+				"@type": "ListItem",
+				position: 3,
+				name: "Property Valuation",
+				item: "https://www.piptan.ae/services/property-valuation",
+			},
+		],
+	};
+
+	const faqSchema = {
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: faqs.map((faq) => ({
+			"@type": "Question",
+			name: faq.question,
+			acceptedAnswer: {
+				"@type": "Answer",
+				text: faq.answer,
+			},
+		})),
+	};
+
 	return (
 		<main className="pt-8 sm:pt-12 md:pt-16 lg:pt-20">
 			<article className="container mx-auto max-w-4xl px-4 sm:px-6">
@@ -288,6 +340,18 @@ export default function PropertyValuationPage() {
 					</div>
 				</div>
 			</section>
+
+			<Script id="property-valuation-service-schema" type="application/ld+json">
+				{JSON.stringify(serviceSchema)}
+			</Script>
+
+			<Script id="property-valuation-breadcrumb-schema" type="application/ld+json">
+				{JSON.stringify(breadcrumbSchema)}
+			</Script>
+
+			<Script id="property-valuation-faq-schema" type="application/ld+json">
+				{JSON.stringify(faqSchema)}
+			</Script>
 		</main>
 	);
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Script from "next/script";
 
 import { ChevronDown } from "lucide-react";
 
@@ -36,6 +37,57 @@ export const metadata: Metadata = {
 };
 
 export default function RelocationServicesPage() {
+	const serviceSchema = {
+		"@context": "https://schema.org",
+		"@type": "Service",
+		name: "Relocation Services",
+		serviceType: "Relocation Services",
+		provider: { "@id": "https://www.piptan.ae/#organization" },
+		areaServed: { "@type": "City", name: "Dubai" },
+		description:
+			(metadata.description as string) ||
+			"Move to Dubai with confidence through Piptan relocation services. Get expert property search, settling in support, and guidance for smart real estate decisions.",
+		url: "https://www.piptan.ae/services/relocation-services",
+	};
+
+	const breadcrumbSchema = {
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Home",
+				item: "https://www.piptan.ae/",
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "Services",
+				item: "https://www.piptan.ae/services",
+			},
+			{
+				"@type": "ListItem",
+				position: 3,
+				name: "Relocation Services",
+				item: "https://www.piptan.ae/services/relocation-services",
+			},
+		],
+	};
+
+	const faqSchema = {
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: faqs.map((faq) => ({
+			"@type": "Question",
+			name: faq.question,
+			acceptedAnswer: {
+				"@type": "Answer",
+				text: faq.answer,
+			},
+		})),
+	};
+
 	return (
 		<main className="pt-8 sm:pt-12 md:pt-16 lg:pt-20">
 			<article className="container mx-auto max-w-4xl px-4 sm:px-6">
@@ -283,6 +335,18 @@ export default function RelocationServicesPage() {
 					</div>
 				</div>
 			</section>
+
+			<Script id="relocation-services-service-schema" type="application/ld+json">
+				{JSON.stringify(serviceSchema)}
+			</Script>
+
+			<Script id="relocation-services-breadcrumb-schema" type="application/ld+json">
+				{JSON.stringify(breadcrumbSchema)}
+			</Script>
+
+			<Script id="relocation-services-faq-schema" type="application/ld+json">
+				{JSON.stringify(faqSchema)}
+			</Script>
 		</main>
 	);
 }

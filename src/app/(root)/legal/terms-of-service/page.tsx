@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 
 import { Separator } from "@/components/ui/separator";
 
@@ -13,6 +14,33 @@ export const metadata: Metadata = {
 export default function TermsOfServicePage() {
 	const currentYear = new Date().getFullYear();
 	const lastUpdated = "2024";
+
+	const webpageSchema = {
+		"@context": "https://schema.org",
+		"@type": "WebPage",
+		name: "Terms of Service",
+		url: "https://www.piptan.ae/legal/terms-of-service",
+		isPartOf: { "@id": "https://www.piptan.ae/#website" },
+	};
+
+	const breadcrumbSchema = {
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Home",
+				item: "https://www.piptan.ae/",
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "Terms of Service",
+				item: "https://www.piptan.ae/legal/terms-of-service",
+			},
+		],
+	};
 
 	return (
 		<main className="container py-8 sm:py-12 md:py-16 lg:py-20">
@@ -470,6 +498,14 @@ export default function TermsOfServicePage() {
 					</p>
 				</footer>
 			</article>
+
+			<Script id="terms-webpage-schema" type="application/ld+json">
+				{JSON.stringify(webpageSchema)}
+			</Script>
+
+			<Script id="terms-breadcrumb-schema" type="application/ld+json">
+				{JSON.stringify(breadcrumbSchema)}
+			</Script>
 		</main>
 	);
 }

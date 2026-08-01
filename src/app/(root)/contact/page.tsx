@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Script from "next/script";
 
 import { SectionHeader } from "@/components/ui/section-header";
 
@@ -7,6 +8,32 @@ import { ContactForm } from "@/features/forms/contact-form/form";
 import { FaqSection } from "@/features/home/section/faq";
 
 export default function ContactPage() {
+	const contactPageSchema = {
+		"@context": "https://schema.org",
+		"@type": "ContactPage",
+		url: "https://www.piptan.ae/contact",
+		about: { "@id": "https://www.piptan.ae/#organization" },
+	};
+
+	const breadcrumbSchema = {
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Home",
+				item: "https://www.piptan.ae/",
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "Contact",
+				item: "https://www.piptan.ae/contact",
+			},
+		],
+	};
+
 	return (
 		<main className="py-4 sm:py-9 md:py-12">
 			<section className="container relative pb-12 sm:pb-16 md:pb-20">
@@ -46,6 +73,14 @@ export default function ContactPage() {
 				</div>
 			</section>
 			<FaqSection />
+
+			<Script id="contact-page-schema" type="application/ld+json">
+				{JSON.stringify(contactPageSchema)}
+			</Script>
+
+			<Script id="contact-breadcrumb-schema" type="application/ld+json">
+				{JSON.stringify(breadcrumbSchema)}
+			</Script>
 		</main>
 	);
 }

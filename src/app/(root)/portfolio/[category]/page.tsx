@@ -155,6 +155,29 @@ export default async function ProjectsPage({
 	);
 }
 
+const PORTFOLIO_SCHEMA_MAP: Record<string, { name: string; description: string }> = {
+	"invest-and-earn-portfolio": {
+		name: "Invest & Earn Portfolios",
+		description:
+			"Curated portfolios of 2 & 1-bedroom apartments, designed to generate consistent rental income and long-term returns—making property investment simple, smart, and rewarding.",
+	},
+	"the-commercial-curations": {
+		name: "The Commercial Curations",
+		description:
+			"A handpicked portfolio of retail spaces, bulk offices, and off-plan properties, designed to deliver high-yield returns through strategic, growth-focused commercial investments.",
+	},
+	"high-roi-properties": {
+		name: "High ROI Properties",
+		description:
+			"A premium portfolio of luxury villas and homes, carefully selected to deliver exceptional returns through high-demand, high-value real estate investments.",
+	},
+	"2x-capital-growth-portfolios": {
+		name: "2x Capital Growth Portfolios",
+		description:
+			"Exclusive land acquisition, development and construction opportunities—crafted for developers and large-scale investors aiming to double capital growth through high-potential real estate ventures.",
+	},
+};
+
 async function SuspendedPortfolioList({
 	categorySlug,
 }: {
@@ -165,67 +188,110 @@ async function SuspendedPortfolioList({
 	});
 	const totalItems = projects.length;
 
-	const structuredData = {
+	const categoryMeta = PORTFOLIO_SCHEMA_MAP[categorySlug];
+	const categoryName = categoryMeta?.name || meta.title;
+	const categoryDescription = categoryMeta?.description || meta.description;
+
+	const collectionSchema = {
 		"@context": "https://schema.org",
 		"@type": "CollectionPage",
-		name: meta.title,
-		description: meta.description,
+		name: categoryName,
 		url: `https://www.piptan.ae/portfolio/${categorySlug}`,
-		mainEntity: {
-			"@type": "ItemList",
-			itemListElement: projects.map((project, index) => {
-				const projectUrl = project.link
-					? `https://www.piptan.ae${project.link}`
-					: "https://www.piptan.ae/portfolio";
+		description: categoryDescription,
+		about: { "@id": "https://www.piptan.ae/#organization" },
+		...(projects.length > 0 && {
+			mainEntity: {
+				"@type": "ItemList",
+				itemListElement: projects.map((project, index) => {
+					const projectUrl = project.link
+						? `https://www.piptan.ae${project.link}`
+						: "https://www.piptan.ae/portfolio";
 
-				return {
-					"@type": "ListItem",
-					position: index + 1,
-					name: project.title ?? "UAE real estate project",
-					url: projectUrl,
-					item: {
-						"@type": "RealEstateListing",
+					return {
+						"@type": "ListItem",
+						position: index + 1,
 						name: project.title ?? "UAE real estate project",
-						description:
-							"Premium residential and mixed-use real estate development in the United Arab Emirates.",
 						url: projectUrl,
-						address: {
-							"@type": "PostalAddress",
-							addressLocality: project.location ?? "Dubai",
-							addressCountry: "AE",
+						item: {
+							"@type": "RealEstateListing",
+							name: project.title ?? "UAE real estate project",
+							description:
+								"Premium residential and mixed-use real estate development in the United Arab Emirates.",
+							url: projectUrl,
+							address: {
+								"@type": "PostalAddress",
+								addressLocality: project.location ?? "Dubai",
+								addressCountry: "AE",
+							},
+							areaServed: project.location ?? "Dubai",
+							category: project.category?.title ?? "Residential real estate",
 						},
-						areaServed: project.location ?? "Dubai",
-						category: project.category?.title ?? "Residential real estate",
-					},
-				};
-			}),
-		},
+					};
+				}),
+			},
+		}),
+	};
+
+	const breadcrumbSchema = {
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Home",
+				item: "https://www.piptan.ae/",
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "Portfolios",
+				item: "https://www.piptan.ae/portfolio",
+			},
+			{
+				"@type": "ListItem",
+				position: 3,
+				name: categoryName,
+				item: `https://www.piptan.ae/portfolio/${categorySlug}`,
+			},
+		],
 	};
 
 	if (totalItems === 0) {
 		return (
-			<Empty className="mt-6">
-				<EmptyHeader>
-					<EmptyTitle>No projects found in this category</EmptyTitle>
-					<EmptyDescription>
-						We&apos;re not currently showcasing projects under this filter.
-						Explore our full portfolio to discover active real estate
-						opportunities across Dubai and Abu Dhabi.
-					</EmptyDescription>
-				</EmptyHeader>
-				<EmptyContent>
-					<Button asChild size="sm">
-						<Link href="/portfolio">View all projects</Link>
-					</Button>
-				</EmptyContent>
-			</Empty>
+			<>
+				<Script id="portfolio-collection-schema" type="application/ld+json">
+					{JSON.stringify(collectionSchema)}
+				</Script>
+				<Script id="portfolio-breadcrumb-schema" type="application/ld+json">
+					{JSON.stringify(breadcrumbSchema)}
+				</Script>
+				<Empty className="mt-6">
+					<EmptyHeader>
+						<EmptyTitle>No projects found in this category</EmptyTitle>
+						<EmptyDescription>
+							We&apos;re not currently showcasing projects under this filter.
+							Explore our full portfolio to discover active real estate
+							opportunities across Dubai and Abu Dhabi.
+						</EmptyDescription>
+					</EmptyHeader>
+					<EmptyContent>
+						<Button asChild size="sm">
+							<Link href="/portfolio">View all projects</Link>
+						</Button>
+					</EmptyContent>
+				</Empty>
+			</>
 		);
 	}
 
 	return (
 		<>
 			<Script id="portfolio-collection-schema" type="application/ld+json">
-				{JSON.stringify(structuredData)}
+				{JSON.stringify(collectionSchema)}
+			</Script>
+			<Script id="portfolio-breadcrumb-schema" type="application/ld+json">
+				{JSON.stringify(breadcrumbSchema)}
 			</Script>
 			<Carousel autoplay className="mt-4 w-full md:mt-6 lg:mt-9">
 				<CarouselContent className="-ml-1">
