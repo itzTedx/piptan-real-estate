@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 	description:
 		"Terms of Service for Piptan Capital L.L.C - Real Estate Investment Services in Dubai, UAE",
 	alternates: {
-		canonical: "https://www.piptan.ae/legal/terms-of-service",
+		canonical: "https://piptan.ae/legal/terms-of-service",
 	},
 };
 
@@ -22,8 +22,8 @@ export default function TermsOfServicePage() {
 		"@context": "https://schema.org",
 		"@type": "WebPage",
 		name: "Terms of Service",
-		url: "https://www.piptan.ae/legal/terms-of-service",
-		isPartOf: { "@id": "https://www.piptan.ae/#website" },
+		url: "https://piptan.ae/legal/terms-of-service",
+		isPartOf: { "@id": "https://piptan.ae/#website" },
 	};
 
 	const breadcrumbSchema = {
@@ -34,13 +34,13 @@ export default function TermsOfServicePage() {
 				"@type": "ListItem",
 				position: 1,
 				name: "Home",
-				item: "https://www.piptan.ae/",
+				item: "https://piptan.ae/",
 			},
 			{
 				"@type": "ListItem",
 				position: 2,
 				name: "Terms of Service",
-				item: "https://www.piptan.ae/legal/terms-of-service",
+				item: "https://piptan.ae/legal/terms-of-service",
 			},
 		],
 	};

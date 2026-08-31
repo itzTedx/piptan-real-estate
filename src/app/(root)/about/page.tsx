@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 	description:
 		"Learn about Piptan Capital, a specialist investment advisor guiding luxury real estate decisions in Dubai and the UAE.",
 	alternates: {
-		canonical: "https://www.piptan.ae/about",
+		canonical: "https://piptan.ae/about",
 	},
 };
 
@@ -23,9 +23,9 @@ export default function AboutPage() {
 	const aboutPageSchema = {
 		"@context": "https://schema.org",
 		"@type": "AboutPage",
-		url: "https://www.piptan.ae/about",
-		about: { "@id": "https://www.piptan.ae/#organization" },
-		mainEntity: { "@id": "https://www.piptan.ae/#organization" },
+		url: "https://piptan.ae/about",
+		about: { "@id": "https://piptan.ae/#organization" },
+		mainEntity: { "@id": "https://piptan.ae/#organization" },
 	};
 
 	const breadcrumbSchema = {
@@ -36,13 +36,13 @@ export default function AboutPage() {
 				"@type": "ListItem",
 				position: 1,
 				name: "Home",
-				item: "https://www.piptan.ae/",
+				item: "https://piptan.ae/",
 			},
 			{
 				"@type": "ListItem",
 				position: 2,
 				name: "About",
-				item: "https://www.piptan.ae/about",
+				item: "https://piptan.ae/about",
 			},
 		],
 	};
@@ -59,11 +59,10 @@ export default function AboutPage() {
 							variant="outline"
 						/>
 					}
+					as="h1"
 					containerClassName="md:grid-cols-1 sm:gap-2"
-					hasHighlight
-					highlightText="We Build Possibilities."
 					subtitle="Piptan is redefining real estate in the UAE with a full-service, client-first approach. From exclusive listings to seamless relocation services, we guide buyers, investors, and families through every step of their journey with expertise, integrity, and vision."
-					title={"More Than Properties. We Build Possibilities."}
+					title={"About Piptan – Your Trusted Real Estate Advisor in the UAE"}
 					titleClassName="font-jaguar"
 				/>
 				<AboutHeroVideo />

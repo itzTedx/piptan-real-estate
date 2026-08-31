@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 	keywords:
 		"Dubai Property Investment, UAE Property Investment, Real Estate Investment Advisory, Investment Consultancy Dubai, High ROI Property Investment, Investment Portfolio Diversification, Property Valuation Dubai",
 	alternates: {
-		canonical: "https://www.piptan.ae/services/property-valuation",
+		canonical: "https://piptan.ae/services/property-valuation",
 	},
 };
 
@@ -46,12 +46,12 @@ export default function PropertyValuationPage() {
 		"@type": "Service",
 		name: "Property Valuation",
 		serviceType: "Property Valuation",
-		provider: { "@id": "https://www.piptan.ae/#organization" },
+		provider: { "@id": "https://piptan.ae/#organization" },
 		areaServed: { "@type": "City", name: "Dubai" },
 		description:
 			(metadata.description as string) ||
 			"Get accurate property valuation backed by real market data. Piptan Capital delivers trusted Real Estate Investment Advisory for Dubai and UAE Property Investment.",
-		url: "https://www.piptan.ae/services/property-valuation",
+		url: "https://piptan.ae/services/property-valuation",
 	};
 
 	const breadcrumbSchema = {
@@ -62,19 +62,19 @@ export default function PropertyValuationPage() {
 				"@type": "ListItem",
 				position: 1,
 				name: "Home",
-				item: "https://www.piptan.ae/",
+				item: "https://piptan.ae/",
 			},
 			{
 				"@type": "ListItem",
 				position: 2,
 				name: "Services",
-				item: "https://www.piptan.ae/services",
+				item: "https://piptan.ae/services",
 			},
 			{
 				"@type": "ListItem",
 				position: 3,
 				name: "Property Valuation",
-				item: "https://www.piptan.ae/services/property-valuation",
+				item: "https://piptan.ae/services/property-valuation",
 			},
 		],
 	};

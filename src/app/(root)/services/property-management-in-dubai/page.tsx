@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 	description:
 		"Piptan Capital is a Real Estate Investment Advisory firm helping investors build wealth through Dubai Property Investment, UAE Property Investment, capital appreciation, rental yield, and strategic portfolio diversification.",
 	alternates: {
-		canonical: "https://www.piptan.ae/services/property-management-in-dubai",
+		canonical: "https://piptan.ae/services/property-management-in-dubai",
 	},
 };
 
@@ -42,11 +42,11 @@ export default function PropertyManagementPage() {
 		"@type": "Service",
 		name: "Property Management",
 		serviceType: "Property Management",
-		provider: { "@id": "https://www.piptan.ae/#organization" },
+		provider: { "@id": "https://piptan.ae/#organization" },
 		areaServed: { "@type": "City", name: "Dubai" },
 		description:
 			"Comprehensive property management services ensuring your investment is well-maintained and profitable.",
-		url: "https://www.piptan.ae/services/property-management-in-dubai",
+		url: "https://piptan.ae/services/property-management-in-dubai",
 	};
 
 	const breadcrumbSchema = {
@@ -57,19 +57,19 @@ export default function PropertyManagementPage() {
 				"@type": "ListItem",
 				position: 1,
 				name: "Home",
-				item: "https://www.piptan.ae/",
+				item: "https://piptan.ae/",
 			},
 			{
 				"@type": "ListItem",
 				position: 2,
 				name: "Services",
-				item: "https://www.piptan.ae/services",
+				item: "https://piptan.ae/services",
 			},
 			{
 				"@type": "ListItem",
 				position: 3,
 				name: "Property Management",
-				item: "https://www.piptan.ae/services/property-management-in-dubai",
+				item: "https://piptan.ae/services/property-management-in-dubai",
 			},
 		],
 	};

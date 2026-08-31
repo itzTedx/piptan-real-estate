@@ -115,7 +115,7 @@ export const PropertyCard = ({ className, data }: Props) => {
               <p>{data.bedrooms} Bedrooms</p>
             </div> */}
 						<WhatsappButton
-							message={`Hello, I'm interested in getting more information about ${data.title}. Project Link: https://www.piptan.ae/portfolio/${data.slug || ""} `}
+							message={`Hello, I'm interested in getting more information about ${data.title}. Project Link: https://piptan.ae/portfolio/${data.slug || ""} `}
 						/>
 					</div>
 					<div className="absolute inset-x-0 bottom-0 h-2/3 bg-linear-to-t from-background to-transparent" />

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 	description:
 		"Get in touch with Piptan Capital's luxury real estate and property investment advisors in Dubai.",
 	alternates: {
-		canonical: "https://www.piptan.ae/contact",
+		canonical: "https://piptan.ae/contact",
 	},
 };
 
@@ -21,8 +21,8 @@ export default function ContactPage() {
 	const contactPageSchema = {
 		"@context": "https://schema.org",
 		"@type": "ContactPage",
-		url: "https://www.piptan.ae/contact",
-		about: { "@id": "https://www.piptan.ae/#organization" },
+		url: "https://piptan.ae/contact",
+		about: { "@id": "https://piptan.ae/#organization" },
 	};
 
 	const breadcrumbSchema = {
@@ -33,13 +33,13 @@ export default function ContactPage() {
 				"@type": "ListItem",
 				position: 1,
 				name: "Home",
-				item: "https://www.piptan.ae/",
+				item: "https://piptan.ae/",
 			},
 			{
 				"@type": "ListItem",
 				position: 2,
 				name: "Contact",
-				item: "https://www.piptan.ae/contact",
+				item: "https://piptan.ae/contact",
 			},
 		],
 	};

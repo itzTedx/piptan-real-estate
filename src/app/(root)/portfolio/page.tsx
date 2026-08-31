@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 		type: "website",
 		title: meta.title,
 		description: meta.description,
-		url: "https://www.piptan.ae/portfolio",
+		url: "https://piptan.ae/portfolio",
 		siteName: "Piptan Investment",
 		locale: "en_US",
 		images: [
@@ -72,9 +72,9 @@ export const metadata: Metadata = {
 		},
 	},
 	alternates: {
-		canonical: "https://www.piptan.ae/portfolio",
+		canonical: "https://piptan.ae/portfolio",
 	},
-	metadataBase: new URL("https://www.piptan.ae"),
+	metadataBase: new URL("https://piptan.ae"),
 };
 
 // Enable caching with revalidation every 5 minutes
@@ -147,13 +147,13 @@ async function SuspendedPortfolioList() {
 		"@type": "CollectionPage",
 		name: meta.title,
 		description: meta.description,
-		url: "https://www.piptan.ae/portfolio",
+		url: "https://piptan.ae/portfolio",
 		mainEntity: {
 			"@type": "ItemList",
 			itemListElement: projects.map((project, index) => {
 				const projectUrl = project.link
-					? `https://www.piptan.ae${project.link}`
-					: "https://www.piptan.ae/portfolio";
+					? `https://piptan.ae${project.link}`
+					: "https://piptan.ae/portfolio";
 
 				return {
 					"@type": "ListItem",

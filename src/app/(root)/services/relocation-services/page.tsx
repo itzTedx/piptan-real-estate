@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 	keywords:
 		"Relocation Services Dubai, Investment Portfolio Diversification, Capital Appreciation, Rental Yield, Strategic Property Investment, Premium Investment Opportunities, Institutional & HNI Investments, Global Property Investors",
 	alternates: {
-		canonical: "https://www.piptan.ae/services/relocation-services",
+		canonical: "https://piptan.ae/services/relocation-services",
 	},
 };
 
@@ -45,12 +45,12 @@ export default function RelocationServicesPage() {
 		"@type": "Service",
 		name: "Relocation Services",
 		serviceType: "Relocation Services",
-		provider: { "@id": "https://www.piptan.ae/#organization" },
+		provider: { "@id": "https://piptan.ae/#organization" },
 		areaServed: { "@type": "City", name: "Dubai" },
 		description:
 			(metadata.description as string) ||
 			"Move to Dubai with confidence through Piptan relocation services. Get expert property search, settling in support, and guidance for smart real estate decisions.",
-		url: "https://www.piptan.ae/services/relocation-services",
+		url: "https://piptan.ae/services/relocation-services",
 	};
 
 	const breadcrumbSchema = {
@@ -61,19 +61,19 @@ export default function RelocationServicesPage() {
 				"@type": "ListItem",
 				position: 1,
 				name: "Home",
-				item: "https://www.piptan.ae/",
+				item: "https://piptan.ae/",
 			},
 			{
 				"@type": "ListItem",
 				position: 2,
 				name: "Services",
-				item: "https://www.piptan.ae/services",
+				item: "https://piptan.ae/services",
 			},
 			{
 				"@type": "ListItem",
 				position: 3,
 				name: "Relocation Services",
-				item: "https://www.piptan.ae/services/relocation-services",
+				item: "https://piptan.ae/services/relocation-services",
 			},
 		],
 	};

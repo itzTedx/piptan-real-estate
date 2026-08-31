@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
 import { Suspense } from "react";
+
+import type { Metadata } from "next";
 
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 	description:
 		"Explore market trends, property tips, and investment updates to help you stay ahead in the Dubai and UAE real estate world with confidence.",
 	alternates: {
-		canonical: "https://www.piptan.ae/insights",
+		canonical: "https://piptan.ae/insights",
 	},
 };
 
@@ -46,12 +47,13 @@ export default function InsightsPage({
 							</p>
 						</div>
 					}
+					as="h1"
 					badge="Insights"
 					hasHighlight
-					highlightText="Property Journey with Piptan"
+					highlightText="Real Estate Insights"
 					icon={<IconCollection className="size-3 sm:size-4" />}
 					subtitle="Explore market trends, property tips, and investment updates to help you stay ahead in the real estate world with confidence."
-					title="All the Essentials to Begin Your Property Journey with Piptan"
+					title="UAE Real Estate Insights & Property Market Updates"
 				/>
 			</section>
 			<Separator />

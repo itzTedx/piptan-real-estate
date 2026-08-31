@@ -139,7 +139,7 @@ export const PropertyCard = ({ className, data }: Props) => {
 					)}
 
 					{/* <WhatsappButton
-						message={`Hello, I'm interested in getting more information about ${data.title}. Project Link: https://www.piptan.ae/portfolio/${data.slug || ""} `}
+						message={`Hello, I'm interested in getting more information about ${data.title}. Project Link: https://piptan.ae/portfolio/${data.slug || ""} `}
 					/> */}
 				</div>
 				{data.mainImage && (

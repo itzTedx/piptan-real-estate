@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 	keywords:
 		"Dubai Investment Advisor, UAE Investment Advisor, Luxury Real Estate Investment Dubai, Dubai Property Investment, UAE Property Investment, Piptan Capital, real estate advisory UAE",
 	alternates: {
-		canonical: "https://www.piptan.ae/services/property-investment",
+		canonical: "https://piptan.ae/services/property-investment",
 	},
 };
 
@@ -42,11 +42,11 @@ export default function PropertyInvestmentPage() {
 		"@type": "Service",
 		name: "Property Investment",
 		serviceType: "Real Estate Investment Advisory",
-		provider: { "@id": "https://www.piptan.ae/#organization" },
+		provider: { "@id": "https://piptan.ae/#organization" },
 		areaServed: { "@type": "City", name: "Dubai" },
 		description:
 			"Expert guidance on real estate investments, market analysis, and ROI optimization strategies.",
-		url: "https://www.piptan.ae/services/property-investment",
+		url: "https://piptan.ae/services/property-investment",
 	};
 
 	const faqSchema = {
@@ -70,19 +70,19 @@ export default function PropertyInvestmentPage() {
 				"@type": "ListItem",
 				position: 1,
 				name: "Home",
-				item: "https://www.piptan.ae/",
+				item: "https://piptan.ae/",
 			},
 			{
 				"@type": "ListItem",
 				position: 2,
 				name: "Services",
-				item: "https://www.piptan.ae/services",
+				item: "https://piptan.ae/services",
 			},
 			{
 				"@type": "ListItem",
 				position: 3,
 				name: "Property Investment",
-				item: "https://www.piptan.ae/services/property-investment",
+				item: "https://piptan.ae/services/property-investment",
 			},
 		],
 	};

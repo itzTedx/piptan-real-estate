@@ -251,7 +251,7 @@ Piptan Investment is a premium real estate investment and development company sp
 
 ## 📞 Contact
 
-- **Website**: [https://www.piptan.ae](https://www.piptan.ae)
+- **Website**: [https://piptan.ae](https://piptan.ae)
 - **Email**: <hello@piptan.com>
 - **Location**: Dubai, UAE
 

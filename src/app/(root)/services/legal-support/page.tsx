@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 	keywords:
 		"Dubai Investment Advisor, Legal Investment Advisor, UAE Investment Advisor, Investment Consultancy Dubai, real estate legal support Dubai, property investment advisory UAE",
 	alternates: {
-		canonical: "https://www.piptan.ae/services/legal-support",
+		canonical: "https://piptan.ae/services/legal-support",
 	},
 };
 
@@ -42,11 +42,11 @@ export default function LegalSupportPage() {
 		"@type": "Service",
 		name: "Legal Support",
 		serviceType: "Real Estate Legal Services",
-		provider: { "@id": "https://www.piptan.ae/#organization" },
+		provider: { "@id": "https://piptan.ae/#organization" },
 		areaServed: { "@type": "City", name: "Dubai" },
 		description:
 			"End-to-end legal assistance for property transactions, ensuring compliance with Dubai's real estate laws.",
-		url: "https://www.piptan.ae/services/legal-support",
+		url: "https://piptan.ae/services/legal-support",
 	};
 
 	const breadcrumbSchema = {
@@ -57,19 +57,19 @@ export default function LegalSupportPage() {
 				"@type": "ListItem",
 				position: 1,
 				name: "Home",
-				item: "https://www.piptan.ae/",
+				item: "https://piptan.ae/",
 			},
 			{
 				"@type": "ListItem",
 				position: 2,
 				name: "Services",
-				item: "https://www.piptan.ae/services",
+				item: "https://piptan.ae/services",
 			},
 			{
 				"@type": "ListItem",
 				position: 3,
 				name: "Legal Support",
-				item: "https://www.piptan.ae/services/legal-support",
+				item: "https://piptan.ae/services/legal-support",
 			},
 		],
 	};

@@ -65,6 +65,9 @@ export const SectionHeader = ({
 }: SectionHeaderProps) => {
 	const renderTitle = () => {
 		if (!hasHighlight || !highlightText) {
+			if (!title.includes("\n")) {
+				return title;
+			}
 			return title.split("\n").map((line, index) => (
 				<span key={line}>
 					{line}

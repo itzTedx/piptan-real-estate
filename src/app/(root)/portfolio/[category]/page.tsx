@@ -73,7 +73,7 @@ export async function generateMetadata({
 		? `${categoryMeta.name} | Piptan Real Estate Portfolio`
 		: meta.title;
 	const description = categoryMeta?.description || meta.description;
-	const url = `https://www.piptan.ae/portfolio/${category}`;
+	const url = `https://piptan.ae/portfolio/${category}`;
 
 	return {
 		title,
@@ -122,7 +122,7 @@ export async function generateMetadata({
 		alternates: {
 			canonical: url,
 		},
-		metadataBase: new URL("https://www.piptan.ae"),
+		metadataBase: new URL("https://piptan.ae"),
 	};
 }
 
@@ -211,16 +211,16 @@ async function SuspendedPortfolioList({
 		"@context": "https://schema.org",
 		"@type": "CollectionPage",
 		name: categoryName,
-		url: `https://www.piptan.ae/portfolio/${categorySlug}`,
+		url: `https://piptan.ae/portfolio/${categorySlug}`,
 		description: categoryDescription,
-		about: { "@id": "https://www.piptan.ae/#organization" },
+		about: { "@id": "https://piptan.ae/#organization" },
 		...(projects.length > 0 && {
 			mainEntity: {
 				"@type": "ItemList",
 				itemListElement: projects.map((project, index) => {
 					const projectUrl = project.link
-						? `https://www.piptan.ae${project.link}`
-						: "https://www.piptan.ae/portfolio";
+						? `https://piptan.ae${project.link}`
+						: "https://piptan.ae/portfolio";
 
 					return {
 						"@type": "ListItem",
@@ -255,19 +255,19 @@ async function SuspendedPortfolioList({
 				"@type": "ListItem",
 				position: 1,
 				name: "Home",
-				item: "https://www.piptan.ae/",
+				item: "https://piptan.ae/",
 			},
 			{
 				"@type": "ListItem",
 				position: 2,
 				name: "Portfolios",
-				item: "https://www.piptan.ae/portfolio",
+				item: "https://piptan.ae/portfolio",
 			},
 			{
 				"@type": "ListItem",
 				position: 3,
 				name: categoryName,
-				item: `https://www.piptan.ae/portfolio/${categorySlug}`,
+				item: `https://piptan.ae/portfolio/${categorySlug}`,
 			},
 		],
 	};

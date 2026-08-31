@@ -3,7 +3,7 @@ export const revalidate = 3600;
 export async function GET() {
 	const body = [
 		"site_name: Piptan Investment",
-		"domain: https://www.piptan.ae",
+		"domain: https://piptan.ae",
 		"industry: real_estate_investment",
 		"region: United Arab Emirates (UAE)",
 		"cities: Dubai, Abu Dhabi",

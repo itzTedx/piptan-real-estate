@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 	description:
 		"Privacy Policy for Piptan Capital L.L.C - Real Estate Investment Services in Dubai, UAE",
 	alternates: {
-		canonical: "https://www.piptan.ae/legal/privacy",
+		canonical: "https://piptan.ae/legal/privacy",
 	},
 };
 
@@ -22,8 +22,8 @@ export default function PrivacyPolicyPage() {
 		"@context": "https://schema.org",
 		"@type": "WebPage",
 		name: "Privacy Policy",
-		url: "https://www.piptan.ae/legal/privacy",
-		isPartOf: { "@id": "https://www.piptan.ae/#website" },
+		url: "https://piptan.ae/legal/privacy",
+		isPartOf: { "@id": "https://piptan.ae/#website" },
 	};
 
 	const breadcrumbSchema = {
@@ -34,13 +34,13 @@ export default function PrivacyPolicyPage() {
 				"@type": "ListItem",
 				position: 1,
 				name: "Home",
-				item: "https://www.piptan.ae/",
+				item: "https://piptan.ae/",
 			},
 			{
 				"@type": "ListItem",
 				position: 2,
 				name: "Privacy Policy",
-				item: "https://www.piptan.ae/legal/privacy",
+				item: "https://piptan.ae/legal/privacy",
 			},
 		],
 	};

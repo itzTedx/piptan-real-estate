@@ -14,7 +14,7 @@ import { InsightContent } from "@/features/insights/components/insight-content";
 import { urlFor } from "@/lib/sanity/image";
 import { cn } from "@/lib/utils";
 
-const BASE_URL = "https://www.piptan.ae";
+const BASE_URL = "https://piptan.ae";
 
 interface Params {
 	slug: string;
@@ -154,7 +154,7 @@ const generateArticleStructuredData = (insight: {
 	const slug = insight.slug || "";
 	const pageUrl = `${BASE_URL}/insights/${slug}`;
 
-	let imageUrl = `https://www.piptan.ae/images/insights/${slug}-cover.jpg`;
+	let imageUrl = `https://piptan.ae/images/insights/${slug}-cover.jpg`;
 	if (insight.seo?.ogImage) {
 		try {
 			imageUrl = urlFor(insight.seo.ogImage).url();
@@ -175,7 +175,7 @@ const generateArticleStructuredData = (insight: {
 		dateModified: (insight.updatedAt || insight.createdAt)
 			? (insight.updatedAt || insight.createdAt).split("T")[0]
 			: "",
-		author: { "@id": "https://www.piptan.ae/#organization" },
+		author: { "@id": "https://piptan.ae/#organization" },
 		publisher: {
 			"@type": "Organization",
 			name: "Piptan Investment",
@@ -203,13 +203,13 @@ const generateBreadcrumbStructuredData = (insight: {
 				"@type": "ListItem",
 				position: 1,
 				name: "Home",
-				item: "https://www.piptan.ae/",
+				item: "https://piptan.ae/",
 			},
 			{
 				"@type": "ListItem",
 				position: 2,
 				name: "Insights",
-				item: "https://www.piptan.ae/insights",
+				item: "https://piptan.ae/insights",
 			},
 			{
 				"@type": "ListItem",

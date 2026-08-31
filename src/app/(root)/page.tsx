@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 		type: "website",
 		title: meta.title,
 		description: meta.description,
-		url: "https://www.piptan.ae",
+		url: "https://piptan.ae",
 		siteName: "Piptan Investment",
 		locale: "en_US",
 		images: [
@@ -74,9 +74,9 @@ export const metadata: Metadata = {
 	},
 
 	alternates: {
-		canonical: "https://www.piptan.ae/",
+		canonical: "https://piptan.ae/",
 	},
-	metadataBase: new URL("https://www.piptan.ae"),
+	metadataBase: new URL("https://piptan.ae"),
 };
 
 export default async function Home() {
@@ -184,7 +184,7 @@ export default async function Home() {
 		"@context": "https://schema.org",
 		"@type": "Organization",
 		name: "Piptan Investment",
-		url: "https://www.piptan.ae",
+		url: "https://piptan.ae",
 		description:
 			"Premium real estate investment and development company in Dubai, specializing in luxury homes and commercial properties.",
 		address: {

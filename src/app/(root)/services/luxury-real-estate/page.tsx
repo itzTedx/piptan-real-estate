@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 	keywords:
 		"Luxury Real Estate Dubai, Dubai Luxury Villas, Waterfront Properties Dubai, High-End UAE Real Estate",
 	alternates: {
-		canonical: "https://www.piptan.ae/services/luxury-real-estate",
+		canonical: "https://piptan.ae/services/luxury-real-estate",
 	},
 };
 
@@ -21,12 +21,12 @@ export default function LuxuryRealEstatePage() {
 		"@type": "Service",
 		name: "Luxury Real Estate",
 		serviceType: "Luxury Real Estate",
-		provider: { "@id": "https://www.piptan.ae/#organization" },
+		provider: { "@id": "https://piptan.ae/#organization" },
 		areaServed: { "@type": "City", name: "Dubai" },
 		description:
 			(metadata.description as string) ||
 			"Exclusive luxury real estate opportunities in Dubai, including prime waterfront properties and high-end investments.",
-		url: "https://www.piptan.ae/services/luxury-real-estate",
+		url: "https://piptan.ae/services/luxury-real-estate",
 	};
 
 	const breadcrumbSchema = {
@@ -37,19 +37,19 @@ export default function LuxuryRealEstatePage() {
 				"@type": "ListItem",
 				position: 1,
 				name: "Home",
-				item: "https://www.piptan.ae/",
+				item: "https://piptan.ae/",
 			},
 			{
 				"@type": "ListItem",
 				position: 2,
 				name: "Services",
-				item: "https://www.piptan.ae/services",
+				item: "https://piptan.ae/services",
 			},
 			{
 				"@type": "ListItem",
 				position: 3,
 				name: "Luxury Real Estate",
-				item: "https://www.piptan.ae/services/luxury-real-estate",
+				item: "https://piptan.ae/services/luxury-real-estate",
 			},
 		],
 	};

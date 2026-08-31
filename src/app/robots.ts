@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
 				allow: "/",
 			},
 		],
-		sitemap: "https://www.piptan.ae/sitemap.xml",
+		sitemap: "https://piptan.ae/sitemap.xml",
 	};
 }

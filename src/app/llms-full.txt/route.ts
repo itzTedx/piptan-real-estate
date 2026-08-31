@@ -4,7 +4,7 @@ export async function GET() {
 	const body = [
 		"[company]",
 		"name: Piptan Investment",
-		"domain: https://www.piptan.ae",
+		"domain: https://piptan.ae",
 		"jurisdiction: United Arab Emirates",
 		"headquarters_city: Dubai",
 		"industry: real_estate_investment",

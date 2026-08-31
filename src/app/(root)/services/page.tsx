@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 	description:
 		"Comprehensive real estate solutions for buying, selling, investing, and managing property in Dubai and the UAE with Piptan.",
 	alternates: {
-		canonical: "https://www.piptan.ae/services",
+		canonical: "https://piptan.ae/services",
 	},
 };
 
