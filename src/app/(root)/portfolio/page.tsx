@@ -86,8 +86,8 @@ export default function ProjectsPage() {
 			<section className="container relative mb-20">
 				<SectionHeader
 					as="h1"
-					subtitle="Piptan curates a portfolio of premium residential and mixed-use developments across Dubai and Abu Dhabi, with a focus on long-term returns, rental yield stability, and landmark communities such as The Oasis and Grand Polo by Emaar."
-					title="Real Estate Investment Portfolio in UAE"
+					subtitle="Piptan offers a curated real estate investment portfolio in the UAE, featuring selected residential, commercial, and mixed-use property opportunities across Dubai and Abu Dhabi. Our portfolio is designed for investors looking for potential capital appreciation, rental income, and long-term value in the UAE property market."
+					title="Explore Curated Real Estate Investment Opportunities in the UAE"
 				/>
 
 				<Separator />
@@ -100,33 +100,10 @@ export default function ProjectsPage() {
 				<Separator className="my-12 md:my-20" />
 			</section>
 			<section className="container mt-4 mb-20 space-y-3 text-muted-foreground text-sm sm:text-base md:text-lg">
-				<h2 className="font-jaguar font-semibold text-base text-foreground sm:text-4xl">
-					Tailored UAE real estate portfolio
-				</h2>
 				<p>
-					Our{" "}
-					<strong className="font-semibold">Dubai real estate projects</strong>{" "}
-					and{" "}
-					<strong className="font-semibold">
-						Abu Dhabi property investment
-					</strong>{" "}
-					opportunities span waterfront communities, emerging suburban hubs, and
-					established prime districts tailored for both end-users and
-					institutional investors.
-				</p>
-				<p>
-					Working closely with{" "}
-					<strong className="font-semibold">Emaar developments</strong> and
-					other tier-one UAE developers, Piptan structures opportunities that
-					balance capital appreciation with steady income, guided by rigorous
-					market analysis and on-the-ground expertise.
-				</p>
-				<p>
-					This curated{" "}
-					<strong className="font-semibold">UAE real estate portfolio</strong>{" "}
-					is designed for investors seeking transparent, data-driven
-					decision-making, with professional advisory throughout the
-					acquisition, financing, and exit stages.
+					From established prime communities to emerging investment destinations, we help investors explore{" "}
+					<strong className="font-semibold">Dubai real estate investment opportunities</strong> and{" "}
+					<strong className="font-semibold">Abu Dhabi property investments</strong> based on their individual financial goals, investment horizon, and preferred returns.
 				</p>
 			</section>
 			<LeadSection
