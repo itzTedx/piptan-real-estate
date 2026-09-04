@@ -16,7 +16,7 @@ import { Testimonials } from "@/features/home/section/testimonials";
 import { WhyUsSection } from "@/features/home/section/why-us";
 
 const meta = {
-	title: "Dubai Luxury Real Estate Investments | Piptan Investment UAE",
+	title: "Luxury Investment | Piptan Capital Middle East",
 	description:
 		"Explore Dubai luxury homes, commercial property and high-ROI portfolios across the UAE. Expert guidance, vetted developers—start your investment with Piptan.",
 	keywords:

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 	metadataBase: new URL("https://piptan.ae"),
 	openGraph: {
 		type: "website",
-		title: "Piptan Investments - Luxury Real Estate in Dubai",
+		title: "Luxury Investment | Piptan Capital Middle East",
 		description:
 			"Discover luxury homes, commercial spaces, and investment opportunities in Dubai.",
 		url: "https://piptan.ae",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Piptan Investments - Luxury Real Estate in Dubai",
+		title: "Luxury Investment | Piptan Capital Middle East",
 		description:
 			"Discover luxury homes, commercial spaces, and investment opportunities in Dubai.",
 		images: ["/images/hero.webp"],
