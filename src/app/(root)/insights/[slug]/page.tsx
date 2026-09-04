@@ -50,18 +50,18 @@ export async function generateMetadata({
 
 	if (!insight) {
 		return {
-			title: "Insight Not Found | Piptan Investments",
+			title: "Insight Not Found | Piptan Capital Middle East",
 			description:
-				"The requested insight could not be found on Piptan Investments.",
+				"The requested insight could not be found on Piptan Capital Middle East.",
 		};
 	}
 
 	const metaTitle =
-		insight.seo?.meta_title || `${insight.title} | Piptan Investments`;
+		insight.seo?.meta_title || `${insight.title} | Piptan Capital Middle East`;
 	const metaDescription =
 		insight.seo?.meta_description ||
 		insight.excerpt ||
-		"Expert real estate insights from Piptan Investments on the Dubai property market.";
+		"Expert real estate insights from Piptan Capital Middle East on the Dubai property market.";
 
 	const metaKeywords =
 		insight.seo?.meta_keywords

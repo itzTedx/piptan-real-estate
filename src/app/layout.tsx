@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 		description:
 			"Discover luxury homes, commercial spaces, and investment opportunities in Dubai.",
 		url: "https://piptan.ae",
-		siteName: "Piptan Investments",
+		siteName: "Piptan Capital Middle East",
 		locale: "en_US",
 		images: [
 			{
