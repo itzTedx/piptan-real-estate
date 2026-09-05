@@ -50,9 +50,9 @@ export async function generateMetadata({
 
 	if (!insight) {
 		return {
-			title: "Insight Not Found | Piptan Capital Middle East",
+			title: "Insight Not Found | Piptan Capital Middle-East",
 			description:
-				"The requested insight could not be found on Piptan Capital Middle East.",
+				"The requested insight could not be found on Piptan Capital Middle-East.",
 		};
 	}
 
@@ -178,7 +178,7 @@ const generateArticleStructuredData = (insight: {
 		author: { "@id": "https://piptan.ae/#organization" },
 		publisher: {
 			"@type": "Organization",
-			name: "Piptan Investment",
+			name: "Piptan Capital Middle-East",
 			logo: {
 				"@type": "ImageObject",
 				url: "https://piptan.ae/piptan-logo.svg",

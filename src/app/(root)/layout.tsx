@@ -6,9 +6,9 @@ import { Navbar } from "@/components/layout/navbar";
 import { PaymentNoticePopup } from "@/components/payment-notice-popup";
 
 const meta = {
-	title: "Luxury Real Estate Investments in the UAE - Piptan Investment",
+	title: "Legacy Infra Investments | Piptan Capital Middle-East",
 	description:
-		"Discover luxury homes, commercial spaces, and investment opportunities in Dubai's most sought-after communities. Expert guidance and premium listings for confident real estate decisions.",
+		"Explore expertly curated UAE real estate opportunities designed to deliver rental income, high ROI, and long-term capital appreciation.",
 	keywords:
 		"Dubai real estate, luxury homes, commercial property, real estate investment, property development, Dubai property market, luxury apartments, villas Dubai, real estate agents Dubai, property investment UAE",
 };

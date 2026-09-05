@@ -16,9 +16,9 @@ import { Testimonials } from "@/features/home/section/testimonials";
 import { WhyUsSection } from "@/features/home/section/why-us";
 
 const meta = {
-	title: "Luxury Investment | Piptan Capital Middle East",
+	title: "Legacy Infra Investments | Piptan Capital Middle-East",
 	description:
-		"Explore Dubai luxury homes, commercial property and high-ROI portfolios across the UAE. Expert guidance, vetted developers—start your investment with Piptan.",
+		"Explore expertly curated UAE real estate opportunities designed to deliver rental income, high ROI, and long-term capital appreciation.",
 	keywords:
 		"Dubai real estate investment, luxury property UAE, commercial real estate Dubai, property investment portfolios",
 };
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
 	title: meta.title,
 	description: meta.description,
 	keywords: meta.keywords,
-	authors: [{ name: "Piptan Investment" }],
-	creator: "Piptan Investment",
-	publisher: "Piptan Investment",
+	authors: [{ name: "Piptan" }],
+	creator: "Piptan",
+	publisher: "Piptan",
 	formatDetection: {
 		email: false,
 		address: false,
@@ -43,14 +43,14 @@ export const metadata: Metadata = {
 		title: meta.title,
 		description: meta.description,
 		url: "https://piptan.ae",
-		siteName: "Piptan Investment",
+		siteName: "Piptan Capital Middle-East",
 		locale: "en_US",
 		images: [
 			{
 				url: "/images/hero.webp",
 				width: 1200,
 				height: 630,
-				alt: "Piptan Investment Luxury Real Estate",
+				alt: "Piptan Luxury Real Estate",
 			},
 		],
 	},
